@@ -2,6 +2,7 @@
 #include "Block.h"
 #include "Field.h"
 #include <iostream>
+#include "../Utility/CLOCKWISE_FOR.hpp"
 
 int main(){
 	Field field = 
@@ -46,7 +47,6 @@ int main(){
 					{0,0,0,0,1,1,0,0},
 					{0,0,0,0,0,1,1,0},
 					{0,0,0,0,0,0,1,1},};
-	
 	std::cout << field << std::endl;
 	//std::cout << b.GetRotate(Constants::ANGLE90) << std::endl;
 	//std::cout << b.GetRotate(Constants::ANGLE180) << std::endl;
