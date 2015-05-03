@@ -6,11 +6,13 @@ NAME   = SutructureTest
 CFLAGS = -std=c++11
 
 HEADER = Heuristic.h \
-		 Block.h
+		 Block.h     \
+		 Field.h     \
 
-SOURCES= test.cpp \
+SOURCES= test.cpp      \
 		 Heuristic.cpp \
-		 Block.cpp
+		 Block.cpp     \
+		 Field.cpp     \
 
 
 BUILD  = $(CC) -o $(NAME) $(CFLAGS)  $(SOURCES)

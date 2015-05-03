@@ -18,12 +18,13 @@ public:
 	using Base::end;
 	using Base::operator[];
 
-	explicit Block();
+	Block();
+	Block(std::initializer_list<std::initializer_list<int>> init);
 	virtual ~Block();
 
-	size_t GetSize()const; 			 	//size of pieces [zk]
-	Block  GetRotate(Constants::ANGLE angle); //Get rotated piece
-	Block  GetReverse();			//Get reversed piece
+	size_t GetSize()const; 			 			//size of pieces [zk]
+	Block  GetRotate(Constants::ANGLE angle); 	//Get rotated piece
+	Block  GetReverse();						//Get reversed piece
 };
 
 std::ostream& operator<<(std::ostream& out,Block block);

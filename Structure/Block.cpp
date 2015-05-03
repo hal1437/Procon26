@@ -3,6 +3,18 @@
 Block::Block(){
 	std::fill(begin(),end(),Constants::EMPTY);
 }
+Block::Block(std::initializer_list<std::initializer_list<int>> init){
+	int i,j;
+	i=0;
+	for(std::initializer_list<int> list : init){
+		j=0;
+		for(int x : list){
+			(*this)[i][j] = static_cast<Constants::ZUKU>(x);
+			j++;
+		}
+		i++;
+	}
+}
 Block::~Block(){
 
 }
