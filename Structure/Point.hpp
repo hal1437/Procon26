@@ -1,0 +1,29 @@
+
+#pragma once
+
+struct Point{
+	int x,y;
+
+	Point():x(0),y(0){
+	}
+	Point(int x,int y):x(x),y(y){
+	}
+
+	inline Point operator+(const Point& lhs)const{
+		return Point(this->x + lhs.x,this->y + lhs.y);
+	}
+	inline Point operator-(const Point& lhs)const{
+		return Point(this->x - lhs.x,this->y - lhs.y);
+	}
+
+	template<class T>
+	inline Point operator*(const T& lhs)const{
+		return Point(x * lhs,y * lhs);
+	}
+	template<class T>
+	inline Point operator/(const T& lhs)const{
+		return Point(x / lhs,y / lhs);
+	}
+
+};
+
