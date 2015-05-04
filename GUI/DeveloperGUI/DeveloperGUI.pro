@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+CONFIG   += c++11
+QMAKE_CXXFLAGS += -std=c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,8 +15,17 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    ../../Structure/Block.cpp \
+    ../../Structure/Field.cpp \
+    ../../Structure/Heuristic.cpp \
+    ../../Structure/test.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    ../../Structure/Block.h \
+    ../../Structure/Field.h \
+    ../../Structure/Heuristic.h \
+    ../../Structure/Multi.hpp \
+    ../../Structure/Point.hpp
 
 FORMS    += mainwindow.ui

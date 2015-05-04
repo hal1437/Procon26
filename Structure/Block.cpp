@@ -3,6 +3,7 @@
 Block::Block(){
 	std::fill(begin(),end(),Constants::EMPTY);
 }
+
 Block::Block(std::initializer_list<std::initializer_list<int>> init){
 	int i,j;
 	i=0;

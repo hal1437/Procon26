@@ -1,5 +1,6 @@
 
 #pragma once
+#include <QPoint>
 
 struct Point{
 	int x,y;
@@ -8,6 +9,8 @@ struct Point{
 	}
 	Point(int x,int y):x(x),y(y){
 	}
+    Point(QPoint pos):x(pos.x()),y(pos.y()){
+    }
 
 	inline Point operator+(const Point& lhs)const{
 		return Point(this->x + lhs.x,this->y + lhs.y);

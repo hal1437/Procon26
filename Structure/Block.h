@@ -3,6 +3,7 @@
 #include "Multi.hpp"
 #include "../Utility/Constants.hpp"
 #include <iostream>
+#include <initializer_list>
 #include <algorithm>
 #define BLOCK_HEIGHT 8
 #define BLOCK_WIDTH  8
@@ -18,9 +19,9 @@ public:
 	using Base::end;
 	using Base::operator[];
 
-	Block();
-	Block(std::initializer_list<std::initializer_list<int>> init);
-	virtual ~Block();
+    Block();
+    Block(std::initializer_list<std::initializer_list<int>> init);
+    virtual ~Block();
 
 	size_t GetSize()const; 			 			//size of pieces [zk]
 	Block  GetRotate(Constants::ANGLE angle); 	//Get rotated piece
