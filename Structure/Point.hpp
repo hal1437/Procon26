@@ -1,6 +1,5 @@
 
 #pragma once
-#include <ostream>
 
 struct Point{
 	int x,y;
@@ -10,16 +9,21 @@ struct Point{
 	Point(int x,int y):x(x),y(y){
 	}
 
+	inline Point operator+(const Point& lhs)const{
+		return Point(this->x + lhs.x,this->y + lhs.y);
+	}
+	inline Point operator-(const Point& lhs)const{
+		return Point(this->x - lhs.x,this->y - lhs.y);
+	}
+
 	template<class T>
-	inline Point operator*(const T& lhs){
-		return {x * lhs,y * lhs};
+	inline Point operator*(const T& lhs)const{
+		return Point(x * lhs,y * lhs);
+	}
+	template<class T>
+	inline Point operator/(const T& lhs)const{
+		return Point(x / lhs,y / lhs);
 	}
 
 };
-
-inline std::ostream& operator<<(std::ostream& out,Point pos){
-	out << "(" << pos.x << "," << pos.y << ")";
-	return out;
-}
-
 

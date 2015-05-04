@@ -8,25 +8,19 @@
 #define FIELD_HEIGHT 32
 #define FIELD_WIDTH  32
 
-class Field : private Multi<Constants::ZUKU,FIELD_HEIGHT,FIELD_WIDTH>{
+class Field : public Multi<Constants::ZUKU,FIELD_HEIGHT,FIELD_WIDTH>{
 private:
 	typedef Multi<Constants::ZUKU,FIELD_HEIGHT,FIELD_WIDTH> Base;
 
 public:
-	using Base::iterator;
-	using Base::child;
-	using Base::begin;
-	using Base::end;
-	using Base::operator[];
 
 	Field();
 	Field(std::initializer_list<std::initializer_list<int>> init);
 	virtual ~Field();
 
-	void Projection(Point Pos,Block block);	//Added block to field
-	bool isCross   (Point Pos,Block block);	//Checking cross Block
-
+	void Projection(const Point pos,const Block block);	//Added block to field
+	bool isLayPossible(const Point pos,const Block block);	//Checking cross Block
+	
 };
 
-std::ostream& operator<<(std::ostream& out,Field field);
 

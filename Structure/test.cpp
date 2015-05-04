@@ -2,7 +2,6 @@
 #include "Block.h"
 #include "Field.h"
 #include <iostream>
-#include "../Utility/CLOCKWISE_FOR.hpp"
 
 int main(){
 	Field field = 
@@ -37,21 +36,22 @@ int main(){
 				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},};
+				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-	Block block = { {1,0,0,0,0,0,0,0},
-					{1,1,0,0,0,0,0,0},
-					{0,1,1,0,0,0,0,0},
-					{0,0,1,1,0,0,0,0},
-					{0,0,0,1,1,0,0,0},
-					{0,0,0,0,1,1,0,0},
-					{0,0,0,0,0,1,1,0},
-					{0,0,0,0,0,0,1,1},};
+	Block block = { {0,1,0,0,0,0,0,0},
+					{0,1,0,0,0,0,0,0},
+					{0,1,0,0,0,0,0,0},
+					{0,1,0,0,0,0,0,0},
+					{0,1,0,0,0,0,0,0},
+					{0,1,0,0,0,0,0,0},
+					{0,1,1,1,0,0,0,0},
+					{0,0,0,0,0,0,0,0}};
+	
 	std::cout << field << std::endl;
-	//std::cout << b.GetRotate(Constants::ANGLE90) << std::endl;
-	//std::cout << b.GetRotate(Constants::ANGLE180) << std::endl;
-	//std::cout << b.GetRotate(Constants::ANGLE270) << std::endl;
-	//std::cout << b.GetReverse() << std::endl;
+	std::cout << block << std::endl;
+	std::cout << "isLayPossible:" << field.isLayPossible(Point(-1,-1),block.GetRotate(Constants::ANGLE90)) << std::endl;
+	field.Projection(Point(-1,-1),block.GetRotate(Constants::ANGLE90));
+	std::cout << field << std::endl;
 
 	return 0;
 }

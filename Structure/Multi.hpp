@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <ostream>
+#include "Point.hpp"
 
 template<class T,std::size_t... Dims>
 class Multi{
@@ -37,6 +39,9 @@ public:
 	operator value_type&(){
 		return _value;
 	}
+	operator const value_type&()const{
+		return _value;
+	}
 };
 template<class T,std::size_t First,std::size_t... Dims>
 class Multi<T,First,Dims...>{
@@ -66,6 +71,16 @@ public:
 	child& operator[](const std::size_t& index){
 		return _array[index];
 	}
+	const child& operator[](const std::size_t& index)const {
+		return _array[index];
+	}
+	typename child::child& operator[](const Point& index){
+		return _array[index.y][index.x];
+	}
+	const typename child::child& operator[](const Point& index)const {
+		return _array[index.y][index.x];
+	}
+
 
 };
 
@@ -111,4 +126,15 @@ public:
 		return _value;
 	}
 };
+
+template<class T,size_t X,size_t Y>
+std::ostream& operator<<(std::ostream& out,Multi<T,X,Y> field){
+	for(int i=0;i<Y;i++){
+		for(int j=0;j<X;j++){
+			out << field[i][j];
+		}
+		out << "\n";
+	}
+	return out;
+}
 
