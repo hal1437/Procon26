@@ -6,6 +6,6 @@
 protected:                                                   \
 	TYPE NAME;                                               \
 public:                                                      \
-	virtual void set##FUNC(TYPE NAME){this->##NAME = NAME;}  \
-	virtual TYPE get##FUNC(void)const{return this->##NAME;}  \
+	virtual void set##FUNC(TYPE NAME){this->NAME = NAME;}    \
+	virtual TYPE get##FUNC(void)const{return this->NAME;}    \
 
