@@ -2,9 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QPaintEvent>
+#include <QKeyEvent>
 #include "../../Structure/Block.h"
 #include "../../Structure/Field.h"
+#include "../../Utility/SYNTHESIZE.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -13,16 +14,13 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+private:
     const float field_part_width  = 15;
     const float field_part_height = 15;
-private:
-    Field field;
-    QList<std::pair<QPoint,Block>> blocks;
 
 protected:
-    void paintEvent(QPaintEvent* event);
+    void keyPressEvent(QKeyEvent * event);
 public:
-    static QPixmap MakeIcon(QColor col,int width,int height);
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

@@ -14,16 +14,15 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QFrame>
-#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "FieldMap.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -31,11 +30,10 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QGridLayout *gridLayout;
+    QHBoxLayout *horizontalLayout;
     QFrame *Field;
     QVBoxLayout *verticalLayout;
-    QLabel *FieldLabel;
-    QListWidget *listWidget;
+    FieldMap *FieldLabel;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -52,10 +50,10 @@ public:
         MainWindow->setSizePolicy(sizePolicy);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        gridLayout = new QGridLayout(centralWidget);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        horizontalLayout = new QHBoxLayout(centralWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         Field = new QFrame(centralWidget);
         Field->setObjectName(QStringLiteral("Field"));
         Field->setFrameShape(QFrame::StyledPanel);
@@ -65,20 +63,14 @@ public:
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        FieldLabel = new QLabel(Field);
+        FieldLabel = new FieldMap(Field);
         FieldLabel->setObjectName(QStringLiteral("FieldLabel"));
         FieldLabel->setScaledContents(false);
 
         verticalLayout->addWidget(FieldLabel);
 
 
-        gridLayout->addWidget(Field, 0, 1, 1, 1);
-
-        listWidget = new QListWidget(centralWidget);
-        listWidget->setObjectName(QStringLiteral("listWidget"));
-        listWidget->setMaximumSize(QSize(130, 16777215));
-
-        gridLayout->addWidget(listWidget, 0, 2, 1, 1);
+        horizontalLayout->addWidget(Field);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);

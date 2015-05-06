@@ -20,8 +20,8 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
      <widget class="QFrame" name="Field">
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -43,7 +43,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="FieldLabel">
+        <widget class="FieldMap" name="FieldLabel">
          <property name="text">
           <string/>
          </property>
@@ -53,16 +53,6 @@
         </widget>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QListWidget" name="listWidget">
-      <property name="maximumSize">
-       <size>
-        <width>130</width>
-        <height>16777215</height>
-       </size>
-      </property>
      </widget>
     </item>
    </layout>
@@ -88,6 +78,13 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>FieldMap</class>
+   <extends>QLabel</extends>
+   <header>FieldMap.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

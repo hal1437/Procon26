@@ -53,13 +53,15 @@ SOURCES       = ../DeveloperGUI/main.cpp \
 		../../Structure/Block.cpp \
 		../../Structure/Field.cpp \
 		../../Structure/Heuristic.cpp \
-		../../Structure/test.cpp moc_mainwindow.cpp
+		../../Structure/test.cpp \
+		../DeveloperGUI/FieldMap.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		Block.o \
 		Field.o \
 		Heuristic.o \
 		test.o \
+		FieldMap.o \
 		moc_mainwindow.o
 DIST          = ../../../../Qt/5.4/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.4/clang_64/mkspecs/qdevice.pri \
@@ -192,12 +194,17 @@ DIST          = ../../../../Qt/5.4/clang_64/mkspecs/features/spec_pre.prf \
 		../../Structure/Field.h \
 		../../Structure/Heuristic.h \
 		../../Structure/Multi.hpp \
-		../../Structure/Point.hpp ../DeveloperGUI/main.cpp \
+		../../Structure/Point.hpp \
+		../DeveloperGUI/FieldMap.h \
+		../../Utility/CLOCKWISE_FOR.hpp \
+		../../Utility/Constants.hpp \
+		../../Utility/SYNTHESIZE.hpp ../DeveloperGUI/main.cpp \
 		../DeveloperGUI/mainwindow.cpp \
 		../../Structure/Block.cpp \
 		../../Structure/Field.cpp \
 		../../Structure/Heuristic.cpp \
-		../../Structure/test.cpp
+		../../Structure/test.cpp \
+		../DeveloperGUI/FieldMap.cpp
 QMAKE_TARGET  = DeveloperGUI
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = DeveloperGUI.app/Contents/MacOS/DeveloperGUI
@@ -531,8 +538,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../DeveloperGUI/mainwindow.h ../../Structure/Block.h ../../Structure/Field.h ../../Structure/Heuristic.h ../../Structure/Multi.hpp ../../Structure/Point.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../DeveloperGUI/main.cpp ../DeveloperGUI/mainwindow.cpp ../../Structure/Block.cpp ../../Structure/Field.cpp ../../Structure/Heuristic.cpp ../../Structure/test.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../DeveloperGUI/mainwindow.h ../../Structure/Block.h ../../Structure/Field.h ../../Structure/Heuristic.h ../../Structure/Multi.hpp ../../Structure/Point.hpp ../DeveloperGUI/FieldMap.h ../../Utility/CLOCKWISE_FOR.hpp ../../Utility/Constants.hpp ../../Utility/SYNTHESIZE.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../DeveloperGUI/main.cpp ../DeveloperGUI/mainwindow.cpp ../../Structure/Block.cpp ../../Structure/Field.cpp ../../Structure/Heuristic.cpp ../../Structure/test.cpp ../DeveloperGUI/FieldMap.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../DeveloperGUI/mainwindow.ui $(DISTDIR)/
 
 
@@ -563,6 +570,18 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
+		../DeveloperGUI/mainwindow.h
+	/Users/hal1437/Qt/5.4/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -I/Users/hal1437/Qt/5.4/clang_64/mkspecs/macx-clang -I/Users/hal1437/Programs/Procon26/GUI/DeveloperGUI -I/Users/hal1437/Qt/5.4/clang_64/lib/QtWidgets.framework/Headers -I/Users/hal1437/Qt/5.4/clang_64/lib/QtGui.framework/Headers -I/Users/hal1437/Qt/5.4/clang_64/lib/QtCore.framework/Headers -I. -F/Users/hal1437/Qt/5.4/clang_64/lib ../DeveloperGUI/mainwindow.h -o moc_mainwindow.cpp
+
+compiler_moc_source_make_all:
+compiler_moc_source_clean:
+compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_clean:
+	-$(DEL_FILE) ui_mainwindow.h
+ui_mainwindow.h: ../DeveloperGUI/mainwindow.ui \
+		../DeveloperGUI/FieldMap.h \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QLabel \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlabel.h \
 		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QPaintEvent \
 		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
 		../../Structure/Block.h \
@@ -572,15 +591,7 @@ moc_mainwindow.cpp: ../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions
 		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qpoint.h \
 		../../Utility/Constants.hpp \
 		../../Structure/Field.h \
-		../DeveloperGUI/mainwindow.h
-	/Users/hal1437/Qt/5.4/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -I/Users/hal1437/Qt/5.4/clang_64/mkspecs/macx-clang -I/Users/hal1437/Programs/Procon26/GUI/DeveloperGUI -I/Users/hal1437/Qt/5.4/clang_64/lib/QtWidgets.framework/Headers -I/Users/hal1437/Qt/5.4/clang_64/lib/QtGui.framework/Headers -I/Users/hal1437/Qt/5.4/clang_64/lib/QtCore.framework/Headers -I. -F/Users/hal1437/Qt/5.4/clang_64/lib ../DeveloperGUI/mainwindow.h -o moc_mainwindow.cpp
-
-compiler_moc_source_make_all:
-compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
-compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
-ui_mainwindow.h: ../DeveloperGUI/mainwindow.ui
+		../../Utility/SYNTHESIZE.hpp
 	/Users/hal1437/Qt/5.4/clang_64/bin/uic ../DeveloperGUI/mainwindow.ui -o ui_mainwindow.h
 
 compiler_rez_source_make_all:
@@ -598,15 +609,6 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 main.o: ../DeveloperGUI/main.cpp ../DeveloperGUI/mainwindow.h \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QPaintEvent \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
-		../../Structure/Block.h \
-		../../Structure/Multi.hpp \
-		../../Structure/Point.hpp \
-		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QPoint \
-		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qpoint.h \
-		../../Utility/Constants.hpp \
-		../../Structure/Field.h \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QApplication \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../DeveloperGUI/main.cpp
@@ -614,15 +616,6 @@ main.o: ../DeveloperGUI/main.cpp ../DeveloperGUI/mainwindow.h \
 mainwindow.o: ../DeveloperGUI/mainwindow.cpp ../DeveloperGUI/mainwindow.h \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QPaintEvent \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
-		../../Structure/Block.h \
-		../../Structure/Multi.hpp \
-		../../Structure/Point.hpp \
-		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QPoint \
-		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qpoint.h \
-		../../Utility/Constants.hpp \
-		../../Structure/Field.h \
 		ui_mainwindow.h \
 		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QPainter \
 		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qpainter.h
@@ -650,6 +643,23 @@ Heuristic.o: ../../Structure/Heuristic.cpp
 
 test.o: ../../Structure/test.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o test.o ../../Structure/test.cpp
+
+FieldMap.o: ../DeveloperGUI/FieldMap.cpp ../DeveloperGUI/FieldMap.h \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QLabel \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlabel.h \
+		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QPaintEvent \
+		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
+		../../Structure/Block.h \
+		../../Structure/Multi.hpp \
+		../../Structure/Point.hpp \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QPoint \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qpoint.h \
+		../../Utility/Constants.hpp \
+		../../Structure/Field.h \
+		../../Utility/SYNTHESIZE.hpp \
+		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QPainter \
+		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qpainter.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o FieldMap.o ../DeveloperGUI/FieldMap.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

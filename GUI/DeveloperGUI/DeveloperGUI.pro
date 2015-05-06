@@ -19,13 +19,18 @@ SOURCES += main.cpp\
     ../../Structure/Block.cpp \
     ../../Structure/Field.cpp \
     ../../Structure/Heuristic.cpp \
-    ../../Structure/test.cpp
+    ../../Structure/test.cpp \
+    FieldMap.cpp
 
 HEADERS  += mainwindow.h \
     ../../Structure/Block.h \
     ../../Structure/Field.h \
     ../../Structure/Heuristic.h \
     ../../Structure/Multi.hpp \
-    ../../Structure/Point.hpp
+    ../../Structure/Point.hpp \
+    FieldMap.h \
+    ../../Utility/CLOCKWISE_FOR.hpp \
+    ../../Utility/Constants.hpp \
+    ../../Utility/SYNTHESIZE.hpp
 
 FORMS    += mainwindow.ui
