@@ -24,6 +24,8 @@ Field::~Field(){
 void Field::Projection(const Point pos,const Block block){
 	for(int i = 0;i < BLOCK_HEIGHT;i++){
 		for(int j = 0;j < BLOCK_WIDTH;j++){
+			if(pos.y + i < 0 || pos.y + i >= FIELD_WIDTH ||
+			   pos.x + j < 0 || pos.x + j >= FIELD_HEIGHT)continue;
 			if(block[i][j] == Constants::FILL)(*this)[pos.y + i][pos.x + j] = Constants::FILL;
 		}
 	}
