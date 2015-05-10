@@ -66,6 +66,13 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>編集</string>
+    </property>
+    <addaction name="actionBlockEdit"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -74,8 +81,20 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionBlockEdit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionBlockEdit">
+   <property name="text">
+    <string>ブロック編集</string>
+   </property>
+   <property name="toolTip">
+    <string>BlockEdit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

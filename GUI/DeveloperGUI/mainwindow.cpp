@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QPainter>
 #include "FieldMap.h"
+#include "CreateBlockDialog.h"
 
 void MainWindow::keyPressEvent(QKeyEvent * event){
     FieldMap* map = ui->FieldLabel;
@@ -54,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
           {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
           {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}});
 
-//    blocks;
+    //blocks;
     ui->FieldLabel->AddBlock({1,1},
                    { {0,1,0,0,0,0,0,0},
                      {0,1,0,0,0,0,0,0},
@@ -76,10 +77,19 @@ MainWindow::MainWindow(QWidget *parent) :
                      {0,1,1,1,0,0,0,0},
                      {0,0,0,0,0,0,0,0}}
                          );
-
+    connect(ui->actionBlockEdit,SIGNAL(triggered()),this,SLOT(EditBlock()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::EditBlock(){
+    if(this->ui->FieldLabel->getIndex() >= 0){
+        CreateBlockDialog diag;
+        diag.setBlock(ui->FieldLabel->GetSelecting() );
+        if(diag.exec()){
+            ui->FieldLabel->GetSelecting() = diag.getBlock();
+        }
+    }
 }

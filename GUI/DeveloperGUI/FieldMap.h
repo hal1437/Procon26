@@ -36,6 +36,7 @@ public:
     static QIcon MakeIcon(Block block);
     void AddBlock(QPoint pos,Block block);
 
+    Block& GetSelecting();
     QPoint GetPoint(int index)const;
 
     FieldMap(QWidget *parent = 0);

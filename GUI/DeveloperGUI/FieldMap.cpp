@@ -82,6 +82,9 @@ void FieldMap::AddBlock(QPoint pos,Block block){
     listing->item(listing->count()-1)->setIcon(MakeIcon(block));
 }
 
+Block &FieldMap::GetSelecting(){
+    return blocks[index].block;
+}
 QPoint FieldMap::GetPoint(int index)const{
     if(index >= 0){
         return blocks[index].pos;

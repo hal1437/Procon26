@@ -17,6 +17,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -29,12 +30,14 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionBlockEdit;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QFrame *Field;
     QVBoxLayout *verticalLayout;
     FieldMap *FieldLabel;
     QMenuBar *menuBar;
+    QMenu *menu;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -48,6 +51,8 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
+        actionBlockEdit = new QAction(MainWindow);
+        actionBlockEdit->setObjectName(QStringLiteral("actionBlockEdit"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayout = new QHBoxLayout(centralWidget);
@@ -76,6 +81,8 @@ public:
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 547, 22));
+        menu = new QMenu(menuBar);
+        menu->setObjectName(QStringLiteral("menu"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -83,6 +90,10 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+
+        menuBar->addAction(menu->menuAction());
+        menu->addAction(actionBlockEdit);
+        mainToolBar->addAction(actionBlockEdit);
 
         retranslateUi(MainWindow);
 
@@ -92,7 +103,13 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        actionBlockEdit->setText(QApplication::translate("MainWindow", "\343\203\226\343\203\255\343\203\203\343\202\257\347\267\250\351\233\206", 0));
+#ifndef QT_NO_TOOLTIP
+        actionBlockEdit->setToolTip(QApplication::translate("MainWindow", "BlockEdit", 0));
+#endif // QT_NO_TOOLTIP
+        actionBlockEdit->setShortcut(QApplication::translate("MainWindow", "Ctrl+E", 0));
         FieldLabel->setText(QString());
+        menu->setTitle(QApplication::translate("MainWindow", "\347\267\250\351\233\206", 0));
     } // retranslateUi
 
 };

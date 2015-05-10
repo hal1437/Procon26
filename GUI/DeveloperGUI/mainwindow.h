@@ -27,6 +27,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void EditBlock();
 };
 
 #endif // MAINWINDOW_H
