@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <iostream>
+#include <ostream>
 #include <type_traits>
 #include <initializer_list>
 #include "Point.hpp"
@@ -86,9 +86,11 @@ public:
 		return _array[index.y][index.x];
 	}
 
-	Multi(){};
-	Multi(std::initializer_list<child> init){
-		std::copy(init.begin(),init.end(),_array);
+	Multi() = default;
+	Multi(std::initializer_list<T> init){
+		for(int i = 0;i<First;i++){
+			_array[i] = init[i];
+		}
 	}
 
 };
@@ -110,7 +112,7 @@ public:
 	};
 
 	child& operator[](const std::size_t& index){
-		return _array[index];
+	return _array[index];
 	}
 
 };
@@ -140,7 +142,7 @@ template<class T,size_t X,size_t Y>
 std::ostream& operator<<(std::ostream& out,Multi<T,X,Y> field){
 	for(int i=0;i<Y;i++){
 		for(int j=0;j<X;j++){
-			out << field[i][j];
+			out << field[i][j] << ",";
 		}
 		out << "\r\n";
 	}
@@ -149,12 +151,12 @@ std::ostream& operator<<(std::ostream& out,Multi<T,X,Y> field){
 
 
 template<class T,size_t X,size_t Y>
-std::istream& operator>>(std::istream& in,Multi<T,X,Y>& field){
+std::istream& operator>>(std::istream& in,Multi<typename std::enable_if<std::is_integral<T>::value,T>::type,X,Y> field){
 	for(int i=0;i<Y;i++){
-		std::string str;
-		std::getline(in,str);
 		for(int j=0;j<X;j++){
-			field[i][j] = static_cast<T>(str[j]-'0');
+			T integral=0;
+			//while((integral += in.get()) != ',')integral *= 10;
+			field[i][j] = integral;
 		}
 	}
 	return in;
