@@ -3,23 +3,17 @@
 #include "Field.h"
 #include <iostream>
 #include <fstream>
+#include "Problem.h"
 
 int main(){
 
-	
-	
-	Field field;
-	Block block;
+	Problem prob("../Problem/Problem.txt");
 
-	std::ifstream ffs("out.txt");
-	std::ifstream bfs("block.txt");
+	Field field = prob.GetField();
+	Block block = prob.GetBlock(0);
 
-	ffs >> field;
-	bfs >> block;
-
-	std::cout << field << std::endl;
 	std::cout << block << std::endl;
-	std::cout << "isLayPossible:" << field.isLayPossible(Point(-1,-1),block.GetRotate(Constants::ANGLE90)) << std::endl;
+	std::cout << "isLayPossible:" << field.isLayPossible(Point(3,0),block.GetRotate(Constants::ANGLE90)) << std::endl;
 	field.Projection(Point(3,0),block.GetRotate(Constants::ANGLE90));
 	std::cout << field << std::endl;
 

@@ -8,14 +8,16 @@ CFLAGS = -std=c++11
 HEADER = Heuristic.h \
 		 Block.h     \
 		 Field.h     \
+		 Problem.h   \
 
 SOURCES= test.cpp      \
 		 Heuristic.cpp \
 		 Block.cpp     \
 		 Field.cpp     \
+		 Problem.cpp   \
 
 
-BUILD  = $(CC) -o $(NAME) $(CFLAGS)  $(SOURCES)
+BUILD  = $(CC) -g -O0 -o $(NAME) $(CFLAGS)  $(SOURCES)
 
 RUN    = ./$(NAME)
 

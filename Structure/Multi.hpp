@@ -137,7 +137,7 @@ public:
 };
 
 template<class T,size_t X,size_t Y>
-std::ostream& operator<<(std::ostream& out,Multi<T,X,Y> field){
+std::ostream& operator<<(std::ostream& out,const Multi<T,X,Y> field){
 	for(int i=0;i<Y;i++){
 		for(int j=0;j<X;j++){
 			out << field[i][j];

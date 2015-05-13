@@ -3,10 +3,6 @@
 Block::Block(){
 	std::fill(begin(),end(),Constants::EMPTY);
 }
-
-//Block::Block(std::initializer_list<std::initializer_list<Constants::ZUKU>> init):
-//	Base(init){
-//}
 Block::~Block(){
 
 }
