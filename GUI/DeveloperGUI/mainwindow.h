@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include "../../Structure/Block.h"
 #include "../../Structure/Field.h"
+#include "../../Structure/Problem.h"
 #include "../../Utility/SYNTHESIZE.hpp"
 
 namespace Ui {
@@ -26,10 +27,13 @@ public:
     ~MainWindow();
 
 private:
+    Problem* prob;
     Ui::MainWindow *ui;
 
 private slots:
+    void AddBlock();
     void EditBlock();
+    void EditField();
 };
 
 #endif // MAINWINDOW_H

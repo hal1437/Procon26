@@ -81,7 +81,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionAddBlock"/>
    <addaction name="actionBlockEdit"/>
+   <addaction name="actionFieldEdit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionBlockEdit">
@@ -92,7 +94,23 @@
     <string>BlockEdit</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+E</string>
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionAddBlock">
+   <property name="text">
+    <string>ブロック追加</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionFieldEdit">
+   <property name="text">
+    <string>フィールド編集</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>

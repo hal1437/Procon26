@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QPainter>
+#include <QDebug>
+#include <QDir>
 #include "FieldMap.h"
-#include "CreateBlockDialog.h"
+#include "EditMultiDialog.h"
 
 void MainWindow::keyPressEvent(QKeyEvent * event){
     FieldMap* map = ui->FieldLabel;
@@ -21,75 +23,42 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->centralWidget->layout()->addWidget(ui->FieldLabel->getListing());
     ui->Field     ->setMaximumSize(field_part_width * FIELD_WIDTH+2,field_part_height * FIELD_HEIGHT+2);
     ui->FieldLabel->setMaximumSize(field_part_width * FIELD_WIDTH+2,field_part_height * FIELD_HEIGHT+2);
-    ui->FieldLabel->setField(
-        { {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}});
+    //Users/hal1437/Programs/Procon26/Problem/Problem.txt
+    prob = new Problem("");
 
-    //blocks;
-    ui->FieldLabel->AddBlock({1,1},
-                   { {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,1,1,0,0,0,0},
-                     {0,0,0,0,0,0,0,0}}
-                         );
+    ui->FieldLabel->setField(prob->GetField());
+    for(int i=0;i<prob->Count();i++)ui->FieldLabel->AddBlock(QPoint(0,0),prob->GetBlock(i));
 
-    ui->FieldLabel->AddBlock({5,0},
-                   { {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,0,0,0,0,0,0},
-                     {0,1,1,1,0,0,0,0},
-                     {0,0,0,0,0,0,0,0}}
-                         );
+    connect(ui->actionAddBlock ,SIGNAL(triggered()),this,SLOT(AddBlock()));
     connect(ui->actionBlockEdit,SIGNAL(triggered()),this,SLOT(EditBlock()));
+    connect(ui->actionFieldEdit,SIGNAL(triggered()),this,SLOT(EditField()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::AddBlock(){
+    EditMultiDialog<8,8> diag;
+    diag.setMatrix(Block());
+    if(diag.exec()){
+        ui->FieldLabel->AddBlock(QPoint(0,0),diag.getMatrix());
+    }
+}
 void MainWindow::EditBlock(){
     if(this->ui->FieldLabel->getIndex() >= 0){
-        CreateBlockDialog diag;
-        diag.setBlock(ui->FieldLabel->GetSelecting() );
+        EditMultiDialog<BLOCK_WIDTH,BLOCK_HEIGHT> diag;
+        diag.setMatrix(ui->FieldLabel->GetSelecting() );
         if(diag.exec()){
-            ui->FieldLabel->GetSelecting() = diag.getBlock();
+            ui->FieldLabel->GetSelecting() = diag.getMatrix();
         }
+    }
+}
+void MainWindow::EditField(){
+    EditMultiDialog<FIELD_WIDTH,FIELD_HEIGHT> diag;
+    diag.setMatrix(ui->FieldLabel->getField());
+    if(diag.exec()){
+        ui->FieldLabel->setField(diag.getMatrix());
     }
 }

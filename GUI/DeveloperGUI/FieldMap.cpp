@@ -44,10 +44,10 @@ void FieldMap::paintEvent(QPaintEvent* event){
     for(int j=0;j<FIELD_WIDTH +1;j++)painter.drawLine(j*field_part_width,0,j*field_part_width,field_part_height * FIELD_HEIGHT);
 
     //選択中のブロックの描画
-    if(index >= 0){
+    if(index >= 0 && blocks.size()>0){
         painter.setPen(QPen(QColor::fromRgb(255,0,0), 2));
-        painter.drawRect(QRect(blocks[index].pos.x()*field_part_width,
-                               blocks[index].pos.y()*field_part_height,
+        painter.drawRect(QRect(blocks[index].pos.x() * field_part_width,
+                               blocks[index].pos.y() * field_part_height,
                                8*field_part_width,
                                8*field_part_height));
     }

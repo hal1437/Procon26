@@ -31,6 +31,8 @@ class Ui_MainWindow
 {
 public:
     QAction *actionBlockEdit;
+    QAction *actionAddBlock;
+    QAction *actionFieldEdit;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QFrame *Field;
@@ -53,6 +55,10 @@ public:
         MainWindow->setSizePolicy(sizePolicy);
         actionBlockEdit = new QAction(MainWindow);
         actionBlockEdit->setObjectName(QStringLiteral("actionBlockEdit"));
+        actionAddBlock = new QAction(MainWindow);
+        actionAddBlock->setObjectName(QStringLiteral("actionAddBlock"));
+        actionFieldEdit = new QAction(MainWindow);
+        actionFieldEdit->setObjectName(QStringLiteral("actionFieldEdit"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayout = new QHBoxLayout(centralWidget);
@@ -93,7 +99,9 @@ public:
 
         menuBar->addAction(menu->menuAction());
         menu->addAction(actionBlockEdit);
+        mainToolBar->addAction(actionAddBlock);
         mainToolBar->addAction(actionBlockEdit);
+        mainToolBar->addAction(actionFieldEdit);
 
         retranslateUi(MainWindow);
 
@@ -107,7 +115,11 @@ public:
 #ifndef QT_NO_TOOLTIP
         actionBlockEdit->setToolTip(QApplication::translate("MainWindow", "BlockEdit", 0));
 #endif // QT_NO_TOOLTIP
-        actionBlockEdit->setShortcut(QApplication::translate("MainWindow", "Ctrl+E", 0));
+        actionBlockEdit->setShortcut(QApplication::translate("MainWindow", "Ctrl+B", 0));
+        actionAddBlock->setText(QApplication::translate("MainWindow", "\343\203\226\343\203\255\343\203\203\343\202\257\350\277\275\345\212\240", 0));
+        actionAddBlock->setShortcut(QApplication::translate("MainWindow", "Ctrl+A", 0));
+        actionFieldEdit->setText(QApplication::translate("MainWindow", "\343\203\225\343\202\243\343\203\274\343\203\253\343\203\211\347\267\250\351\233\206", 0));
+        actionFieldEdit->setShortcut(QApplication::translate("MainWindow", "Ctrl+F", 0));
         FieldLabel->setText(QString());
         menu->setTitle(QApplication::translate("MainWindow", "\347\267\250\351\233\206", 0));
     } // retranslateUi

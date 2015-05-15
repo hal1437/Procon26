@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     ../../Structure/Heuristic.cpp \
     ../../Structure/test.cpp \
     FieldMap.cpp \
-    CreateBlockDialog.cpp
+    ../../Structure/Answer.cpp \
+    ../../Structure/Problem.cpp
 
 HEADERS  += mainwindow.h \
     ../../Structure/Block.h \
@@ -33,7 +34,9 @@ HEADERS  += mainwindow.h \
     ../../Utility/CLOCKWISE_FOR.hpp \
     ../../Utility/Constants.hpp \
     ../../Utility/SYNTHESIZE.hpp \
-    CreateBlockDialog.h
+    ../../Structure/Answer.h \
+    ../../Structure/Problem.h \
+    EditMultiDialog.h
 
 FORMS    += mainwindow.ui \
     CreateBlockDialog_UI.ui

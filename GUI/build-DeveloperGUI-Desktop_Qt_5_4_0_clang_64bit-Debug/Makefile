@@ -55,8 +55,8 @@ SOURCES       = ../DeveloperGUI/main.cpp \
 		../../Structure/Heuristic.cpp \
 		../../Structure/test.cpp \
 		../DeveloperGUI/FieldMap.cpp \
-		../DeveloperGUI/CreateBlockDialog.cpp moc_mainwindow.cpp \
-		moc_CreateBlockDialog.cpp
+		../../Structure/Answer.cpp \
+		../../Structure/Problem.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		Block.o \
@@ -64,9 +64,9 @@ OBJECTS       = main.o \
 		Heuristic.o \
 		test.o \
 		FieldMap.o \
-		CreateBlockDialog.o \
-		moc_mainwindow.o \
-		moc_CreateBlockDialog.o
+		Answer.o \
+		Problem.o \
+		moc_mainwindow.o
 DIST          = ../../../../Qt/5.4/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.4/clang_64/mkspecs/qdevice.pri \
 		../../../../Qt/5.4/clang_64/mkspecs/features/device_config.prf \
@@ -204,14 +204,17 @@ DIST          = ../../../../Qt/5.4/clang_64/mkspecs/features/spec_pre.prf \
 		../../Utility/CLOCKWISE_FOR.hpp \
 		../../Utility/Constants.hpp \
 		../../Utility/SYNTHESIZE.hpp \
-		../DeveloperGUI/CreateBlockDialog.h ../DeveloperGUI/main.cpp \
+		../../Structure/Answer.h \
+		../../Structure/Problem.h \
+		../DeveloperGUI/EditMultiDialog.h ../DeveloperGUI/main.cpp \
 		../DeveloperGUI/mainwindow.cpp \
 		../../Structure/Block.cpp \
 		../../Structure/Field.cpp \
 		../../Structure/Heuristic.cpp \
 		../../Structure/test.cpp \
 		../DeveloperGUI/FieldMap.cpp \
-		../DeveloperGUI/CreateBlockDialog.cpp
+		../../Structure/Answer.cpp \
+		../../Structure/Problem.cpp
 QMAKE_TARGET  = DeveloperGUI
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = DeveloperGUI.app/Contents/MacOS/DeveloperGUI
@@ -547,8 +550,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../DeveloperGUI/mainwindow.h ../../Structure/Block.h ../../Structure/Field.h ../../Structure/Heuristic.h ../../Structure/Multi.hpp ../../Structure/Point.hpp ../DeveloperGUI/FieldMap.h ../../Utility/CLOCKWISE_FOR.hpp ../../Utility/Constants.hpp ../../Utility/SYNTHESIZE.hpp ../DeveloperGUI/CreateBlockDialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../DeveloperGUI/main.cpp ../DeveloperGUI/mainwindow.cpp ../../Structure/Block.cpp ../../Structure/Field.cpp ../../Structure/Heuristic.cpp ../../Structure/test.cpp ../DeveloperGUI/FieldMap.cpp ../DeveloperGUI/CreateBlockDialog.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../DeveloperGUI/mainwindow.h ../../Structure/Block.h ../../Structure/Field.h ../../Structure/Heuristic.h ../../Structure/Multi.hpp ../../Structure/Point.hpp ../DeveloperGUI/FieldMap.h ../../Utility/CLOCKWISE_FOR.hpp ../../Utility/Constants.hpp ../../Utility/SYNTHESIZE.hpp ../../Structure/Answer.h ../../Structure/Problem.h ../DeveloperGUI/EditMultiDialog.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../DeveloperGUI/main.cpp ../DeveloperGUI/mainwindow.cpp ../../Structure/Block.cpp ../../Structure/Field.cpp ../../Structure/Heuristic.cpp ../../Structure/test.cpp ../DeveloperGUI/FieldMap.cpp ../../Structure/Answer.cpp ../../Structure/Problem.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../DeveloperGUI/mainwindow.ui ../DeveloperGUI/CreateBlockDialog_UI.ui $(DISTDIR)/
 
 
@@ -574,9 +577,9 @@ compiler_objective_c_make_all:
 compiler_objective_c_clean:
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_CreateBlockDialog.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_CreateBlockDialog.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
 		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
@@ -588,17 +591,10 @@ moc_mainwindow.cpp: ../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions
 		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qpoint.h \
 		../../Utility/Constants.hpp \
 		../../Structure/Field.h \
+		../../Structure/Problem.h \
 		../../Utility/SYNTHESIZE.hpp \
 		../DeveloperGUI/mainwindow.h
 	/Users/hal1437/Qt/5.4/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -I/Users/hal1437/Qt/5.4/clang_64/mkspecs/macx-clang -I/Users/hal1437/Programs/Procon26/GUI/DeveloperGUI -I/Users/hal1437/Qt/5.4/clang_64/lib/QtWidgets.framework/Headers -I/Users/hal1437/Qt/5.4/clang_64/lib/QtGui.framework/Headers -I/Users/hal1437/Qt/5.4/clang_64/lib/QtCore.framework/Headers -I. -F/Users/hal1437/Qt/5.4/clang_64/lib ../DeveloperGUI/mainwindow.h -o moc_mainwindow.cpp
-
-moc_CreateBlockDialog.cpp: ../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QDialog \
-		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdialog.h \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QMouseEvent \
-		../DeveloperGUI/CreateBlockDialog.h
-	/Users/hal1437/Qt/5.4/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -I/Users/hal1437/Qt/5.4/clang_64/mkspecs/macx-clang -I/Users/hal1437/Programs/Procon26/GUI/DeveloperGUI -I/Users/hal1437/Qt/5.4/clang_64/lib/QtWidgets.framework/Headers -I/Users/hal1437/Qt/5.4/clang_64/lib/QtGui.framework/Headers -I/Users/hal1437/Qt/5.4/clang_64/lib/QtCore.framework/Headers -I. -F/Users/hal1437/Qt/5.4/clang_64/lib ../DeveloperGUI/CreateBlockDialog.h -o moc_CreateBlockDialog.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -651,6 +647,7 @@ main.o: ../DeveloperGUI/main.cpp ../DeveloperGUI/mainwindow.h \
 		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qpoint.h \
 		../../Utility/Constants.hpp \
 		../../Structure/Field.h \
+		../../Structure/Problem.h \
 		../../Utility/SYNTHESIZE.hpp \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QApplication \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h
@@ -668,6 +665,7 @@ mainwindow.o: ../DeveloperGUI/mainwindow.cpp ../DeveloperGUI/mainwindow.h \
 		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qpoint.h \
 		../../Utility/Constants.hpp \
 		../../Structure/Field.h \
+		../../Structure/Problem.h \
 		../../Utility/SYNTHESIZE.hpp \
 		ui_mainwindow.h \
 		../DeveloperGUI/FieldMap.h \
@@ -679,9 +677,19 @@ mainwindow.o: ../DeveloperGUI/mainwindow.cpp ../DeveloperGUI/mainwindow.h \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlistwidget.h \
 		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QPainter \
 		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qpainter.h \
-		../DeveloperGUI/CreateBlockDialog.h \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDebug \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdebug.h \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDir \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdir.h \
+		../DeveloperGUI/EditMultiDialog.h \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QWidget \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qwidget.h \
 		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QDialog \
-		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdialog.h
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdialog.h \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QVBoxLayout \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qboxlayout.h \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QDialogButtonBox \
+		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdialogbuttonbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../DeveloperGUI/mainwindow.cpp
 
 Block.o: ../../Structure/Block.cpp ../../Structure/Block.h \
@@ -731,20 +739,28 @@ FieldMap.o: ../DeveloperGUI/FieldMap.cpp ../DeveloperGUI/FieldMap.h \
 		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qicon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o FieldMap.o ../DeveloperGUI/FieldMap.cpp
 
-CreateBlockDialog.o: ../DeveloperGUI/CreateBlockDialog.cpp ../DeveloperGUI/CreateBlockDialog.h \
-		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QDialog \
-		../../../../Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdialog.h \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
-		../../../../Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers/QMouseEvent \
-		ui_CreateBlockDialog_UI.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CreateBlockDialog.o ../DeveloperGUI/CreateBlockDialog.cpp
+Answer.o: ../../Structure/Answer.cpp ../../Structure/Answer.h \
+		../../Structure/Field.h \
+		../../Structure/Multi.hpp \
+		../../Structure/Point.hpp \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QPoint \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qpoint.h \
+		../../Structure/Block.h \
+		../../Utility/Constants.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Answer.o ../../Structure/Answer.cpp
+
+Problem.o: ../../Structure/Problem.cpp ../../Structure/Problem.h \
+		../../Structure/Field.h \
+		../../Structure/Multi.hpp \
+		../../Structure/Point.hpp \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QPoint \
+		../../../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qpoint.h \
+		../../Structure/Block.h \
+		../../Utility/Constants.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Problem.o ../../Structure/Problem.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
-
-moc_CreateBlockDialog.o: moc_CreateBlockDialog.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_CreateBlockDialog.o moc_CreateBlockDialog.cpp
 
 ####### Install
 
