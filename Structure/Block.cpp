@@ -3,18 +3,10 @@
 Block::Block(){
 	std::fill(begin(),end(),Constants::EMPTY);
 }
+Block::Block(Base multi):
+	Base(multi)
+{
 
-Block::Block(std::initializer_list<std::initializer_list<int>> init){
-	int i,j;
-	i=0;
-	for(std::initializer_list<int> list : init){
-		j=0;
-		for(int x : list){
-			(*this)[i][j] = static_cast<Constants::ZUKU>(x);
-			j++;
-		}
-		i++;
-	}
 }
 Block::~Block(){
 
@@ -44,12 +36,4 @@ Block Block::GetReverse(){
 	}
 	return answer;
 }
-std::ostream& operator<<(std::ostream& out,Block block){
-	for(int i=0;i<BLOCK_HEIGHT;i++){
-		for(int j=0;j<BLOCK_WIDTH;j++){
-			out << block[i][j];
-		}
-		out << "\n";
-	}
-	return out;
-}
+

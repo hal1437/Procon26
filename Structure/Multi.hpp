@@ -1,7 +1,9 @@
 #pragma once
 
 #include <vector>
-#include <ostream>
+#include <iostream>
+#include <type_traits>
+#include <initializer_list>
 #include "Point.hpp"
 
 template<class T,std::size_t... Dims>
@@ -35,6 +37,9 @@ public:
 		_value = rhs._value;
 		return _value;
 	}
+	
+	Multi() = default;
+	Multi(T init):_value(init){}
 
 	operator value_type&(){
 		return _value;
@@ -81,6 +86,10 @@ public:
 		return _array[index.y][index.x];
 	}
 
+	Multi(){};
+	Multi(std::initializer_list<child> init){
+		std::copy(init.begin(),init.end(),_array);
+	}
 
 };
 
@@ -101,7 +110,7 @@ public:
 	};
 
 	child& operator[](const std::size_t& index){
-	return _array[index];
+		return _array[index];
 	}
 
 };
@@ -128,13 +137,26 @@ public:
 };
 
 template<class T,size_t X,size_t Y>
-std::ostream& operator<<(std::ostream& out,Multi<T,X,Y> field){
+std::ostream& operator<<(std::ostream& out,const Multi<T,X,Y> field){
 	for(int i=0;i<Y;i++){
 		for(int j=0;j<X;j++){
 			out << field[i][j];
 		}
-		out << "\n";
+		out << "\r\n";
 	}
 	return out;
+}
+
+
+template<class T,size_t X,size_t Y>
+std::istream& operator>>(std::istream& in,Multi<T,X,Y>& field){
+	for(int i=0;i<Y;i++){
+		std::string str;
+		std::getline(in,str);
+		for(int j=0;j<X;j++){
+			field[i][j] = static_cast<T>(str[j]-'0');
+		}
+	}
+	return in;
 }
 

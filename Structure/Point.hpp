@@ -27,6 +27,14 @@ struct Point{
 	inline Point operator/(const T& lhs)const{
 		return Point(x / lhs,y / lhs);
 	}
+	template<class T>
+	inline bool operator==(const T& lhs)const {
+		return ((x == lhs.x) && (y==lhs.y));
+	}
+	template<class T>
+	inline bool operator!=(const T& lhs)const {
+		return !((*this) == lhs);
+	}
 
 };
 

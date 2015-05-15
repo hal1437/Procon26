@@ -3,6 +3,8 @@
 #include "Multi.hpp"
 #include "Block.h"
 #include "Point.hpp"
+#include <initializer_list>
+#include <ostream>
 #include "../Utility/Constants.hpp"
 #include <initializer_list>
 #define FIELD_HEIGHT 32
@@ -14,13 +16,12 @@ private:
 
 public:
 
-	Field();
-    Field(std::initializer_list<std::initializer_list<int>> init);
-    virtual ~Field();
-
-	void Projection(const Point pos,const Block block);	//Added block to field
+	void Projection   (const Point pos,const Block block);	//Added block to field
 	bool isLayPossible(const Point pos,const Block block);	//Checking cross Block
-	
-};
 
+	Field();
+	Field(Base multi);
+	Field(std::initializer_list<std::initializer_list<int>> init);	
+	virtual ~Field();
+};
 
