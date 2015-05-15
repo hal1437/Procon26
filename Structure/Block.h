@@ -19,6 +19,7 @@ public:
 	using Base::operator[];
 
 	Block();
+	Block(Base multi);
 	virtual ~Block();
 
 	size_t GetSize()const; 			 			//size of pieces [zk]

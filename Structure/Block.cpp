@@ -3,6 +3,11 @@
 Block::Block(){
 	std::fill(begin(),end(),Constants::EMPTY);
 }
+Block::Block(Base multi):
+	Base(multi)
+{
+
+}
 Block::~Block(){
 
 }

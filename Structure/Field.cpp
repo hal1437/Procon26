@@ -4,6 +4,10 @@
 Field::Field(){
 	std::fill(begin(),end(),Constants::EMPTY);
 }
+Field::Field(Base multi):
+	Base(multi)
+{
+}
 Field::Field(std::initializer_list<std::initializer_list<int>> init){
 	int i,j;
 	i=0;

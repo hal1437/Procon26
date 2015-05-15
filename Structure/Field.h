@@ -19,6 +19,7 @@ public:
 	bool isLayPossible(const Point pos,const Block block);	//Checking cross Block
 
 	Field();
+	Field(Base multi);
 	Field(std::initializer_list<std::initializer_list<int>> init);	
 	virtual ~Field();
 };
