@@ -13,6 +13,8 @@ HEADER = ../Structure/Heuristic.h \
 
 SOURCES= main.cpp      \
 		 Heuristics/Density.cpp     \
+		 Solver/BestFirst.cpp   \
+		 Solver/AStar.cpp           \
 		 ../Structure/Heuristic.cpp \
 		 ../Structure/Block.cpp     \
 		 ../Structure/Field.cpp     \
