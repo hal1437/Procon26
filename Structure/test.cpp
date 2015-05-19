@@ -26,8 +26,9 @@ int main(){
 	hs = new Addition();
 
 	ans.SetField(prob.GetField());
-	ans.AddBlocks(prob.GetBlock(0),Point(1,1),false,Constants::ANGLE90);
-	//ans.AddBlocks(prob.GetBlock(0),Point(-1,5),false,Constants::ANGLE180);
+	ans.AddBlocks(prob.GetBlock(0),Point(-1,-1),false,Constants::ANGLE90);
+	ans.AddBlocks(prob.GetBlock(0),Point(-3,0) ,false,Constants::ANGLE180);
+	ans.AddBlocks(prob.GetBlock(0),Point(1,2) ,false,Constants::ANGLE0);
 
 	std::cout << std::boolalpha;
 	std::cout << prob.GetField() << std::endl;
