@@ -27,11 +27,14 @@ int main(){
 
 	ans.SetField(prob.GetField());
 	ans.AddBlocks(prob.GetBlock(0),Point(1,1),false,Constants::ANGLE90);
+	//ans.AddBlocks(prob.GetBlock(0),Point(-1,5),false,Constants::ANGLE180);
 
+	std::cout << std::boolalpha;
 	std::cout << prob.GetField() << std::endl;
 	std::cout << ans.GetField()  << std::endl;
 	std::cout << ans             << std::endl;
 	std::cout << hs->Execution(10,10) << std::endl;
+	std::cout << ans.GetField().isLayPossible(Point(-1,5),prob.GetBlock(0)) << std::endl;
 
 	return 0;
 }

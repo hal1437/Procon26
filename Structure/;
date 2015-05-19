@@ -1,0 +1,211 @@
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+map! <S-Insert> <MiddleMouse>
+inoremap <D-BS> 
+inoremap <M-BS> 
+inoremap <M-Down> }
+inoremap <D-Down> <C-End>
+inoremap <M-Up> {
+inoremap <D-Up> <C-Home>
+noremap! <M-Right> <C-Right>
+noremap! <D-Right> <End>
+noremap! <M-Left> <C-Left>
+noremap! <D-Left> <Home>
+inoremap <silent> <expr> <Plug>(neosnippet_start_unite_snippet) unite#sources#neosnippet#start_complete()
+inoremap <silent> <expr> <Plug>(neosnippet_jump) neosnippet#mappings#jump_impl()
+inoremap <silent> <expr> <Plug>(neosnippet_expand) neosnippet#mappings#expand_impl()
+inoremap <silent> <expr> <Plug>(neosnippet_jump_or_expand) neosnippet#mappings#jump_or_expand_impl()
+inoremap <silent> <expr> <Plug>(neosnippet_expand_or_jump) neosnippet#mappings#expand_or_jump_impl()
+imap <D-Space> 
+inoremap <F5> :w:QuickRun -outputter/buffer/split ":botright 8sp"
+inoremap <D-F4> :q
+inoremap <S-Left> <Left>v<Left>
+inoremap <S-Right> <Right>v<Right>
+inoremap <S-Down> v<Down>
+inoremap <S-Up> v<Up>
+inoremap <D-Tab> gti
+inoremap <D-v> pi
+inoremap <D-x> yyddi
+inoremap <D-c> yyi
+inoremap <D-y> i
+inoremap <D-z> ui
+inoremap <D-s> :w
+snoremap  a<BS>
+snoremap  a<BS>
+nmap Q gq
+xmap Q gq
+omap Q gq
+nmap \r <Plug>(quickrun)
+xmap \r <Plug>(quickrun)
+omap \r <Plug>(quickrun)
+xmap \C <Plug>(caw:I:uncomment)
+nmap \C <Plug>(caw:I:uncomment)
+xmap \c <Plug>(caw:I:toggle)
+nmap \c <Plug>(caw:I:toggle)
+xmap gx <Plug>NetrwBrowseXVis
+nmap gx <Plug>NetrwBrowseX
+xmap gc <Plug>(caw:prefix)
+nmap gc <Plug>(caw:prefix)
+snoremap <Del> a<BS>
+snoremap <BS> a<BS>
+map <S-Insert> <MiddleMouse>
+noremap <M-Down> }
+noremap <D-Down> <C-End>
+noremap <M-Up> {
+noremap <D-Up> <C-Home>
+noremap <M-Right> <C-Right>
+noremap <D-Right> <End>
+noremap <M-Left> <C-Left>
+noremap <D-Left> <Home>
+vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
+vnoremap <silent> <Plug>(quickrun) :QuickRun -mode v
+nnoremap <silent> <Plug>(quickrun) :QuickRun -mode n
+nnoremap <silent> <Plug>(quickrun-op) :set operatorfunc=quickrun#operatorg@
+vmap <Plug>(caw:prefix)uv <Plug>(caw:input:uncomment)
+nmap <Plug>(caw:prefix)uv <Plug>(caw:input:uncomment)
+vmap <Plug>(caw:prefix)v <Plug>(caw:input:comment)
+nmap <Plug>(caw:prefix)v <Plug>(caw:input:comment)
+vnoremap <silent> <Plug>(caw:input:uncomment) :call caw#keymapping_stub('v', 'input', 'uncomment')
+nnoremap <silent> <Plug>(caw:input:uncomment) :call caw#keymapping_stub('n', 'input', 'uncomment')
+vnoremap <silent> <Plug>(caw:input:comment) :call caw#keymapping_stub('v', 'input', 'comment')
+nnoremap <silent> <Plug>(caw:input:comment) :call caw#keymapping_stub('n', 'input', 'comment')
+vmap <Plug>(caw:prefix)O <Plug>(caw:jump:comment-prev)
+nmap <Plug>(caw:prefix)O <Plug>(caw:jump:comment-prev)
+vmap <Plug>(caw:prefix)o <Plug>(caw:jump:comment-next)
+nmap <Plug>(caw:prefix)o <Plug>(caw:jump:comment-next)
+nnoremap <silent> <Plug>(caw:jump:comment-prev) :call caw#keymapping_stub('n', 'jump', 'comment-prev')
+nnoremap <silent> <Plug>(caw:jump:comment-next) :call caw#keymapping_stub('n', 'jump', 'comment-next')
+vmap <Plug>(caw:prefix)b <Plug>(caw:box:comment)
+nmap <Plug>(caw:prefix)b <Plug>(caw:box:comment)
+vnoremap <silent> <Plug>(caw:box:comment) :call caw#keymapping_stub('v', 'box', 'comment')
+nnoremap <silent> <Plug>(caw:box:comment) :call caw#keymapping_stub('n', 'box', 'comment')
+vmap <Plug>(caw:prefix)uw <Plug>(caw:wrap:uncomment)
+nmap <Plug>(caw:prefix)uw <Plug>(caw:wrap:uncomment)
+vmap <Plug>(caw:prefix)w <Plug>(caw:wrap:comment)
+nmap <Plug>(caw:prefix)w <Plug>(caw:wrap:comment)
+vnoremap <silent> <Plug>(caw:wrap:toggle) :call caw#keymapping_stub('v', 'wrap', 'toggle')
+nnoremap <silent> <Plug>(caw:wrap:toggle) :call caw#keymapping_stub('n', 'wrap', 'toggle')
+vnoremap <silent> <Plug>(caw:wrap:uncomment) :call caw#keymapping_stub('v', 'wrap', 'uncomment')
+nnoremap <silent> <Plug>(caw:wrap:uncomment) :call caw#keymapping_stub('n', 'wrap', 'uncomment')
+vnoremap <silent> <Plug>(caw:wrap:comment) :call caw#keymapping_stub('v', 'wrap', 'comment')
+nnoremap <silent> <Plug>(caw:wrap:comment) :call caw#keymapping_stub('n', 'wrap', 'comment')
+vmap <Plug>(caw:prefix)ua <Plug>(caw:a:uncomment)
+nmap <Plug>(caw:prefix)ua <Plug>(caw:a:uncomment)
+vmap <Plug>(caw:prefix)a <Plug>(caw:a:comment)
+nmap <Plug>(caw:prefix)a <Plug>(caw:a:comment)
+vnoremap <silent> <Plug>(caw:a:toggle) :call caw#keymapping_stub('v', 'a', 'toggle')
+nnoremap <silent> <Plug>(caw:a:toggle) :call caw#keymapping_stub('n', 'a', 'toggle')
+vnoremap <silent> <Plug>(caw:a:uncomment) :call caw#keymapping_stub('v', 'a', 'uncomment')
+nnoremap <silent> <Plug>(caw:a:uncomment) :call caw#keymapping_stub('n', 'a', 'uncomment')
+vnoremap <silent> <Plug>(caw:a:comment) :call caw#keymapping_stub('v', 'a', 'comment')
+nnoremap <silent> <Plug>(caw:a:comment) :call caw#keymapping_stub('n', 'a', 'comment')
+vmap <Plug>(caw:prefix)I <Plug>(caw:I:comment)
+nmap <Plug>(caw:prefix)I <Plug>(caw:I:comment)
+vnoremap <silent> <Plug>(caw:I:toggle) :call caw#keymapping_stub('v', 'I', 'toggle')
+nnoremap <silent> <Plug>(caw:I:toggle) :call caw#keymapping_stub('n', 'I', 'toggle')
+vnoremap <silent> <Plug>(caw:I:uncomment) :call caw#keymapping_stub('v', 'I', 'uncomment')
+nnoremap <silent> <Plug>(caw:I:uncomment) :call caw#keymapping_stub('n', 'I', 'uncomment')
+vnoremap <silent> <Plug>(caw:I:comment) :call caw#keymapping_stub('v', 'I', 'comment')
+nnoremap <silent> <Plug>(caw:I:comment) :call caw#keymapping_stub('n', 'I', 'comment')
+vmap <Plug>(caw:prefix)c <Plug>(caw:i:toggle)
+nmap <Plug>(caw:prefix)c <Plug>(caw:i:toggle)
+vmap <Plug>(caw:prefix)ui <Plug>(caw:i:uncomment)
+nmap <Plug>(caw:prefix)ui <Plug>(caw:i:uncomment)
+vmap <Plug>(caw:prefix)i <Plug>(caw:i:comment)
+nmap <Plug>(caw:prefix)i <Plug>(caw:i:comment)
+vnoremap <silent> <Plug>(caw:i:toggle) :call caw#keymapping_stub('v', 'i', 'toggle')
+nnoremap <silent> <Plug>(caw:i:toggle) :call caw#keymapping_stub('n', 'i', 'toggle')
+vnoremap <silent> <Plug>(caw:i:uncomment) :call caw#keymapping_stub('v', 'i', 'uncomment')
+nnoremap <silent> <Plug>(caw:i:uncomment) :call caw#keymapping_stub('n', 'i', 'uncomment')
+vnoremap <silent> <Plug>(caw:i:comment) :call caw#keymapping_stub('v', 'i', 'comment')
+nnoremap <silent> <Plug>(caw:i:comment) :call caw#keymapping_stub('n', 'i', 'comment')
+xnoremap <silent> <Plug>(neosnippet_register_oneshot_snippet) :call neosnippet#mappings#_register_oneshot_snippet()
+xnoremap <silent> <Plug>(neosnippet_expand_target) :call neosnippet#mappings#_expand_target()
+xnoremap <silent> <Plug>(neosnippet_get_selected_text) :call neosnippet#helpers#get_selected_text(visualmode(), 1)
+snoremap <silent> <expr> <Plug>(neosnippet_jump) neosnippet#mappings#jump_impl()
+snoremap <silent> <expr> <Plug>(neosnippet_expand) neosnippet#mappings#expand_impl()
+snoremap <silent> <expr> <Plug>(neosnippet_jump_or_expand) neosnippet#mappings#jump_or_expand_impl()
+snoremap <silent> <expr> <Plug>(neosnippet_expand_or_jump) neosnippet#mappings#expand_or_jump_impl()
+vnoremap <D-x> x
+vnoremap <D-c> y
+vnoremap <S-Left> <Left>
+vnoremap <S-Right> <Right>
+vnoremap <S-Down> <Down>
+vnoremap <S-Up> <Up>
+nnoremap <D-Space> 
+nnoremap <F5> :w:QuickRun -outputter/buffer/split ":botright 8sp"
+nnoremap <D-F4> :qi
+nnoremap <S-Left> v<Left?
+nnoremap <S-Right> v<Right>
+nnoremap <S-Down> v<Down>
+nnoremap <S-Up> v<Up>
+nnoremap <D-Tab> gt
+nnoremap <D-z> u
+nnoremap <D-v> p
+nnoremap <D-x> yyddi
+nnoremap <D-c> yy
+nnoremap <D-y> 
+nnoremap <D-s> :w
+nnoremap <Down> gj
+nnoremap <Up> gk
+nnoremap <silent> <D-e> :NERDTreeToggle
+xnoremap <BS> <Del>i
+inoremap  u
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set ambiwidth=double
+set autoindent
+set background=dark
+set backspace=indent,eol,start
+set cmdheight=2
+set completeopt=preview,menuone
+set fileencodings=guess,ucs-bom,latin1,iso-2022-jp-3,utf-8,euc-jisx0213,euc-jp
+set formatexpr=autofmt#japanese#formatexpr()
+set guifont=Osaka-Mono:h14
+set guitablabel=%M%t
+set helplang=ja
+set hidden
+set history=10000
+set hlsearch
+set ignorecase
+set noimdisable
+set imdisableactivate
+set iminsert=0
+set imsearch=0
+set incsearch
+set infercase
+set langmenu=ja_ja.utf-8.macvim
+set langnoremap
+set laststatus=2
+set listchars=eol:$,tab:>\ 
+set matchpairs=(:),{:},[:],<:>
+set matchtime=3
+set migemo
+set migemodict=/Applications/MacVim.app/Contents/Resources/vim/runtime/dict/migemo-dict
+set mouse=a
+set printencoding=utf-8
+set printexpr=system('open\ -a\ Preview\ '.v:fname_in)\ +\ v:shell_error
+set printmbcharset=UniJIS
+set printmbfont=r:HiraMinProN-W3,b:HiraMinProN-W6
+set ruler
+set runtimepath=~/.vim,~/.vim/bundle/unite.vim/,~/.vim/bundle/neosnippet.vim/,~/.vim/bundle/vimproc.vim/,~/.vim/bundle/neocomplcache/,~/.vim/bundle/nerdtree/,~/.vim/bundle/caw.vim/,~/.vim/bundle/vim-hybrid/,~/.vim/bundle/unite-colorscheme/,~/.vim/bundle/vim-tomorrow-theme/,~/.vim/bundle/vim-quickrun/,~/.vim/bundle/clang_complete/,~/.vim/bundle/.neobundle,/Applications/MacVim.app/Contents/Resources/vim/vimfiles,/Applications/MacVim.app/Contents/Resources/vim/runtime,/Applications/MacVim.app/Contents/Resources/vim/vimfiles/after,~/.vim/after,/Applications/MacVim.app/Contents/Resources/vim/plugins/autofmt,/Applications/MacVim.app/Contents/Resources/vim/plugins/golang,/Applications/MacVim.app/Contents/Resources/vim/plugins/kaoriya,/Applications/MacVim.app/Contents/Resources/vim/plugins/vimdoc-ja,~/.vim/bundle/neobundle.vim/
+set scrolloff=5
+set shiftround
+set shiftwidth=4
+set showcmd
+set showmatch
+set smartcase
+set nostartofline
+set noswapfile
+set switchbuf=useopen
+set tabstop=4
+set termencoding=utf-8
+set title
+set undofile
+set whichwrap=<,>
+set wildmenu
+set window=43
+set nowritebackup
+" vim: set ft=vim :
