@@ -6,36 +6,23 @@
 #include "Problem.h"
 #include "Answer.h"
 #include "Solver.h"
-#include "Heuristic.h"
-
-class Addition:public Heuristics<int,int,int>{
-public:
-	int Execution(const int& a,const int& b){
-		return a+b;
-	}
-	
-};
-
+#include "MultiBit.hpp"
 
 int main(){
 
 	Problem prob("../Problem/Problem.txt");
 	Answer ans;
 	Solver* solv;
-	Heuristics<int,int,int>* hs;
-	hs = new Addition();
+	MultiBit<8,8> multi;
+
+	//std::cout << multi;
 
 	ans.SetField(prob.GetField());
-	ans.AddBlocks(prob.GetBlock(0),Point(-1,-1),false,Constants::ANGLE90);
-	ans.AddBlocks(prob.GetBlock(0),Point(-3,0) ,false,Constants::ANGLE180);
-	ans.AddBlocks(prob.GetBlock(0),Point(1,2) ,false,Constants::ANGLE0);
+	ans.AddBlocks(prob.GetBlock(0),Point(1,1),false,Constants::ANGLE90);
 
-	std::cout << std::boolalpha;
 	std::cout << prob.GetField() << std::endl;
 	std::cout << ans.GetField()  << std::endl;
-	std::cout << ans             << std::endl;
-	std::cout << hs->Execution(10,10) << std::endl;
-	std::cout << ans.GetField().isLayPossible(Point(-1,5),prob.GetBlock(0)) << std::endl;
+	//std::cout << ans             << std::endl;
 
 	return 0;
 }

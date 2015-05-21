@@ -2,7 +2,6 @@
 #include "Field.h"
 
 Field::Field(){
-	std::fill(begin(),end(),0);
 }
 Field::Field(Base multi):
 	Base(multi)
@@ -12,21 +11,16 @@ Field::~Field(){
 
 }
 
-int Field::GetCount()const{
-	return block_count;
-}
-
 void Field::Projection(const Point pos,const Block block){
-	block_count++;
 	for(int i = 0;i < BLOCK_HEIGHT;i++){
 		for(int j = 0;j < BLOCK_WIDTH;j++){
 			if(pos.y + i < 0 || pos.y + i >= FIELD_WIDTH ||
 			   pos.x + j < 0 || pos.x + j >= FIELD_HEIGHT)continue;
-			if(block[i][j] == Constants::FILL)Base::operator[](pos.y + i)[pos.x + j] = block_count;
+			if(get(j,i) == Constants::FILL)set(pos.x + j,pos.y + i,true);
 		}
 	}
 }
-bool Field::isLayPossible(const Point pos,const Block block)const{
+bool Field::isLayPossible(const Point pos,const Block block){
 	bool adjacent = false;
 	for(int i = 0;i < BLOCK_HEIGHT;i++){
 		for(int j = 0;j < BLOCK_WIDTH;j++){
@@ -37,7 +31,7 @@ bool Field::isLayPossible(const Point pos,const Block block)const{
 					return false;
 				}
 				//crossed
-				if(Base::operator[](Point(pos.x + j,pos.y + i)) != 0){
+				if(get(pos.x + j,pos.y + i)){
 					std::cout << "crossed:(" << pos.x + j << "," <<  pos.y + i << ")\n";
 					return false;
 				}
@@ -49,20 +43,11 @@ bool Field::isLayPossible(const Point pos,const Block block)const{
 						continue;
 					}
 					//exist
-					if(Base::operator[](seach_point) > 1)adjacent = true;
+					if(get(seach_point.x,seach_point.y))adjacent = true;
 				}
 			}
 		}
 	}
-	//first bolock
-	if(block_count==1)return true;
 	return adjacent;
-}
-
-Constants::ZUKU* Field::operator[](const size_t& index){
-	return reinterpret_cast<Constants::ZUKU*>(&Base::operator[](index)[0]);
-}
-const Constants::ZUKU* Field::operator[](const size_t& index)const{
-	return reinterpret_cast<const Constants::ZUKU*>(&Base::operator[](index)[0]);
 }
 

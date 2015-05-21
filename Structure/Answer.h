@@ -16,7 +16,6 @@ public:
 		bool reverse;
 	};
 private:
-	const int Invaild = 10;
 	Field field;
 	std::vector<Hand> hands;
 
