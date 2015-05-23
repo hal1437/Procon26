@@ -14,7 +14,7 @@ protected:
 	unsigned char byte[MATRIX_SIZE / BYTE_SIZE]={};
 public:
 
-	bool get(size_t x,size_t y){
+	bool get(size_t x,size_t y)const{
 		return byte[(y*MATRIX_WIDTH / BYTE_SIZE) + (x / BYTE_SIZE)] & 1 << (BYTE_SIZE - (x % BYTE_SIZE) - 1);
 	}
 	void set(size_t x,size_t y,bool value = true){

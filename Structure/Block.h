@@ -23,8 +23,8 @@ public:
 	virtual ~Block();
 
 	size_t GetSize()const; 			 			//size of pieces [zk]
-	Block  GetRotate(Constants::ANGLE angle); 	//Get rotated piece
-	Block  GetReverse();						//Get reversed piece
+	Block  GetRotate(Constants::ANGLE angle)const; 	//Get rotated piece
+	Block  GetReverse()const;						//Get reversed piece
 };
 
 

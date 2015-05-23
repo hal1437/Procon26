@@ -1,11 +1,12 @@
 
 #pragma once
 #include "MultiBit.hpp"
-#include "Block.h"
-#include "Point.hpp"
+#include "Hand.h"
 #include <initializer_list>
+#include <vector>
 #include <ostream>
 #include "../Utility/Constants.hpp"
+#include "../Utility/CLOCKWISE_FOR.hpp"
 #define FIELD_HEIGHT 32
 #define FIELD_WIDTH  32
 
@@ -15,8 +16,9 @@ private:
 
 public:
 
+	std::vector<Hand> GetListLayPossible(const Block& block)const;
 	void Projection   (const Point pos,const Block block);	//Added block to field
-	bool isLayPossible(const Point pos,const Block block);	//Checking cross Block
+	bool isLayPossible(const Point pos,const Block block)const;	//Checking cross Block
 
 	Field();
 	Field(Base multi);

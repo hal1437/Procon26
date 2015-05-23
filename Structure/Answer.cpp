@@ -20,14 +20,14 @@ bool Answer::Export(std::string filename)const{
 
 Field Answer::GetField(){
 	Field field = this->field;
-	for(Answer::Hand& hand : hands){
+	for(Hand& hand : hands){
 		if(hand.pos != Point(-1,-1))field.Projection(hand.pos,hand.block);
 	}
 	return field;
 }
 
 std::ostream& operator<<(std::ostream& ost,const Answer& answer){
-	for(Answer::Hand hand : answer.hands){
+	for(Hand hand : answer.hands){
 		if(hand.pos != Point(-1,-1)){
 			ost << hand.pos.x;
 			ost << " ";
