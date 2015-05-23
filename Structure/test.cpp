@@ -13,29 +13,45 @@ int main(){
 	Problem prob("../Problem/Problem.txt");
 	Answer ans;
 	Solver* solv;
-	MultiBit<8,8> multi;
+	Block multi;
+
+	std::cout << std::boolalpha;
+	//multi[0][0] = true;
+
+	//std::cout << prob.GetField().isLayPossible(Point(-7,-7),multi.GetRotate(Constants::ANGLE180)) << std::endl;
 
 	//std::cout << multi;
 
-	ans.SetField(prob.GetField());
-	ans.AddBlocks(prob.GetBlock(0),Point(1,1),false,Constants::ANGLE90);
+	//ans.SetField(prob.GetField());
+	//ans.AddBlocks(prob.GetBlock(0),Point(1,1),false,Constants::ANGLE90);
 
-	//std::cout << prob.GetField() << std::endl;
 	//std::cout << ans.GetField()  << std::endl;
 	//std::cout << ans             << std::endl;
+	
+	//std::cout << prob.GetBlock(0).GetRotate(Constants::ANGLE180);
+	//std::cout << prob.get() << std::endl;
+	
+	//std::cout << multi;
 
 	std::ofstream ofs("output.txt");
 	std::vector<Hand> hands;
+	
+	ofs << std::boolalpha ;
 	hands = prob.GetField().GetListLayPossible(prob.GetBlock(0));
 	for(Hand& hand:hands){
 		Field field = prob.GetField();
 		Block block;
-		if(hand.reverse)block = prob.GetBlock(0).GetReverse();
-		else block = prob.GetBlock(0);
+		
+		if(hand.reverse)block = hand.block.GetReverse();
+		else block = hand.block;
+		block = block.GetRotate(hand.angle);
+		
 		field.Projection(hand.pos,block);
-		ofs << hand.pos << std::endl;
-		ofs << field    << std::endl;
+		ofs << hand.pos << "," << hand.angle << "," << hand.reverse << std::endl;
+		ofs << hand.block << std::endl;
+		ofs << field << std::endl;
 	}
+	
 
 	return 0;
 }

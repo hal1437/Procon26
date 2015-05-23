@@ -8,6 +8,47 @@
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 class MultiBit{
 	//00000000 00000000 00000000 00000000
+public:
+	friend class FirstProxy;
+	friend class SecondProxy;
+
+	class SecondProxy;
+	class FirstProxy{
+		MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>* ref;
+		const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>* c_ref;
+		int y;
+		friend class SecondProxy;
+	public:
+		SecondProxy operator[](size_t index){
+			return SecondProxy(this,index);
+		}
+		SecondProxy operator[](size_t index)const{
+			return SecondProxy(this,index);
+		}
+		FirstProxy(      MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):ref(Ref),c_ref(Ref),y(index){}
+		FirstProxy(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):         c_ref(Ref),y(index){}
+	};
+	class SecondProxy{
+		FirstProxy* f_proxy;
+		const FirstProxy* c_f_proxy;
+		int x;
+	public:
+		MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator=(bool value){
+			f_proxy->ref->set(x,f_proxy->y,value);
+			return (*f_proxy->ref);
+		}
+		operator bool()const{
+			return c_f_proxy->c_ref->get(x,c_f_proxy->y);
+		}
+		SecondProxy& operator=(const SecondProxy& rhs){
+			f_proxy->ref->set(x,f_proxy->y,static_cast<bool>(rhs));
+			return (*this);
+		}
+		SecondProxy()=default;
+		SecondProxy(      FirstProxy* Ref,size_t index):f_proxy(Ref),c_f_proxy(Ref),x(index){}
+		SecondProxy(const FirstProxy* Ref,size_t index):             c_f_proxy(Ref),x(index){}
+	};
+
 protected:
 	static const int BYTE_SIZE = 8;
 	static const int MATRIX_SIZE = MATRIX_WIDTH * MATRIX_HEIGHT;
@@ -25,6 +66,16 @@ public:
 		if(!selecting && value){
 			byte[(y * MATRIX_WIDTH / BYTE_SIZE) + (x / BYTE_SIZE)] |= (1UL << (BYTE_SIZE - (x % BYTE_SIZE) - 1));
 		}
+	}
+	size_t count(){
+		return std::bitset<MATRIX_SIZE>(byte).count();
+	}
+
+	FirstProxy operator[](size_t index){
+		return FirstProxy(this,index);
+	}
+	FirstProxy operator[](size_t index)const{
+		return FirstProxy(this,index);
 	}
 
 	MultiBit(){
