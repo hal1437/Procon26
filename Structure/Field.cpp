@@ -39,15 +39,22 @@ std::vector<Hand> Field::GetListLayPossible(const Block& block)const{
 	return answer;
 }
 
-void Field::Projection(const Point pos,const Block block){
+void Field::Projection(const Point& pos,const Block& block){
+	Projection(Hand(block,pos,Constants::ANGLE0,false));
+}
+void Field::Projection(const Hand& hand){
+	Block block = ((hand.reverse) ? hand.block.GetReverse() : hand.block).GetRotate(hand.angle);
 	for(int i = 0;i < BLOCK_HEIGHT;i++){
 		for(int j = 0;j < BLOCK_WIDTH;j++){
-			if(pos.y + i < 0 || pos.y + i >= FIELD_WIDTH ||
-			   pos.x + j < 0 || pos.x + j >= FIELD_HEIGHT)continue;
-			if(block.get(j,i) == true)set(pos.x + j,pos.y + i,true);
+			if(hand.pos.y + i < 0 || hand.pos.y + i >= FIELD_WIDTH ||
+			   hand.pos.x + j < 0 || hand.pos.x + j >= FIELD_HEIGHT)continue;
+			if(block.get(j,i) == true)set(hand.pos.x + j,hand.pos.y + i,true);
 		}
 	}
+	hands.push_back(hand);
 }
+
+
 bool Field::isLayPossible(const Point pos,const Block block)const{
 	bool adjacent = false;
 	for(int i = 0;i < BLOCK_HEIGHT;i++){
@@ -76,6 +83,7 @@ bool Field::isLayPossible(const Point pos,const Block block)const{
 			}
 		}
 	}
+	if(hands.size()==0)return true;
 	return adjacent;
 }
 

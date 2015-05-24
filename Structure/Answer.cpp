@@ -6,7 +6,7 @@ void Answer::SetField (Field fi){
 	this->field = fi;
 }
 void Answer::AddBlocks(){
-	hands.push_back(Hand{Block(),Point(-1,-1)});
+	hands.push_back(Hand(Block(),Point(-1,-1),Constants::ANGLE0,false));
 }
 void Answer::AddBlocks(Block block,Point pos,bool reverse,Constants::ANGLE angle){
 	hands.push_back(Hand{block,pos,angle,reverse});

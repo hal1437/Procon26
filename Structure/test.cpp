@@ -27,31 +27,25 @@ int main(){
 
 	//std::cout << ans.GetField()  << std::endl;
 	//std::cout << ans             << std::endl;
-	
+
 	//std::cout << prob.GetBlock(0).GetRotate(Constants::ANGLE180);
 	//std::cout << prob.get() << std::endl;
-	
+
 	//std::cout << multi;
 
 	std::ofstream ofs("output.txt");
 	std::vector<Hand> hands;
-	
-	ofs << std::boolalpha ;
+
+	ofs << std::boolalpha;
 	hands = prob.GetField().GetListLayPossible(prob.GetBlock(0));
 	for(Hand& hand:hands){
 		Field field = prob.GetField();
-		Block block;
 		
-		if(hand.reverse)block = hand.block.GetReverse();
-		else block = hand.block;
-		block = block.GetRotate(hand.angle);
-		
-		field.Projection(hand.pos,block);
+		field.Projection(hand);
 		ofs << hand.pos << "," << hand.angle << "," << hand.reverse << std::endl;
 		ofs << hand.block << std::endl;
 		ofs << field << std::endl;
 	}
-	
 
 	return 0;
 }

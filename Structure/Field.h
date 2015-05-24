@@ -13,11 +13,13 @@
 class Field : public MultiBit<FIELD_HEIGHT,FIELD_WIDTH>{
 private:
 	typedef MultiBit<FIELD_HEIGHT,FIELD_WIDTH> Base;
+	std::vector<Hand> hands;
 
 public:
 
 	std::vector<Hand> GetListLayPossible(const Block& block)const;
-	void Projection   (const Point pos,const Block block);	//Added block to field
+	void Projection   (const Point& pos,const Block& block);	//Added block to field
+	void Projection   (const Hand& block);						//Added block to field
 	bool isLayPossible(const Point pos,const Block block)const;	//Checking cross Block
 
 	Field();
