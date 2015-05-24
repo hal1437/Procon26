@@ -35,16 +35,20 @@ int main(){
 
 	std::ofstream ofs("output.txt");
 	std::vector<Hand> hands;
+	Field field = prob.GetField();
 
+	field.Projection(Point(-1,0),prob.GetBlock(0));
+	std::cout << field;
 	ofs << std::boolalpha;
-	hands = prob.GetField().GetListLayPossible(prob.GetBlock(0));
+
+	hands = field.GetListLayPossible(prob.GetBlock(0));
 	for(Hand& hand:hands){
-		Field field = prob.GetField();
+		Field _field = field;
 		
-		field.Projection(hand);
+		_field.Projection(hand);
 		ofs << hand.pos << "," << hand.angle << "," << hand.reverse << std::endl;
 		ofs << hand.block << std::endl;
-		ofs << field << std::endl;
+		ofs << _field << std::endl;
 	}
 
 	return 0;
