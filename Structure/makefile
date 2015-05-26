@@ -17,6 +17,7 @@ SOURCES= test.cpp      \
 		 Field.cpp     \
 		 Problem.cpp   \
 		 Answer.cpp    \
+		 Point.cpp     \
 
 
 BUILD  = $(CC) -g -O0 -o $(NAME) $(CFLAGS)  $(SOURCES)

@@ -1,20 +1,12 @@
 
 #pragma once
 
+#include "Hand.h"
 #include "Field.h"
-#include "Block.h"
-#include "Point.hpp"
 #include <vector>
 #include <string>
 
 class Answer{
-public:
-	struct Hand{
-		Block block;
-		Point pos;
-		Constants::ANGLE angle;
-		bool reverse;
-	};
 private:
 	Field field;
 	std::vector<Hand> hands;

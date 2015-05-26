@@ -1,5 +1,6 @@
 
 #pragma once
+#include <ostream>
 
 struct Point{
 	int x,y;
@@ -32,6 +33,6 @@ struct Point{
 	inline bool operator!=(const T& lhs)const {
 		return !((*this) == lhs);
 	}
-
+	friend std::ostream& operator<<(std::ostream& ofs,const Point& point);
 };
 
