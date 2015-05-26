@@ -80,10 +80,14 @@ bool Field::isLayPossible(const Point pos,const Block block)const{
 					//exist
 					for(Hand hand : hands){
 						Point local_pos = seach_point - hand.pos;
-						if(local_pos.y+i < 0 || local_pos.x+j < 0 || local_pos.y+i >= BLOCK_HEIGHT || local_pos.x+j >= BLOCK_WIDTH){
+						if(local_pos.y < 0 || local_pos.x < 0 || local_pos.y >= BLOCK_HEIGHT || local_pos.x >= BLOCK_WIDTH){
 							continue;
 						}else{
-							if(hand.block.get(local_pos.x,local_pos.y))adjacent = true;
+							if((hand.reverse ? hand.block.GetReverse() : hand.block).GetRotate(hand.angle).get(local_pos.x,local_pos.y)){
+								adjacent = true;
+								//std::cout << local_pos << std::endl;
+								//std::cout << "t";
+							}
 						}
 					} 
 				}
@@ -91,6 +95,7 @@ bool Field::isLayPossible(const Point pos,const Block block)const{
 		}
 	}
 	if(hands.size()==0)return true;
+	//if(adjacent) std::cout << "ok";
 	return adjacent;
 }
 
