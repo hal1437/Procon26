@@ -2,6 +2,7 @@
 #pragma once 
 #include "../Structures.h"
 #include <vector>
+#include <algorithm>
 
 //最良優先探索
 class BestFirst:public Solver{
@@ -10,7 +11,6 @@ public:
 	Heuristics* heuristic;
 
 public:
-	static std::vector<Point> PossibleLayList(Block block);
 
 	Answer Solve()override;
 

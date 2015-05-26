@@ -16,6 +16,7 @@ SOURCES= main.cpp      \
 		 Heuristics/DensityAround.cpp\
 		 Solver/BestFirst.cpp       \
 		 Solver/AStar.cpp           \
+		 ../Structure/Point.cpp     \
 		 ../Structure/Heuristic.cpp \
 		 ../Structure/Block.cpp     \
 		 ../Structure/Field.cpp     \

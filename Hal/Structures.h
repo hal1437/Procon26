@@ -1,6 +1,6 @@
 
 #pragma once 
-#include "../Structure/Point.hpp"
+#include "../Structure/Point.h"
 #include "../Structure/Heuristic.h"
 #include "../Structure/Field.h"
 #include "../Structure/Block.h"
