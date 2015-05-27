@@ -22,7 +22,7 @@ int main(){
 
 	field.Projection(Point(2,1),prob.GetBlock(0));
 	std::cout << field;
-
+	/*
 	for(int i=0;i<255;i++){
 		std::vector<Hand> hands = field.GetListLayPossible(prob.GetBlock(i));
 		for(const Hand& hand:hands){
@@ -34,7 +34,7 @@ int main(){
 			ofs << _field << std::endl;
 			break;
 		}
-	}
+	}*/
 
 	return 0;
 }

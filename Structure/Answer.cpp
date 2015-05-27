@@ -27,17 +27,17 @@ Field Answer::GetField(){
 }
 
 std::ostream& operator<<(std::ostream& ost,const Answer& answer){
-	for(Hand hand : answer.hands){
+	for(int i=0;i < answer.hands.size();i++){
 		if(hand.pos != Point(-1,-1)){
-			ost << hand.pos.x;
+			ost << hands[i].pos.x;
 			ost << " ";
-			ost << hand.pos.y;
+			ost << hands[i].pos.y;
 			ost << " ";
-			ost << (hand.reverse ? "T" : "H");
+			ost << (hands[i].reverse ? "T" : "H");
 			ost << " ";
-			ost << hand.angle;
+			ost << hands[i].angle;
 		}
-		ost << "\r\n";
+		if(i != hands.size()-1)ost << "\r\n";
 	}
 
 	return ost;

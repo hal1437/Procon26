@@ -74,7 +74,7 @@ bool Field::isLayPossible(const Point pos,const Block block)const{
 				CLOCKWISE_FOR(clockwise){
 					Point seach_point = pos + Point(j,i) + clockwise;
 					//overrun
-					if(seach_point.x < 0 || seach_point.y < 0 || seach_point.y >= BLOCK_HEIGHT || seach_point.x >= BLOCK_WIDTH){
+					if(seach_point.x < 0 || seach_point.y < 0 || seach_point.y >= FIELD_HEIGHT || seach_point.x >= FIELD_WIDTH){
 						continue;
 					}
 					//exist
