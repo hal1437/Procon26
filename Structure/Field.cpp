@@ -43,7 +43,7 @@ void Field::Projection(const Point& pos,const Block& block){
 	Projection(Hand(block,pos,Constants::ANGLE0,false));
 }
 void Field::Projection(const Hand& hand){
-	Block block = ((hand.reverse) ? hand.block.GetReverse() : hand.block).GetRotate(hand.angle);
+	Block block = hand();
 	for(int i = 0;i < BLOCK_HEIGHT;i++){
 		for(int j = 0;j < BLOCK_WIDTH;j++){
 			if(hand.pos.y + i < 0 || hand.pos.y + i >= FIELD_WIDTH ||
@@ -74,7 +74,7 @@ bool Field::isLayPossible(const Point pos,const Block block)const{
 				CLOCKWISE_FOR(clockwise){
 					Point seach_point = pos + Point(j,i) + clockwise;
 					//overrun
-					if(seach_point.x < 0 || seach_point.y < 0 || seach_point.y >= BLOCK_HEIGHT || seach_point.x >= BLOCK_WIDTH){
+					if(seach_point.x < 0 || seach_point.y < 0 || seach_point.y >= FIELD_HEIGHT || seach_point.x >= FIELD_WIDTH){
 						continue;
 					}
 					//exist

@@ -27,7 +27,7 @@ Block Block::GetReverse()const{
 	Block answer;
 	for(int i=0;i<BLOCK_HEIGHT;i++){
 		for(int j=0;j<BLOCK_WIDTH;j++){
-			answer[BLOCK_WIDTH - i - 1][j] = (*this)[j][i];
+			answer[j][BLOCK_WIDTH - i - 1] = (*this)[j][i];
 		}
 	}
 	return answer;
