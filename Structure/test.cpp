@@ -6,32 +6,32 @@
 #include "Problem.h"
 #include "Answer.h"
 #include "Solver.h"
-#include "Heuristic.h"
-
-class Addition:public Heuristics<int,int,int>{
-public:
-	int Execution(const int& a,const int& b){
-		return a+b;
-	}
-	
-};
-
+#include "MultiBit.hpp"
 
 int main(){
 
 	Problem prob("../Problem/Problem.txt");
+	std::ofstream ofs("Answer.txt");
+	Field field = prob.GetField();
 	Answer ans;
 	Solver* solv;
-	Heuristics<int,int,int>* hs;
-	hs = new Addition();
+	Block multi;
 
-	ans.SetField(prob.GetField());
-	ans.AddBlocks(prob.GetBlock(0),Point(1,1),false,Constants::ANGLE90);
-
-	std::cout << prob.GetField() << std::endl;
-	std::cout << ans.GetField()  << std::endl;
-	std::cout << ans             << std::endl;
-	std::cout << hs->Execution(10,10) << std::endl;
+	std::cout << std::boolalpha;
+	ofs << std::boolalpha;
+	
+	for(int i=0;i<255;i++){
+		std::vector<Hand> hands = field.GetListLayPossible(prob.GetBlock(i));
+		for(const Hand& hand:hands){
+			Field _field = field;
+			
+			_field.Projection(hand);
+			ofs << hand << std::endl;
+			ofs << _field << std::endl;
+			break;
+		}
+	}
+	std::cout << ans;
 
 	return 0;
 }

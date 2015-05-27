@@ -12,11 +12,13 @@ HEADER = Heuristic.h \
 		 Answer.h    \
 
 SOURCES= test.cpp      \
+		 Hand.cpp      \
 		 Heuristic.cpp \
 		 Block.cpp     \
 		 Field.cpp     \
 		 Problem.cpp   \
 		 Answer.cpp    \
+		 Point.cpp     \
 
 
 BUILD  = $(CC) -g -O0 -o $(NAME) $(CFLAGS)  $(SOURCES)
