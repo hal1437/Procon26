@@ -35,6 +35,7 @@ int main(){
 			break;
 		}
 	}
+	std::cout << ans;
 
 	return 0;
 }
