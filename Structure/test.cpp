@@ -29,8 +29,7 @@ int main(){
 			Field _field = field;
 			
 			_field.Projection(hand);
-			ofs << hand.pos << "," << hand.angle << "," << hand.reverse << std::endl;
-			ofs << hand.block << std::endl;
+			ofs << hand << std::endl;
 			ofs << _field << std::endl;
 			break;
 		}

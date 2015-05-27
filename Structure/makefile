@@ -12,6 +12,7 @@ HEADER = Heuristic.h \
 		 Answer.h    \
 
 SOURCES= test.cpp      \
+		 Hand.cpp      \
 		 Heuristic.cpp \
 		 Block.cpp     \
 		 Field.cpp     \
