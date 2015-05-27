@@ -32,6 +32,7 @@ Answer BestFirst::Solve(){
 			std::cout << field << std::endl;
 			ans.AddBlocks(best.block,best.pos,best.reverse,best.angle);
 		}else{
+			ans.AddBlocks();
 			std::cout << "nothing" << std::endl;
 		}
 	}
