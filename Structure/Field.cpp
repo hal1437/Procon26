@@ -43,7 +43,7 @@ void Field::Projection(const Point& pos,const Block& block){
 	Projection(Hand(block,pos,Constants::ANGLE0,false));
 }
 void Field::Projection(const Hand& hand){
-	Block block = ((hand.reverse) ? hand.block.GetReverse() : hand.block).GetRotate(hand.angle);
+	Block block = hand();
 	for(int i = 0;i < BLOCK_HEIGHT;i++){
 		for(int j = 0;j < BLOCK_WIDTH;j++){
 			if(hand.pos.y + i < 0 || hand.pos.y + i >= FIELD_WIDTH ||
