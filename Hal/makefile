@@ -15,9 +15,10 @@ SOURCES= main.cpp      \
 		 Heuristics/Density.cpp     \
 		 Heuristics/DensityAround.cpp\
 		 Heuristics/Cavity.cpp      \
+		 Heuristics/WeightComposit.cpp\
 		 Solver/BestFirst.cpp       \
 		 Solver/AStar.cpp           \
-		 ../Structure/Hand.cpp     \
+		 ../Structure/Hand.cpp      \
 		 ../Structure/Point.cpp     \
 		 ../Structure/Heuristic.cpp \
 		 ../Structure/Block.cpp     \
