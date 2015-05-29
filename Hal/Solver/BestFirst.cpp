@@ -18,6 +18,8 @@ Answer BestFirst::Solve(){
 	ans.SetField(field);
 	for(int i=0;i < count;i++){
 		hands = field.GetListLayPossible(problem.GetBlock(i));
+
+		std::cout << i << ":";
 		if(hands.size() != 0){
 			Hand best = *std::max_element(hands.begin(),hands.end(),[&](const Hand& lhs,const Hand& rhs){
 				Field l_field,r_field;
@@ -26,6 +28,7 @@ Answer BestFirst::Solve(){
 				r_field.Projection(rhs);
 				return heuristic->Execution(l_field) > heuristic->Execution(r_field);
 			});
+			std::cout << std::endl;
 			std::cout << best.pos << std::endl;
 			field.Projection(best.pos,(best.reverse ? best.block.GetReverse() : best.block).GetRotate(best.angle));
 			std::cout << hands.size() << ":" << heuristic->Execution(field) << std::endl;

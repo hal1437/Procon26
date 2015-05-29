@@ -14,8 +14,10 @@ HEADER = ../Structure/Heuristic.h \
 SOURCES= main.cpp      \
 		 Heuristics/Density.cpp     \
 		 Heuristics/DensityAround.cpp\
+		 Heuristics/Cavity.cpp      \
 		 Solver/BestFirst.cpp       \
 		 Solver/AStar.cpp           \
+		 ../Structure/Hand.cpp     \
 		 ../Structure/Point.cpp     \
 		 ../Structure/Heuristic.cpp \
 		 ../Structure/Block.cpp     \
