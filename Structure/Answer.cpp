@@ -8,6 +8,9 @@ void Answer::SetField (Field fi){
 void Answer::AddBlocks(){
 	hands.push_back(Hand(Block(),Point(-1,-1),Constants::ANGLE0,false));
 }
+void Answer::AddBlocks(Hand hand){
+	hands.push_back(hand);
+}
 void Answer::AddBlocks(Block block,Point pos,bool reverse,Constants::ANGLE angle){
 	hands.push_back(Hand{block,pos,angle,reverse});
 }
