@@ -6,22 +6,26 @@
 //  Copyright (c) 2015年 Riya.Liel. All rights reserved.
 //
 
-#ifndef __opencv_test__Structure__
-#define __opencv_test__Structure__
+#ifndef __GA_GA_Base__
+#define __GA_GA_Base__
 
 #include <vector>
 #include <array>
 
-class GA_Base{ //Interface class for GA
+template<typename T,typename U>
+class GA_Base{ //Interface Template class for GA
 public:
-    virtual void mutation()=0;
-    virtual void inversion()=0;
-    //virtual GA_Base* select(std::vector<GA_Base*>&)=0;
-    virtual GA_Base* cross_over(GA_Base*)=0;
-    virtual int calcEvalution(void* aux)=0;
+    using auxType = U;
     
-    bool operator<(const GA_Base* rhs){return this->_evalution < rhs->_evalution;}
-    bool operator>(const GA_Base* rhs){return this->_evalution > rhs->_evalution;}
+    T* mutation(){ static_cast<T*>(this)->mutation(); }
+    T* inversion(){ static_cast<T*>(this)->inversion(); }
+ 
+    T* crossOver(T*){ static_cast<T*>(this)->crossOver(); }
+    
+    int calcEvalution(U& aux){ static_cast<T*>(this)->calcEvalution(); }
+    
+    bool operator<(const T* rhs){return this->_evalution < rhs->_evalution;}
+    bool operator>(const T* rhs){return this->_evalution > rhs->_evalution;}
 
     enum class DNA_DISPLACEMENT_LISTS{
         MUTATION=0,
@@ -36,14 +40,12 @@ public:
     
     void setProbability(double prob){probability = prob;}
     double getProbability(){return probability;}
-    
+
 protected:
     int _evalution;
     double probability;
     std::array<double, NUMBER_OF_DISPLACEMENT> _evolution_distribution;
 };
-
-
 
 
 #endif /* defined(__opencv_test__Structure__) */
