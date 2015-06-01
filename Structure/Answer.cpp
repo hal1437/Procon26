@@ -10,7 +10,7 @@ void Answer::AddBlocks(){
 }
 void Answer::AddBlocks(Hand hand){
 	if(hand.block.count()==0)hands.push_back(Hand(Block(),Point(-1,-1),Constants::ANGLE0,false));
-	hands.push_back(hand);
+	else hands.push_back(hand);
 }
 void Answer::AddBlocks(Block block,Point pos,bool reverse,Constants::ANGLE angle){
 	hands.push_back(Hand{block,pos,angle,reverse});
