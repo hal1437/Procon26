@@ -20,6 +20,9 @@ int main(){
 	std::cout << std::boolalpha;
 	ofs << std::boolalpha;
 	
+	std::cout << prob.GetBlock(1).count() << std::endl;
+	std::cout << (Block() != Block()) << std::endl;
+	/*
 	for(int i=0;i<255;i++){
 		std::vector<Hand> hands = field.GetListLayPossible(prob.GetBlock(i));
 		for(const Hand& hand:hands){
@@ -31,6 +34,7 @@ int main(){
 			break;
 		}
 	}
+	*/
 	std::cout << ans;
 
 	return 0;
