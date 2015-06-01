@@ -12,12 +12,14 @@ HEADER = ../Structure/Heuristic.h \
 		 ../Structure/Answer.h    \
 
 SOURCES= main.cpp      \
+		 Heuristics/Score.cpp     \
 		 Heuristics/Density.cpp     \
 		 Heuristics/DensityAround.cpp\
 		 Heuristics/Cavity.cpp      \
 		 Heuristics/WeightComposit.cpp\
 		 Solver/BestFirst.cpp       \
 		 Solver/AStar.cpp           \
+		 Solver/IDDFS.cpp           \
 		 ../Structure/Hand.cpp      \
 		 ../Structure/Point.cpp     \
 		 ../Structure/Heuristic.cpp \
@@ -27,7 +29,7 @@ SOURCES= main.cpp      \
 		 ../Structure/Answer.cpp    \
 
 
-BUILD  = $(CC) -g -O0 -o $(NAME) $(CFLAGS)  $(SOURCES)
+BUILD  = $(CC) -g -O3 -o $(NAME) $(CFLAGS)  $(SOURCES)
 
 RUN    = ./$(NAME)
 

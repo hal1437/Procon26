@@ -26,7 +26,7 @@ Answer BestFirst::Solve(){
 				l_field = r_field = field;
 				l_field.Projection(lhs);
 				r_field.Projection(rhs);
-				return heuristic->Execution(l_field) > heuristic->Execution(r_field);
+				return heuristic->Execution(l_field) < heuristic->Execution(r_field);
 			});
 			std::cout << std::endl;
 			std::cout << best.pos << std::endl;
