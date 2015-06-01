@@ -15,7 +15,7 @@ struct Hand{
 
 	friend std::ostream& operator<<(std::ostream& ost,const Hand& hand);
 	
-	Hand();
+	Hand(){};
 	Hand(const Block& b,const Point& Pos,const Constants::ANGLE& Angle,bool Reverse):
 		block(b),
 		pos(Pos),

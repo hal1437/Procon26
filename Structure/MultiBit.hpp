@@ -68,7 +68,15 @@ public:
 		}
 	}
 	size_t count(){
-		return std::bitset<MATRIX_SIZE>(byte).count();
+		size_t size=0;
+		for(int i=0;i < MATRIX_SIZE / BYTE_SIZE;i++){
+			char s = byte[i];
+			for(int j=0;j<BYTE_SIZE;j++){
+				if(s & 1)size++;
+				s >>= 1;
+			}
+		}
+		return size;
 	}
 
 	FirstProxy operator[](size_t index){
@@ -76,6 +84,12 @@ public:
 	}
 	FirstProxy operator[](size_t index)const{
 		return FirstProxy(this,index);
+	}
+	bool operator==(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
+		return std::equal(byte,byte+MATRIX_SIZE,rhs.byte);
+	}
+	bool operator!=(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
+		return !std::equal(byte,byte+MATRIX_SIZE,rhs.byte);
 	}
 
 	MultiBit(){

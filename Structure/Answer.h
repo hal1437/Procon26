@@ -14,6 +14,7 @@ private:
 public:
 	void SetField (Field filed);
 	void AddBlocks();
+	void AddBlocks(Hand hand);
 	void AddBlocks(Block block,Point pos,bool reverse,Constants::ANGLE angle);
 
 	bool Export(std::string filename)const;
