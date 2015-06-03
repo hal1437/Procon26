@@ -1,26 +1,28 @@
 
 #pragma once
 
-#include "Hand.h"
-#include "Field.h"
+#include "Transform.h"
+#include "Matrix.hpp"
+#include "Problem.h"
 #include <vector>
 #include <string>
 
 class Answer{
 private:
+	const Problem& problem;
 	Field field;
-	std::vector<Hand> hands;
+	std::vector<Transform> transes;
 
 public:
 	void SetField (Field filed);
 	void AddBlocks();
-	void AddBlocks(Hand hand);
-	void AddBlocks(Block block,Point pos,bool reverse,Constants::ANGLE angle);
+	void AddBlocks(Transform trans);
+	void AddBlocks(Point pos,bool reverse,Constants::ANGLE angle);
 
 	bool Export(std::string filename)const;
-	Field GetField();
+	Field GetField()const;
 
-	Answer(){};
+	Answer(const Problem& prob):problem(prob){};
 	~Answer(){};
 
 	friend std::ostream& operator<<(std::ostream& ost,const Answer& answer);

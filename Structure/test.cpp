@@ -1,12 +1,9 @@
 
-#include "Block.h"
-#include "Field.h"
 #include <iostream>
 #include <fstream>
 #include "Problem.h"
 #include "Answer.h"
 #include "Solver.h"
-#include "MultiBit.hpp"
 #include "Matrix.hpp"
 
 int main(){
@@ -14,7 +11,7 @@ int main(){
 	Problem prob("../Problem/Problem.txt");
 	std::ofstream ofs("Answer.txt");
 	Field field = prob.GetField();
-	Answer ans;
+	Answer ans(prob);
 	Solver* solv;
 	Block multi;
 
@@ -23,20 +20,20 @@ int main(){
 
 	//std::cout << prob.GetBlock(1).count() << std::endl;
 	//std::cout << (Block() != Block()) << std::endl;
-	/*
+	
 	for(int i=0;i<255;i++){
-		std::vector<Hand> hands = field.GetListLayPossible(prob.GetBlock(i));
-		for(const Hand& hand:hands){
+		//std::vector<Transform> hands = field.GetListLayPossible(prob.GetBlock(i));
+		//for(const Transform& hand:hands){
 			Field _field = field;
 			
-			_field.Projection(hand);
-			ofs << hand << std::endl;
-			ofs << _field << std::endl;
+			//_field.Projection(hand);
+			//ofs << hand << std::endl;
+			std::cout << _field.Move(Point(2,3)) << std::endl;
 			break;
-		}
+		//}
 	}
-	*/
-	std::cout << ans;
+	
+	//std::cout << ans;
 
 	return 0;
 }

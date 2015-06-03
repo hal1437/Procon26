@@ -1,10 +1,25 @@
 
 #pragma once
 #include <bitset>
+#include <array>
 #include <initializer_list>
 #include <iostream>
 #include <algorithm>
 #include <numeric> 
+
+#define OVERRIDE_OPERATOR(OPERATOR)																					\
+MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> operator OPERATOR (const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& value)const{	\
+	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> cp;																		\
+	for(int i=0;i<MATRIX_HEIGHT;i++)this->byte[i] OPERATOR##= value.byte[i];							\
+	return cp;																										\
+}
+
+#define OVERRIDE_OPERATOR_REF(OPERATOR) 								\
+MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator OPERATOR (const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& value){	\
+	for(int i=0;i<MATRIX_HEIGHT;i++)this->byte[i] OPERATOR value.byte[i];										\
+	return (*this);																								\
+}																		
+
 
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 class MultiBit{
@@ -53,7 +68,7 @@ public:
 protected:
 	const int MATRIX_SIZE = MATRIX_WIDTH * MATRIX_HEIGHT;
 	const int BYTE_SIZE = 8;
-	std::bitset<MATRIX_WIDTH> byte[MATRIX_HEIGHT];
+	std::array<std::bitset<MATRIX_WIDTH>,MATRIX_HEIGHT> byte;
 		
 public:
 
@@ -93,13 +108,23 @@ public:
 		return (*this);
 	}
 
-
 	bool operator==(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
 		return  std::equal(byte,byte+MATRIX_HEIGHT);
 	}
 	bool operator!=(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
 		return !std::equal(byte,byte+MATRIX_HEIGHT);
 	}
+
+	OVERRIDE_OPERATOR(&)
+	OVERRIDE_OPERATOR(|)
+	OVERRIDE_OPERATOR(^)
+	OVERRIDE_OPERATOR(<<)
+	OVERRIDE_OPERATOR(>>)
+	OVERRIDE_OPERATOR_REF(&=)
+	OVERRIDE_OPERATOR_REF(|=)
+	OVERRIDE_OPERATOR_REF(^=)
+	OVERRIDE_OPERATOR_REF(<<=)
+	OVERRIDE_OPERATOR_REF(>>=)
 
 	MultiBit(){}
 	MultiBit(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&  origin){
@@ -140,7 +165,7 @@ public:
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 std::ostream& operator<<(std::ostream& ost,const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix){
 	for(int i=0;i<MATRIX_HEIGHT;i++){
-		for(int j=0;j<MATRIX_WIDTH / matrix.BYTE_SIZE;j++){
+		for(int j=0;j<MATRIX_WIDTH;j++){
 			ost << matrix.byte[i][j];
 		}
 		ost << "\n";
