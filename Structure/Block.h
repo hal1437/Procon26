@@ -17,6 +17,7 @@ public:
 	//using Base::begin;
 	//using Base::end;
 	using Base::operator[];
+	using Base::operator=;
 
 	Block();
 	Block(Base multi);
