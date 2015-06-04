@@ -18,6 +18,20 @@ int main(){
 	std::cout << std::boolalpha;
 	ofs << std::boolalpha;
 
+	std::cout << field << std::endl;
+	for(int i=0;i<prob.Count();i++){
+		std::cout << prob.GetBlock(i) << std::endl;
+	}
+	
+	field.Projection(prob.GetBlock(0),Transform(Point( 3,2),Constants::ANGLE0 ,false));
+	field.Projection(prob.GetBlock(1),Transform(Point(-2,-3),Constants::ANGLE90,true));
+
+	field.Projection(prob.GetBlock(3),Transform(Point(6,0),Constants::ANGLE270,false));
+	
+	std::cout << field << std::endl;
+
+/*
+
 	//std::cout << prob.GetBlock(1).count() << std::endl;
 	//std::cout << (Block() != Block()) << std::endl;
 	
@@ -34,6 +48,6 @@ int main(){
 	}
 	
 	//std::cout << ans;
-
+*/
 	return 0;
 }

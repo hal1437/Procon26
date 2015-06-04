@@ -24,7 +24,7 @@ public:
 		return (*this);
 	}
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,Transform trans){
-		return Projection(Matrix<ARGS_WIDTH,ARGS_HEIGHT>(mat).Transform(trans));
+		return Projection(current(Matrix<ARGS_WIDTH,ARGS_HEIGHT>(mat).Reverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos));
 	}
 
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
@@ -36,7 +36,18 @@ public:
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Transform& hand){
 		return Cross(matrix.Transform());
 	}
-
+/*
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> std::vector<std::pair<int,Transform>> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
+		std::vector<std:pair<int,Transform>> answer;
+		for(int i = -ARGS_WIDTH;i < MATRIX_WIDTH + ARGS_WIDTH;i++){
+			for(int j = -ARGS_HEIGHT;i < MATRIX_HIGHT + ARGS_HEIGHT;i++){
+				
+				//answer.push_back(std::make_pair());
+			}
+		}
+		return answer;
+	}
+*/
 	current& Transform(const Transform& hand){
 		if(hand.reverse)Reverse();
 		Rotate(hand.angle);
@@ -48,11 +59,11 @@ public:
 		if(pos.x < 0)for(int i=0;i<MATRIX_HEIGHT;i++)this->byte[i] >>= -pos.x;
 		if(pos.y > 0){
 			std::copy(this->byte.rbegin() + pos.y,this->byte.rend(),this->byte.rbegin());
-			std::fill(this->byte.rend() - pos.y - 1,this->byte.rend(),std::bitset<MATRIX_WIDTH>());
+			std::fill(this->byte.rend() - pos.y,this->byte.rend(),std::bitset<MATRIX_WIDTH>());
 		}
 		if(pos.y < 0){
 			std::copy(this->byte.begin()  - pos.y,this->byte.end() ,this->byte.begin());
-			std::fill(this->byte.end()  + pos.y + 1,this->byte.end() ,std::bitset<MATRIX_WIDTH>());
+			std::fill(this->byte.end()  + pos.y,this->byte.end() ,std::bitset<MATRIX_WIDTH>());
 		}
 		return (*this);
 	}
@@ -68,11 +79,15 @@ public:
 		(*this) = tmp;
 		return (*this);
 	}
-	current& Reverse  (){
-		for(int i=0;i<MATRIX_HEIGHT;i++){
-			for(int j=0;j<MATRIX_WIDTH;j++){
-				this->byte[j][MATRIX_WIDTH - i - 1] = this->byte[j][i];
+	current& Reverse  (bool _reverse=true){
+		if(_reverse){
+			current tmp = (*this);
+			for(int i=0;i<MATRIX_HEIGHT;i++){
+				for(int j=0;j<MATRIX_WIDTH;j++){
+					tmp.byte[j][MATRIX_WIDTH - i - 1] = this->byte[j][i];
+				}
 			}
+			(*this) = tmp;
 		}
 		return (*this);
 	}
@@ -82,7 +97,11 @@ public:
 	Matrix(const current& mat)  = default;
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT>
 	Matrix(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
-		for(int i=0;i<MATRIX_HEIGHT;i++)for(int j=0;j<MATRIX_WIDTH;j++)(*this)[i][j] = matrix[i][j];
+		for(int i=0;i<ARGS_HEIGHT;i++){
+			for(int j=0;j<ARGS_WIDTH;j++){
+				(*this)[i][j] = matrix[i][j];
+			}
+		}
 	}
 	virtual ~Matrix() = default;
 
