@@ -9,8 +9,8 @@
 
 #define OVERRIDE_OPERATOR(OPERATOR)																					\
 MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> operator OPERATOR (const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& value)const{	\
-	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> cp;																		\
-	for(int i=0;i<MATRIX_HEIGHT;i++)this->byte[i] OPERATOR##= value.byte[i];							\
+	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> cp = (*this);																		\
+	for(int i=0;i<MATRIX_HEIGHT;i++)cp.byte[i] OPERATOR##= value.byte[i];							\
 	return cp;																										\
 }
 
@@ -79,7 +79,7 @@ public:
 		byte[y].set(x,value);
 	}
 	size_t count()const{
-		size_t size;
+		size_t size = 0;
 		for(const std::bitset<MATRIX_WIDTH>& bits : byte)size += bits.count();
 		return size;
 	}
@@ -109,10 +109,10 @@ public:
 	}
 
 	bool operator==(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
-		return  std::equal(byte,byte+MATRIX_HEIGHT);
+		return  std::equal(byte.begin(),byte.end(),rhs.byte.begin());
 	}
 	bool operator!=(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
-		return !std::equal(byte,byte+MATRIX_HEIGHT);
+		return !std::equal(byte.begin(),byte.end(),rhs.byte.begin());
 	}
 
 	OVERRIDE_OPERATOR(&)
