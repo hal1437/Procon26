@@ -1,9 +1,25 @@
 
 #pragma once
 #include <bitset>
+#include <array>
 #include <initializer_list>
 #include <iostream>
 #include <algorithm>
+#include <numeric> 
+
+#define OVERRIDE_OPERATOR(OPERATOR)																					\
+MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> operator OPERATOR (const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& value)const{	\
+	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> cp = (*this);																		\
+	for(int i=0;i<MATRIX_HEIGHT;i++)cp.byte[i] OPERATOR##= value.byte[i];							\
+	return cp;																										\
+}
+
+#define OVERRIDE_OPERATOR_REF(OPERATOR) 								\
+MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator OPERATOR (const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& value){	\
+	for(int i=0;i<MATRIX_HEIGHT;i++)this->byte[i] OPERATOR value.byte[i];										\
+	return (*this);																								\
+}																		
+
 
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 class MultiBit{
@@ -50,32 +66,21 @@ public:
 	};
 
 protected:
-	static const int BYTE_SIZE = 8;
-	static const int MATRIX_SIZE = MATRIX_WIDTH * MATRIX_HEIGHT;
-	unsigned char byte[MATRIX_SIZE / BYTE_SIZE]={};
+	const int MATRIX_SIZE = MATRIX_WIDTH * MATRIX_HEIGHT;
+	const int BYTE_SIZE = 8;
+	std::array<std::bitset<MATRIX_WIDTH>,MATRIX_HEIGHT> byte;
+		
 public:
 
 	bool get(size_t x,size_t y)const{
-		return byte[(y*MATRIX_WIDTH / BYTE_SIZE) + (x / BYTE_SIZE)] & 1 << (BYTE_SIZE - (x % BYTE_SIZE) - 1);
+		return byte[y][x];
 	}
 	void set(size_t x,size_t y,bool value = true){
-		bool selecting = get(x,y);
-		if(selecting && !value){
-			byte[(y * MATRIX_WIDTH / BYTE_SIZE) + (x / BYTE_SIZE)] -= (1UL << (BYTE_SIZE - (x % BYTE_SIZE) - 1));
-		}
-		if(!selecting && value){
-			byte[(y * MATRIX_WIDTH / BYTE_SIZE) + (x / BYTE_SIZE)] |= (1UL << (BYTE_SIZE - (x % BYTE_SIZE) - 1));
-		}
+		byte[y].set(x,value);
 	}
-	size_t count(){
-		size_t size=0;
-		for(int i=0;i < MATRIX_SIZE / BYTE_SIZE;i++){
-			char s = byte[i];
-			for(int j=0;j<BYTE_SIZE;j++){
-				if(s & 1)size++;
-				s >>= 1;
-			}
-		}
+	size_t count()const{
+		size_t size = 0;
+		for(const std::bitset<MATRIX_WIDTH>& bits : byte)size += bits.count();
 		return size;
 	}
 
@@ -85,23 +90,63 @@ public:
 	FirstProxy operator[](size_t index)const{
 		return FirstProxy(this,index);
 	}
-	bool operator==(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
-		return std::equal(byte,byte+MATRIX_SIZE,rhs.byte);
+	
+	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator=(MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& origin){
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				byte[i].set(j,origin.byte[i][j]);
+			}
+		}
+		return (*this);
 	}
-	bool operator!=(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
-		return !std::equal(byte,byte+MATRIX_SIZE,rhs.byte);
+	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator=(MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&& origin){
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				byte[i].set(j,origin.byte[i][j]);
+			}
+		}
+		return (*this);
 	}
 
-	MultiBit(){
-		static_assert(MATRIX_WIDTH % BYTE_SIZE == 0,"[static_assert:MultiBit] MATRIX_WIDTH cannot be divided.");
+	bool operator==(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
+		return  std::equal(byte.begin(),byte.end(),rhs.byte.begin());
+	}
+	bool operator!=(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
+		return !std::equal(byte.begin(),byte.end(),rhs.byte.begin());
+	}
+
+	OVERRIDE_OPERATOR(&)
+	OVERRIDE_OPERATOR(|)
+	OVERRIDE_OPERATOR(^)
+	OVERRIDE_OPERATOR(<<)
+	OVERRIDE_OPERATOR(>>)
+	OVERRIDE_OPERATOR_REF(&=)
+	OVERRIDE_OPERATOR_REF(|=)
+	OVERRIDE_OPERATOR_REF(^=)
+	OVERRIDE_OPERATOR_REF(<<=)
+	OVERRIDE_OPERATOR_REF(>>=)
+
+	MultiBit(){}
+	MultiBit(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&  origin){
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				byte[i][j] = origin[i][j];
+			}
+		}
+	}
+	MultiBit(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&& origin){
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				byte[i][j] = origin[i][j];
+			}
+		}
 	}
 	template<class T>
 	MultiBit(std::initializer_list<std::initializer_list<T>> init){
-		static_assert(MATRIX_WIDTH % BYTE_SIZE == 0,"[static_assert:MultiBit] MATRIX_WIDTH cannot be divided.");
 		int i=0,j=0;
 		for(auto& it1 : init){
 			for(auto& it2 :it1){
-				set(j,i,it2);
+				byte.set(i * MATRIX_WIDTH + j,it2);
 				j++;
 			}
 			j=0;
@@ -120,8 +165,8 @@ public:
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 std::ostream& operator<<(std::ostream& ost,const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix){
 	for(int i=0;i<MATRIX_HEIGHT;i++){
-		for(int j=0;j<MATRIX_WIDTH / matrix.BYTE_SIZE;j++){
-			ost << std::bitset<8>(matrix.byte[i * MATRIX_WIDTH / matrix.BYTE_SIZE + j]);
+		for(int j=0;j<MATRIX_WIDTH;j++){
+			ost << matrix.byte[i][j];
 		}
 		ost << "\n";
 	}
@@ -134,10 +179,8 @@ std::istream& operator>>(std::istream& ist,MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&
 		std::string str;
 		std::getline(ist,str);
 		for(int j=0;j < MATRIX_WIDTH;j++){
-			//std::cout << (str[j]=='1');
-			matrix.set(j,i,str[j]=='1');
+			matrix.byte[i][j] = (str[j]=='1');
 		}
-		//std::cout << "\n";
 	}
 	return ist;
 }
