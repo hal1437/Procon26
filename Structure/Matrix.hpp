@@ -76,12 +76,6 @@ public:
 		for(int i=0;i<4;i++)sample[0][i] = matrix.GetReverse(false) .Rotate(static_cast<Constants::ANGLE>(90*i));
 		for(int i=0;i<4;i++)sample[1][i] = matrix.GetReverse(true).Rotate(static_cast<Constants::ANGLE>(90*i));
 		
-		for(int i=0;i<4;i++){
-			std::cout << sample[0][i] << std::endl;
-			std::cout << sample[1][i] << std::endl;
-		}
-
-
 		//std::cout << (*this) << std::endl;
 		std::vector<class Transform> answer;
 		for(int i = 0;i < MATRIX_HEIGHT+ARGS_HEIGHT;i++){
