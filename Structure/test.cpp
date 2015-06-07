@@ -16,7 +16,7 @@ int main(){
 	Block multi;
 
 	std::cout << std::boolalpha;
-	ofs << std::boolalpha;
+	//ofs << std::boolalpha;
 
 	std::cout << field << std::endl;
 	for(int i=0;i<prob.Count();i++){
@@ -24,16 +24,23 @@ int main(){
 	}
 	
 	//((2,1),180,true)
-	field.Projection(prob.GetBlock(0),Transform(Point(3,2),Constants::ANGLE0 ,false));
-	std::cout << prob.GetBlock(0).ProjectionTest(prob.GetBlock(1),Transform(Point(-2,-3),Constants::ANGLE90,true)) << std::endl;
+	//((-3,3),180,true
+	//((5,4),270,false))
+
+	field.Projection(prob.GetBlock(0),Transform(Point(-3,-1),Constants::ANGLE0 ,false));
+	
+	Transform first_trans(Point(3,2),Constants::ANGLE0,false);
 	std::vector<Transform> list = Field().Projection(prob.GetBlock(0)).Move(Point(3,2)).GetListLayPossible(prob.GetBlock(1));
 	
 	std::ofstream ost("out.txt");
+	std::cout << list.size() << std::endl;
 	for(Transform& t:list){
-		Field f = prob.GetBlock(1).GetTransform(t);
+		Field f = prob.GetBlock(1).GetTransform<FIELD_WIDTH,FIELD_HEIGHT>(t);
 		if(!field.Cross(f)){
+			auto field = prob.GetField();
+			field.Projection(prob.GetBlock(0),first_trans);
 			ost << t << std::endl;
-		//	ost << f << std::endl;
+			ost << (field | f) << std::endl;
 		}
 	}
 	

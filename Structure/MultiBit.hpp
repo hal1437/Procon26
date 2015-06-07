@@ -126,6 +126,16 @@ public:
 	OVERRIDE_OPERATOR_REF(<<=)
 	OVERRIDE_OPERATOR_REF(>>=)
 
+	bool operator<(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				if(rhs[i][j] == true  && (*this)[i][j] == false)return true;
+				if(rhs[i][j] == false && (*this)[i][j] == true )return false;
+			}
+		}
+		return false;
+	}
+
 	MultiBit(){}
 	MultiBit(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&  origin){
 		for(int i=0;i<MATRIX_HEIGHT;i++){
@@ -164,6 +174,7 @@ public:
 
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 std::ostream& operator<<(std::ostream& ost,const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix){
+	ost << std::noboolalpha;
 	for(int i=0;i<MATRIX_HEIGHT;i++){
 		for(int j=0;j<MATRIX_WIDTH;j++){
 			ost << matrix.byte[i][j];

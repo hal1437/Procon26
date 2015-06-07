@@ -1,7 +1,7 @@
 
 #pragma once
 #include <vector>
-#include <unordered_map>
+#include <map>
 #include "MultiBit.hpp"
 #include "Point.h"
 #include "Transform.h"
@@ -25,8 +25,8 @@ public:
 		(*this) |= current(mat);
 		return (*this);
 	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,Transform trans){
-		return Projection(current(Matrix<ARGS_WIDTH,ARGS_HEIGHT>(mat).Reverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos));
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans){
+		return Projection(Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos));
 	}
 
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
@@ -72,21 +72,25 @@ public:
 
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> std::vector<Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
 		Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
-		std::unordered_map<Matrix<ARGS_WIDTH,ARGS_HEIGHT>,struct Transform> map;
-		//for(int i=0;i<4;i++)sample[0][i] = matrix.GetReverse(true) .Rotate(static_cast<Constants::ANGLE>(90*i));
-		//for(int i=0;i<4;i++)sample[1][i] = matrix.GetReverse(false).Rotate(static_cast<Constants::ANGLE>(90*i));
+		std::map<current,struct Transform> map;
+		for(int i=0;i<4;i++)sample[0][i] = matrix.GetReverse(false) .Rotate(static_cast<Constants::ANGLE>(90*i));
+		for(int i=0;i<4;i++)sample[1][i] = matrix.GetReverse(true).Rotate(static_cast<Constants::ANGLE>(90*i));
+		
+		for(int i=0;i<4;i++){
+			std::cout << sample[0][i] << std::endl;
+			std::cout << sample[1][i] << std::endl;
+		}
 
+
+		//std::cout << (*this) << std::endl;
 		std::vector<class Transform> answer;
 		for(int i = 0;i < MATRIX_HEIGHT+ARGS_HEIGHT;i++){
 			for(int j = 0;j < MATRIX_WIDTH+ARGS_WIDTH;j++){
 				for(int r=0;r<2;r++){
 					for(int k=0;k<4;k++){
-						//std::cout << Transform::Transform(Point(j-ARGS_WIDTH,i-ARGS_HEIGHT),static_cast<Constants::ANGLE>(k*90),r) << std::endl;
-						
-						if(ProjectionTest(matrix,Transform::Transform(Point(j-ARGS_WIDTH,i-ARGS_HEIGHT),static_cast<Constants::ANGLE>(k*90),r))){
+						if(ProjectionTest(sample[r][k],Transform::Transform(Point(j-ARGS_WIDTH,i-ARGS_HEIGHT),Constants::ANGLE0,false))){
 							struct Transform t(Point(j-ARGS_WIDTH,i-ARGS_HEIGHT),static_cast<Constants::ANGLE>(k*90),r);
-							map[matrix.GetTransform(t)] = t;
-							//answer.push_back(Transform::Transform(Point(j,i),static_cast<Constants::ANGLE>(90*k),r));
+							map[current(sample[r][k]).Move(t.pos)] = t;
 						}
 					}
 				}
@@ -94,6 +98,11 @@ public:
 		}
 		for(auto x:map)answer.push_back(x.second);
 		return answer;
+	}
+
+	template<size_t CONVERT_WIDTH,size_t CONVERT_HEIGHT>
+	Matrix<CONVERT_WIDTH,CONVERT_HEIGHT> GetTransform(const Transform& trans)const{
+		return Matrix<CONVERT_WIDTH,CONVERT_HEIGHT>(this->GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
 	}
 
 	current GetTransform(const Transform& trans)const{
