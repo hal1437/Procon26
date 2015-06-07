@@ -11,7 +11,7 @@ public:
 	const int DEPTH;
 public:
 
-	std::vector<Hand> Iterative(Field field,int block_num,int depth);
+	std::vector<Transform> Iterative(Field field,int block_num,int depth);
 
 	Answer Solve()override;
 

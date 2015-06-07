@@ -14,21 +14,21 @@ IDDFS::IDDFS(Problem prob,Heuristics* h,int depth):
 IDDFS::~IDDFS(){
 }
 
-std::vector<Hand> IDDFS::Iterative(Field field,int block_num,int depth){
-	std::vector<Hand> hands = field.GetListLayPossible(problem.GetBlock(block_num));
-	std::vector<std::vector<Hand>> answers;
+std::vector<Transform> IDDFS::Iterative(Field field,int block_num,int depth){
+	std::vector<Transform> hands = field.GetListLayPossible(problem.GetBlock(block_num));
+	std::vector<std::vector<Transform>> answers;
 	
 	//std::cout << block_num << std::endl;
 	//std::cout << problem.GetBlock(block_num) << std::endl;
 
 	//パス
-	hands.push_back(Hand());
+	hands.push_back(Transform());
 	
 	//展開
 	//std::cout << hands.size() << " " << std::flush;
-	for(Hand hand:hands){
+	for(Transform hand:hands){
 		Field local_field = field;
-		local_field.Projection(hand);
+		local_field.Projection(problem.GetBlock(block_num),hand);
 		if(depth > 1 && block_num < problem.Count()-1){
 			//深化
 			answers.push_back(Iterative(local_field,block_num+1,depth-1));
@@ -39,10 +39,10 @@ std::vector<Hand> IDDFS::Iterative(Field field,int block_num,int depth){
 	int max_index=0;
 	for(int i=0;i<hands.size();i++){
 		Field local_field = field;
-		local_field.Projection(hands[i]);
+		local_field.Projection(problem.GetBlock(block_num),hands[i]);
 		if(answers.size() != 0){
-			for(Hand hand:answers[i]){
-				local_field.Projection(hand);
+			for(int j=0;j<answers[i].size();j++){
+				local_field.Projection(problem.GetBlock(block_num+j),answers[i][j]);
 			}
 		}
 		int heuristics = heuristic->Execution(local_field);
@@ -56,32 +56,32 @@ std::vector<Hand> IDDFS::Iterative(Field field,int block_num,int depth){
 	}
 	
 	//回答生成
-	std::vector<Hand> answer;
+	std::vector<Transform> answer;
 	answer.push_back(hands[max_index]);
 	if(answers.size() != 0){
-		for(Hand& hand:answers[max_index])answer.push_back(hand);
+		for(Transform& hand:answers[max_index])answer.push_back(hand);
 	}
 	return answer;
 } 
 
 Answer IDDFS::Solve(){
-	Answer ans;
+	Answer ans(problem);
 	Field field = problem.GetField();
-	std::vector<Hand> hands;	
+	std::vector<Transform> hands;	
 	const int count = problem.Count();
 	
 	std::cout << field << std::endl;
 	std::cout << problem.Count() << std::endl;
 	//反復深化
 	
-	Hand hand = Hand(problem.GetBlock(0),Point(-1,-1),Constants::ANGLE::ANGLE0,false);
-	field.Projection(hand);
+	Transform hand = Transform(Point(-1,-1),Constants::ANGLE::ANGLE0,false);
+	field.Projection(problem.GetBlock(0),hand);
 	ans.AddBlocks(hand);
 
 	for(int i=0;i<problem.Count()/DEPTH;i++){
-		std::vector<Hand> hands = Iterative(field,(i*DEPTH)+1,DEPTH);
-		for(Hand hand : hands){
-			field.Projection(hand);
+		std::vector<Transform> hands = Iterative(field,(i*DEPTH)+1,DEPTH);
+		for(int j=0;j<hands.size();j++){
+			field.Projection(problem.GetBlock(i*DEPTH+j), hands[i]);
 			ans.AddBlocks(hand);
 			std::cout << field << std::endl;
 		} 

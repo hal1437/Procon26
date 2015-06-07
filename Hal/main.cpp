@@ -17,6 +17,9 @@ int main(){
 	std::ofstream ofs("Answer.txt");
 	Solver* solver;
 	WeightComposit* density;
+	auto f = Field(prob.GetBlock(0).GetReverse(false).Rotate(Constants::ANGLE0)).Move(Point(0,0));
+	auto t = std::hash<Field>()(f);
+
 
 	density = new WeightComposit();
 	
@@ -24,6 +27,7 @@ int main(){
 	density->AddHeuristic(new Cavity(),-12.0f);
 	solver = new BestFirst(prob,density);
 
+	//prob.GetField().Projection(prob.GetBlock(0),Transform(Point(0,9),Constants::ANGLE180,false));
 	Answer ans = solver->Solve();
 	ofs << ans << std::endl;
 

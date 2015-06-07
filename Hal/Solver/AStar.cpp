@@ -9,7 +9,7 @@ AStar::~AStar(){
 }
 
 Answer AStar::Solve(){
-	Answer ans;
+	Answer ans(problem);
 
 	//f (n)= g (n) + h (n)
 
