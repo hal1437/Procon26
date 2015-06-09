@@ -12,6 +12,7 @@
 #include <vector>
 #include <cmath>
 #include <random>
+#include <utility>
 
 template<class _Individual>
 struct RouletteSelect{
@@ -32,19 +33,6 @@ struct RouletteSelect{
         _Individual* individual=nullptr;
         
         double rnd = _distribution(_mt);
-        double sum=0;
-        double sumProbablity=0;
-        
-        for(_Individual* individual : _population){
-            sum+=individual->getEvalution();
-        }
-        
-        if(sum == 0)throw "all individuals are same DNA.";
-        
-        for(_Individual* individual : _population){
-            individual->setProbability(individual->getEvalution()/sum + sumProbablity);
-            sumProbablity = individual->getProbability();
-        }
         
         for(int i=0;i<_population.size();i++){
             if(_population[i]->getProbability() > rnd){
@@ -77,7 +65,5 @@ struct PowerScaling{
         }
     }
 };
-
-
 
 #endif
