@@ -51,7 +51,6 @@ int main(){
 	//std::cout << field << std::endl;
 
 /*
-
 	//std::cout << prob.GetBlock(1).count() << std::endl;
 	//std::cout << (Block() != Block()) << std::endl;
 	
