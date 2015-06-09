@@ -4,7 +4,7 @@
 #include <iostream>
 #include <type_traits>
 #include <initializer_list>
-#include "Point.hpp"
+#include "Point.h"
 
 template<class T,std::size_t... Dims>
 class Multi{
