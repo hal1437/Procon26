@@ -7,22 +7,8 @@
 #include <algorithm>
 #include <numeric> 
 
-#define OVERRIDE_OPERATOR(OPERATOR)																					\
-MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> operator OPERATOR (const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& value)const{	\
-	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> cp = (*this);																		\
-	for(int i=0;i<MATRIX_HEIGHT;i++)cp.byte[i] OPERATOR##= value.byte[i];							\
-	return cp;																										\
-}
-
-#define OVERRIDE_OPERATOR_REF(OPERATOR) 								\
-MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator OPERATOR (const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& value){	\
-	for(int i=0;i<MATRIX_HEIGHT;i++)this->byte[i] OPERATOR value.byte[i];										\
-	return (*this);																								\
-}																		
-
-
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
-class MultiBit{
+class MultiBit:protected std::bitset<MATRIX_WIDTH*MATRIX_HEIGHT>{
 	//00000000 00000000 00000000 00000000
 public:
 	friend class FirstProxy;
@@ -67,23 +53,50 @@ public:
 
 protected:
 	const int MATRIX_SIZE = MATRIX_WIDTH * MATRIX_HEIGHT;
-	const int BYTE_SIZE = 8;
-	std::array<std::bitset<MATRIX_WIDTH>,MATRIX_HEIGHT> byte;
-		
+	std::bitset<MATRIX_WIDTH*MATRIX_HEIGHT> byte;
+	
+	typedef MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> current;
+	typedef std::bitset<MATRIX_WIDTH*MATRIX_HEIGHT> Base;
+
 public:
 
+	friend std::ostream& operator<<(std::ostream& ost,const current& matrix);
+	friend std::istream& operator>>(std::istream& ist,const current& matrix);
+	current operator&(const current& rhs)const{current mat(*this);mat &= rhs;return mat;}
+	current operator|(const current& rhs)const{current mat(*this);mat |= rhs;return mat;}
+	current operator^(const current& rhs)const{current mat(*this);mat ^= rhs;return mat;}
+	Base& operator&=(const current& i) { return Base::operator&=(i); }
+	Base& operator|=(const current& i) { return Base::operator|=(i); }
+	Base& operator^=(const current& i) { return Base::operator^=(i); }
+	using Base::count;
+
 	bool get(size_t x,size_t y)const{
-		return byte[y][x];
+		return byte[y*MATRIX_WIDTH + x];
 	}
 	void set(size_t x,size_t y,bool value = true){
-		byte[y].set(x,value);
-	}
-	size_t count()const{
-		size_t size = 0;
-		for(const std::bitset<MATRIX_WIDTH>& bits : byte)size += bits.count();
-		return size;
+		byte.set(y*MATRIX_WIDTH + x,value);
 	}
 
+
+
+	bool operator==(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
+		for(int i=0;i<MATRIX_SIZE;i++)if(!(this->byte[i] & rhs.byte[i]))return false;
+		return true;
+	}
+	bool operator!=(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
+		for(int i=0;i<MATRIX_SIZE;i++)if(this->byte[i] & rhs.byte[i])return false;
+		return true;
+	}
+
+	bool operator<(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				if( rhs[i][j] && !(*this)[i][j])return true;
+				if(!rhs[i][j] &&  (*this)[i][j])return false;
+			}
+		}
+		return false;
+	}
 	FirstProxy operator[](size_t index){
 		return FirstProxy(this,index);
 	}
@@ -92,63 +105,27 @@ public:
 	}
 	
 	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator=(MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& origin){
-		for(int i=0;i<MATRIX_HEIGHT;i++){
-			for(int j=0;j<MATRIX_WIDTH;j++){
-				byte[i].set(j,origin.byte[i][j]);
-			}
+		for(int i=0;i<MATRIX_SIZE;i++){
+			byte.set(i,origin.byte[i]);
 		}
 		return (*this);
 	}
 	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator=(MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&& origin){
-		for(int i=0;i<MATRIX_HEIGHT;i++){
-			for(int j=0;j<MATRIX_WIDTH;j++){
-				byte[i].set(j,origin.byte[i][j]);
-			}
+		for(int i=0;i<MATRIX_SIZE;i++){
+			byte.set(i,origin.byte[i]);
 		}
 		return (*this);
 	}
 
-	bool operator==(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
-		return  std::equal(byte.begin(),byte.end(),rhs.byte.begin());
-	}
-	bool operator!=(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
-		return !std::equal(byte.begin(),byte.end(),rhs.byte.begin());
-	}
-
-	OVERRIDE_OPERATOR(&)
-	OVERRIDE_OPERATOR(|)
-	OVERRIDE_OPERATOR(^)
-	OVERRIDE_OPERATOR(<<)
-	OVERRIDE_OPERATOR(>>)
-	OVERRIDE_OPERATOR_REF(&=)
-	OVERRIDE_OPERATOR_REF(|=)
-	OVERRIDE_OPERATOR_REF(^=)
-	OVERRIDE_OPERATOR_REF(<<=)
-	OVERRIDE_OPERATOR_REF(>>=)
-
-	bool operator<(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs)const{
-		for(int i=0;i<MATRIX_HEIGHT;i++){
-			for(int j=0;j<MATRIX_WIDTH;j++){
-				if(rhs[i][j] == true  && (*this)[i][j] == false)return true;
-				if(rhs[i][j] == false && (*this)[i][j] == true )return false;
-			}
-		}
-		return false;
-	}
-
 	MultiBit(){}
 	MultiBit(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&  origin){
-		for(int i=0;i<MATRIX_HEIGHT;i++){
-			for(int j=0;j<MATRIX_WIDTH;j++){
-				byte[i][j] = origin[i][j];
-			}
+		for(int i=0;i<MATRIX_HEIGHT*MATRIX_WIDTH;i++){
+			(*this)[i] = origin[i];
 		}
 	}
 	MultiBit(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&& origin){
-		for(int i=0;i<MATRIX_HEIGHT;i++){
-			for(int j=0;j<MATRIX_WIDTH;j++){
-				byte[i][j] = origin[i][j];
-			}
+		for(int i=0;i<MATRIX_HEIGHT*MATRIX_WIDTH;i++){
+			(*this)[i] = origin[i];
 		}
 	}
 	template<class T>
@@ -156,7 +133,7 @@ public:
 		int i=0,j=0;
 		for(auto& it1 : init){
 			for(auto& it2 :it1){
-				byte.set(i * MATRIX_WIDTH + j,it2);
+				Base::set(i * MATRIX_WIDTH + j,it2);
 				j++;
 			}
 			j=0;
@@ -166,10 +143,6 @@ public:
 	virtual  ~MultiBit(){
 	}
 
-	template <size_t WIDTH,size_t HEIGHT>
-	friend std::ostream& operator<<(std::ostream& ost,const MultiBit<WIDTH,HEIGHT>& matrix);
-	template <size_t WIDTH,size_t HEIGHT>
-	friend std::istream& operator>>(std::istream& ist,MultiBit<WIDTH,HEIGHT>& matrix);
 };
 
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
@@ -177,7 +150,7 @@ std::ostream& operator<<(std::ostream& ost,const MultiBit<MATRIX_WIDTH,MATRIX_HE
 	ost << std::noboolalpha;
 	for(int i=0;i<MATRIX_HEIGHT;i++){
 		for(int j=0;j<MATRIX_WIDTH;j++){
-			ost << matrix.byte[i][j];
+			ost << matrix[i][j];
 		}
 		ost << "\n";
 	}
@@ -190,8 +163,31 @@ std::istream& operator>>(std::istream& ist,MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>&
 		std::string str;
 		std::getline(ist,str);
 		for(int j=0;j < MATRIX_WIDTH;j++){
-			matrix.byte[i][j] = (str[j]=='1');
+			matrix[i][j] = (str[j]=='1');
 		}
 	}
 	return ist;
 }
+
+template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
+MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> operator&(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& lhs,
+											   const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs){
+	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> mat;
+	mat &= lhs &= rhs;
+	return mat;
+}
+template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
+MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> operator|(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& lhs,
+											   const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs){
+	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> mat;
+	mat |= lhs |= rhs;
+	return mat;
+}
+template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
+MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> operator^(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& lhs,
+											   const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& rhs){
+	MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> mat;
+	mat ^= lhs ^= rhs;
+	return mat;
+} 
+

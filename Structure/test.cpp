@@ -5,6 +5,7 @@
 #include "Answer.h"
 #include "Solver.h"
 #include "Matrix.hpp"
+#include "../Utility/BenchMark.hpp"
 
 int main(){
 
@@ -30,8 +31,24 @@ int main(){
 	field.Projection(prob.GetBlock(0),Transform(Point(-3,-1),Constants::ANGLE0 ,false));
 	
 	Transform first_trans(Point(3,2),Constants::ANGLE0,false);
-	std::vector<Transform> list = Field().Projection(prob.GetBlock(0)).Move(Point(3,2)).GetListLayPossible(prob.GetBlock(1));
 	
+	Field f;
+	f.Projection(prob.GetBlock(0)).Move(Point(3,2));
+	
+	BenchMark<10>()([&]{
+		Field _f = f;
+		f.GetListLayPossible(prob.GetBlock(1));
+	});
+	
+	/*
+	===========BENCHMARK RESULT===========
+	    [COUNT]           10 times
+	[FULL TIME]         4965 msec
+	 [PER TIME]        496.5 msec/function 
+	======================================
+	*/
+
+	/*
 	std::ofstream ost("out.txt");
 	std::cout << list.size() << std::endl;
 	for(Transform& t:list){
@@ -43,7 +60,7 @@ int main(){
 			ost << (field | f) << std::endl;
 		}
 	}
-	
+	*/
 	//field.Projection(prob.GetBlock(1),Transform(Point(-2,-3),Constants::ANGLE90,true));
 
 	//field.Projection(prob.GetBlock(3),Transform(Point(6,0),Constants::ANGLE270,false));

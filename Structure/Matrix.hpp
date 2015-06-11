@@ -71,10 +71,20 @@ public:
 	}
 
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> std::vector<Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
-		Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
+		Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2> sample[2][4];
+		Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2> field;
 		std::map<current,struct Transform> map;
-		for(int i=0;i<4;i++)sample[0][i] = matrix.GetReverse(false) .Rotate(static_cast<Constants::ANGLE>(90*i));
-		for(int i=0;i<4;i++)sample[1][i] = matrix.GetReverse(true).Rotate(static_cast<Constants::ANGLE>(90*i));
+
+		field.Projection(*this);
+		Matrix sample_base(matrix);
+		for(int i=0;i<2;i++){
+			if(i)sample_base.Reverse();
+			for(int j=0;j<4;j++){
+				sample[i][j].Projection(sample_base);
+			}
+			sample_base.Rotate(Constants::ANGLE90);
+		}
+		field.Move(Point(ARGS_WIDTH,ARGS_HEIGHT));
 		
 		//std::cout << (*this) << std::endl;
 		std::vector<class Transform> answer;
@@ -82,11 +92,29 @@ public:
 			for(int j = 0;j < MATRIX_WIDTH+ARGS_WIDTH;j++){
 				for(int r=0;r<2;r++){
 					for(int k=0;k<4;k++){
-						if(ProjectionTest(sample[r][k],Transform::Transform(Point(j-ARGS_WIDTH,i-ARGS_HEIGHT),Constants::ANGLE0,false))){
+						//===========BENCHMARK RESULT===========
+						//	[COUNT]           10 times
+						//[FULL TIME]         4918 msec
+						// [PER TIME]        491.8 msec/function
+						//======================================
+						//===========BENCHMARK RESULT===========
+						//    [COUNT]           10 times
+						//[FULL TIME]        16366 msec
+						// [PER TIME]       1636.6 msec/function
+						//======================================
+						if((sample[r][k] & field).count()){
 							struct Transform t(Point(j-ARGS_WIDTH,i-ARGS_HEIGHT),static_cast<Constants::ANGLE>(k*90),r);
 							map[current(sample[r][k]).Move(t.pos)] = t;
 						}
+						//sample[r][k] <<= 1;
+						//if(!r && !k)std::cout << sample[r][k] <<  std::endl;
 					}
+				}
+			}
+			//std::cout << i << "/" << MATRIX_HEIGHT+ARGS_HEIGHT << "行目" << std::endl;
+			for(int r=0;r<2;r++){
+				for(int k=0;k<4;k++){
+					sample[r][k].Move(Point(0-static_cast<int>(MATRIX_WIDTH)-static_cast<int>(ARGS_WIDTH),1));
 				}
 			}
 		}
@@ -118,15 +146,22 @@ public:
 		return (*this);
 	}
 	current& Move     (const Point& pos){
-		if(pos.x > 0)for(int i=0;i<MATRIX_HEIGHT;i++)this->byte[i] <<=  pos.x;
-		if(pos.x < 0)for(int i=0;i<MATRIX_HEIGHT;i++)this->byte[i] >>= -pos.x;
+		if(pos.x > 0){
+			(*this) <<=  pos.x;
+		}
+		if(pos.x < 0){
+			(*this) >>= -pos.x;
+		}
 		if(pos.y > 0){
-			std::copy(this->byte.rbegin() + pos.y,this->byte.rend(),this->byte.rbegin());
-			std::fill(this->byte.rend() - pos.y,this->byte.rend(),std::bitset<MATRIX_WIDTH>());
+			(*this) <<=  pos.y * MATRIX_WIDTH;
+			for(int i=0;i < pos.y*MATRIX_WIDTH;i++){
+			}
+			//std::fill(this->byte.rend() - pos.y,this->byte.rend(),std::bitset<MATRIX_WIDTH>());
 		}
 		if(pos.y < 0){
-			std::copy(this->byte.begin()  - pos.y,this->byte.end() ,this->byte.begin());
-			std::fill(this->byte.end()  + pos.y,this->byte.end() ,std::bitset<MATRIX_WIDTH>());
+			(*this) >>= -pos.y * MATRIX_WIDTH;
+			//std::copy(this->byte.begin()  - pos.y,this->byte.end() ,this->byte.begin());
+			//std::fill(this->byte.end()  + pos.y,this->byte.end() ,std::bitset<MATRIX_WIDTH>());
 		}
 		return (*this);
 	}
@@ -134,11 +169,11 @@ public:
 		current tmp = (*this);
 		for(int i=0;i<MATRIX_HEIGHT;i++){
 			for(int j=0;j<MATRIX_WIDTH;j++){
-				if(angle == Constants::ANGLE90) tmp[i                   ][MATRIX_HEIGHT - j - 1] = this->byte[j][i];
-				if(angle == Constants::ANGLE180)tmp[MATRIX_WIDTH - j - 1][MATRIX_HEIGHT - i - 1] = this->byte[j][i];
-				if(angle == Constants::ANGLE270)tmp[MATRIX_WIDTH - i - 1][j                    ] = this->byte[j][i];
+				if(angle == Constants::ANGLE90) tmp.set(MATRIX_HEIGHT - j - 1,i                    ,this->byte[j * MATRIX_WIDTH + i]);
+				if(angle == Constants::ANGLE180)tmp.set(MATRIX_HEIGHT - i - 1,MATRIX_WIDTH - j - 1 ,this->byte[j * MATRIX_WIDTH + i]);
+				if(angle == Constants::ANGLE270)tmp.set(j                    ,MATRIX_WIDTH - i - 1 ,this->byte[j * MATRIX_WIDTH + i]);
 			}
-	}
+		}
 		(*this) = tmp;
 		return (*this);
 	}
@@ -147,7 +182,7 @@ public:
 			current tmp = (*this);
 			for(int i=0;i<MATRIX_HEIGHT;i++){
 				for(int j=0;j<MATRIX_WIDTH;j++){
-					tmp.byte[j][MATRIX_WIDTH - i - 1] = this->byte[j][i];
+					tmp.byte[j * MATRIX_WIDTH + (MATRIX_WIDTH - i - 1)] = this->byte[j*MATRIX_WIDTH + i];
 				}
 			}
 			(*this) = tmp;
@@ -170,9 +205,10 @@ public:
 	Matrix(const current& mat)  = default;
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT>
 	Matrix(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
-		for(int i=0;i<ARGS_HEIGHT;i++){
-			for(int j=0;j<ARGS_WIDTH;j++){
-				(*this)[i][j] = matrix[i][j];
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				if(i < ARGS_WIDTH && j < ARGS_HEIGHT)(*this)[i][j] = matrix[i][j];
+				else (*this)[i][j] = 0;
 			}
 		}
 	}
@@ -209,37 +245,5 @@ std::istream& operator>>(std::istream& ist,Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& m
 	}
 	return ist;
 }
-
-namespace std {
-template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
-class hash<Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>>{
-public:
-	size_t operator()(const Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& mat)const{
-		return std::hash<std::bitset<MATRIX_WIDTH * MATRIX_HEIGHT>>()(mat.toBitset());
-	}
-};
-}
-
-
-/*
-template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT>
-current& Matrix<size_t,size_t>::Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
-	return (*this);
-}
-
-
-template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT>
-current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,Transform trans);
-
-template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix);
-template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Point& pos);
-template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Transform& hand);
-
-current& Transform(const Transform& hand);
-current& Move     (const Point& pos);
-current& Rotate   (Constants::ANGLE& angle);
-current& Reverse  ();
-*/
-
 
 
