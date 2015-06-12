@@ -1,4 +1,5 @@
 
+
 #include "Answer.h"
 #include <fstream>
 
@@ -6,10 +7,13 @@ void Answer::SetField (Field fi){
 	this->field = fi;
 }
 void Answer::AddBlocks(){
-	hands.push_back(Hand(Block(),Point(-1,-1),Constants::ANGLE0,false));
+	transes.push_back(Transform());
 }
-void Answer::AddBlocks(Block block,Point pos,bool reverse,Constants::ANGLE angle){
-	hands.push_back(Hand{block,pos,angle,reverse});
+void Answer::AddBlocks(Transform trans){
+	transes.push_back(Transform());
+}
+void Answer::AddBlocks(Point pos,bool reverse,Constants::ANGLE angle){
+	transes.push_back(Transform(pos,angle,reverse));
 }
 bool Answer::Export(std::string filename)const{
 	std::ofstream ofs(filename);
@@ -18,26 +22,26 @@ bool Answer::Export(std::string filename)const{
 	return true;
 }
 
-Field Answer::GetField(){
+Field Answer::GetField()const{
 	Field field = this->field;
-	for(Hand& hand : hands){
-		if(hand.pos != Point(-1,-1))field.Projection(hand.pos,hand.block);
+	for(int i=0;i<transes.size();i++){
+		if(transes[i].isEnable() != false)field.Projection(problem.GetBlock(i),transes[i]);
 	}
 	return field;
 }
 
 std::ostream& operator<<(std::ostream& ost,const Answer& answer){
-	for(int i=0;i < answer.hands.size();i++){
-		if(answer.hands[i].pos != Point(-1,-1)){
-			ost << answer.hands[i].pos.x;
+	for(int i=0;i < answer.transes.size();i++){
+		if(answer.transes[i].pos != Point(-1,-1)){
+			ost << answer.transes[i].pos.x;
 			ost << " ";
-			ost << answer.hands[i].pos.y;
+			ost << answer.transes[i].pos.y;
 			ost << " ";
-			ost << (answer.hands[i].reverse ? "T" : "H");
+			ost << (answer.transes[i].reverse ? "T" : "H");
 			ost << " ";
-			ost << answer.hands[i].angle;
+			ost << answer.transes[i].angle;
 		}
-		if(i != answer.hands.size()-1)ost << "\r\n";
+		if(i != answer.transes.size()-1)ost << "\r\n";
 	}
 
 	return ost;
