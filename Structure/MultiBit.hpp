@@ -156,18 +156,15 @@ public:
 		return answer;
 	}
 	current& operator&=(const current& rhs){
-		current answer;
-		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] & rhs.byte[i]);
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] &= rhs.byte[i];
 		return (*this);
 	}
 	current& operator|=(const current& rhs){
-		current answer;
-		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] | rhs.byte[i]);
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] |= rhs.byte[i];
 		return (*this);
 	}
 	current& operator^=(const current& rhs){
-		current answer;
-		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] ^ rhs.byte[i]);
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] ^= rhs.byte[i];
 		return (*this);
 	}
 	current&& operator<<(size_t value)const{

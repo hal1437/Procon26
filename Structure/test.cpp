@@ -42,8 +42,10 @@ int main(){
 	});
 	*/
 
-	std::cout << prob.GetBlock(0).GetMove(Point(0,0)) << std::endl;
-	std::cout << prob.GetBlock(0).GetMove(Point(3,3)) << std::endl;
+	Block block = prob.GetBlock(0).GetRotate(Constants::ANGLE0);
+	block.Projection(prob.GetBlock(0).GetReverse());
+	std::cout << block << std::endl;
+	std::cout << prob.GetBlock(0).GetReverse() << std::endl;
 
 
 

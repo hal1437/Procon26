@@ -169,9 +169,9 @@ public:
 		current tmp = (*this);
 		for(int i=0;i<MATRIX_HEIGHT;i++){
 			for(int j=0;j<MATRIX_WIDTH;j++){
-				if(angle == Constants::ANGLE90) tmp.set(MATRIX_HEIGHT - j - 1,i                    ,this->byte[j * MATRIX_WIDTH + i]);
-				if(angle == Constants::ANGLE180)tmp.set(MATRIX_HEIGHT - i - 1,MATRIX_WIDTH - j - 1 ,this->byte[j * MATRIX_WIDTH + i]);
-				if(angle == Constants::ANGLE270)tmp.set(j                    ,MATRIX_WIDTH - i - 1 ,this->byte[j * MATRIX_WIDTH + i]);
+				if(angle == Constants::ANGLE90) tmp.set(MATRIX_WIDTH - i - 1 ,j                    ,(*this)[i][j]);
+				if(angle == Constants::ANGLE180)tmp.set(MATRIX_WIDTH - j - 1 ,MATRIX_HEIGHT - i - 1,(*this)[i][j]);
+				if(angle == Constants::ANGLE270)tmp.set(i                    ,MATRIX_HEIGHT - j - 1,(*this)[i][j]);
 			}
 		}
 		(*this) = tmp;
@@ -179,20 +179,13 @@ public:
 	}
 	current& Reverse  (bool _reverse=true){
 		if(_reverse){
-			//std::cout << Base::ARRAY_MATRIX_SIZE << std::endl;;
 			current tmp(*this);
 			for(int i=0;i<MATRIX_HEIGHT;i++){
 				for(int j=0;j<MATRIX_WIDTH;j++){
-					tmp.set(i,j,this->get(i,j));
-					//return (*this);
+					tmp[i][MATRIX_WIDTH-j-1] = (*this)[i][j];
 				}
 			}
-			for(int i=0;i<MATRIX_HEIGHT;i++){
-				for(int j=0;j<MATRIX_WIDTH;j++){
-					this->set(i,j,tmp.get(i,j));
-				}
-			}
-			//(*this) = tmp;
+			(*this) = tmp;
 		}
 		return (*this);
 	}
