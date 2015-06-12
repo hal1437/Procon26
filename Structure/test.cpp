@@ -10,6 +10,7 @@
 int main(){
 
 	Problem prob("../Problem/Problem.txt");
+	/*
 	std::ofstream ofs("Answer.txt");
 	Field field = prob.GetField();
 	Answer ans(prob);
@@ -39,7 +40,13 @@ int main(){
 		Field _f = f;
 		f.GetListLayPossible(prob.GetBlock(1));
 	});
-	
+	*/
+
+	std::cout << prob.GetBlock(0).GetMove(Point(0,0)) << std::endl;
+	std::cout << prob.GetBlock(0).GetMove(Point(3,3)) << std::endl;
+
+
+
 	/*
 	===========BENCHMARK RESULT===========
 	    [COUNT]           10 times

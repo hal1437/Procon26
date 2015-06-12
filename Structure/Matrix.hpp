@@ -147,19 +147,19 @@ public:
 	}
 	current& Move     (const Point& pos){
 		if(pos.x > 0){
-			(*this) <<=  pos.x;
+			(*this) >>=  pos.x;
 		}
 		if(pos.x < 0){
-			(*this) >>= -pos.x;
+			(*this) <<= -pos.x;
 		}
 		if(pos.y > 0){
-			(*this) <<=  pos.y * MATRIX_WIDTH;
+			(*this) >>=  pos.y * MATRIX_WIDTH;
 			for(int i=0;i < pos.y*MATRIX_WIDTH;i++){
 			}
 			//std::fill(this->byte.rend() - pos.y,this->byte.rend(),std::bitset<MATRIX_WIDTH>());
 		}
 		if(pos.y < 0){
-			(*this) >>= -pos.y * MATRIX_WIDTH;
+			(*this) <<= -pos.y * MATRIX_WIDTH;
 			//std::copy(this->byte.begin()  - pos.y,this->byte.end() ,this->byte.begin());
 			//std::fill(this->byte.end()  + pos.y,this->byte.end() ,std::bitset<MATRIX_WIDTH>());
 		}
@@ -179,13 +179,20 @@ public:
 	}
 	current& Reverse  (bool _reverse=true){
 		if(_reverse){
-			current tmp = (*this);
+			//std::cout << Base::ARRAY_MATRIX_SIZE << std::endl;;
+			current tmp(*this);
 			for(int i=0;i<MATRIX_HEIGHT;i++){
 				for(int j=0;j<MATRIX_WIDTH;j++){
-					tmp.byte[j * MATRIX_WIDTH + (MATRIX_WIDTH - i - 1)] = this->byte[j*MATRIX_WIDTH + i];
+					tmp.set(i,j,this->get(i,j));
+					//return (*this);
 				}
 			}
-			(*this) = tmp;
+			for(int i=0;i<MATRIX_HEIGHT;i++){
+				for(int j=0;j<MATRIX_WIDTH;j++){
+					this->set(i,j,tmp.get(i,j));
+				}
+			}
+			//(*this) = tmp;
 		}
 		return (*this);
 	}
