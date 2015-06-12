@@ -2,21 +2,34 @@
 #include <iostream>
 #include <fstream>
 #include "../Structure/Problem.h"
+#include "Heuristics/Score.h"
+#include "Heuristics/Density.h"
 #include "Heuristics/DensityAround.h"
+#include "Heuristics/Cavity.h"
+#include "Heuristics/WeightComposit.h"
 #include "Solver/AStar.h"
+#include "Solver/IDDFS.h"
 #include "Solver/BestFirst.h"
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest5.txt");
+	Problem prob("../Problem/quest4.txt");
 	std::ofstream ofs("Answer.txt");
 	Solver* solver;
-	Heuristics<unsigned,Field>* density;
+	WeightComposit* density;
+	auto f = Field(prob.GetBlock(0).GetReverse(false).Rotate(Constants::ANGLE0)).Move(Point(0,0));
+	auto t = std::hash<Field>()(f);
 
-	density = new DensityAround();
-	solver  = new BestFirst(prob,density);
+
+	density = new WeightComposit();
 	
-	ofs << solver->Solve() << std::endl;
+	density->AddHeuristic(new DensityAround(),1.0f);
+	density->AddHeuristic(new Cavity(),-12.0f);
+	solver = new BestFirst(prob,density);
+
+	//prob.GetField().Projection(prob.GetBlock(0),Transform(Point(0,9),Constants::ANGLE180,false));
+	Answer ans = solver->Solve();
+	ofs << ans << std::endl;
 
 	std::cout << "-----End of program-----" << std::endl;
 	return 0;
