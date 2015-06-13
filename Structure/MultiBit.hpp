@@ -131,14 +131,21 @@ public:
 		return FirstProxy(this,index);
 	}
 	bool operator==(const current& rhs)const{
-		return std::equal(byte,byte+MATRIX_SIZE,rhs.byte);
+		return std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
 	}
 	bool operator!=(const current& rhs)const{
-		return !std::equal(byte,byte+MATRIX_SIZE,rhs.byte);
+		return !std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
 	}
 	bool operator<(const current rhs)const{
-		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)if(this->byte[i] < rhs.byte[i])return true;
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++){
+			if(this->byte[i] < rhs.byte[i])return true;
+			if(this->byte[i] > rhs.byte[i])return false;
+		}
 		return false;
+	}
+	current& operator~(){
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] = ~byte[i];
+		return (*this);
 	}
 	current operator&(const current& rhs)const{
 		current answer;

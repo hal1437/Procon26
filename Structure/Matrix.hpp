@@ -49,7 +49,7 @@ public:
 						return false;
 					}
 					//crossed
-					if(this->byte[trans.pos.y + i][trans.pos.x + j]){
+					if((*this)[trans.pos.y + i][trans.pos.x + j]){
 						return false;
 					}
 					//not Adjacent
@@ -73,20 +73,27 @@ public:
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> std::vector<Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
 		Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2> sample[2][4];
 		Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2> field;
-		std::map<current,struct Transform> map;
+		Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2> frame;
+		std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2>,struct Transform> map;
 
 		field.Projection(*this);
 		Matrix sample_base(matrix);
+		frame = ~frame;
+	
+		field.Move(Point(ARGS_WIDTH,ARGS_HEIGHT));
+		for(int i = ARGS_HEIGHT;i < MATRIX_HEIGHT+ARGS_HEIGHT ;i++){
+			for(int j = ARGS_WIDTH;j < MATRIX_WIDTH+ARGS_WIDTH;j++){
+				frame.set(i,j,0);
+			}
+		}
 		for(int i=0;i<2;i++){
 			if(i)sample_base.Reverse();
 			for(int j=0;j<4;j++){
 				sample[i][j].Projection(sample_base);
+				sample_base.Rotate(Constants::ANGLE90);
 			}
-			sample_base.Rotate(Constants::ANGLE90);
 		}
-		field.Move(Point(ARGS_WIDTH,ARGS_HEIGHT));
-		
-		//std::cout << (*this) << std::endl;
+	
 		std::vector<class Transform> answer;
 		for(int i = 0;i < MATRIX_HEIGHT+ARGS_HEIGHT;i++){
 			for(int j = 0;j < MATRIX_WIDTH+ARGS_WIDTH;j++){
@@ -102,16 +109,17 @@ public:
 						//[FULL TIME]        16366 msec
 						// [PER TIME]       1636.6 msec/function
 						//======================================
-						if((sample[r][k] & field).count()){
-							struct Transform t(Point(j-ARGS_WIDTH,i-ARGS_HEIGHT),static_cast<Constants::ANGLE>(k*90),r);
-							map[current(sample[r][k]).Move(t.pos)] = t;
+						
+						if(field.ProjectionTest(sample[r][k],Transform::Transform())){
+							if((sample[r][k] & frame).count() == 0){
+								struct Transform t(Point(j-ARGS_WIDTH,i-ARGS_HEIGHT),static_cast<Constants::ANGLE>(k*90),r);
+								map.insert(std::make_pair(sample[r][k],t));
+							}
 						}
-						//sample[r][k] <<= 1;
-						//if(!r && !k)std::cout << sample[r][k] <<  std::endl;
+						sample[r][k].Move(Point(1,0));
 					}
 				}
 			}
-			//std::cout << i << "/" << MATRIX_HEIGHT+ARGS_HEIGHT << "行目" << std::endl;
 			for(int r=0;r<2;r++){
 				for(int k=0;k<4;k++){
 					sample[r][k].Move(Point(0-static_cast<int>(MATRIX_WIDTH)-static_cast<int>(ARGS_WIDTH),1));

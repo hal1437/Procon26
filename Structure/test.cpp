@@ -43,9 +43,14 @@ int main(){
 	*/
 
 	Block block = prob.GetBlock(0).GetRotate(Constants::ANGLE0);
-	block.Projection(prob.GetBlock(0).GetReverse());
-	std::cout << block << std::endl;
-	std::cout << prob.GetBlock(0).GetReverse() << std::endl;
+	std::vector<Transform> trans = block.GetListLayPossible(prob.GetBlock(1));
+	std::cout << prob.GetBlock(0) << std::endl;
+	std::cout << prob.GetBlock(1) << std::endl;
+	for(Transform& t:trans) std::cout << t << std::endl;
+
+	//block.Projection(prob.GetBlock(0).GetReverse());
+	//std::cout << block << std::endl;
+	//std::cout << prob.GetBlock(0).GetReverse() << std::endl;
 
 
 
