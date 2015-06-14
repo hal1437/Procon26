@@ -176,21 +176,27 @@ public:
 	}
 	current&& operator<<(size_t value)const{
 		current answer;
-		for(int i=ARRAY_MATRIX_SIZE-value;i>0;i--)answer.set(i,this->get(i+value));
+		for(int i=ARRAY_MATRIX_SIZE-value;i>0;i--){
+			std::cout << i+value << "to" << i << std::endl;
+			answer.set(i,this->get(i+value));
+		}
 		return answer;
 	}
 	current&& operator>>(size_t value)const{
 		current answer;
-		for(int i=value;i<ARRAY_MATRIX_SIZE;i++)answer.set(i,get(i-value));
+		for(int i=value;i<ARRAY_MATRIX_SIZE;i++){
+			std::cout << i-value << "to" << i << std::endl;
+			answer.set(i,get(i-value));
+		}
 		return answer;
 	}
 	current& operator<<=(size_t value){
 		for(int i=0;i<MATRIX_SIZE-value;i++)this->set(i,this->get(i+value));
-		for(int i=0;i<value;i++)set(i,0);
+		for(int i=0;i<value;i++)set(MATRIX_SIZE-i-1,0);
 		return (*this);
 	}
 	current& operator>>=(size_t value){
-		for(int i=MATRIX_SIZE;i>=value;i--)set(i,get(i-value));
+		for(int i=MATRIX_SIZE-1;i>=value;i--)set(i,get(i-value));
 		for(int i=value;i>=0;i--)set(i,0);
 		return (*this);
 	}

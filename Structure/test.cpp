@@ -10,7 +10,6 @@
 int main(){
 
 	Problem prob("../Problem/Problem.txt");
-	/*
 	std::ofstream ofs("Answer.txt");
 	Field field = prob.GetField();
 	Answer ans(prob);
@@ -20,7 +19,6 @@ int main(){
 	std::cout << std::boolalpha;
 	//ofs << std::boolalpha;
 
-	std::cout << field << std::endl;
 	for(int i=0;i<prob.Count();i++){
 		//std::cout << prob.GetBlock(i) << std::endl;
 	}
@@ -29,24 +27,19 @@ int main(){
 	//((-3,3),180,true
 	//((5,4),270,false))
 
-	field.Projection(prob.GetBlock(0),Transform(Point(-3,-1),Constants::ANGLE0 ,false));
+	field.Projection(prob.GetBlock(0),Transform(Point(0,0),Constants::ANGLE180 ,false));
+	std::cout << field << std::endl;
 	
 	Transform first_trans(Point(3,2),Constants::ANGLE0,false);
 	
-	Field f;
-	f.Projection(prob.GetBlock(0)).Move(Point(3,2));
-	
+	//Field f;
+	//f.Projection(prob.GetBlock(0)).Move(Point(3,2));
+/*	
 	BenchMark<10>()([&]{
 		Field _f = f;
 		f.GetListLayPossible(prob.GetBlock(1));
 	});
-	*/
-
-	Block block = prob.GetBlock(0).GetRotate(Constants::ANGLE0);
-	std::vector<Transform> trans = block.GetListLayPossible(prob.GetBlock(1));
-	std::cout << prob.GetBlock(0) << std::endl;
-	std::cout << prob.GetBlock(1) << std::endl;
-	for(Transform& t:trans) std::cout << t << std::endl;
+*/
 
 	//block.Projection(prob.GetBlock(0).GetReverse());
 	//std::cout << block << std::endl;

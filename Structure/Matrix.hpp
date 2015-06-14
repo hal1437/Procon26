@@ -26,7 +26,8 @@ public:
 		return (*this);
 	}
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans){
-		return Projection(Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos));
+		(*this) |=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
+		return	(*this);
 	}
 
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
@@ -154,23 +155,10 @@ public:
 		return (*this);
 	}
 	current& Move     (const Point& pos){
-		if(pos.x > 0){
-			(*this) >>=  pos.x;
-		}
-		if(pos.x < 0){
-			(*this) <<= -pos.x;
-		}
-		if(pos.y > 0){
-			(*this) >>=  pos.y * MATRIX_WIDTH;
-			for(int i=0;i < pos.y*MATRIX_WIDTH;i++){
-			}
-			//std::fill(this->byte.rend() - pos.y,this->byte.rend(),std::bitset<MATRIX_WIDTH>());
-		}
-		if(pos.y < 0){
-			(*this) <<= -pos.y * MATRIX_WIDTH;
-			//std::copy(this->byte.begin()  - pos.y,this->byte.end() ,this->byte.begin());
-			//std::fill(this->byte.end()  + pos.y,this->byte.end() ,std::bitset<MATRIX_WIDTH>());
-		}
+		if(pos.x > 0)(*this) >>=  pos.x;
+		if(pos.x < 0)(*this) <<= -pos.x;
+		if(pos.y > 0)(*this) >>=  pos.y * MATRIX_WIDTH;
+		if(pos.y < 0)(*this) <<= -pos.y * MATRIX_WIDTH;
 		return (*this);
 	}
 	current& Rotate   (const Constants::ANGLE& angle){
@@ -213,10 +201,9 @@ public:
 	Matrix(const current& mat)  = default;
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT>
 	Matrix(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
-		for(int i=0;i<MATRIX_HEIGHT;i++){
-			for(int j=0;j<MATRIX_WIDTH;j++){
-				if(i < ARGS_WIDTH && j < ARGS_HEIGHT)(*this)[i][j] = matrix[i][j];
-				else (*this)[i][j] = 0;
+		for(int i=0;i<ARGS_HEIGHT;i++){
+			for(int j=0;j<ARGS_WIDTH;j++){
+				this->set(j,i,matrix.get(j,i));
 			}
 		}
 	}
