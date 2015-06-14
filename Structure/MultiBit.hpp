@@ -197,7 +197,7 @@ public:
 	}
 	current& operator>>=(size_t value){
 		for(int i=MATRIX_SIZE-1;i>=value;i--)set(i,get(i-value));
-		for(int i=value;i>=0;i--)set(i,0);
+		for(int i=0;i<value;i++)set(i,0,0);
 		return (*this);
 	}
 

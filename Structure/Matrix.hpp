@@ -72,13 +72,13 @@ public:
 	}
 
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> std::vector<Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
-		Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2> sample[2][4];
-		Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2> field;
-		Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2> frame;
-		std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH*2,MATRIX_HEIGHT+ARGS_HEIGHT*2>,struct Transform> map;
+		Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT> sample[2][4];
+		Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT> field;
+		Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT> frame;
+		std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT>,struct Transform> map;
 
 		field.Projection(*this);
-		Matrix sample_base(matrix);
+		Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample_base(matrix);
 		frame = ~frame;
 	
 		field.Move(Point(ARGS_WIDTH,ARGS_HEIGHT));
