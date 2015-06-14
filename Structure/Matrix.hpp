@@ -29,6 +29,14 @@ public:
 		(*this) |=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
 		return	(*this);
 	}
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
+		(*this) ^= current(mat);
+		return (*this);
+	}
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans){
+		(*this) ^=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
+		return	(*this);
+	}
 
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
 		return (((*this) & current(matrix)).count() > 0);
@@ -84,7 +92,7 @@ public:
 		std::cout << matrix << std::endl;
 		std::cout << field << std::endl;
 		for(int i=0;i<2;i++){
-			if(i)sample_base.Reverse();
+			sample_base.Reverse(i);
 			for(int j=0;j<4;j++){
 				sample[i][j].Projection(sample_base);
 				sample_base.Rotate(Constants::ANGLE90);
@@ -96,13 +104,10 @@ public:
 			for(int j = -8;j < static_cast<int>(MATRIX_WIDTH);j++){
 				for(int r=0;r<2;r++){
 					for(int k=0;k<4;k++){
-						if(field.ProjectionTest(sample[r][k],Transform::Transform(Point(j,i),Constants::ANGLE0,false))){
+						Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
+						if(field.ProjectionTest(sample[r][k],move_trans)){
 							struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
-							map.insert(std::make_pair(current(field).Projection(sample[r][k],
-																				Transform::Transform(Point(j,i),
-																									 Constants::ANGLE0,
-																									 false)),
-													  t));
+							map.insert(std::make_pair(current(field).Projection(sample[r][k],move_trans),t));
 						}
 					}
 				}
@@ -112,11 +117,22 @@ public:
 		return answer;
 	}
 
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& GetProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat)const{
+		return current(*this).Projection(mat);
+	}
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& GetProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans)const{
+		return current(*this).Projection(mat,trans);
+	}
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& GetReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat)const{
+		return current(*this).ReverseProjection(mat);
+	}
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& GetReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans)const{
+		return current(*this).ReverseProjection(mat,trans);
+	}
 	template<size_t CONVERT_WIDTH,size_t CONVERT_HEIGHT>
 	Matrix<CONVERT_WIDTH,CONVERT_HEIGHT> GetTransform(const Transform& trans)const{
 		return Matrix<CONVERT_WIDTH,CONVERT_HEIGHT>(this->GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
 	}
-
 	current GetTransform(const Transform& trans)const{
 		return current(*this).Transform(trans);
 	}
