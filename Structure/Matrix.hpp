@@ -42,9 +42,10 @@ public:
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Transform& trans)const{
 		Matrix<ARGS_WIDTH,ARGS_HEIGHT>&& mat = matrix.GetTransform(Transform::Transform(Point(0,0),trans.angle,trans.reverse));
 		bool adjacent = false;
+
 		for(int i = 0;i < ARGS_HEIGHT;i++){
 			for(int j = 0;j < ARGS_WIDTH;j++){
-				if(mat[i][j]){
+				if(mat.get(j,i)){
 					//overrun
 					if(trans.pos.y+i < 0 || trans.pos.x+j < 0 || trans.pos.y+i >= MATRIX_HEIGHT || trans.pos.x+j >= MATRIX_WIDTH){
 						return false;
@@ -53,6 +54,7 @@ public:
 					if((*this)[trans.pos.y + i][trans.pos.x + j]){
 						return false;
 					}
+					
 					//not Adjacent
 					CLOCKWISE_FOR(clockwise){
 						Point seach_point = trans.pos + Point(j,i) + clockwise;
@@ -61,7 +63,7 @@ public:
 							continue;
 						}
 						//exist
-						if((*this)[seach_point.y][seach_point.x]){
+						if(this->get(seach_point.x,seach_point.y)){
 							adjacent = true;
 						}
 					}
@@ -72,21 +74,15 @@ public:
 	}
 
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> std::vector<Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
-		Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT> sample[2][4];
-		Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT> field;
-		Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT> frame;
+		Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
+		Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> field;
 		std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT>,struct Transform> map;
 
 		field.Projection(*this);
 		Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample_base(matrix);
-		frame = ~frame;
 	
-		field.Move(Point(ARGS_WIDTH,ARGS_HEIGHT));
-		for(int i = ARGS_HEIGHT;i < MATRIX_HEIGHT+ARGS_HEIGHT ;i++){
-			for(int j = ARGS_WIDTH;j < MATRIX_WIDTH+ARGS_WIDTH;j++){
-				frame.set(i,j,0);
-			}
-		}
+		std::cout << matrix << std::endl;
+		std::cout << field << std::endl;
 		for(int i=0;i<2;i++){
 			if(i)sample_base.Reverse();
 			for(int j=0;j<4;j++){
@@ -96,34 +92,19 @@ public:
 		}
 	
 		std::vector<class Transform> answer;
-		for(int i = 0;i < MATRIX_HEIGHT+ARGS_HEIGHT;i++){
-			for(int j = 0;j < MATRIX_WIDTH+ARGS_WIDTH;j++){
+		for(int i = -8;i < static_cast<int>(MATRIX_HEIGHT);i++){
+			for(int j = -8;j < static_cast<int>(MATRIX_WIDTH);j++){
 				for(int r=0;r<2;r++){
 					for(int k=0;k<4;k++){
-						//===========BENCHMARK RESULT===========
-						//	[COUNT]           10 times
-						//[FULL TIME]         4918 msec
-						// [PER TIME]        491.8 msec/function
-						//======================================
-						//===========BENCHMARK RESULT===========
-						//    [COUNT]           10 times
-						//[FULL TIME]        16366 msec
-						// [PER TIME]       1636.6 msec/function
-						//======================================
-						
-						if(field.ProjectionTest(sample[r][k],Transform::Transform())){
-							if((sample[r][k] & frame).count() == 0){
-								struct Transform t(Point(j-ARGS_WIDTH,i-ARGS_HEIGHT),static_cast<Constants::ANGLE>(k*90),r);
-								map.insert(std::make_pair(sample[r][k],t));
-							}
+						if(field.ProjectionTest(sample[r][k],Transform::Transform(Point(j,i),Constants::ANGLE0,false))){
+							struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
+							map.insert(std::make_pair(current(field).Projection(sample[r][k],
+																				Transform::Transform(Point(j,i),
+																									 Constants::ANGLE0,
+																									 false)),
+													  t));
 						}
-						sample[r][k].Move(Point(1,0));
 					}
-				}
-			}
-			for(int r=0;r<2;r++){
-				for(int k=0;k<4;k++){
-					sample[r][k].Move(Point(0-static_cast<int>(MATRIX_WIDTH)-static_cast<int>(ARGS_WIDTH),1));
 				}
 			}
 		}
