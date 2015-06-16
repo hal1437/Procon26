@@ -10,7 +10,7 @@
 #include "Solver/AStar.h"
 #include "Solver/IDDFS.h"
 #include "Solver/BestFirst.h"
-
+/*
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
 	Problem prob("../Problem/quest6.txt");
@@ -35,3 +35,4 @@ int main(){
 	std::cout << "-----End of program-----" << std::endl;
 	return 0;
 }
+*/
