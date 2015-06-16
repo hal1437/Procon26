@@ -1,20 +1,20 @@
 
-#include "IDDFS.h"
+#include "DLS.h"
 
-IDDFS::IDDFS(Problem prob,Heuristics* h):
+DLS::DLS(Problem prob,Heuristics* h):
 	Solver(prob),
 	heuristic(h),
 	DEPTH(1){
 }
-IDDFS::IDDFS(Problem prob,Heuristics* h,int depth):
+DLS::DLS(Problem prob,Heuristics* h,int depth):
 	Solver(prob),
 	heuristic(h),
 	DEPTH(depth){
 }
-IDDFS::~IDDFS(){
+DLS::~DLS(){
 }
 
-std::vector<Transform> IDDFS::Iterative(Field field,int block_num,int depth){
+std::vector<Transform> DLS::Iterative(Field field,int block_num,int depth){
 	std::vector<Transform> hands = field.GetListLayPossible(problem.GetBlock(block_num));
 	std::vector<std::vector<Transform>> answers;
 	
@@ -64,7 +64,7 @@ std::vector<Transform> IDDFS::Iterative(Field field,int block_num,int depth){
 	return answer;
 } 
 
-Answer IDDFS::Solve(){
+Answer DLS::Solve(){
 	Answer ans(problem);
 	Field field = problem.GetField();
 	std::vector<Transform> hands;	

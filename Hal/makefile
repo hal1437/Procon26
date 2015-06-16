@@ -19,7 +19,7 @@ SOURCES= main.cpp						\
 		 Heuristics/WeightComposit.cpp	\
 		 Solver/BestFirst.cpp			\
 		 Solver/AStar.cpp				\
-		 Solver/IDDFS.cpp				\
+		 Solver/DLS.cpp				\
 		 ../Structure/Transform.cpp		\
 		 ../Structure/Point.cpp			\
 		 ../Structure/Heuristic.cpp		\

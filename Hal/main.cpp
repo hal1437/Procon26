@@ -8,7 +8,7 @@
 #include "Heuristics/Cavity.h"
 #include "Heuristics/WeightComposit.h"
 #include "Solver/AStar.h"
-#include "Solver/IDDFS.h"
+#include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
 
 int main(){
