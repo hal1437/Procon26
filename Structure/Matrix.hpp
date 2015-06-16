@@ -26,6 +26,7 @@ public:
 		return (*this);
 	}
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans){
+		if(!trans.isEnable())return (*this);
 		(*this) |=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
 		return	(*this);
 	}
@@ -34,6 +35,7 @@ public:
 		return (*this);
 	}
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans){
+		if(!trans.isEnable())return (*this);
 		(*this) ^=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
 		return	(*this);
 	}
@@ -48,6 +50,7 @@ public:
 		return Cross(matrix.GetTransform());
 	}
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Transform& trans)const{
+		if(!trans.isEnable())return false;
 		Matrix<ARGS_WIDTH,ARGS_HEIGHT>&& mat = matrix.GetTransform(Transform::Transform(Point(0,0),trans.angle,trans.reverse));
 		bool adjacent = false;
 
@@ -131,6 +134,7 @@ public:
 	}
 	template<size_t CONVERT_WIDTH,size_t CONVERT_HEIGHT>
 	Matrix<CONVERT_WIDTH,CONVERT_HEIGHT> GetTransform(const Transform& trans)const{
+		if(!trans.isEnable())return (*this);
 		return Matrix<CONVERT_WIDTH,CONVERT_HEIGHT>(this->GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
 	}
 	current GetTransform(const Transform& trans)const{
@@ -145,10 +149,11 @@ public:
 	current GetReverse(bool _reverse = true)const{
 		return current(*this).Reverse(_reverse);
 	}
-	current& Transform(const Transform& hand){
-		if(hand.reverse)Reverse();
-		Rotate(hand.angle);
-		Move(hand.pos);
+	current& Transform(const Transform& trans){
+		if(!trans.isEnable())return (*this);
+		if(trans.reverse)Reverse();
+		Rotate(trans.angle);
+		Move(trans.pos);
 		return (*this);
 	}
 	current& Move     (const Point& pos){
