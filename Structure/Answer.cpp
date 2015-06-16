@@ -10,7 +10,7 @@ void Answer::AddBlocks(){
 	transes.push_back(Transform());
 }
 void Answer::AddBlocks(Transform trans){
-	transes.push_back(Transform());
+	transes.push_back(trans);
 }
 void Answer::AddBlocks(Point pos,bool reverse,Constants::ANGLE angle){
 	transes.push_back(Transform(pos,angle,reverse));
@@ -32,7 +32,7 @@ Field Answer::GetField()const{
 
 std::ostream& operator<<(std::ostream& ost,const Answer& answer){
 	for(int i=0;i < answer.transes.size();i++){
-		if(answer.transes[i].pos != Point(-1,-1)){
+		if(answer.transes[i].isEnable()){
 			ost << answer.transes[i].pos.x;
 			ost << " ";
 			ost << answer.transes[i].pos.y;
