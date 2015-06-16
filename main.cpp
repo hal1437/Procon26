@@ -175,7 +175,7 @@ int main(){
     
     Problem prob("Problem/quest1.txt");
     
-    
+    Block_SA(prob.GetField());
     
     std::cout << std::endl;
 }

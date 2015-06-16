@@ -18,17 +18,19 @@
 #include "../Structure/Heuristic.h"
 #include "../Hal/Heuristics/WeightComposit.h"
 #include "../Hal/Heuristics/Cavity.h"
+#include "../hal/Heuristics/DensityAround.h"
 
 class Block_SA: SA_Base<Block_SA,Problem,Field>{
 public:
-    Block_SA& turnState(auxType& aux);
-    int calcEvalution(auxType& aux);
+    Block_SA& turnState(auxType& problem);
+    int calcEvalution(auxType& problem);
     
     Block_SA(stateType state);
     
 private:
     Answer_history<Transform, Block> _history;
     Heuristics<unsigned,Field>* _heuristics;
+    Heuristics<unsigned,Field>* _Cavity;
 };
 
 

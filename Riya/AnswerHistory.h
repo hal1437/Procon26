@@ -21,9 +21,9 @@ public:
     std::pair<TRANSFORM,BLOCK>& operator[](int index){return ans_list[index];}
     int size(){return ans_list.size();}
     
-    void returnTheHand(int index,Field field){
+    void returnTheHand(int index,Field& field){
         for(int i=0;i<ans_list.size()-index;i++){
-            //field.Projection(ans_list.back().second, ans_list.back().first);
+            field.ReverseProjection(ans_list.back().second, ans_list.back().first);
             ans_list.pop_back();
         }
     }
