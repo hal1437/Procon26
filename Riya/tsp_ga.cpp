@@ -10,48 +10,50 @@ enumrateSubtour(std::vector<T> source,std::vector<T> target);
 tsp_individual* tsp_individual::cross_over(tsp_individual* source){
     std::random_device rnd;
     std::mt19937 mt(rnd());
-    std::uniform_int_distribution<int> distribution(0,static_cast<int>(_phenotypic_trait.size()-1));
-    std::vector<int> pmx_map(_phenotypic_trait.size());
+    std::uniform_int_distribution<int> distribution(0,static_cast<int>(_phenotypic_ordinal.size()-1));
+    std::vector<int> pmx_map(_phenotypic_ordinal.size());
     
     int cross_point1 = distribution(mt)/2;
     int cross_point2 = distribution(mt)/2 + cross_point1;
     
-    DNA source_dna = translateToDnaPhenotypicOrdinal(dynamic_cast<tsp_individual*>(source)->_phenotypic_trait);
-    DNA parent_dna = translateToDnaPhenotypicOrdinal(this->_phenotypic_trait);
+    DNA source_dna = dynamic_cast<tsp_individual*>(source)->_phenotypic_ordinal;
+    DNA parent_dna = this->_phenotypic_ordinal;
+    
     
     tsp_individual* child = new tsp_individual;
-    child->_phenotypic_trait = translateToDnaPhenotypicOrdinal(this->_phenotypic_trait);
+    child->_phenotypic_ordinal = this->_phenotypic_ordinal
+    ;
     
     std::fill(pmx_map.begin(),pmx_map.end(),-1);
     
     for(int i=cross_point1;i<=cross_point2;i++) {
         auto it = std::find(pmx_map.begin(),pmx_map.end(),source_dna[i]);
         if(pmx_map.end() != it){
-            if(pmx_map[child->_phenotypic_trait[i]]==-1)
-                *it = child->_phenotypic_trait[i];
+            if(pmx_map[child->_phenotypic_ordinal[i]]==-1)
+                *it = child->_phenotypic_ordinal[i];
             else {
-                *it = pmx_map[child->_phenotypic_trait[i]];
-                pmx_map[child->_phenotypic_trait[i]] = -1;
+                *it = pmx_map[child->_phenotypic_ordinal[i]];
+                pmx_map[child->_phenotypic_ordinal[i]] = -1;
             }
         }
-        else if(pmx_map[child->_phenotypic_trait[i]] != -1){
-            pmx_map[source_dna[i]] = pmx_map[child->_phenotypic_trait[i]];
-            pmx_map[child->_phenotypic_trait[i]] = -1;
+        else if(pmx_map[child->_phenotypic_ordinal[i]] != -1){
+            pmx_map[source_dna[i]] = pmx_map[_phenotypic_ordinal[i]];
+            pmx_map[child->_phenotypic_ordinal[i]] = -1;
         }
         else{
-            pmx_map[source_dna[i]] = child->_phenotypic_trait[i];
+            pmx_map[source_dna[i]] = child->_phenotypic_ordinal[i];
         }
-        child->_phenotypic_trait[i] = source_dna[i];
+        child->_phenotypic_ordinal[i] = source_dna[i];
     }
     
     for(int i=0;i<cross_point1;i++){
-        if(pmx_map[child->_phenotypic_trait[i]] != -1){
-            child->_phenotypic_trait[i] = pmx_map[child->_phenotypic_trait[i]];
+        if(pmx_map[child->_phenotypic_ordinal[i]] != -1){
+            child->_phenotypic_ordinal[i] = pmx_map[child->_phenotypic_ordinal[i]];
         }
     }
-    for(int i=cross_point2+1;i<child->_phenotypic_trait.size();i++){
-        if(pmx_map[child->_phenotypic_trait[i]] != -1){
-            child->_phenotypic_trait[i] = pmx_map[child->_phenotypic_trait[i]];
+    for(int i=cross_point2+1;i<child->_phenotypic_ordinal.size();i++){
+        if(pmx_map[child->_phenotypic_ordinal[i]] != -1){
+            child->_phenotypic_ordinal[i] = pmx_map[child->_phenotypic_ordinal[i]];
         }
     }
     
@@ -70,18 +72,15 @@ tsp_individual* tsp_individual::cross_over(tsp_individual* source){
     std::cout << std::endl;
 #endif
     
-    child->_phenotypic_trait = translateToDnaPhenotypicTrait(child->_phenotypic_trait);
-    
     return child;
 }
 
 tsp_individual* tsp_individual::cse_x_cross_over(tsp_individual* source){
     
-    DNA source_dna = translateToDnaPhenotypicOrdinal(dynamic_cast<tsp_individual*>(source)->_phenotypic_trait);
-    DNA parent_dna = translateToDnaPhenotypicOrdinal(this->_phenotypic_trait);
+    DNA source_dna = dynamic_cast<tsp_individual*>(source)->_phenotypic_ordinal;
+    DNA parent_dna = this->_phenotypic_ordinal;
     
     tsp_individual* child = new tsp_individual;
-    child->_phenotypic_trait = translateToDnaPhenotypicOrdinal(this->_phenotypic_trait);
     
     auto subtour_list = enumrateSubtour(parent_dna, source_dna);
     
@@ -91,30 +90,28 @@ tsp_individual* tsp_individual::cse_x_cross_over(tsp_individual* source){
             std::swap(subtour.second.first, subtour.second.second);}
         std::copy(source_dna.begin() + subtour.second.first,
                   source_dna.begin() + subtour.second.second + 1,
-                  child->_phenotypic_trait.begin() + subtour.first.first);
+                  child->_phenotypic_ordinal.begin() + subtour.first.first);
     }
     
-    child->_phenotypic_trait = translateToDnaPhenotypicTrait(child->_phenotypic_trait);
     
     return child;
 }
 
 tsp_individual* tsp_individual::mutation(){
     tsp_individual* new_individual = new tsp_individual;
-    DNA phenotypic_ordinal = translateToDnaPhenotypicOrdinal(_phenotypic_trait);
+    new_individual->setDNA(std::forward<DNA>(_phenotypic_ordinal));
     
     std::random_device rnd;
     std::mt19937 mt(rnd());
-    std::uniform_int_distribution<int> distribution(0,static_cast<int>(_phenotypic_trait.size()-1));
+    std::uniform_int_distribution<int> distribution(0,static_cast<int>(_phenotypic_ordinal.size()-1));
     
     int cross_point1 = distribution(mt);
-    int cross_point2 = mt() % (_phenotypic_trait.size()-cross_point1);
+    int cross_point2 = mt() % (_phenotypic_ordinal.size()-cross_point1);
 
     for(int i=cross_point1; i<=cross_point1 + (cross_point2-cross_point1)/2; i++){
-        std::swap(phenotypic_ordinal[i],phenotypic_ordinal[cross_point1+cross_point2-i]);
+        std::swap(new_individual->_phenotypic_ordinal[i],new_individual->_phenotypic_ordinal[cross_point1+cross_point2-i]);
     }
-    
-    new_individual->setDNA(translateToDnaPhenotypicTrait(phenotypic_ordinal));
+
     return new_individual;
 }
 
@@ -172,7 +169,7 @@ tsp_individual* makeTspIndividual(int number_of_city){
     
     for(int i=0;i<number_of_city;i++){
         pos = mt() % city_list.size();
-        new_dna.push_back(pos);
+        new_dna.push_back(city_list[pos]);
         city_list.erase(city_list.begin() + pos);
     }
     
@@ -189,13 +186,10 @@ int tsp_individual::calcEvalution(std::vector<cv::Point>& city_list){
         std_eval += cv::norm(cv::Point(0,0)-city_list[i]);
     }
     
-    
-    DNA phenotypic_ordinal = translateToDnaPhenotypicOrdinal(_phenotypic_trait);
-    
     for(int i=0;i<city_list.size()-1;i++){
-        evalution+= cv::norm(city_list[phenotypic_ordinal[i]]-city_list[phenotypic_ordinal[i+1]]);
+        evalution+= cv::norm(city_list[_phenotypic_ordinal[i]]-city_list[_phenotypic_ordinal[i+1]]);
     }
-    evalution+= cv::norm(city_list[phenotypic_ordinal.back()]-city_list[phenotypic_ordinal[0]]);
+    evalution+= cv::norm(city_list[_phenotypic_ordinal.back()]-city_list[_phenotypic_ordinal[0]]);
 
     _evalution = std_eval - evalution;
     return _evalution > 0 ? _evalution : 0;
@@ -242,8 +236,8 @@ enumrateSubtour(std::vector<T> source,std::vector<T> target){
                 ra = right_a;
                 lb = left_b;
                 rb = right_b;
-                subtour_list.push_back(make_pair( make_pair(left_a,right_a),
-                                                 make_pair(left_b,right_b)
+                subtour_list.push_back(std::make_pair( std::make_pair(left_a,right_a),
+                                                 std::make_pair(left_b,right_b)
                                                  )
                                        );
             }

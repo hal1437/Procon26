@@ -9,7 +9,7 @@
 #ifndef __GA_tsp__
 #define __GA_tsp__
 
-#include"GABase.hpp"
+#include"GA/GABase.hpp"
 #include"reference_list.h"
 #include <vector>
 
@@ -25,15 +25,15 @@ public:
     static DNA translateToDnaPhenotypicOrdinal(const DNA);
     static DNA translateToDnaPhenotypicTrait(const DNA);
     
-    void setDNA(DNA& _dna){_phenotypic_trait=_dna;}
-    void setDNA(DNA&& _dna){_phenotypic_trait=_dna;}
+    void setDNA(DNA& _dna){_phenotypic_ordinal=_dna;}
+    void setDNA(DNA&& _dna){_phenotypic_ordinal=_dna;}
     
     //debug
-    const DNA& getPhenotypic()const{return _phenotypic_trait;}
+    const DNA& getPhenotypic()const{return _phenotypic_ordinal;}
     
 private:
     
-    DNA _phenotypic_trait;
+    DNA _phenotypic_ordinal;
 };
 
 tsp_individual* makeTspIndividual(int number_of_city);

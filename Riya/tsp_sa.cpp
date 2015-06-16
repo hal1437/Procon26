@@ -8,7 +8,7 @@
 
 #include "tsp_sa.h"
 
-tsp_annealing& tsp_annealing::turnState(){
+tsp_annealing& tsp_annealing::turnState(std::vector<cv::Point>& city_list){
     std::random_device rnd;
     std::mt19937 mt(rnd());
     std::uniform_real_distribution<double> distribution(0,_state.size()-1);
