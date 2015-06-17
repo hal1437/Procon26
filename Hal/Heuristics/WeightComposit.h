@@ -3,16 +3,16 @@
 #include "../Structures.h"
 #include <map>
 
-class WeightComposit : public Heuristics<unsigned,Field>{
+class WeightComposit : public Heuristics<double,Field>{
 private:
 	typedef Heuristics<unsigned,Field> h_type;
-	std::map<h_type*,float> h_list;
+	std::map<h_type*,double> h_list;
 
 public:
 
-	void AddHeuristic(h_type* heuristics,float weight);
+	void AddHeuristic(h_type* heuristics,double weight);
 
-	unsigned Execution(const Field& field);
+	double Execution(const Field& field);
 
 	WeightComposit();
 };

@@ -22,7 +22,15 @@ void solveSubproblem(std::vector< std::vector<int> > subproblem, petternTable& t
 std::vector< std::vector<int> > particalProblem(std::vector< std::vector<int> > table);
 std::vector< Point > getReachable(const std::vector< std::vector<int> > subproblem,field polyomino);
 std::vector< Point > getReachable(const std::vector< std::vector<int> > subproblem,field polyomino,Point target);
-int convertHash(field& block){return 0;}
+int convertHash(field& block){
+    int hash=0;
+    for(int i=0; i<block.size(); i++){
+        for(int j=0; j<block[i].size(); j++){
+            hash += block[i][j] * pow(2,i*block[i].size()+j);
+        }
+    }
+    return hash;
+}
 
 petternTable solvePettern(std::vector< std::vector<int> > problem){
     petternTable table;

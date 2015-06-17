@@ -12,12 +12,13 @@
 #include<vector>
 #include<utility>
 #include"../Structure/Matrix.hpp"
+#include"../Structure/Answer.h"
 
 template<class TRANSFORM,class BLOCK>
 class Answer_history{
 public:
     
-    std::vector< std::pair<TRANSFORM,BLOCK> > push_back(std::pair<TRANSFORM, BLOCK> node){ans_list.push_back(node);};
+    void push_back(std::pair<TRANSFORM, BLOCK> node){ans_list.push_back(node);};
     std::pair<TRANSFORM,BLOCK>& operator[](int index){return ans_list[index];}
     int size(){return ans_list.size();}
     
@@ -26,6 +27,16 @@ public:
             field.ReverseProjection(ans_list.back().second, ans_list.back().first);
             ans_list.pop_back();
         }
+    }
+    
+    Answer TranslateAnswer(Problem& problem){
+        Answer answer(problem);
+        for(auto hand: ans_list){
+            if(hand.first.isEnable())
+                answer.AddBlocks(hand.first);
+            else answer.AddBlocks();
+        }
+        return answer;
     }
     
 private:

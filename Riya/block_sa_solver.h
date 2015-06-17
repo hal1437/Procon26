@@ -16,21 +16,25 @@
 #include"../Structure/Matrix.hpp"
 #include"../Structure/Transform.h"
 #include "../Structure/Heuristic.h"
+#include "../Structure/Answer.h"
 #include "../Hal/Heuristics/WeightComposit.h"
 #include "../Hal/Heuristics/Cavity.h"
 #include "../hal/Heuristics/DensityAround.h"
 
-class Block_SA: SA_Base<Block_SA,Problem,Field>{
+class Block_SA: public SA_Base<Block_SA,Problem,Field>{
 public:
     Block_SA& turnState(auxType& problem);
+    Block_SA& initState(auxType& problem);
     int calcEvalution(auxType& problem);
     
     Block_SA(stateType state);
     
+    Answer_history<Transform, Block> getHistry(){return _history;}
+    
 private:
     Answer_history<Transform, Block> _history;
-    Heuristics<unsigned,Field>* _heuristics;
-    Heuristics<unsigned,Field>* _Cavity;
+    Heuristics<double,Field>* _heuristics;
+    Heuristics<unsigned, Field>* _Cavity;
 };
 
 

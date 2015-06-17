@@ -23,6 +23,10 @@ tsp_annealing& tsp_annealing::turnState(std::vector<cv::Point>& city_list){
     return *this;
 }
 
+tsp_annealing& tsp_annealing::initState(std::vector<cv::Point> &city_list){
+    return *this;
+}
+
 int tsp_annealing::calcEvalution(std::vector<cv::Point> &city_list){
     int evalution=0,std_eval=0;
     

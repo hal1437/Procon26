@@ -4,7 +4,7 @@
 #include <algorithm>
 
 //反復深化
-class IDDFS:public Solver{
+class DLS:public Solver{
 	typedef Heuristics<unsigned,Field> Heuristics;
 public:
 	Heuristics* heuristic;
@@ -15,8 +15,8 @@ public:
 
 	Answer Solve()override;
 
-	IDDFS(Problem prob,Heuristics* h);
-	IDDFS(Problem prob,Heuristics* h,int depth);
-	virtual ~IDDFS();
+	DLS(Problem prob,Heuristics* h);
+	DLS(Problem prob,Heuristics* h,int depth);
+	virtual ~DLS();
 };
 

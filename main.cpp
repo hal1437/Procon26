@@ -10,9 +10,9 @@
 #include "Structure/Point.h"
 #include "Structure/Matrix.hpp"
 
-#define SOLVE_BY_GA
+//#define SOLVE_BY_GA
 //#define SOLVE_BY_SA
-//#define Procon
+#define Procon
 
 #ifdef SOLVE_BY_GA
 
@@ -173,9 +173,20 @@ int main(){
     petternTable table = solvePettern(problem);
      */
     
-    Problem prob("Problem/quest1.txt");
+    Problem prob("Problem/quest5.txt");
     
-    Block_SA(prob.GetField());
+    Block_SA target(prob.GetField());
+    
+    SA_Solver<Block_SA,100,1,99> solver( target );
+    solver.setAux(prob);
+    
+    target = solver.solveAnswer();
+    
+    std::cout << target.getState() << std::endl;
+    
+    std::cout << (~target.getState()).count() << std::endl;
+    
+    target.getHistry().TranslateAnswer(prob)
     
     std::cout << std::endl;
 }
