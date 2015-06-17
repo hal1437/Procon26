@@ -27,7 +27,7 @@ SOURCES= main.cpp						\
 		 ../Structure/Answer.cpp		\
 
 
-BUILD  = $(CC) -g -o $(NAME) $(CFLAGS)  $(SOURCES)
+BUILD  = $(CC) -O3 -o $(NAME) $(CFLAGS)  $(SOURCES)
 
 RUN    = ./$(NAME)
 

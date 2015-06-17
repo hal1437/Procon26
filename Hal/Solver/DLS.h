@@ -5,7 +5,7 @@
 
 //反復深化
 class DLS:public Solver{
-	typedef Heuristics<unsigned,Field> Heuristics;
+	typedef Heuristics<double,Field> Heuristics;
 public:
 	Heuristics* heuristic;
 	const int DEPTH;

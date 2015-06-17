@@ -13,7 +13,7 @@
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest6.txt");
+	Problem prob("../Problem/quest7.txt");
 	std::ofstream ofs("Answer.txt");
 	Solver* solver;
 	WeightComposit* density;
@@ -25,7 +25,7 @@ int main(){
 	
 	density->AddHeuristic(new DensityAround(),1.0f);
 	density->AddHeuristic(new Cavity(),-16.0f);
-	solver = new BestFirst(prob,density);
+	solver = new DLS(prob,density,2);
 
 	//prob.GetField().Projection(prob.GetBlock(0),Transform(Point(0,9),Constants::ANGLE180,false));
 	Answer ans = solver->Solve();
