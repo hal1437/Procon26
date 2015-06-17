@@ -92,8 +92,8 @@ public:
 		field.Projection(*this);
 		Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample_base(matrix);
 	
-		std::cout << matrix << std::endl;
-		std::cout << field << std::endl;
+		//std::cout << matrix << std::endl;
+		//std::cout << field << std::endl;
 		for(int i=0;i<2;i++){
 			sample_base.Reverse(i);
 			for(int j=0;j<4;j++){
