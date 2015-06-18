@@ -1,7 +1,9 @@
 
 #pragma once
 #include <vector>
+#include <set>
 #include <map>
+#include <type_traits>
 #include "MultiBit.hpp"
 #include "Point.h"
 #include "Transform.h"
@@ -13,11 +15,18 @@
 #define BLOCK_HEIGHT 8
 #define BLOCK_WIDTH  8
 
+#define DEFINITION_GETTER(NAME)					\
+template<class... Args> 						\
+inline current Get##NAME(const Args... args)const{	\
+	return current(*this).NAME(args...);	\
+}
+
+
 template<size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 class Matrix:public MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>{
 private:
 	typedef MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT> Base;
-	typedef Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> current;
+	typedef Matrix  <MATRIX_WIDTH,MATRIX_HEIGHT> current;
 
 public:
 
@@ -119,36 +128,19 @@ public:
 		for(auto x:map)answer.push_back(x.second);
 		return answer;
 	}
-
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& GetProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat)const{
-		return current(*this).Projection(mat);
-	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& GetProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans)const{
-		return current(*this).Projection(mat,trans);
-	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& GetReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat)const{
-		return current(*this).ReverseProjection(mat);
-	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& GetReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans)const{
-		return current(*this).ReverseProjection(mat,trans);
-	}
+	
 	template<size_t CONVERT_WIDTH,size_t CONVERT_HEIGHT>
 	Matrix<CONVERT_WIDTH,CONVERT_HEIGHT> GetTransform(const Transform& trans)const{
 		if(!trans.isEnable())return (*this);
 		return Matrix<CONVERT_WIDTH,CONVERT_HEIGHT>(this->GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
 	}
-	current GetTransform(const Transform& trans)const{
-		return current(*this).Transform(trans);
-	}
-	current GetMove(const Point& pos)const{
-		return current(*this).Move(pos);
-	}
-	current GetRotate(const Constants::ANGLE& angle)const{
-		return current(*this).Rotate(angle);
-	}
-	current GetReverse(bool _reverse = true)const{
-		return current(*this).Reverse(_reverse);
-	}
+	DEFINITION_GETTER(Projection)
+	DEFINITION_GETTER(ReverseProjection)
+	DEFINITION_GETTER(Transform)
+	DEFINITION_GETTER(Move)
+	DEFINITION_GETTER(Rotate)
+	DEFINITION_GETTER(Reverse)
+	
 	current& Transform(const Transform& trans){
 		if(!trans.isEnable())return (*this);
 		if(trans.reverse)Reverse();
@@ -185,6 +177,54 @@ public:
 			}
 			(*this) = tmp;
 		}
+		return (*this);
+	}
+	current& Normalize(){
+		std::set<current> sample;
+		
+
+		//rotate reverse
+		for(int i=0;i<4;i++){
+			for(int j=0;j<2;j++){
+				current&& tmp = this->GetTransform(Transform::Transform(Point(0,0),static_cast<Constants::ANGLE>(i*90),j));
+				
+				Point origin(MATRIX_WIDTH,MATRIX_HEIGHT);
+				for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
+					for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
+						if(tmp[i][j]){
+							origin.y = -i;
+						}
+					}
+				}
+				for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
+					for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
+						if(tmp[j][i]){
+							origin.x = -i;
+						}
+					}
+				}
+				sample.insert(tmp.Move(origin));
+			}
+		}
+
+		//move2
+		Point origin = Point(MATRIX_WIDTH,MATRIX_HEIGHT);
+		for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
+			for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
+				if((*sample.begin())[i][j]){
+					origin.y = -i;
+				}
+			}
+		}
+		for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
+				if((*sample.begin())[j][i]){
+					origin.x = -i;
+				}
+			}
+		}
+		//std::cout << origin << std::endl;
+		(*this) = sample.begin()->GetMove(origin);
 		return (*this);
 	}
 	
