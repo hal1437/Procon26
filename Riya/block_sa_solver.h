@@ -21,7 +21,7 @@
 #include "../Hal/Heuristics/Cavity.h"
 #include "../hal/Heuristics/DensityAround.h"
 
-class Block_SA: public SA_Base<Block_SA,Problem,Field>{
+class Block_SA: public SA_Base<Block_SA,Problem,Answer_history<Transform, Block>>{
 public:
     Block_SA& turnState(auxType& problem);
     Block_SA& initState(auxType& problem);
@@ -29,10 +29,8 @@ public:
     
     Block_SA(stateType state);
     
-    Answer_history<Transform, Block> getHistry(){return _history;}
-    
 private:
-    Answer_history<Transform, Block> _history;
+    Field _field;
     Heuristics<double,Field>* _heuristics;
     Heuristics<unsigned, Field>* _Cavity;
 };

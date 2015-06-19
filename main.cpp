@@ -160,6 +160,7 @@ int main(){
 
 int main(){
     /*
+    std::map <int ,std::map<int , int> > a;
     std::vector< std::vector<int> > problem;
     
     problem.resize(2);
@@ -168,25 +169,24 @@ int main(){
             problem[i].resize(2);
             problem[i][j] = 0;
         }
-    }
+    }*/
     
-    petternTable table = solvePettern(problem);
-     */
+    //petternTable table = solvePettern(problem);
     
-    Problem prob("Problem/quest5.txt");
+    Problem prob("Problem/quest7.txt");
     
-    Block_SA target(prob.GetField());
+    Block_SA target( (Answer_history<Transform, Block>()) );
     
-    SA_Solver<Block_SA,100,1,99> solver( target );
+    SA_Solver<Block_SA,100,1,90> solver( target );
     solver.setAux(prob);
-    
+     
     target = solver.solveAnswer();
     
-    std::cout << target.getState() << std::endl;
+    auto ans = target.getState().TranslateAnswer(prob);
     
-    std::cout << (~target.getState()).count() << std::endl;
+    std::cout << (ans.GetField() | prob.GetField()) << std::endl;
     
-    target.getHistry().TranslateAnswer(prob)
+    ans.Export("Answer.txt");
     
     std::cout << std::endl;
 }

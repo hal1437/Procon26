@@ -30,6 +30,17 @@ Answer BestFirst::Solve(){
 							 static_cast<Constants::ANGLE>((rd()%4)*90),
 				  			 rd()%2);
 		auto b = problem.GetBlock(0).GetTransform<FIELD_WIDTH,FIELD_HEIGHT>(rand_trans);
+        bool f =false;
+        for(int i=0;i<BLOCK_HEIGHT;i++){
+            for(int j=0;j<BLOCK_WIDTH;j++){
+                Point pos(rand_trans.pos + Point(i,j));
+                if(b[i][j]){
+                    if(pos.x<0 || pos.x>FIELD_WIDTH ||
+                        pos.y<0 || pos.y>FIELD_HEIGHT )f =true;
+                }
+            }
+        }
+        if(f)continue;
 		std::cout << b << std::endl;
 		if((field & b).count() == 0 && b.count() == problem.GetBlock(0).count()){
 			ans.AddBlocks(rand_trans);

@@ -23,7 +23,8 @@ public:
     int size(){return ans_list.size();}
     
     void returnTheHand(int index,Field& field){
-        for(int i=0;i<ans_list.size()-index;i++){
+        int size = ans_list.size();
+        for(int i=0;i<size-index;i++){
             field.ReverseProjection(ans_list.back().second, ans_list.back().first);
             ans_list.pop_back();
         }
@@ -31,9 +32,9 @@ public:
     
     Answer TranslateAnswer(Problem& problem){
         Answer answer(problem);
-        for(auto hand: ans_list){
-            if(hand.first.isEnable())
-                answer.AddBlocks(hand.first);
+        for(int i=0;i<ans_list.size();i++){
+            if(ans_list[i].first.isEnable())
+                answer.AddBlocks(ans_list[i].first);
             else answer.AddBlocks();
         }
         return answer;

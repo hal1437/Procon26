@@ -16,7 +16,7 @@
 using block_hash = int;
 using block_list = std::vector< block_hash >;
 using field = std::vector< std::vector< int > >;
-using petternTable = std::map< int, std::map< int,int > >;
+using petternTable = std::map< int, std::pair<int,int> >;
 
 void solveSubproblem(std::vector< std::vector<int> > subproblem, petternTable& table);
 std::vector< std::vector<int> > particalProblem(std::vector< std::vector<int> > table);
@@ -44,14 +44,14 @@ void solveSubproblem(std::vector< std::vector<int> > subproblem, petternTable& t
     int problem_hash = convertHash(subproblem);
     
     if(subproblem.empty())return;
-    if(table.end() == table.find(problem_hash))return;
+    if(table.end() != table.find(problem_hash))return;
     
     std::fill(polyomino.front().begin(),polyomino.back().end(),0);
     
     for(int i=0;i<subproblem.size();i++){
         for(int j=0;j<subproblem[i].size();j++){
             if(subproblem[i][j] == 0){
-                reachable.push_back(Point(i,j));
+                reachable.push_back(Point(j,i));
                 goto break_2;
             }
         }
@@ -60,12 +60,13 @@ void solveSubproblem(std::vector< std::vector<int> > subproblem, petternTable& t
 break_2:
     
     while(!reachable.empty()){
-        Point target = reachable.front();
+        Point target = reachable.back();
+        reachable.pop_back();
         polyomino[target.y][target.x]=1;
         subproblem[target.y][target.x]=1;
         
-        solveSubproblem( particalProblem(subproblem), table );
-        //table[problem_hash].insert(convertHash(polyomino),convertHash(subproblem));
+        solveSubproblem( /*particalProblem(subproblem)*/ subproblem, table );
+        //table[problem_hash] = std::make_pair(convertHash(polyomino), convertHash(subproblem));
         
         auto tmp = getReachable(subproblem, polyomino, target);
         reachable.insert(reachable.end(),tmp.begin(),tmp.end());

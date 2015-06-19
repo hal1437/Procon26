@@ -71,6 +71,7 @@ _T _SA_Solver<_T,_STime,_ETime,_Schedule>::solveAnswer(){
         current_time *= _Schedule/100.;
     }
     _target.setState(best_state);
+    
     return _target;
 }
 
