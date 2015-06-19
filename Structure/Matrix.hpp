@@ -20,6 +20,9 @@ template<class... Args> 						\
 inline current Get##NAME(const Args... args)const{	\
 	return current(*this).NAME(args...);	\
 }
+#define MEMBER_TEMPLATE_ARGS \
+template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT> \
+template <size_t ARGS_WIDTH,size_t ARGS_HEIGHT>
 
 
 template<size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
@@ -30,24 +33,10 @@ private:
 
 public:
 
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
-		(*this) |= current(mat);
-		return (*this);
-	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans){
-		if(!trans.isEnable())return (*this);
-		(*this) |=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
-		return	(*this);
-	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
-		(*this) ^= current(mat);
-		return (*this);
-	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans){
-		if(!trans.isEnable())return (*this);
-		(*this) ^=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
-		return	(*this);
-	}
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat);
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans);
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat);
+	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans);
 
 	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
 		return (((*this) & current(matrix)).count() > 0);
@@ -283,4 +272,29 @@ std::istream& operator>>(std::istream& ist,Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& m
 	return ist;
 }
 
+MEMBER_TEMPLATE_ARGS
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
+	(*this) |= current(mat);
+	return (*this);
+}
+
+MEMBER_TEMPLATE_ARGS
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const struct Transform& trans){
+	if(!trans.isEnable())return (*this);
+	(*this) |=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
+	return	(*this);
+}
+
+MEMBER_TEMPLATE_ARGS
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
+	(*this) ^= current(mat);
+	return (*this);
+}
+
+MEMBER_TEMPLATE_ARGS
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const struct Transform& trans){
+	if(!trans.isEnable())return (*this);
+	(*this) ^=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
+	return	(*this);
+}
 
