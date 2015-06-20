@@ -24,9 +24,11 @@ public:
     
     void returnTheHand(int index,Field& field){
         int size = ans_list.size();
+        std::cout << field << std::endl;
         for(int i=0;i<size-index;i++){
             field.ReverseProjection(ans_list.back().second, ans_list.back().first);
             ans_list.pop_back();
+            std::cout << field << std::endl;
         }
     }
     

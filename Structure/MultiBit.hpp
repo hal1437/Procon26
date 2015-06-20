@@ -123,6 +123,10 @@ public:
 		}
 		return size;
 	}
+	/*
+	unsigned long to_ulong()const{
+		unsigned long value;
+	}*/
 
 	FirstProxy operator[](size_t index){
 		return FirstProxy(this,index);

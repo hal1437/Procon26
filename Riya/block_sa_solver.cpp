@@ -17,6 +17,8 @@ Block_SA& Block_SA::turnState(auxType& problem){
     
     _state.returnTheHand(distribution(mt), _field);
     
+    std::cout << (_field | problem.GetField()) << std::endl;
+    
     for(int i=_state.size(); i < problem.Count(); i++){
         
         if(i==0){
@@ -88,7 +90,7 @@ Block_SA& Block_SA::turnState(auxType& problem){
     }
     
     std::cout << (_field | problem.GetField()) << std::endl;
-    
+    std::cout << 'a'<< std::endl;
     return *this;
 }
 
@@ -162,7 +164,7 @@ Block_SA& Block_SA::initState(auxType& problem){
 }
 
 int Block_SA::calcEvalution(auxType& problem){
-    return _heuristics->Execution(_field);
+    return _heuristics->Execution(_field | problem.GetField());
 }
 
 Block_SA::Block_SA(stateType state) : SA_Base<Block_SA, Problem, Answer_history<Transform, Block>>(state){

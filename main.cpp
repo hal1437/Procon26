@@ -184,7 +184,7 @@ int main(){
     
     auto ans = target.getState().TranslateAnswer(prob);
     
-    std::cout << (ans.GetField() | prob.GetField()) << std::endl;
+    std::cout << (target.getField() | prob.GetField()) << std::endl;
     
     ans.Export("Answer.txt");
     

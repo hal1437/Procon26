@@ -29,6 +29,8 @@ public:
     
     Block_SA(stateType state);
     
+    Field getField(){return _field;}
+    
 private:
     Field _field;
     Heuristics<double,Field>* _heuristics;

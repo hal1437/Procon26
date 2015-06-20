@@ -18,7 +18,7 @@ void Answer::AddBlocks(Point pos,bool reverse,Constants::ANGLE angle){
 bool Answer::Export(std::string filename)const{
 	std::ofstream ofs(filename);
 	if(!ofs)return false;
-	ofs << (*this);
+	ofs << (*this) << std::endl;
 	return true;
 }
 

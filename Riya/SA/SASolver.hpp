@@ -51,17 +51,18 @@ _T _SA_Solver<_T,_STime,_ETime,_Schedule>::solveAnswer(){
     
     _target.initState(_aux);
     
-    typename _T::stateType old = _target.getState();
+    _T old = _target, best(_target.getState());
     typename _T::stateType best_state;
     int  old_eval=_target.calcEvalution(_aux) , best_eval=0;
     
     while(current_time >= _ETime){
+        old = _target;
         _target.turnState(_aux);
         int next_eval = _target.calcEvalution(_aux);
         
         if(_distribution(_mt) <= getProbability(old_eval,next_eval,current_time)){
             if(best_eval < next_eval){
-                best_state = _target.getState();
+                best = _target;
                 best_eval = next_eval;
             }
             old_eval = next_eval;
@@ -70,7 +71,7 @@ _T _SA_Solver<_T,_STime,_ETime,_Schedule>::solveAnswer(){
         
         current_time *= _Schedule/100.;
     }
-    _target.setState(best_state);
+    _target = best;
     
     return _target;
 }
