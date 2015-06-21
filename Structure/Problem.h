@@ -21,8 +21,8 @@ public:
 	virtual bool Inport(std::string filename);
 
 	//getter
-	const Field&  GetField()const;
-	const Block&  GetBlock(size_t index)const;
+	Field GetField()const;
+	Block GetBlock(size_t index)const;
 	size_t Count()const;
 
 	//constructor

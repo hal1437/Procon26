@@ -49,10 +49,10 @@ bool Problem::Inport(std::string filename){
 }
 
 //getter
-const Field& Problem::GetField()const{
+Field Problem::GetField()const{
 	return field;
 }
-const Block& Problem::GetBlock(size_t index)const{
+Block Problem::GetBlock(size_t index)const{
 	return (*this)[index].matrix;
 }
 size_t Problem::Count()const{

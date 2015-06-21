@@ -16,10 +16,13 @@ public:
 	void SetField (const Field& field);
 	void SetBlock(size_t index,const Block& block);
 	void SetTransform(size_t index,const Transform& trans);
+	Field&     GetField();
+	Block&     GetBlock(size_t index);
 	Transform& GetTransform(size_t index);
+	Field      GetProjectedField()const;
+
 
 	bool Export(std::string filename)const;
-	Field GetProjectedField()const;
 
 	Answer();
 	Answer(const Problem& prob);
