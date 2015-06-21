@@ -8,11 +8,11 @@ std::string Problem::ToString()const{
 
 	ss << field;
 	ss << "\r\n";
-	ss << blocks.size() << "\r\n";
+	ss << Base::size() << "\r\n";
 	
-	for(int i = 0;i < blocks.size();i++){
-		ss << blocks[i];
-		if(i != blocks.size()-1)ss << "\r\n";
+	for(int i = 0;i < Base::size();i++){
+		ss << (*this)[i].matrix;
+		if(i != Base::size()-1)ss << "\r\n";
 	}
 	return ss.str();
 }
@@ -23,10 +23,10 @@ bool Problem::Export(std::string filename)const{
 	if(!ost)return false;
 	ost << field;
 	ost << "\r\n";
-	ost << blocks.size() << "\r\n";
-	for(std::vector<Block>::const_iterator it = blocks.begin();it != blocks.end();it++){
-		ost << *it;
-		if(it != blocks.end()-1)ost << "\r\n";
+	ost << Base::size() << "\r\n";
+	for(Base::const_iterator it = Base::begin();it != Base::end();it++){
+		ost << it->matrix;
+		if(it != Base::end()-1)ost << "\r\n";
 	}
 	return true;
 }
@@ -40,23 +40,23 @@ bool Problem::Inport(std::string filename){
 	std::getline(ist,str);
 	ist >> nums;
 	std::getline(ist,str);
-	blocks.resize(nums);
+	Base::resize(nums);
 	for(int i=0;i<nums;i++){
-		ist >> blocks[i];
+		ist >> (*this)[i].matrix;
 		if(i != nums-1)std::getline(ist,str);
 	}
 	return true;
 }
 
 //getter
-Field Problem::GetField()const{
+const Field& Problem::GetField()const{
 	return field;
 }
-Block Problem::GetBlock(size_t index)const{
-	return blocks[index];
+const Block& Problem::GetBlock(size_t index)const{
+	return (*this)[index].matrix;
 }
 size_t Problem::Count()const{
-	return blocks.size();
+	return Base::size();
 }
 
 //constructor
