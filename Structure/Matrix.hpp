@@ -4,6 +4,7 @@
 #include <set>
 #include <map>
 #include <type_traits>
+#include <utility>
 #include "MultiBit.hpp"
 #include "Point.h"
 #include "Transform.h"
@@ -226,6 +227,11 @@ public:
 		}
 		return bits;
 	}
+    
+    size_t to_hash()const{
+        std::hash< std::bitset<MATRIX_WIDTH * MATRIX_HEIGHT> > hash;
+        return hash( toBitset() );
+    }
 
 	Matrix() = default;
 	Matrix(const Base&   base):Base(base){};
@@ -244,6 +250,7 @@ public:
 	template <size_t WIDTH,size_t HEIGHT> friend std::ostream& operator<<(std::ostream& ost,const Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix);
 	
 };
+//--- Matrix declaration ---//
 
 typedef Matrix<FIELD_WIDTH,FIELD_HEIGHT> Field;
 typedef Matrix<BLOCK_WIDTH,BLOCK_HEIGHT> Block;
@@ -297,4 +304,14 @@ Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ReverseP
 	(*this) ^=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
 	return	(*this);
 }
+
+namespace std{
+    template<size_t MATRIX_WIDTH, size_t MATIRX_HEIGHT>
+    class hash< Matrix<MATRIX_WIDTH,MATIRX_HEIGHT> >{
+        size_t operator()(const Matrix<MATRIX_WIDTH,MATIRX_HEIGHT>& s)const{
+            return std::hash< std::bitset<MATRIX_WIDTH*MATIRX_HEIGHT> >()(s.toBitset());
+        }
+    };
+}
+
 

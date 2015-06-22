@@ -18,9 +18,9 @@ private:
 public:
 
     void returnTheHand(int index,Field& field){
-        for(int i=0;i<size()-index;i++){
-            field.ReverseProjection(back().trans, back().matrix);
-            pop_back();
+        for(int i=0;i<this->size()-index;i++){
+            field.ReverseProjection(this->back().trans, this->back().matrix);
+            this->pop_back();
         }
     }
 
