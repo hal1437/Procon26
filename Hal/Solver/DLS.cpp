@@ -107,7 +107,7 @@ Answer DLS::Solve(){
 		//std::cout << b << std::endl;
 		if((problem.GetField() & b).count() == 0 && b.count() == problem.GetBlock(0).count()){
 			ff.insert(b);
-			ans.AddBlocks(rand_trans);
+			ans.SetTransform(0,rand_trans);
 			field.Projection(problem.GetBlock(0),rand_trans);
 			break;
 		}
@@ -122,7 +122,7 @@ Answer DLS::Solve(){
 		for(int j=0;j<hands.size();j++){
 			//std::cout << i*DEPTH+1 << std::endl;
 			field.Projection(problem.GetBlock(i*DEPTH+j+1), hands[j]);
-			ans.AddBlocks(hands[j]);
+			ans.SetTransform(i*DEPTH+j+1,hands[j]);
 			//std::cout << field << std::endl;
 		} 
 	}

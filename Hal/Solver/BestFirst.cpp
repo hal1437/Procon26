@@ -49,7 +49,7 @@ Answer BestFirst::Solve(){
 		
 		std::cout << b << std::endl;
 		if((problem.GetField() & b).count() == 0 && b.count() == problem.GetBlock(0).count()){
-			ans.AddBlocks(rand_trans);
+			ans.SetTransform(0,rand_trans);
 			block_field.Projection(problem.GetBlock(0),rand_trans);
 			break;
 		}
@@ -87,9 +87,9 @@ Answer BestFirst::Solve(){
 			block_field.Projection(b);
 			std::cout << hands.size() << ":" << heuristic->Execution(field) << std::endl;
 			std::cout << (field | block_field) << std::endl;
-			ans.AddBlocks(best);
+			ans.SetTransform(i,best);
 		}else{
-			ans.AddBlocks();
+			ans.SetTransform(i,Transform());
 			std::cout << "nothing" << std::endl;
 		}
 	}
