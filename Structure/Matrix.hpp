@@ -11,6 +11,9 @@
 #include "../Utility/CLOCKWISE_FOR.hpp"
 
 #define FIELD_HEIGHT 32
+:qa
+:wq
+:q
 #define FIELD_WIDTH  32
 #define BLOCK_HEIGHT 8
 #define BLOCK_WIDTH  8
