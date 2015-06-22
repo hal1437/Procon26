@@ -181,7 +181,6 @@ public:
 	current&& operator<<(size_t value)const{
 		current answer;
 		for(int i=ARRAY_MATRIX_SIZE-value;i>0;i--){
-			std::cout << i+value << "to" << i << std::endl;
 			answer.set(i,this->get(i+value));
 		}
 		return answer;
@@ -189,19 +188,43 @@ public:
 	current&& operator>>(size_t value)const{
 		current answer;
 		for(int i=value;i<ARRAY_MATRIX_SIZE;i++){
-			std::cout << i-value << "to" << i << std::endl;
 			answer.set(i,get(i-value));
 		}
 		return answer;
 	}
 	current& operator<<=(size_t value){
-		for(int i=0;i<MATRIX_SIZE-value;i++)this->set(i,this->get(i+value));
-		for(int i=0;i<value;i++)set(MATRIX_SIZE-i-1,0);
+		if(value >= BYTE_SIZE){
+			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)byte[i-value/BYTE_SIZE] = byte[i];
+			for(int i = ARRAY_MATRIX_SIZE-1;i>=ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i--)byte[i] = 0;
+			value %= 8;
+		}
+
+		char hi, lo;
+		char mask = (char)(0xFF << (BYTE_SIZE - value));
+		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
+			hi = (byte[i + 1] & mask) << (BYTE_SIZE - value);
+			lo = (byte[i + 0] << value);
+			if ( i != 0 )byte[i] = (hi | lo);
+			else         byte[i] = (lo);
+		}	
+		
 		return (*this);
 	}
 	current& operator>>=(size_t value){
-		for(int i=MATRIX_SIZE-1;i>=value;i--)set(i,get(i-value));
-		for(int i=0;i<value;i++)set(i,0,0);
+		if(value >= BYTE_SIZE){
+			for(int i = ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i >= 0 ;i--)byte[i+value/BYTE_SIZE] = byte[i];
+			for(int i = 0;i<value/BYTE_SIZE;i++)byte[i] = 0;
+			value %= 8;
+		}
+		if(!value)return (*this);
+		char hi, lo;
+		char mask = (char)(0xFF >> (BYTE_SIZE - value));
+		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
+			hi = (byte[i - 1] & mask) << (BYTE_SIZE - value);
+			lo = (byte[i - 0] >> value);
+			if ( i != 0 )byte[i] = (hi | lo);
+			else         byte[i] = (lo);
+		}
 		return (*this);
 	}
 

@@ -10,17 +10,22 @@
 
 int main(){
 
-	Problem prob("../Problem/Problem.txt");
+	Problem prob("../Problem/quest9.txt");
 	std::ofstream ofs("Answer.txt");
 	Field field;// = prob.GetField();
 	Answer ans(prob);
-
-	ans.SetTransform(0,Transform(Point(0,0),Constants::ANGLE0,false));
-	ans.SetTransform(1,Transform(Point(0,0),Constants::ANGLE0,false));
-	ans.SetTransform(2,Transform(Point(0,0),Constants::ANGLE0,false));
-	ans.SetTransform(3,Transform(Point(0,0),Constants::ANGLE0,false));
-	std::cout << prob << std::endl;
-	std::cout << ans << std::endl;
-
+	
+	//===========BENCHMARK RESULT===========
+	//    [COUNT]          500 times
+	//[FULL TIME]         9756 msec
+	// [PER TIME]       19.512 msec/function 
+	//======================================
+	
+	std::cout << prob.GetField() << std::endl;
+	BenchMark<500>()([&](){
+		prob.GetField().GetListLayPossible(prob.GetBlock(0));
+	});
+	//std::cout << prob.GetField() << std::endl;
+	
 	return 0;
 }
