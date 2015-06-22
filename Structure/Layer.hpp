@@ -17,6 +17,13 @@ private:
 	typedef std::vector<BlockState<MATIX_WIDHT,MATRIX_HEIGHT>> Base;
 public:
 
-	Layer(){};
+    void returnTheHand(int index,Field& field){
+        for(int i=0;i<size()-index;i++){
+            field.ReverseProjection(back().trans, back().matrix);
+            pop_back();
+        }
+    }
+
+    Layer(){};
 	virtual ~Layer(){};
 };
