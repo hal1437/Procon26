@@ -27,13 +27,3 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-if(CMAKE_INSTALL_COMPONENT)
-  set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
-else()
-  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
-endif()
-
-file(WRITE "/Users/hal1437/Programs/Procon26/Structure/${CMAKE_INSTALL_MANIFEST}" "")
-foreach(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  file(APPEND "/Users/hal1437/Programs/Procon26/Structure/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
-endforeach()

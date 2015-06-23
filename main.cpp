@@ -2,15 +2,15 @@
 #include <iostream>
 #include <fstream>
 #include <random>
-#include "Problem.h"
-#include "Answer.h"
-#include "Solver.h"
-#include "Matrix.hpp"
-#include "../Utility/BenchMark.hpp"
+#include "Structure/Problem.h"
+#include "Structure/Answer.h"
+#include "Structure/Solver.h"
+#include "Structure/Matrix.hpp"
+#include "Utility/BenchMark.hpp"
 
 int main(){
 
-	Problem prob("../Problem/quest9.txt");
+	Problem prob("Problem/quest9.txt");
 	std::ofstream ofs("Answer.txt");
 	Field field;// = prob.GetField();
 	Answer ans(prob);

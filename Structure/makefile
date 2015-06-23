@@ -43,10 +43,10 @@ RM = /usr/local/Cellar/cmake/3.1.1_1/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/hal1437/Programs/Procon26/Structure
+CMAKE_SOURCE_DIR = /Users/hal1437/Programs/Procon26
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/hal1437/Programs/Procon26/Structure
+CMAKE_BINARY_DIR = /Users/hal1437/Programs/Procon26
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -73,14 +73,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hal1437/Programs/Procon26/Structure/CMakeFiles /Users/hal1437/Programs/Procon26/Structure/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hal1437/Programs/Procon26/Structure/CMakeFiles 0
+	cd /Users/hal1437/Programs/Procon26 && $(CMAKE_COMMAND) -E cmake_progress_start /Users/hal1437/Programs/Procon26/CMakeFiles /Users/hal1437/Programs/Procon26/Structure/CMakeFiles/progress.marks
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f CMakeFiles/Makefile2 Structure/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hal1437/Programs/Procon26/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f CMakeFiles/Makefile2 Structure/clean
 .PHONY : clean
 
 # The main clean target
@@ -89,38 +89,39 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f CMakeFiles/Makefile2 Structure/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f CMakeFiles/Makefile2 Structure/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/hal1437/Programs/Procon26 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named SutructureTest
+# Convenience name for target.
+Structure/CMakeFiles/Structure-Mod.dir/rule:
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f CMakeFiles/Makefile2 Structure/CMakeFiles/Structure-Mod.dir/rule
+.PHONY : Structure/CMakeFiles/Structure-Mod.dir/rule
 
-# Build rule for target.
-SutructureTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 SutructureTest
-.PHONY : SutructureTest
+# Convenience name for target.
+Structure-Mod: Structure/CMakeFiles/Structure-Mod.dir/rule
+.PHONY : Structure-Mod
 
 # fast build rule for target.
-SutructureTest/fast:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/build
-.PHONY : SutructureTest/fast
+Structure-Mod/fast:
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/build
+.PHONY : Structure-Mod/fast
 
 Answer.o: Answer.cpp.o
 .PHONY : Answer.o
 
 # target to build an object file
 Answer.cpp.o:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Answer.cpp.o
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Answer.cpp.o
 .PHONY : Answer.cpp.o
 
 Answer.i: Answer.cpp.i
@@ -128,7 +129,7 @@ Answer.i: Answer.cpp.i
 
 # target to preprocess a source file
 Answer.cpp.i:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Answer.cpp.i
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Answer.cpp.i
 .PHONY : Answer.cpp.i
 
 Answer.s: Answer.cpp.s
@@ -136,7 +137,7 @@ Answer.s: Answer.cpp.s
 
 # target to generate assembly for a file
 Answer.cpp.s:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Answer.cpp.s
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Answer.cpp.s
 .PHONY : Answer.cpp.s
 
 Heuristic.o: Heuristic.cpp.o
@@ -144,7 +145,7 @@ Heuristic.o: Heuristic.cpp.o
 
 # target to build an object file
 Heuristic.cpp.o:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Heuristic.cpp.o
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Heuristic.cpp.o
 .PHONY : Heuristic.cpp.o
 
 Heuristic.i: Heuristic.cpp.i
@@ -152,7 +153,7 @@ Heuristic.i: Heuristic.cpp.i
 
 # target to preprocess a source file
 Heuristic.cpp.i:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Heuristic.cpp.i
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Heuristic.cpp.i
 .PHONY : Heuristic.cpp.i
 
 Heuristic.s: Heuristic.cpp.s
@@ -160,7 +161,7 @@ Heuristic.s: Heuristic.cpp.s
 
 # target to generate assembly for a file
 Heuristic.cpp.s:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Heuristic.cpp.s
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Heuristic.cpp.s
 .PHONY : Heuristic.cpp.s
 
 Point.o: Point.cpp.o
@@ -168,7 +169,7 @@ Point.o: Point.cpp.o
 
 # target to build an object file
 Point.cpp.o:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Point.cpp.o
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Point.cpp.o
 .PHONY : Point.cpp.o
 
 Point.i: Point.cpp.i
@@ -176,7 +177,7 @@ Point.i: Point.cpp.i
 
 # target to preprocess a source file
 Point.cpp.i:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Point.cpp.i
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Point.cpp.i
 .PHONY : Point.cpp.i
 
 Point.s: Point.cpp.s
@@ -184,7 +185,7 @@ Point.s: Point.cpp.s
 
 # target to generate assembly for a file
 Point.cpp.s:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Point.cpp.s
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Point.cpp.s
 .PHONY : Point.cpp.s
 
 Problem.o: Problem.cpp.o
@@ -192,7 +193,7 @@ Problem.o: Problem.cpp.o
 
 # target to build an object file
 Problem.cpp.o:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Problem.cpp.o
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Problem.cpp.o
 .PHONY : Problem.cpp.o
 
 Problem.i: Problem.cpp.i
@@ -200,7 +201,7 @@ Problem.i: Problem.cpp.i
 
 # target to preprocess a source file
 Problem.cpp.i:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Problem.cpp.i
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Problem.cpp.i
 .PHONY : Problem.cpp.i
 
 Problem.s: Problem.cpp.s
@@ -208,7 +209,7 @@ Problem.s: Problem.cpp.s
 
 # target to generate assembly for a file
 Problem.cpp.s:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Problem.cpp.s
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Problem.cpp.s
 .PHONY : Problem.cpp.s
 
 Transform.o: Transform.cpp.o
@@ -216,7 +217,7 @@ Transform.o: Transform.cpp.o
 
 # target to build an object file
 Transform.cpp.o:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Transform.cpp.o
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Transform.cpp.o
 .PHONY : Transform.cpp.o
 
 Transform.i: Transform.cpp.i
@@ -224,7 +225,7 @@ Transform.i: Transform.cpp.i
 
 # target to preprocess a source file
 Transform.cpp.i:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Transform.cpp.i
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Transform.cpp.i
 .PHONY : Transform.cpp.i
 
 Transform.s: Transform.cpp.s
@@ -232,32 +233,8 @@ Transform.s: Transform.cpp.s
 
 # target to generate assembly for a file
 Transform.cpp.s:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/Transform.cpp.s
+	cd /Users/hal1437/Programs/Procon26 && $(MAKE) -f Structure/CMakeFiles/Structure-Mod.dir/build.make Structure/CMakeFiles/Structure-Mod.dir/Transform.cpp.s
 .PHONY : Transform.cpp.s
-
-test.o: test.cpp.o
-.PHONY : test.o
-
-# target to build an object file
-test.cpp.o:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/test.cpp.o
-.PHONY : test.cpp.o
-
-test.i: test.cpp.i
-.PHONY : test.i
-
-# target to preprocess a source file
-test.cpp.i:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/test.cpp.i
-.PHONY : test.cpp.i
-
-test.s: test.cpp.s
-.PHONY : test.s
-
-# target to generate assembly for a file
-test.cpp.s:
-	$(MAKE) -f CMakeFiles/SutructureTest.dir/build.make CMakeFiles/SutructureTest.dir/test.cpp.s
-.PHONY : test.cpp.s
 
 # Help Target
 help:
@@ -267,7 +244,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... SutructureTest"
+	@echo "... Structure-Mod"
 	@echo "... Answer.o"
 	@echo "... Answer.i"
 	@echo "... Answer.s"
@@ -283,9 +260,6 @@ help:
 	@echo "... Transform.o"
 	@echo "... Transform.i"
 	@echo "... Transform.s"
-	@echo "... test.o"
-	@echo "... test.i"
-	@echo "... test.s"
 .PHONY : help
 
 
@@ -297,6 +271,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/hal1437/Programs/Procon26 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
