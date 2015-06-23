@@ -242,7 +242,7 @@ public:
 		std::bitset<MATRIX_WIDTH*MATRIX_HEIGHT> bits;
 		for(int i=0;i<MATRIX_HEIGHT;i++){
 			for(int j=0;j<MATRIX_WIDTH;j++){
-				bits.set(i*MATRIX_WIDTH+j,this->byte[j][i]);
+				bits.set(i*MATRIX_WIDTH+j,(*this)[j][i]);
 			}
 		}
 		return bits;
