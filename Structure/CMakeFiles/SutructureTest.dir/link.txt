@@ -1,1 +1,0 @@
-/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/SutructureTest.dir/test.cpp.o CMakeFiles/SutructureTest.dir/Transform.cpp.o CMakeFiles/SutructureTest.dir/Heuristic.cpp.o CMakeFiles/SutructureTest.dir/Problem.cpp.o CMakeFiles/SutructureTest.dir/Answer.cpp.o CMakeFiles/SutructureTest.dir/Point.cpp.o  -o SutructureTest  

@@ -2,9 +2,13 @@ DeveicedData/
 *.xcodeproj
 
 # cmakes
-CMakeFiles/
+CMakeFiles
 cmake_install.cmake
 CMakeCache.txt
 
 # remove
+
 *.a
+*.un~
+*.DS_Store
+
