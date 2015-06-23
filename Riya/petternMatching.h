@@ -43,7 +43,7 @@ void solveSubproblem(solve_field subproblem, petternTable& table){
     size_t problem_hash = std::hash<Matrix<PETTERN_MATCH_MAX_WIDTH, PETTERN_MATCH_MAX_HEIGHT>>()(subproblem);
     
     if(subproblem.count() == PETTERN_MATCH_MAX_HEIGHT * PETTERN_MATCH_MAX_WIDTH)return;
-    if(table[problem_hash].first!=-1)return;
+    if(table[problem_hash].first!=0)return;
     
     for(int i=0;i<PETTERN_MATCH_MAX_HEIGHT;i++){
         for(int j=0;j<PETTERN_MATCH_MAX_WIDTH;j++){
