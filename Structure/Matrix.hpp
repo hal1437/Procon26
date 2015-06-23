@@ -327,12 +327,12 @@ Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ReverseP
 }
 
 namespace std{
-    template<size_t MATRIX_WIDTH, size_t MATIRX_HEIGHT>
-    class hash< Matrix<MATRIX_WIDTH,MATIRX_HEIGHT> >{
-        size_t operator()(const Matrix<MATRIX_WIDTH,MATIRX_HEIGHT>& s)const{
-            return std::hash< std::bitset<MATRIX_WIDTH*MATIRX_HEIGHT> >()(s.toBitset());
-        }
-    };
+	template<size_t MATRIX_WIDTH, size_t MATIRX_HEIGHT>
+	class hash< Matrix<MATRIX_WIDTH,MATIRX_HEIGHT> >{
+		size_t operator()(const Matrix<MATRIX_WIDTH,MATIRX_HEIGHT>& s)const{
+			return std::hash< std::bitset<MATRIX_WIDTH*MATIRX_HEIGHT> >()(s.Normalize().toBitset());
+		}
+	};
 }
 
 
