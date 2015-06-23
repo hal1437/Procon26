@@ -31,7 +31,7 @@ public:
             std::cout << field << std::endl;
         }
     }
-    
+    /*
     Answer TranslateAnswer(Problem& problem){
         Answer answer(problem);
         for(int i=0;i<ans_list.size();i++){
@@ -40,7 +40,7 @@ public:
             else answer.AddBlocks();
         }
         return answer;
-    }
+    }*/
     
 private:
     std::vector< std::pair<TRANSFORM,BLOCK> > ans_list;

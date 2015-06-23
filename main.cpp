@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <random>
 #include "Riya/tsp_ga.h"
@@ -160,7 +159,6 @@ int main(){
 #ifdef Procon
 
 int main(){
-    /*
     std::map <int ,std::map<int , int> > a;
     std::vector< std::vector<int> > problem;
     
@@ -170,10 +168,11 @@ int main(){
             problem[i].resize(2);
             problem[i][j] = 0;
         }
-    }*/
+    }
     
-    //petternTable table = solvePettern(problem);
+    petternTable table = solvePettern();
     
+    /*
     Problem prob("Problem/quest7.txt");
     
     Block_SA target( (Answer_history<Transform, Block>()) );
@@ -190,39 +189,7 @@ int main(){
     ans.Export("Answer.txt");
     
     std::cout << std::endl;
+     */
 }
 
 #endif
-=======
-
-#include <iostream>
-#include <fstream>
-#include <random>
-#include "Structure/Problem.h"
-#include "Structure/Answer.h"
-#include "Structure/Solver.h"
-#include "Structure/Matrix.hpp"
-#include "Utility/BenchMark.hpp"
-
-int main(){
-
-	Problem prob("Problem/quest9.txt");
-	std::ofstream ofs("Answer.txt");
-	Field field;// = prob.GetField();
-	Answer ans(prob);
-	
-	//===========BENCHMARK RESULT===========
-	//    [COUNT]          500 times
-	//[FULL TIME]         9756 msec
-	// [PER TIME]       19.512 msec/function 
-	//======================================
-	
-	std::cout << prob.GetField() << std::endl;
-	BenchMark<500>()([&](){
-		prob.GetField().GetListLayPossible(prob.GetBlock(0));
-	});
-	//std::cout << prob.GetField() << std::endl;
-	
-	return 0;
-}
->>>>>>> 1e691c36fa59b64c845413756bf61ba0d6867d10

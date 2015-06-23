@@ -11,45 +11,42 @@
 
 #include<vector>
 #include<array>
+#include<utility>
 #include"../Structure/Point.h"
+#include"../Structure/Matrix.hpp"
 
-using block_hash = int;
-using block_list = std::vector< block_hash >;
-using field = std::vector< std::vector< int > >;
-using petternTable = std::map< int, std::pair<int,int> >;
+#define PETTERN_MATCH_MAX_WIDTH 3
+#define PETTERN_MATCH_MAX_HEIGHT 3
 
-void solveSubproblem(std::vector< std::vector<int> > subproblem, petternTable& table);
+using block_hash = size_t;
+//using block_list = std::array< block_hash , 512 >;
+using solve_field = Matrix< PETTERN_MATCH_MAX_WIDTH, PETTERN_MATCH_MAX_HEIGHT>;
+using petternTable = std::array< std::pair<block_hash , int> , 512>;
+
+void solveSubproblem(solve_field subproblem, petternTable& table);
 std::vector< std::vector<int> > particalProblem(std::vector< std::vector<int> > table);
-std::vector< Point > getReachable(const std::vector< std::vector<int> > subproblem,field polyomino);
-std::vector< Point > getReachable(const std::vector< std::vector<int> > subproblem,field polyomino,Point target);
-int convertHash(field& block){
-    int hash=0;
-    for(int i=0; i<block.size(); i++){
-        for(int j=0; j<block[i].size(); j++){
-            hash += block[i][j] * pow(2,i*block[i].size()+j);
-        }
-    }
-    return hash;
-}
+std::vector< Point > getReachable(const solve_field subproblem,solve_field polyomino);
+std::vector< Point > getReachable(const solve_field subproblem,solve_field polyomino,Point target);
 
-petternTable solvePettern(std::vector< std::vector<int> > problem){
+petternTable solvePettern(){
     petternTable table;
+    solve_field problem;
+    std::pair<block_hash , int> dummy(-1,-1);
+    std::fill(table.begin(),table.end(),dummy);
     solveSubproblem(problem, table);
     return table;
 }
 
-void solveSubproblem(std::vector< std::vector<int> > subproblem, petternTable& table){
+void solveSubproblem(solve_field subproblem, petternTable& table){
     std::vector< Point > reachable;
-    field polyomino=subproblem;
-    int problem_hash = convertHash(subproblem);
+    solve_field polyomino=subproblem;
+    size_t problem_hash = std::hash<Matrix<PETTERN_MATCH_MAX_WIDTH, PETTERN_MATCH_MAX_HEIGHT>>()(subproblem);
     
-    if(subproblem.empty())return;
-    if(table.end() != table.find(problem_hash))return;
+    if(subproblem.count() == PETTERN_MATCH_MAX_HEIGHT * PETTERN_MATCH_MAX_WIDTH)return;
+    if(table[problem_hash].first!=-1)return;
     
-    std::fill(polyomino.front().begin(),polyomino.back().end(),0);
-    
-    for(int i=0;i<subproblem.size();i++){
-        for(int j=0;j<subproblem[i].size();j++){
+    for(int i=0;i<PETTERN_MATCH_MAX_HEIGHT;i++){
+        for(int j=0;j<PETTERN_MATCH_MAX_WIDTH;j++){
             if(subproblem[i][j] == 0){
                 reachable.push_back(Point(j,i));
                 goto break_2;
@@ -65,8 +62,8 @@ break_2:
         polyomino[target.y][target.x]=1;
         subproblem[target.y][target.x]=1;
         
-        solveSubproblem( /*particalProblem(subproblem)*/ subproblem, table );
-        //table[problem_hash] = std::make_pair(convertHash(polyomino), convertHash(subproblem));
+        solveSubproblem( subproblem , table );
+        table[problem_hash] = std::make_pair(std::hash<solve_field>()(polyomino), std::hash<solve_field>()(subproblem));
         
         auto tmp = getReachable(subproblem, polyomino, target);
         reachable.insert(reachable.end(),tmp.begin(),tmp.end());
@@ -74,15 +71,15 @@ break_2:
     
 }
 
-std::vector< Point > getReachable(const std::vector< std::vector<int> > subproblem,field polyomino){
+std::vector< Point > getReachable(const solve_field subproblem,solve_field polyomino){
     std::vector< Point > reachable;
     return reachable;
 }
 
-std::vector< Point > getReachable(const std::vector< std::vector<int> > subproblem,field polyomino,Point target){
+std::vector< Point > getReachable(const solve_field subproblem,solve_field polyomino,Point target){
     std::vector< Point > reachable;
     
-    if(target.x != subproblem[target.y].size()-1 &&
+    if(target.x != PETTERN_MATCH_MAX_WIDTH-1 &&
        subproblem[target.y][target.x+1] == 0 && polyomino[target.y][target.x+1] == 0 ){
         reachable.push_back(Point(target.x+1,target.y));
     }
@@ -92,7 +89,7 @@ std::vector< Point > getReachable(const std::vector< std::vector<int> > subprobl
         reachable.push_back(Point(target.x-1,target.y));
     }
     
-    if(target.y != subproblem.size()-1 &&
+    if(target.y != PETTERN_MATCH_MAX_HEIGHT-1 &&
        subproblem[target.y+1][target.x] == 0 && polyomino[target.y+1][target.x] == 0 ){
         reachable.push_back(Point(target.x,target.y+1));
     }
@@ -105,6 +102,7 @@ std::vector< Point > getReachable(const std::vector< std::vector<int> > subprobl
     return reachable;
 }
 
+/*
 std::vector< std::vector<int> > particalProblem(std::vector< std::vector<int> > table){
     for(int i=0; i<table.size(); i++){
         for(int j=0; j<table[i].size(); j++){
@@ -135,5 +133,6 @@ std::vector< std::vector<int> > particalProblem(std::vector< std::vector<int> > 
     }
     return table;
 }
+*/
 
 #endif
