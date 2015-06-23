@@ -1,6 +1,7 @@
 
 #include "BestFirst.h"
 #include <random>
+#include <set>
 
 BestFirst::BestFirst(Problem prob,Heuristics* h):
 	Solver(prob),
@@ -9,6 +10,9 @@ BestFirst::BestFirst(Problem prob,Heuristics* h):
 BestFirst::~BestFirst(){
 }
 Answer BestFirst::Solve(){
+
+	while(1){
+
 	Answer ans(problem);
 	Field field = problem.GetField();
 	Field block_field;
@@ -30,20 +34,22 @@ Answer BestFirst::Solve(){
 							 static_cast<Constants::ANGLE>((rd()%4)*90),
 				  			 rd()%2);
 		auto b = problem.GetBlock(0).GetTransform<FIELD_WIDTH,FIELD_HEIGHT>(rand_trans);
-        bool f =false;
-        for(int i=0;i<BLOCK_HEIGHT;i++){
-            for(int j=0;j<BLOCK_WIDTH;j++){
-                Point pos(rand_trans.pos + Point(i,j));
-                if(b[i][j]){
-                    if(pos.x<0 || pos.x>FIELD_WIDTH ||
-                        pos.y<0 || pos.y>FIELD_HEIGHT )f =true;
-                }
-            }
-        }
-        if(f)continue;
+		
+		bool f =false;
+		for(int i=0;i<FIELD_HEIGHT;i++){
+			for(int j=0;j<FIELD_WIDTH;j++){
+				Point pos(rand_trans.pos + Point(i,j));
+				if(b[i][j]){
+					if(pos.x<0 || pos.x>FIELD_WIDTH ||
+					   pos.y<0 || pos.y>FIELD_HEIGHT )f =true;
+				}
+			}
+		}
+		if(f)continue;
+
 		std::cout << b << std::endl;
-		if((field & b).count() == 0 && b.count() == problem.GetBlock(0).count()){
-			ans.AddBlocks(rand_trans);
+		if((problem.GetField() & b).count() == 0 && b.count() == problem.GetBlock(0).count()){
+			ans.SetTransform(0,rand_trans);
 			block_field.Projection(problem.GetBlock(0),rand_trans);
 			break;
 		}
@@ -81,14 +87,18 @@ Answer BestFirst::Solve(){
 			block_field.Projection(b);
 			std::cout << hands.size() << ":" << heuristic->Execution(field) << std::endl;
 			std::cout << (field | block_field) << std::endl;
-			ans.AddBlocks(best);
+			ans.SetTransform(i,best);
 		}else{
-			ans.AddBlocks();
+			ans.SetTransform(i,Transform());
 			std::cout << "nothing" << std::endl;
 		}
 	}
 	//std::cout << field << std::endl;
-	return ans;
+	std::cout << (field | block_field).count() << std::endl;
+	std::cout << (field | block_field) << std::endl;
+	if((~(field|block_field)).count()==0)return ans;
+
+	}
 }
 
 

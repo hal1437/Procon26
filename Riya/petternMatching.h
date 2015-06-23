@@ -31,7 +31,7 @@ std::vector< Point > getReachable(const solve_field subproblem,solve_field polyo
 petternTable solvePettern(){
     petternTable table;
     solve_field problem;
-    std::pair<block_hash , int> dummy(-1,-1);
+    std::pair<block_hash , int> dummy(0,-1);
     std::fill(table.begin(),table.end(),dummy);
     solveSubproblem(problem, table);
     return table;
@@ -39,11 +39,14 @@ petternTable solvePettern(){
 
 void solveSubproblem(solve_field subproblem, petternTable& table){
     std::vector< Point > reachable;
-    solve_field polyomino=subproblem;
+    solve_field polyomino;
     size_t problem_hash = std::hash<Matrix<PETTERN_MATCH_MAX_WIDTH, PETTERN_MATCH_MAX_HEIGHT>>()(subproblem);
     
     if(subproblem.count() == PETTERN_MATCH_MAX_HEIGHT * PETTERN_MATCH_MAX_WIDTH)return;
     if(table[problem_hash].first!=0)return;
+    
+    std::cout << ~(static_cast<solve_field>(~subproblem).GetNormalize()) << std::endl;
+    std::cout << subproblem << std::endl;
     
     for(int i=0;i<PETTERN_MATCH_MAX_HEIGHT;i++){
         for(int j=0;j<PETTERN_MATCH_MAX_WIDTH;j++){
@@ -63,7 +66,9 @@ break_2:
         subproblem[target.y][target.x]=1;
         
         solveSubproblem( subproblem , table );
-        table[problem_hash] = std::make_pair(std::hash<solve_field>()(polyomino), std::hash<solve_field>()(subproblem));
+        table[problem_hash] = std::make_pair(std::hash<solve_field>()(polyomino.GetNormalize()),
+                                             std::hash<solve_field>()(~(static_cast<solve_field>(~subproblem).GetNormalize()))
+                                             );
         
         auto tmp = getReachable(subproblem, polyomino, target);
         reachable.insert(reachable.end(),tmp.begin(),tmp.end());
