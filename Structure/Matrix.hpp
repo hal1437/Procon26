@@ -131,6 +131,7 @@ public:
 	DEFINITION_GETTER(Move)
 	DEFINITION_GETTER(Rotate)
 	DEFINITION_GETTER(Reverse)
+	DEFINITION_GETTER(Normalize)
 	
 	current& Transform(const Transform& trans){
 		if(!trans.isEnable())return (*this);
@@ -172,8 +173,6 @@ public:
 	}
 	current& Normalize(){
 		std::set<current> sample;
-		
-
 		//rotate reverse
 		for(int i=0;i<4;i++){
 			for(int j=0;j<2;j++){
@@ -330,7 +329,7 @@ namespace std{
 	template<size_t MATRIX_WIDTH, size_t MATIRX_HEIGHT>
 	struct hash< Matrix<MATRIX_WIDTH,MATIRX_HEIGHT> >{
 		size_t operator()(const Matrix<MATRIX_WIDTH,MATIRX_HEIGHT>& s)const{
-			return std::hash< std::bitset<MATRIX_WIDTH*MATIRX_HEIGHT> >()(s.Normalize().toBitset());
+			return std::hash< std::bitset<MATRIX_WIDTH*MATIRX_HEIGHT> >()(s.GetNormalize().toBitset());
 		}
 	};
 }
