@@ -3,6 +3,7 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <functional>
 #include <type_traits>
 #include <utility>
 #include "MultiBit.hpp"
@@ -217,7 +218,27 @@ public:
 		(*this) = sample.begin()->GetMove(origin);
 		return (*this);
 	}
-	
+
+
+	current GetReachable()const{
+		current answer;
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				if((*this)[i][j])continue;
+				CLOCKWISE_FOR(clock){
+					Point seach_point = Point(j,i) + clock;
+					if(seach_point.x < 0 || seach_point.x>=MATRIX_WIDTH ||
+					   seach_point.y < 0 || seach_point.y>=MATRIX_HEIGHT )continue;
+					if((*this)[seach_point.y][seach_point.x]){
+						answer[i][j] = true;
+						break;
+					}
+				}
+			}
+		}
+		return answer;
+	}
+
 	std::bitset<MATRIX_WIDTH*MATRIX_HEIGHT> toBitset()const{
 		std::bitset<MATRIX_WIDTH*MATRIX_HEIGHT> bits;
 		for(int i=0;i<MATRIX_HEIGHT;i++){
@@ -227,11 +248,11 @@ public:
 		}
 		return bits;
 	}
-    
-    size_t to_hash()const{
-        std::hash< std::bitset<MATRIX_WIDTH * MATRIX_HEIGHT> > hash;
-        return hash( toBitset() );
-    }
+	
+	size_t to_hash()const{
+		std::hash< std::bitset<MATRIX_WIDTH * MATRIX_HEIGHT> > hash;
+		return hash( toBitset() );
+	}
 
 	Matrix() = default;
 	Matrix(const Base&   base):Base(base){};
@@ -306,12 +327,12 @@ Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ReverseP
 }
 
 namespace std{
-    template<size_t MATRIX_WIDTH, size_t MATIRX_HEIGHT>
-    class hash< Matrix<MATRIX_WIDTH,MATIRX_HEIGHT> >{
-        size_t operator()(const Matrix<MATRIX_WIDTH,MATIRX_HEIGHT>& s)const{
-            return std::hash< std::bitset<MATRIX_WIDTH*MATIRX_HEIGHT> >()(s.toBitset());
-        }
-    };
+	template<size_t MATRIX_WIDTH, size_t MATIRX_HEIGHT>
+	class hash< Matrix<MATRIX_WIDTH,MATIRX_HEIGHT> >{
+		size_t operator()(const Matrix<MATRIX_WIDTH,MATIRX_HEIGHT>& s)const{
+			return std::hash< std::bitset<MATRIX_WIDTH*MATIRX_HEIGHT> >()(s.Normalize().toBitset());
+		}
+	};
 }
 
 
