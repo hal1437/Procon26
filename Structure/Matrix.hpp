@@ -141,10 +141,10 @@ public:
 		return (*this);
 	}
 	current& Move     (const Point& pos){
+		if(pos.y > 0)(*this) >>=  pos.y * Base::ARRAY_MATRIX_WIDTH*8;
+		if(pos.y < 0)(*this) <<= -pos.y * Base::ARRAY_MATRIX_WIDTH*8;
 		if(pos.x > 0)(*this) >>=  pos.x;
 		if(pos.x < 0)(*this) <<= -pos.x;
-		if(pos.y > 0)(*this) >>=  pos.y * MATRIX_WIDTH;
-		if(pos.y < 0)(*this) <<= -pos.y * MATRIX_WIDTH;
 		return (*this);
 	}
 	current& Rotate   (const Constants::ANGLE& angle){
@@ -177,7 +177,6 @@ public:
 		for(int i=0;i<4;i++){
 			for(int j=0;j<2;j++){
 				current&& tmp = this->GetTransform(Transform::Transform(Point(0,0),static_cast<Constants::ANGLE>(i*90),j));
-				
 				Point origin(MATRIX_WIDTH,MATRIX_HEIGHT);
 				for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
 					for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){

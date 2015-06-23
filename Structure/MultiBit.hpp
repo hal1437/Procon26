@@ -178,26 +178,50 @@ public:
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] ^= rhs.byte[i];
 		return (*this);
 	}
-	current&& operator<<(size_t value)const{
-		current answer;
-		for(int i=ARRAY_MATRIX_SIZE-value;i>0;i--){
-			answer.set(i,this->get(i+value));
+	current operator<<(size_t value)const{
+		current answer(*this);
+		if(value >= BYTE_SIZE){
+			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i-value/BYTE_SIZE] = answer.byte[i];
+			for(int i = ARRAY_MATRIX_SIZE-1;i>=ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i--)answer.byte[i] = 0;
+			value %= 8;
 		}
+		if(!value)return answer;
+
+		char hi, lo;
+		char mask = (char)(0xFF << (BYTE_SIZE - value));
+		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
+			hi = (answer.byte[i + 1] & mask) << (BYTE_SIZE - value);
+			lo = (answer.byte[i + 0] << value);
+			if ( i != 0 )answer.byte[i] = (hi | lo);
+			else         answer.byte[i] = (lo);
+		}	
 		return answer;
 	}
-	current&& operator>>(size_t value)const{
-		current answer;
-		for(int i=value;i<ARRAY_MATRIX_SIZE;i++){
-			answer.set(i,get(i-value));
+	current operator>>(size_t value)const{
+		current answer(*this);
+		if(value >= BYTE_SIZE){
+			for(int i = ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i >= 0 ;i--)answer.byte[i+value/BYTE_SIZE] = answer.byte[i];
+			for(int i = 0;i<value/BYTE_SIZE;i++)answer.byte[i] = 0;
+			value %= 8;
+		}
+		if(!value)return answer;
+		char hi, lo;
+		char mask = (char)(0xFF >> (BYTE_SIZE - value));
+		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
+			hi = (answer.byte[i - 1] & mask) << (BYTE_SIZE - value);
+			lo = (answer.byte[i - 0] >> value);
+			if ( i != 0 )answer.byte[i] = (hi | lo);
+			else         answer.byte[i] = (lo);
 		}
 		return answer;
 	}
 	current& operator<<=(size_t value){
 		if(value >= BYTE_SIZE){
 			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)byte[i-value/BYTE_SIZE] = byte[i];
-			for(int i = ARRAY_MATRIX_SIZE-1;i>=ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i--)byte[i] = 0;
+			for(int i = ARRAY_MATRIX_SIZE-1;i>value/BYTE_SIZE;i--)byte[i] = 0;
 			value %= 8;
 		}
+		if(!value)return (*this);
 
 		char hi, lo;
 		char mask = (char)(0xFF << (BYTE_SIZE - value));

@@ -1,5 +1,6 @@
 DeveicedData/
 *.xcodeproj
+main.cpp
 
 # cmakes
 CMakeFiles
