@@ -9,19 +9,24 @@
 #include "Utility/BenchMark.hpp"
 
 int main(){
-
+/*
 	Problem prob("Problem/quest9.txt");
 	std::ofstream ofs("Answer.txt");
 	Field field;// = prob.GetField();
 	Answer ans(prob);
-
+*/
 	typedef MultiBit<4,4> M;
 	constexpr M bits = M({{1,1,1,1},
 						  {1,0,0,1},
 						  {1,0,0,1},
 						  {1,1,1,1}});
 
+	constexpr M bit2 = (~bits);
+	constexpr M bit3 = (bit2^bits);
+
 	std::cout << bits << std::endl;
+	std::cout << bit2 << std::endl;
+	std::cout << bit3 << std::endl;
 /*	
 	Matrix<3,3> mat;
 	mat[1][0]=1;

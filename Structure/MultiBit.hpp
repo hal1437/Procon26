@@ -131,7 +131,7 @@ public:
 	FirstProxy operator[](size_t index){
 		return FirstProxy(this,index);
 	}
-	FirstProxy operator[](size_t index)const{
+	constexpr FirstProxy operator[](size_t index)const{
 		return FirstProxy(this,index);
 	}
 	bool operator==(const current& rhs)const{
@@ -151,17 +151,22 @@ public:
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] = ~byte[i];
 		return (*this);
 	}
-	current operator&(const current& rhs)const{
+	constexpr current operator~()const{
+		current tmp;
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)tmp.byte[i] = ~tmp.byte[i];
+		return tmp;
+	}
+	constexpr current operator&(const current& rhs)const{
 		current answer;
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] & rhs.byte[i]);
 		return answer;
 	}
-	current operator|(const current& rhs)const{
+	constexpr current operator|(const current& rhs)const{
 		current answer;
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] | rhs.byte[i]);
 		return answer;
 	}
-	current operator^(const current& rhs)const{
+	constexpr current operator^(const current& rhs)const{
 		current answer;
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] ^ rhs.byte[i]);
 		return answer;
@@ -178,7 +183,7 @@ public:
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] ^= rhs.byte[i];
 		return (*this);
 	}
-	current operator<<(size_t value)const{
+	constexpr current operator<<(size_t value)const{
 		current answer(*this);
 		if(value >= BYTE_SIZE){
 			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i-value/BYTE_SIZE] = answer.byte[i];
@@ -187,7 +192,7 @@ public:
 		}
 		if(!value)return answer;
 
-		char hi, lo;
+		char hi=0, lo=0;
 		char mask = (char)(0xFF << (BYTE_SIZE - value));
 		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
 			hi = (answer.byte[i + 1] & mask) << (BYTE_SIZE - value);
@@ -197,7 +202,7 @@ public:
 		}	
 		return answer;
 	}
-	current operator>>(size_t value)const{
+	constexpr current operator>>(size_t value)const{
 		current answer(*this);
 		if(value >= BYTE_SIZE){
 			for(int i = ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i >= 0 ;i--)answer.byte[i+value/BYTE_SIZE] = answer.byte[i];
@@ -205,10 +210,10 @@ public:
 			value %= 8;
 		}
 		if(!value)return answer;
-		char hi, lo;
+		char hi=0, lo=0;
 		char mask = (char)(0xFF >> (BYTE_SIZE - value));
 		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
-			hi = (answer.byte[i - 1] & mask) << (BYTE_SIZE - value);
+			if(i!=0)hi = (answer.byte[i - 1] & mask) << (BYTE_SIZE - value);
 			lo = (answer.byte[i - 0] >> value);
 			if ( i != 0 )answer.byte[i] = (hi | lo);
 			else         answer.byte[i] = (lo);
@@ -244,7 +249,7 @@ public:
 		char hi, lo;
 		char mask = (char)(0xFF >> (BYTE_SIZE - value));
 		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
-			hi = (byte[i - 1] & mask) << (BYTE_SIZE - value);
+			if(i!=0)hi = (byte[i - 1] & mask) << (BYTE_SIZE - value);
 			lo = (byte[i - 0] >> value);
 			if ( i != 0 )byte[i] = (hi | lo);
 			else         byte[i] = (lo);
@@ -255,7 +260,6 @@ public:
 
 
 	constexpr MultiBit(){
-		std::fill(byte,byte + ARRAY_MATRIX_SIZE,0);
 	}
 	template<class T>
 	constexpr MultiBit(std::initializer_list<std::initializer_list<T>> init){
