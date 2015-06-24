@@ -88,13 +88,13 @@ public:
 	static constexpr int WIDTH  = MATRIX_WIDTH;
 	static constexpr int HEIGHT = MATRIX_HEIGHT;
 
-	bool get(size_t index)const{
+	constexpr bool get(size_t index)const{
 		return byte[index / BYTE_SIZE] & 1UL << (BYTE_SIZE - (index % BYTE_SIZE) - 1);
 	}
-	bool get(size_t x,size_t y)const{
+	constexpr bool get(size_t x,size_t y)const{
 		return byte[y*ARRAY_MATRIX_WIDTH + x /BYTE_SIZE] & 1 << (BYTE_SIZE - (x % BYTE_SIZE) - 1);
 	}
-	void set(size_t index,bool value){
+	constexpr void set(size_t index,bool value){
 		bool selecting = get(index);
 		if(selecting && !value){
 			byte[index / BYTE_SIZE] -= (1UL << (BYTE_SIZE - (index % BYTE_SIZE) - 1));
@@ -103,7 +103,7 @@ public:
 			byte[index / BYTE_SIZE] |= (1UL << (BYTE_SIZE - (index % BYTE_SIZE) - 1));
 		}
 	}
-	void set(size_t x,size_t y,bool value){
+	constexpr void set(size_t x,size_t y,bool value){
 		bool selecting = get(x,y);
 		if(selecting && !value){
 			byte[y * ARRAY_MATRIX_WIDTH + (x / BYTE_SIZE)] -= (1UL << (BYTE_SIZE - (x % BYTE_SIZE) - 1));
@@ -112,7 +112,7 @@ public:
 			byte[y * ARRAY_MATRIX_WIDTH + (x / BYTE_SIZE)] |= (1UL << (BYTE_SIZE - (x % BYTE_SIZE) - 1));
 		}
 	}
-	size_t count()const{
+	constexpr size_t count()const{
 		size_t size=0;
 		for(int i=0;i < MATRIX_SIZE / BYTE_SIZE;i++){
 			char s = byte[i];
@@ -254,13 +254,11 @@ public:
 
 
 
-	MultiBit(){
-	}
-	MultiBit(const current& origin){
-		std::copy(origin.byte,origin.byte+ARRAY_MATRIX_SIZE,byte);
+	constexpr MultiBit(){
+		std::fill(byte,byte + ARRAY_MATRIX_SIZE,0);
 	}
 	template<class T>
-	MultiBit(std::initializer_list<std::initializer_list<T>> init){
+	constexpr MultiBit(std::initializer_list<std::initializer_list<T>> init){
 		int i=0,j=0;
 		for(auto& it1 : init){
 			for(auto& it2 :it1){
@@ -271,8 +269,8 @@ public:
 			i++;
 		}
 	}
-	virtual  ~MultiBit(){
-	}
+	//virtual  ~MultiBit(){
+	//}
 
 	template <size_t WIDTH,size_t HEIGHT>
 	friend std::ostream& operator<<(std::ostream& ost,const MultiBit<WIDTH,HEIGHT>& matrix);
@@ -282,9 +280,9 @@ public:
 
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 std::ostream& operator<<(std::ostream& ost,const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix){
-	for(int i=0;i<MATRIX_HEIGHT;i++){
-		for(int j=0;j<MATRIX_WIDTH / matrix.BYTE_SIZE;j++){
-			ost << std::bitset<8>(matrix.byte[i * MATRIX_WIDTH / matrix.BYTE_SIZE + j]);
+	for(int i=0;i < MATRIX_HEIGHT;i++){
+		for(int j=0;j < MATRIX_WIDTH;j++){
+			ost << matrix[i][j];
 		}
 		ost << "\n";
 	}
