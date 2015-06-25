@@ -8,47 +8,19 @@
 #include "Structure/Matrix.hpp"
 #include "Utility/BenchMark.hpp"
 
+
+
 int main(){
-/*
-	Problem prob("Problem/quest9.txt");
-	std::ofstream ofs("Answer.txt");
-	Field field;// = prob.GetField();
-	Answer ans(prob);
-*/
+
 	typedef MultiBit<4,4> M;
-	constexpr M bits = M({{1,1,1,1},
-						  {1,0,0,1},
-						  {1,0,0,1},
-						  {1,1,1,1}});
+	constexpr MultiBit<4,4> bits = MultiBit<4,4>({{1,1,1,1},
+												  {1,0,0,1},
+												  {1,0,0,1},
+												  {1,1,1,1}});
+	constexpr Matrix<4,4> mat   = Matrix<4,4>(bits);
+	constexpr Matrix<4,4> mat_r = Matrix<4,4>(mat.GetReverse(true));
 
-	constexpr M bit2 = (~bits);
-	constexpr M bit3 = (bit2^bits);
-
-	std::cout << bits << std::endl;
-	std::cout << bit2 << std::endl;
-	std::cout << bit3 << std::endl;
-/*	
-	Matrix<3,3> mat;
-	mat[1][0]=1;
-	mat[1][1]=1;
-	mat[0][0]=1;
-	mat[2][2]=1;
 	std::cout << mat << std::endl;
-	std::cout << mat.GetNormalize() << std::endl;
-*/
-	
-	//===========BENCHMARK RESULT===========
-	//    [COUNT]          500 times
-	//[FULL TIME]         9756 msec
-	// [PER TIME]       19.512 msec/function 
-	//======================================
-	/*
-	std::cout << prob.GetField() << std::endl;
-	BenchMark<500>()([&](){
-		prob.GetField().GetListLayPossible(prob.GetBlock(0));
-	});
-	*/
-	//std::cout << prob.GetField() << std::endl;
 	
 	return 0;
 }

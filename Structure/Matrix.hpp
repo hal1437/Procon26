@@ -3,6 +3,7 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <cmath>
 #include <functional>
 #include <type_traits>
 #include <utility>
@@ -22,10 +23,13 @@ template<class... Args> 						\
 inline current Get##NAME(const Args... args)const{	\
 	return current(*this).NAME(args...);	\
 }
-#define MEMBER_TEMPLATE_ARGS \
+#define MEMBER_TEMPLATE          template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
+
+#define MEMBER_TEMPLATE_TEMPLATE \
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT> \
 template <size_t ARGS_WIDTH,size_t ARGS_HEIGHT>
 
+#define M_TMP template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT>
 
 template<size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 class Matrix:public MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>{
@@ -35,96 +39,41 @@ private:
 
 public:
 
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat);
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans);
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat);
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans);
-
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
-		return (((*this) & current(matrix)).count() > 0);
-	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Point& pos)const{
-		return Cross(matrix.GetMove(pos));
-	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Transform& hand)const{
-		return Cross(matrix.GetTransform());
-	}
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> bool ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Transform& trans)const{
-		if(!trans.isEnable())return false;
-		Matrix<ARGS_WIDTH,ARGS_HEIGHT>&& mat = matrix.GetTransform(Transform::Transform(Point(0,0),trans.angle,trans.reverse));
-		bool adjacent = false;
-
-		for(int i = 0;i < ARGS_HEIGHT;i++){
-			for(int j = 0;j < ARGS_WIDTH;j++){
-				if(mat.get(j,i)){
-					//overrun
-					if(trans.pos.y+i < 0 || trans.pos.x+j < 0 || trans.pos.y+i >= MATRIX_HEIGHT || trans.pos.x+j >= MATRIX_WIDTH){
-						return false;
-					}
-					//crossed
-					if((*this)[trans.pos.y + i][trans.pos.x + j]){
-						return false;
-					}
-					
-					//not Adjacent
-					CLOCKWISE_FOR(clockwise){
-						Point seach_point = trans.pos + Point(j,i) + clockwise;
-						//overrun
-						if(seach_point.x < 0 || seach_point.y < 0 || seach_point.y >= MATRIX_HEIGHT || seach_point.x >= MATRIX_WIDTH){
-							continue;
-						}
-						//exist
-						if(this->get(seach_point.x,seach_point.y)){
-							adjacent = true;
-						}
-					}
-				}
-			}
-		}
-		return adjacent;
-	}
-
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT> std::vector<Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
-		Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
-		Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> field;
-		std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT>,struct Transform> map;
-
-		field.Projection(*this);
-		Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample_base(matrix);
+	//Action 
+	M_TMP current& Projection       (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat);
+	M_TMP current& Projection       (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans);
+	M_TMP current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat);
+	M_TMP current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans);
+	      current& Transform        (const struct Transform& trnas);
+	      current& Move             (const Point& pos);
+	      current& Rotate           (const Constants::ANGLE& angle);
+	      current& Reverse          (bool  _reverse=true);
+	      current& Normalize        ();
 	
-		//std::cout << matrix << std::endl;
-		//std::cout << field << std::endl;
-		for(int i=0;i<2;i++){
-			sample_base.Reverse(i);
-			for(int j=0;j<4;j++){
-				sample[i][j].Projection(sample_base);
-				sample_base.Rotate(Constants::ANGLE90);
-			}
-		}
-	
-		std::vector<class Transform> answer;
-		for(int i = -8;i < static_cast<int>(MATRIX_HEIGHT);i++){
-			for(int j = -8;j < static_cast<int>(MATRIX_WIDTH);j++){
-				for(int r=0;r<2;r++){
-					for(int k=0;k<4;k++){
-						Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
-						if(field.ProjectionTest(sample[r][k],move_trans)){
-							struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
-							map.insert(std::make_pair(current(field).Projection(sample[r][k],move_trans),t));
-						}
-					}
-				}
-			}
-		}
-		for(auto x:map)answer.push_back(x.second);
-		return answer;
-	}
-	
-	template<size_t CONVERT_WIDTH,size_t CONVERT_HEIGHT>
-	Matrix<CONVERT_WIDTH,CONVERT_HEIGHT> GetTransform(const Transform& trans)const{
+	//Copy-action
+	M_TMP constexpr current GetProjection       (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat                              )const;
+	M_TMP constexpr current GetProjection       (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const struct Transform& trans)const;
+	M_TMP constexpr current GetReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat                              )const;
+	M_TMP constexpr current GetReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const struct Transform& trans)const;
+	      constexpr current GetTransform        (const struct Transform& trnas)const;
+	      constexpr current GetMove             (const Point& pos             )const;
+	      constexpr current GetRotate           (const Constants::ANGLE& angle)const;
+	      constexpr current GetReverse          (bool  _reverse=true          )const;
+	      constexpr current GetNormalize        ()const;
+
+	//util
+	M_TMP std::vector<struct Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const;
+	M_TMP constexpr bool ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans)const;
+	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix                              )const;
+	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Point& pos             )const;
+	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& hand )const;
+
+	template<size_t CONVERT_WIDTH,size_t CONVERT_HEIGHT> 
+	constexpr Matrix<CONVERT_WIDTH,CONVERT_HEIGHT> GetTransform(const struct Transform& trans)const{
 		if(!trans.isEnable())return (*this);
 		return Matrix<CONVERT_WIDTH,CONVERT_HEIGHT>(this->GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
 	}
+	/*
 	DEFINITION_GETTER(Projection)
 	DEFINITION_GETTER(ReverseProjection)
 	DEFINITION_GETTER(Transform)
@@ -132,91 +81,7 @@ public:
 	DEFINITION_GETTER(Rotate)
 	DEFINITION_GETTER(Reverse)
 	DEFINITION_GETTER(Normalize)
-	
-	current& Transform(const Transform& trans){
-		if(!trans.isEnable())return (*this);
-		if(trans.reverse)Reverse();
-		Rotate(trans.angle);
-		Move(trans.pos);
-		return (*this);
-	}
-	current& Move     (const Point& pos){
-		if(pos.y > 0)(*this) >>=  pos.y * Base::ARRAY_MATRIX_WIDTH*8;
-		if(pos.y < 0)(*this) <<= -pos.y * Base::ARRAY_MATRIX_WIDTH*8;
-		if(pos.x > 0)(*this) >>=  pos.x;
-		if(pos.x < 0)(*this) <<= -pos.x;
-		return (*this);
-	}
-	current& Rotate   (const Constants::ANGLE& angle){
-		current tmp = (*this);
-		for(int i=0;i<MATRIX_HEIGHT;i++){
-			for(int j=0;j<MATRIX_WIDTH;j++){
-				if(angle == Constants::ANGLE90) tmp.set(MATRIX_WIDTH - i - 1 ,j                    ,(*this)[i][j]);
-				if(angle == Constants::ANGLE180)tmp.set(MATRIX_WIDTH - j - 1 ,MATRIX_HEIGHT - i - 1,(*this)[i][j]);
-				if(angle == Constants::ANGLE270)tmp.set(i                    ,MATRIX_HEIGHT - j - 1,(*this)[i][j]);
-			}
-		}
-		(*this) = tmp;
-		return (*this);
-	}
-	current& Reverse  (bool _reverse=true){
-		if(_reverse){
-			current tmp(*this);
-			for(int i=0;i<MATRIX_HEIGHT;i++){
-				for(int j=0;j<MATRIX_WIDTH;j++){
-					tmp[i][MATRIX_WIDTH-j-1] = (*this)[i][j];
-				}
-			}
-			(*this) = tmp;
-		}
-		return (*this);
-	}
-	current& Normalize(){
-		std::set<current> sample;
-		//rotate reverse
-		for(int i=0;i<4;i++){
-			for(int j=0;j<2;j++){
-				current&& tmp = this->GetTransform(Transform::Transform(Point(0,0),static_cast<Constants::ANGLE>(i*90),j));
-				Point origin(MATRIX_WIDTH,MATRIX_HEIGHT);
-				for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
-					for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
-						if(tmp[i][j]){
-							origin.y = -i;
-						}
-					}
-				}
-				for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
-					for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
-						if(tmp[j][i]){
-							origin.x = -i;
-						}
-					}
-				}
-				sample.insert(tmp.Move(origin));
-			}
-		}
-
-		//move2
-		Point origin = Point(MATRIX_WIDTH,MATRIX_HEIGHT);
-		for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
-			for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
-				if((*sample.begin())[i][j]){
-					origin.y = -i;
-				}
-			}
-		}
-		for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
-			for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
-				if((*sample.begin())[j][i]){
-					origin.x = -i;
-				}
-			}
-		}
-		//std::cout << origin << std::endl;
-		(*this) = sample.begin()->GetMove(origin);
-		return (*this);
-	}
-
+	*/
 
 	current GetReachable()const{
 		current answer;
@@ -252,18 +117,15 @@ public:
 		return hash( toBitset() );
 	}
 
-	Matrix() = default;
-	Matrix(const Base&   base):Base(base){};
-	Matrix(const current& mat)  = default;
-	template<size_t ARGS_WIDTH,size_t ARGS_HEIGHT>
-	Matrix(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
+	constexpr Matrix() = default;
+	constexpr Matrix(const Base&   base):Base(base){};
+	M_TMP constexpr Matrix(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
 		for(int i=0;i<ARGS_HEIGHT;i++){
 			for(int j=0;j<ARGS_WIDTH;j++){
 				//this->set(j,i,matrix.get(j,i));
 			}
 		}
 	}
-	virtual ~Matrix() = default;
 
 	template <size_t WIDTH,size_t HEIGHT> friend std::istream& operator>>(std::istream& ist,Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix);
 	template <size_t WIDTH,size_t HEIGHT> friend std::ostream& operator<<(std::ostream& ost,const Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix);
@@ -273,6 +135,295 @@ public:
 
 typedef Matrix<FIELD_WIDTH,FIELD_HEIGHT> Field;
 typedef Matrix<BLOCK_WIDTH,BLOCK_HEIGHT> Block;
+
+
+MEMBER_TEMPLATE_TEMPLATE
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
+	(*this) |= current(mat);
+	return (*this);
+}
+
+MEMBER_TEMPLATE_TEMPLATE
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const struct Transform& trans){
+	if(!trans.isEnable())return (*this);
+	(*this) |=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
+	return	(*this);
+}
+
+MEMBER_TEMPLATE_TEMPLATE
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
+	(*this) ^= current(mat);
+	return (*this);
+}
+
+MEMBER_TEMPLATE_TEMPLATE
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const struct Transform& trans){
+	if(!trans.isEnable())return (*this);
+	(*this) ^=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
+	return	(*this);
+}
+
+MEMBER_TEMPLATE_TEMPLATE
+constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
+	return (((*this) & current(matrix)).count() > 0);
+}
+MEMBER_TEMPLATE_TEMPLATE
+constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Point& pos)const{
+	return Cross(matrix.GetMove(pos));
+}
+MEMBER_TEMPLATE_TEMPLATE
+constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Cross(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& hand)const{
+	return Cross(matrix.GetTransform());
+}
+
+MEMBER_TEMPLATE_TEMPLATE
+constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans)const{
+	if(!trans.isEnable())return false;
+	Matrix<ARGS_WIDTH,ARGS_HEIGHT>&& mat = matrix.GetTransform(Transform::Transform(Point(0,0),trans.angle,trans.reverse));
+	bool adjacent = false;
+
+	for(int i = 0;i < ARGS_HEIGHT;i++){
+		for(int j = 0;j < ARGS_WIDTH;j++){
+			if(mat.get(j,i)){
+				if(trans.pos.y+i < 0 || trans.pos.x+j < 0 || trans.pos.y+i >= MATRIX_HEIGHT || trans.pos.x+j >= MATRIX_WIDTH)return false;
+				if((*this)[trans.pos.y + i][trans.pos.x + j])return false;
+				
+				CLOCKWISE_FOR(clockwise){
+					Point seach_point = trans.pos + Point(j,i) + clockwise;
+					if(seach_point.x < 0 || seach_point.y < 0 || seach_point.y >= MATRIX_HEIGHT || seach_point.x >= MATRIX_WIDTH)continue;
+					if(this->get(seach_point.x,seach_point.y))adjacent = true;
+				}
+			}
+		}
+	}
+	return adjacent;
+}
+
+MEMBER_TEMPLATE_TEMPLATE
+std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix)const{
+	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
+	Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> field;
+	std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT>,struct Transform> map;
+
+	field.Projection(*this);
+	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample_base(matrix);
+
+	//std::cout << matrix << std::endl;
+	//std::cout << field << std::endl;
+	for(int i=0;i<2;i++){
+		sample_base.Reverse(i);
+		for(int j=0;j<4;j++){
+			sample[i][j].Projection(sample_base);
+			sample_base.Rotate(Constants::ANGLE90);
+		}
+	}
+
+	std::vector<class Transform> answer;
+	for(int i = -8;i < static_cast<int>(MATRIX_HEIGHT);i++){
+		for(int j = -8;j < static_cast<int>(MATRIX_WIDTH);j++){
+			for(int r=0;r<2;r++){
+				for(int k=0;k<4;k++){
+					Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
+					if(field.ProjectionTest(sample[r][k],move_trans)){
+						struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
+						map.insert(std::make_pair(current(field).Projection(sample[r][k],move_trans),t));
+					}
+				}
+			}
+		}
+	}
+	for(auto x:map)answer.push_back(x.second);
+	return answer;
+}
+
+MEMBER_TEMPLATE
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Transform(const struct Transform& trans){
+	if(!trans.isEnable())return (*this);
+	if(trans.reverse)Reverse();
+	Rotate(trans.angle);
+	Move(trans.pos);
+	return (*this);
+}
+MEMBER_TEMPLATE
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Move     (const Point& pos){
+	if(pos.y > 0)(*this) >>=  pos.y * Base::ARRAY_MATRIX_WIDTH*8;
+	if(pos.y < 0)(*this) <<= -pos.y * Base::ARRAY_MATRIX_WIDTH*8;
+	if(pos.x > 0)(*this) >>=  pos.x;
+	if(pos.x < 0)(*this) <<= -pos.x;
+	return (*this);
+}
+MEMBER_TEMPLATE
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Rotate   (const Constants::ANGLE& angle){
+	current tmp = (*this);
+	for(int i=0;i<MATRIX_HEIGHT;i++){
+		for(int j=0;j<MATRIX_WIDTH;j++){
+			if(angle == Constants::ANGLE90) tmp.set(MATRIX_WIDTH - i - 1 ,j                    ,(*this)[i][j]);
+			if(angle == Constants::ANGLE180)tmp.set(MATRIX_WIDTH - j - 1 ,MATRIX_HEIGHT - i - 1,(*this)[i][j]);
+			if(angle == Constants::ANGLE270)tmp.set(i                    ,MATRIX_HEIGHT - j - 1,(*this)[i][j]);
+		}
+	}
+	(*this) = tmp;
+	return (*this);
+}
+MEMBER_TEMPLATE
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Reverse  (bool _reverse){
+	if(_reverse){
+		current tmp(*this);
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				tmp[i][MATRIX_WIDTH-j-1] = (*this)[i][j];
+			}
+		}
+		(*this) = tmp;
+	}
+	return (*this);
+}
+MEMBER_TEMPLATE
+Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Normalize(){
+	std::set<current> sample;
+	//rotate reverse
+	for(int i=0;i<4;i++){
+		for(int j=0;j<2;j++){
+			current&& tmp = this->GetTransform(Transform::Transform(Point(0,0),static_cast<Constants::ANGLE>(i*90),j));
+			Point origin(MATRIX_WIDTH,MATRIX_HEIGHT);
+			for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
+				for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
+					if(tmp[i][j]){
+						origin.y = -i;
+					}
+				}
+			}
+			for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
+				for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
+					if(tmp[j][i]){
+						origin.x = -i;
+					}
+				}
+			}
+			sample.insert(tmp.Move(origin));
+		}
+	}
+	//move2
+	Point origin = Point(MATRIX_WIDTH,MATRIX_HEIGHT);
+	for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
+		for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
+			if((*sample.begin())[i][j]){
+				origin.y = -i;
+			}
+		}
+	}
+	for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
+		for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
+			if((*sample.begin())[j][i]){
+				origin.x = -i;
+			}
+		}
+	}
+	//std::cout << origin << std::endl;
+	(*this) = sample.begin()->GetMove(origin);
+	return (*this);
+}
+
+//Getter
+//
+//
+
+MEMBER_TEMPLATE
+constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetTransform(const struct Transform& trans)const{
+	if(!trans.isEnable())return (*this);
+	return this->GetReverse(trans.reverse).GetRotate(trans.angle).GetMove(trans.pos);
+}
+MEMBER_TEMPLATE
+constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetMove(const Point& pos)const{
+	Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> y_tmp = (pos.y==0 ? Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>()
+											             : (pos.y > 0 ? ((*this) >>  pos.y * Base::ARRAY_MATRIX_WIDTH*8)
+											                          : ((*this) << -pos.y * Base::ARRAY_MATRIX_WIDTH*8)));
+	Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> x_tmp = (pos.x==0 ? y_tmp
+											             : (pos.x > 0 ? (y_tmp >>  pos.x)
+											                          : (y_tmp << -pos.x )));
+	return x_tmp;
+}
+MEMBER_TEMPLATE
+constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetRotate   (const Constants::ANGLE& angle)const{
+	current tmp = (*this);
+	for(int i=0;i<MATRIX_HEIGHT;i++){
+		for(int j=0;j<MATRIX_WIDTH;j++){
+			if(angle == Constants::ANGLE90) tmp.set(MATRIX_WIDTH - i - 1 ,j                    ,(*this)[i][j]);
+			if(angle == Constants::ANGLE180)tmp.set(MATRIX_WIDTH - j - 1 ,MATRIX_HEIGHT - i - 1,(*this)[i][j]);
+			if(angle == Constants::ANGLE270)tmp.set(i                    ,MATRIX_HEIGHT - j - 1,(*this)[i][j]);
+		}
+	}
+	return  tmp;
+}
+MEMBER_TEMPLATE
+constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetReverse  (bool _reverse)const{
+	current tmp(*this);
+	if(_reverse){
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				tmp[i][MATRIX_WIDTH-j-1] = (*this)[i][j];
+			}
+		}
+	}
+	return tmp;
+}
+MEMBER_TEMPLATE
+constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetNormalize()const{
+	std::set<current> sample;
+	//rotate reverse
+	for(int i=0;i<4;i++){
+		for(int j=0;j<2;j++){
+			current&& tmp = this->GetTransform(Transform::Transform(Point(0,0),static_cast<Constants::ANGLE>(i*90),j));
+			Point origin(MATRIX_WIDTH,MATRIX_HEIGHT);
+			for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
+				for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
+					if(tmp[i][j]){
+						origin.y = -i;
+					}
+				}
+			}
+			for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
+				for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
+					if(tmp[j][i]){
+						origin.x = -i;
+					}
+				}
+			}
+			sample.insert(tmp.Move(origin));
+		}
+	}
+	//move2
+	Point origin = Point(MATRIX_WIDTH,MATRIX_HEIGHT);
+	for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
+		for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
+			if((*sample.begin())[i][j]){
+				origin.y = -i;
+			}
+		}
+	}
+	for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
+		for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
+			if((*sample.begin())[j][i]){
+				origin.x = -i;
+			}
+		}
+	}
+	//std::cout << origin << std::endl;
+	(*this) = sample.begin()->GetMove(origin);
+	return (*this);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 std::ostream& operator<<(std::ostream& ost,const Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix){
@@ -296,32 +447,6 @@ std::istream& operator>>(std::istream& ist,Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& m
 		}
 	}
 	return ist;
-}
-
-MEMBER_TEMPLATE_ARGS
-Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
-	(*this) |= current(mat);
-	return (*this);
-}
-
-MEMBER_TEMPLATE_ARGS
-Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Projection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const struct Transform& trans){
-	if(!trans.isEnable())return (*this);
-	(*this) |=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
-	return	(*this);
-}
-
-MEMBER_TEMPLATE_ARGS
-Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat){
-	(*this) ^= current(mat);
-	return (*this);
-}
-
-MEMBER_TEMPLATE_ARGS
-Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const struct Transform& trans){
-	if(!trans.isEnable())return (*this);
-	(*this) ^=  Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>(mat.GetReverse(trans.reverse).Rotate(trans.angle)).Move(trans.pos);
-	return	(*this);
 }
 
 namespace std{

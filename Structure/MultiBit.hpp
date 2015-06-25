@@ -147,12 +147,13 @@ public:
 		}
 		return false;
 	}
+
 	current& operator~(){
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] = ~byte[i];
 		return (*this);
 	}
-	constexpr current operator~()const{
-		current tmp;
+	constexpr current& operator~()const{
+		current tmp(*this);
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)tmp.byte[i] = ~tmp.byte[i];
 		return tmp;
 	}
