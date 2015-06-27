@@ -3,7 +3,7 @@
 #include "Answer.h"
 #include <fstream>
 
-void Answer::SetProblem(const Problem& prob){
+ void Answer::SetProblem(const Problem& prob){
 	this->resize(prob.Count());
 	initial_field = prob.GetField();
 	for(int i=0;i<prob.Count();i++){

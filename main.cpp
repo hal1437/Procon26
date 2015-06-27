@@ -9,18 +9,22 @@
 #include "Utility/BenchMark.hpp"
 
 
-
 int main(){
 
-	typedef MultiBit<4,4> M;
-	constexpr MultiBit<4,4> bits = MultiBit<4,4>({{1,1,1,1},
-												  {1,0,0,1},
-												  {1,0,0,1},
-												  {1,1,1,1}});
-	constexpr Matrix<4,4> mat   = Matrix<4,4>(bits);
-	constexpr Matrix<4,4> mat_r = Matrix<4,4>(mat.GetReverse(true));
+	constexpr Matrix<4,4> bits  = {{1,1,1,0},
+								   {1,0,0,0},
+								   {1,0,0,1},
+								   {1,1,1,1}};
+	constexpr Matrix<4,4> bits2 = {{0,0,0,0},
+								   {0,1,1,0},
+								   {0,1,1,0},
+								   {0,0,0,0}};
 
-	std::cout << mat << std::endl;
+	constexpr Matrix<4,4> mat   = Matrix<4,4>(bits);
+	constexpr Matrix<4,4> mat_r = Matrix<4,4>(mat.GetRotate(Constants::ANGLE90));
+	constexpr Matrix<4,4> mat_p = Matrix<4,4>(mat.GetProjection(bits2));
+	
+	std::cout << mat_p << std::endl;
 	
 	return 0;
 }

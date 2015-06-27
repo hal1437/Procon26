@@ -13,13 +13,19 @@ public:
 	Constants::ANGLE angle;
 	bool reverse;
 
-	bool isEnable()const;
+public:
+
+	constexpr bool isEnable()const;
 
 	friend std::ostream& operator<<(std::ostream& ost,const Transform& hand);
 
-	Transform():
-		enable(false){};
-	Transform(const Point& Pos,const Constants::ANGLE& Angle,bool Reverse):
+	constexpr Transform():
+		pos(Point(0,0)),
+		angle(Constants::ANGLE0),
+		reverse(false),
+		enable(false){}
+
+	constexpr Transform(const Point& Pos,const Constants::ANGLE& Angle,bool Reverse):
 		pos(Pos),
 		angle(Angle),
 		reverse(Reverse),

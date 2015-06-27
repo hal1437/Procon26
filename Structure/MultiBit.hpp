@@ -22,34 +22,34 @@ public:
 		int y;
 		friend class SecondProxy;
 	public:
-		SecondProxy operator[](size_t index){
+		constexpr SecondProxy operator[](size_t index){
 			return SecondProxy(this,index);
 		}
-		SecondProxy operator[](size_t index)const{
+		constexpr SecondProxy operator[](size_t index)const{
 			return SecondProxy(this,index);
 		}
-		FirstProxy(      MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):ref(Ref),c_ref(Ref),y(index){}
-		FirstProxy(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):         c_ref(Ref),y(index){}
+		constexpr FirstProxy(      MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):ref(Ref),c_ref(Ref),y(index){}
+		constexpr FirstProxy(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):         c_ref(Ref),y(index){}
 	};
 	class SecondProxy{
 		FirstProxy* f_proxy;
 		const FirstProxy* c_f_proxy;
 		int x;
 	public:
-		MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator=(bool value){
+		constexpr MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator=(bool value){
 			f_proxy->ref->set(x,f_proxy->y,value);
 			return (*f_proxy->ref);
 		}
-		operator bool()const{
+		constexpr operator bool()const{
 			return c_f_proxy->c_ref->get(x,c_f_proxy->y);
 		}
-		SecondProxy& operator=(const SecondProxy& rhs){
+		constexpr SecondProxy& operator=(const SecondProxy& rhs){
 			f_proxy->ref->set(x,f_proxy->y,static_cast<bool>(rhs));
 			return (*this);
 		}
-		SecondProxy()=default;
-		SecondProxy(      FirstProxy* Ref,size_t index):f_proxy(Ref),c_f_proxy(Ref),x(index){}
-		SecondProxy(const FirstProxy* Ref,size_t index):             c_f_proxy(Ref),x(index){}
+		constexpr SecondProxy()=default;
+		constexpr SecondProxy(      FirstProxy* Ref,size_t index):f_proxy(Ref),c_f_proxy(Ref),x(index){}
+		constexpr SecondProxy(const FirstProxy* Ref,size_t index):             c_f_proxy(Ref),x(index){}
 	};
 
 
@@ -128,19 +128,19 @@ public:
 		unsigned long value;
 	}*/
 
-	FirstProxy operator[](size_t index){
+	constexpr FirstProxy operator[](size_t index){
 		return FirstProxy(this,index);
 	}
 	constexpr FirstProxy operator[](size_t index)const{
 		return FirstProxy(this,index);
 	}
-	bool operator==(const current& rhs)const{
+	constexpr bool operator==(const current& rhs)const{
 		return std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
 	}
-	bool operator!=(const current& rhs)const{
+	constexpr bool operator!=(const current& rhs)const{
 		return !std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
 	}
-	bool operator<(const current rhs)const{
+	constexpr bool operator<(const current rhs)const{
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++){
 			if(this->byte[i] < rhs.byte[i])return true;
 			if(this->byte[i] > rhs.byte[i])return false;
@@ -148,11 +148,11 @@ public:
 		return false;
 	}
 
-	current& operator~(){
+	constexpr current& operator~(){
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] = ~byte[i];
 		return (*this);
 	}
-	constexpr current& operator~()const{
+	constexpr current operator~()const{
 		current tmp(*this);
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)tmp.byte[i] = ~tmp.byte[i];
 		return tmp;
@@ -172,15 +172,15 @@ public:
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] ^ rhs.byte[i]);
 		return answer;
 	}
-	current& operator&=(const current& rhs){
+	constexpr current& operator&=(const current& rhs){
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] &= rhs.byte[i];
 		return (*this);
 	}
-	current& operator|=(const current& rhs){
+	constexpr current& operator|=(const current& rhs){
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] |= rhs.byte[i];
 		return (*this);
 	}
-	current& operator^=(const current& rhs){
+	constexpr current& operator^=(const current& rhs){
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] ^= rhs.byte[i];
 		return (*this);
 	}
@@ -221,7 +221,7 @@ public:
 		}
 		return answer;
 	}
-	current& operator<<=(size_t value){
+	constexpr current& operator<<=(size_t value){
 		if(value >= BYTE_SIZE){
 			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)byte[i-value/BYTE_SIZE] = byte[i];
 			for(int i = ARRAY_MATRIX_SIZE-1;i>value/BYTE_SIZE;i--)byte[i] = 0;
@@ -229,7 +229,7 @@ public:
 		}
 		if(!value)return (*this);
 
-		char hi, lo;
+		char hi=0, lo=0;
 		char mask = (char)(0xFF << (BYTE_SIZE - value));
 		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
 			hi = (byte[i + 1] & mask) << (BYTE_SIZE - value);
@@ -240,14 +240,14 @@ public:
 		
 		return (*this);
 	}
-	current& operator>>=(size_t value){
+	constexpr current& operator>>=(size_t value){
 		if(value >= BYTE_SIZE){
 			for(int i = ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i >= 0 ;i--)byte[i+value/BYTE_SIZE] = byte[i];
 			for(int i = 0;i<value/BYTE_SIZE;i++)byte[i] = 0;
 			value %= 8;
 		}
 		if(!value)return (*this);
-		char hi, lo;
+		char hi=0, lo=0;
 		char mask = (char)(0xFF >> (BYTE_SIZE - value));
 		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
 			if(i!=0)hi = (byte[i - 1] & mask) << (BYTE_SIZE - value);

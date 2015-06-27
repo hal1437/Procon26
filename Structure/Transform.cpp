@@ -1,7 +1,7 @@
 
 #include "Transform.h"
 
-bool Transform::isEnable()const{
+constexpr bool Transform::isEnable()const{
 	return enable;
 }
 
@@ -11,4 +11,6 @@ std::ostream& operator<<(std::ostream& ost,const Transform& trans){
 	ost << "(" << trans.pos << "," << static_cast<int>(trans.angle) << "," << trans.reverse << ")";
 	return ost;
 }
+
+
 
