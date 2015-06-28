@@ -89,13 +89,28 @@ public:
 	}
 	
 	constexpr size_t to_hash()const{
-		std::hash< std::bitset<MATRIX_WIDTH * MATRIX_HEIGHT> > hash;
-		return hash( toBitset() );
+		static_assert(MATRIX_WIDTH*MATRIX_HEIGHT < 64,"To be oversized matrixsize!" );
+		size_t hash=0;
+		for(int i=0;i<MATRIX_HEIGHT;i++){
+			for(int j=0;j<MATRIX_WIDTH;j++){
+				hash <<= 1;
+				hash |=  (*this)[i][j];
+			}
+		}
+		return hash;
 	}
 
 	constexpr Matrix(){};
 	constexpr Matrix(const Base&   base):Base(base){};
-	template<class T> constexpr Matrix(const std::initializer_list<std::initializer_list<T>> list):Base(list){}
+	constexpr Matrix(size_t hash){
+		for(int i=MATRIX_HEIGHT-1;i>=0;i--){
+			for(int j=MATRIX_WIDTH-1;j>=0;j--){
+				(*this)[i][j] = (hash & 1);
+				hash >>= 1;
+			}
+		}
+	};
+		template<class T> constexpr Matrix(const std::initializer_list<std::initializer_list<T>> list):Base(list){}
 	M_TMP constexpr Matrix(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
 		for(int i=0;i<ARGS_HEIGHT;i++){
 			for(int j=0;j<ARGS_WIDTH;j++){
@@ -443,7 +458,7 @@ namespace std{
 	template<size_t MATRIX_WIDTH, size_t MATIRX_HEIGHT>
 	struct hash< Matrix<MATRIX_WIDTH,MATIRX_HEIGHT> >{
 		size_t operator()(const Matrix<MATRIX_WIDTH,MATIRX_HEIGHT>& s)const{
-			return std::hash< std::bitset<MATRIX_WIDTH*MATIRX_HEIGHT> >()(s.GetNormalize().toBitset());
+			return s.GetNormalize().to_hash();
 		}
 	};
 }

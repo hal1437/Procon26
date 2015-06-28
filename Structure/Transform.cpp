@@ -1,10 +1,6 @@
 
 #include "Transform.h"
 
-constexpr bool Transform::isEnable()const{
-	return enable;
-}
-
 std::ostream& operator<<(std::ostream& ost,const Transform& trans){
 	if(trans.isEnable() == false) ost << "disable_transform";
 	ost << std::boolalpha;

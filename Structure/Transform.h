@@ -15,7 +15,9 @@ public:
 
 public:
 
-	constexpr bool isEnable()const;
+	constexpr bool isEnable()const{
+		return enable;
+	}
 
 	friend std::ostream& operator<<(std::ostream& ost,const Transform& hand);
 
