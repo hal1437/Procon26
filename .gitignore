@@ -8,7 +8,7 @@ cmake_install.cmake
 CMakeCache.txt
 
 # remove
-/main.cpp
+/*.cpp
 *.a
 *.un~
 *.DS_Store
