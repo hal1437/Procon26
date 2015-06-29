@@ -159,18 +159,24 @@ int main(){
 #ifdef Procon
 
 int main(){
-    std::map <int ,std::map<int , int> > a;
-    std::vector< std::vector<int> > problem;
+    Matrix<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT> problem({{1,1,1},{0,0,0},{0,0,0}});
+    std::vector< Matrix<PETTERN_MATCH_MAX_WIDTH, PETTERN_MATCH_MAX_HEIGHT> > block_list;
+    solve_field block1({{1,1,1},{1,1,0},{0,0,0}}) ,
+                block2({{1,1,1},{0,0,0},{0,0,0}}) ,
+                block3({{1,1,1},{1,1,0},{0,0,0}}) ;
     
-    problem.resize(2);
-    for(int i=0;i<2;i++){
-        for(int j=0;j<2;j++){
-            problem[i].resize(2);
-            problem[i][j] = 0;
-        }
-    }
+    /*
+    block1[0][0]=1; block1[0][1]=1;
+    block2[0][0]=1;
+    block3[0][0]=1; block3[0][1]=1; block3[1][0]=1;
+     */
+     
+    block_list.push_back(block1);
+    block_list.push_back(block2);
+    block_list.push_back(block3);
     
     petternTable table = solvePettern();
+    if(isMatched(table, std::hash< solve_field >()(problem), block_list))std::cout << "It can be solved ." << std::endl;
     
     /*
     Problem prob("Problem/quest7.txt");
@@ -190,6 +196,8 @@ int main(){
     
     std::cout << std::endl;
      */
+    
+    std::cout << "end" << std::endl;
 }
 
 #endif
