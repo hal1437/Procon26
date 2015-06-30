@@ -114,9 +114,9 @@ public:
 	}
 	constexpr size_t count()const{
 		size_t size=0;
-		for(int i=0;i < MATRIX_SIZE / BYTE_SIZE;i++){
+		for(int i=0;i < ARRAY_MATRIX_SIZE;i++){
 			char s = byte[i];
-			for(int j=0;j<BYTE_SIZE;j++){
+			for(int j=0;j<ARRAY_MATRIX_WIDTH*BYTE_SIZE;j++){
 				if(s & 1)size++;
 				s >>= 1;
 			}
