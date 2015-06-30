@@ -1,6 +1,6 @@
-DeveicedData/
-*.xcodeproj
-main.cpp
+#tests
+test.cpp
+test
 
 # cmakes
 CMakeFiles
@@ -8,8 +8,9 @@ cmake_install.cmake
 CMakeCache.txt
 
 # remove
-
+/*.cpp
 *.a
 *.un~
 *.DS_Store
+
 
