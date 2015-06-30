@@ -17,13 +17,17 @@ private:
 	typedef std::vector<BlockState<MATIX_WIDHT,MATRIX_HEIGHT>> Base;
 public:
 
-    void returnTheHand(int index,Field& field){
-        for(int i=0;i<this->size()-index;i++){
-            field.ReverseProjection(this->back().trans, this->back().matrix);
-            this->pop_back();
-        }
-    }
+	void returnTheHand(int index,Field& field){
+		for(int i=0;i<this->size()-index;i++){
+			field.ReverseProjection(this->back().trans, this->back().matrix);
+			this->pop_back();
+		}
+	}
 
     Layer(){};
 	virtual ~Layer(){};
 };
+
+typedef Layer<BLOCK_WIDTH,BLOCK_HEIGHT> BlockLayer;
+typedef Layer<FIELD_WIDTH,FIELD_HEIGHT> FieldLayer;
+
