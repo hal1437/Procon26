@@ -22,34 +22,34 @@ public:
 		int y;
 		friend class SecondProxy;
 	public:
-		SecondProxy operator[](size_t index){
+		constexpr SecondProxy operator[](size_t index){
 			return SecondProxy(this,index);
 		}
-		SecondProxy operator[](size_t index)const{
+		constexpr SecondProxy operator[](size_t index)const{
 			return SecondProxy(this,index);
 		}
-		FirstProxy(      MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):ref(Ref),c_ref(Ref),y(index){}
-		FirstProxy(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):         c_ref(Ref),y(index){}
+		constexpr FirstProxy(      MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):ref(Ref),c_ref(Ref),y(index){}
+		constexpr FirstProxy(const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>*const Ref,size_t index):         c_ref(Ref),y(index){}
 	};
 	class SecondProxy{
 		FirstProxy* f_proxy;
 		const FirstProxy* c_f_proxy;
 		int x;
 	public:
-		MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator=(bool value){
+		constexpr MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& operator=(bool value){
 			f_proxy->ref->set(x,f_proxy->y,value);
 			return (*f_proxy->ref);
 		}
-		operator bool()const{
+		constexpr operator bool()const{
 			return c_f_proxy->c_ref->get(x,c_f_proxy->y);
 		}
-		SecondProxy& operator=(const SecondProxy& rhs){
+		constexpr SecondProxy& operator=(const SecondProxy& rhs){
 			f_proxy->ref->set(x,f_proxy->y,static_cast<bool>(rhs));
 			return (*this);
 		}
-		SecondProxy()=default;
-		SecondProxy(      FirstProxy* Ref,size_t index):f_proxy(Ref),c_f_proxy(Ref),x(index){}
-		SecondProxy(const FirstProxy* Ref,size_t index):             c_f_proxy(Ref),x(index){}
+		constexpr SecondProxy()=default;
+		constexpr SecondProxy(      FirstProxy* Ref,size_t index):f_proxy(Ref),c_f_proxy(Ref),x(index){}
+		constexpr SecondProxy(const FirstProxy* Ref,size_t index):             c_f_proxy(Ref),x(index){}
 	};
 
 
@@ -88,13 +88,13 @@ public:
 	static constexpr int WIDTH  = MATRIX_WIDTH;
 	static constexpr int HEIGHT = MATRIX_HEIGHT;
 
-	bool get(size_t index)const{
+	constexpr bool get(size_t index)const{
 		return byte[index / BYTE_SIZE] & 1UL << (BYTE_SIZE - (index % BYTE_SIZE) - 1);
 	}
-	bool get(size_t x,size_t y)const{
+	constexpr bool get(size_t x,size_t y)const{
 		return byte[y*ARRAY_MATRIX_WIDTH + x /BYTE_SIZE] & 1 << (BYTE_SIZE - (x % BYTE_SIZE) - 1);
 	}
-	void set(size_t index,bool value){
+	constexpr void set(size_t index,bool value){
 		bool selecting = get(index);
 		if(selecting && !value){
 			byte[index / BYTE_SIZE] -= (1UL << (BYTE_SIZE - (index % BYTE_SIZE) - 1));
@@ -103,7 +103,7 @@ public:
 			byte[index / BYTE_SIZE] |= (1UL << (BYTE_SIZE - (index % BYTE_SIZE) - 1));
 		}
 	}
-	void set(size_t x,size_t y,bool value){
+	constexpr void set(size_t x,size_t y,bool value){
 		bool selecting = get(x,y);
 		if(selecting && !value){
 			byte[y * ARRAY_MATRIX_WIDTH + (x / BYTE_SIZE)] -= (1UL << (BYTE_SIZE - (x % BYTE_SIZE) - 1));
@@ -112,7 +112,7 @@ public:
 			byte[y * ARRAY_MATRIX_WIDTH + (x / BYTE_SIZE)] |= (1UL << (BYTE_SIZE - (x % BYTE_SIZE) - 1));
 		}
 	}
-	size_t count()const{
+	constexpr size_t count()const{
 		size_t size=0;
 		for(int i=0;i < MATRIX_SIZE / BYTE_SIZE;i++){
 			char s = byte[i];
@@ -123,93 +123,147 @@ public:
 		}
 		return size;
 	}
+	/*
+	unsigned long to_ulong()const{
+		unsigned long value;
+	}*/
 
-	FirstProxy operator[](size_t index){
+	constexpr FirstProxy operator[](size_t index){
 		return FirstProxy(this,index);
 	}
-	FirstProxy operator[](size_t index)const{
+	constexpr FirstProxy operator[](size_t index)const{
 		return FirstProxy(this,index);
 	}
-	bool operator==(const current& rhs)const{
+	constexpr bool operator==(const current& rhs)const{
 		return std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
 	}
-	bool operator!=(const current& rhs)const{
+	constexpr bool operator!=(const current& rhs)const{
 		return !std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
 	}
-	bool operator<(const current rhs)const{
+	constexpr bool operator<(const current rhs)const{
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++){
 			if(this->byte[i] < rhs.byte[i])return true;
 			if(this->byte[i] > rhs.byte[i])return false;
 		}
 		return false;
 	}
-	current& operator~(){
+
+	constexpr current& operator~(){
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] = ~byte[i];
 		return (*this);
 	}
-	current operator&(const current& rhs)const{
+	constexpr current operator~()const{
+		current tmp(*this);
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)tmp.byte[i] = ~tmp.byte[i];
+		return tmp;
+	}
+	constexpr current operator&(const current& rhs)const{
 		current answer;
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] & rhs.byte[i]);
 		return answer;
 	}
-	current operator|(const current& rhs)const{
+	constexpr current operator|(const current& rhs)const{
 		current answer;
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] | rhs.byte[i]);
 		return answer;
 	}
-	current operator^(const current& rhs)const{
+	constexpr current operator^(const current& rhs)const{
 		current answer;
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i] = (this->byte[i] ^ rhs.byte[i]);
 		return answer;
 	}
-	current& operator&=(const current& rhs){
+	constexpr current& operator&=(const current& rhs){
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] &= rhs.byte[i];
 		return (*this);
 	}
-	current& operator|=(const current& rhs){
+	constexpr current& operator|=(const current& rhs){
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] |= rhs.byte[i];
 		return (*this);
 	}
-	current& operator^=(const current& rhs){
+	constexpr current& operator^=(const current& rhs){
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++)byte[i] ^= rhs.byte[i];
 		return (*this);
 	}
-	current&& operator<<(size_t value)const{
-		current answer;
-		for(int i=ARRAY_MATRIX_SIZE-value;i>0;i--){
-			std::cout << i+value << "to" << i << std::endl;
-			answer.set(i,this->get(i+value));
+	constexpr current operator<<(size_t value)const{
+		current answer(*this);
+		if(value >= BYTE_SIZE){
+			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i-value/BYTE_SIZE] = answer.byte[i];
+			for(int i = ARRAY_MATRIX_SIZE-1;i>=ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i--)answer.byte[i] = 0;
+			value %= 8;
+		}
+		if(!value)return answer;
+
+		char hi=0, lo=0;
+		char mask = (char)(0xFF << (BYTE_SIZE - value));
+		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
+			hi = (answer.byte[i + 1] & mask) << (BYTE_SIZE - value);
+			lo = (answer.byte[i + 0] << value);
+			if ( i != 0 )answer.byte[i] = (hi | lo);
+			else         answer.byte[i] = (lo);
+		}	
+		return answer;
+	}
+	constexpr current operator>>(size_t value)const{
+		current answer(*this);
+		if(value >= BYTE_SIZE){
+			for(int i = ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i >= 0 ;i--)answer.byte[i+value/BYTE_SIZE] = answer.byte[i];
+			for(int i = 0;i<value/BYTE_SIZE;i++)answer.byte[i] = 0;
+			value %= 8;
+		}
+		if(!value)return answer;
+		char hi=0, lo=0;
+		char mask = (char)(0xFF >> (BYTE_SIZE - value));
+		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
+			if(i!=0)hi = (answer.byte[i - 1] & mask) << (BYTE_SIZE - value);
+			lo = (answer.byte[i - 0] >> value);
+			if ( i != 0 )answer.byte[i] = (hi | lo);
+			else         answer.byte[i] = (lo);
 		}
 		return answer;
 	}
-	current&& operator>>(size_t value)const{
-		current answer;
-		for(int i=value;i<ARRAY_MATRIX_SIZE;i++){
-			std::cout << i-value << "to" << i << std::endl;
-			answer.set(i,get(i-value));
+	constexpr current& operator<<=(size_t value){
+		if(value >= BYTE_SIZE){
+			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)byte[i-value/BYTE_SIZE] = byte[i];
+			for(int i = ARRAY_MATRIX_SIZE-1;i>value/BYTE_SIZE;i--)byte[i] = 0;
+			value %= 8;
 		}
-		return answer;
-	}
-	current& operator<<=(size_t value){
-		for(int i=0;i<MATRIX_SIZE-value;i++)this->set(i,this->get(i+value));
-		for(int i=0;i<value;i++)set(MATRIX_SIZE-i-1,0);
+		if(!value)return (*this);
+
+		char hi=0, lo=0;
+		char mask = (char)(0xFF << (BYTE_SIZE - value));
+		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
+			hi = (byte[i + 1] & mask) << (BYTE_SIZE - value);
+			lo = (byte[i + 0] << value);
+			if ( i != 0 )byte[i] = (hi | lo);
+			else         byte[i] = (lo);
+		}	
+		
 		return (*this);
 	}
-	current& operator>>=(size_t value){
-		for(int i=MATRIX_SIZE-1;i>=value;i--)set(i,get(i-value));
-		for(int i=0;i<value;i++)set(i,0,0);
+	constexpr current& operator>>=(size_t value){
+		if(value >= BYTE_SIZE){
+			for(int i = ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i >= 0 ;i--)byte[i+value/BYTE_SIZE] = byte[i];
+			for(int i = 0;i<value/BYTE_SIZE;i++)byte[i] = 0;
+			value %= 8;
+		}
+		if(!value)return (*this);
+		char hi=0, lo=0;
+		char mask = (char)(0xFF >> (BYTE_SIZE - value));
+		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
+			if(i!=0)hi = (byte[i - 1] & mask) << (BYTE_SIZE - value);
+			lo = (byte[i - 0] >> value);
+			if ( i != 0 )byte[i] = (hi | lo);
+			else         byte[i] = (lo);
+		}
 		return (*this);
 	}
 
 
 
-	MultiBit(){
-	}
-	MultiBit(const current& origin){
-		std::copy(origin.byte,origin.byte+ARRAY_MATRIX_SIZE,byte);
+	constexpr MultiBit(){
 	}
 	template<class T>
-	MultiBit(std::initializer_list<std::initializer_list<T>> init){
+	constexpr MultiBit(std::initializer_list<std::initializer_list<T>> init){
 		int i=0,j=0;
 		for(auto& it1 : init){
 			for(auto& it2 :it1){
@@ -220,8 +274,8 @@ public:
 			i++;
 		}
 	}
-	virtual  ~MultiBit(){
-	}
+	//virtual  ~MultiBit(){
+	//}
 
 	template <size_t WIDTH,size_t HEIGHT>
 	friend std::ostream& operator<<(std::ostream& ost,const MultiBit<WIDTH,HEIGHT>& matrix);
@@ -231,9 +285,9 @@ public:
 
 template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 std::ostream& operator<<(std::ostream& ost,const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix){
-	for(int i=0;i<MATRIX_HEIGHT;i++){
-		for(int j=0;j<MATRIX_WIDTH / matrix.BYTE_SIZE;j++){
-			ost << std::bitset<8>(matrix.byte[i * MATRIX_WIDTH / matrix.BYTE_SIZE + j]);
+	for(int i=0;i < MATRIX_HEIGHT;i++){
+		for(int j=0;j < MATRIX_WIDTH;j++){
+			ost << matrix[i][j];
 		}
 		ost << "\n";
 	}

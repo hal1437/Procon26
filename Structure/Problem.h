@@ -1,13 +1,15 @@
 
 #pragma once
-#include "Matrix.hpp"
+#include "Layer.hpp"
 #include <vector>
 #include <string>
 
-class Problem{
+class Problem:protected Layer<BLOCK_WIDTH,BLOCK_HEIGHT>{
+private:
+	typedef Layer<BLOCK_WIDTH,BLOCK_HEIGHT> Base;
 protected:
 	Field field;
-	std::vector<Block> blocks;
+
 
 public:
 	
@@ -19,8 +21,8 @@ public:
 	virtual bool Inport(std::string filename);
 
 	//getter
-	Field  GetField()const;
-	Block  GetBlock(size_t index)const;
+	Field GetField()const;
+	Block GetBlock(size_t index)const;
 	size_t Count()const;
 
 	//constructor

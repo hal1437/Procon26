@@ -1,29 +1,32 @@
 
 #pragma once
 
-#include "Transform.h"
-#include "Matrix.hpp"
+#include "Layer.hpp"
 #include "Problem.h"
 #include <vector>
 #include <string>
 
-class Answer{
+class Answer:protected Layer<BLOCK_WIDTH,BLOCK_HEIGHT>{
 private:
-	const Problem& problem;
-	Field field;
-	std::vector<Transform> transes;
+	typedef Layer<BLOCK_WIDTH,BLOCK_HEIGHT> Base;
+	Field initial_field;
 
 public:
-	void SetField (Field filed);
-	void AddBlocks();
-	void AddBlocks(Transform trans);
-	void AddBlocks(Point pos,bool reverse,Constants::ANGLE angle);
+	void SetProblem(const Problem& prob);
+	void SetField (const Field& field);
+	void SetBlock(size_t index,const Block& block);
+	void SetTransform(size_t index,const Transform& trans);
+	Field&     GetField();
+	Block&     GetBlock(size_t index);
+	Transform& GetTransform(size_t index);
+	Field      GetProjectedField()const;
+
 
 	bool Export(std::string filename)const;
-	Field GetField()const;
 
-	Answer(const Problem& prob):problem(prob){};
-	~Answer(){};
+	Answer();
+	Answer(const Problem& prob);
+	~Answer();
 
 	friend std::ostream& operator<<(std::ostream& ost,const Answer& answer);
 };
