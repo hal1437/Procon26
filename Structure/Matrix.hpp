@@ -317,7 +317,6 @@ constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>
 			}
 		}
 	}
-	//std::cout << origin << std::endl;
 	(*this) = most.GetMove(origin);
 	return (*this);
 }
