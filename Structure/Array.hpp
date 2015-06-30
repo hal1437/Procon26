@@ -25,7 +25,13 @@ struct Array{
 
     constexpr reference at(size_t _n) const;
 
-
+    constexpr void fill(value_type _n){
+        for(value_type& elem : elems){
+            elem = _n;
+        }
+    }
+    
+    constexpr Array(){}
 };
 
 template <class _Tp, size_t _Size>
