@@ -136,8 +136,7 @@ CONSTEXPR_RIYA void PetternSolver::solveSubproblem(Anct::Array<bool,hash_size> i
             }
         }
     }
-    
-    std::cout << polyomino_queue[0] << std::endl;
+
     if(polyomino_queue[0].count() == 0)return;
     
     while(polyomino_queue[0].count() != 0){
@@ -153,17 +152,19 @@ CONSTEXPR_RIYA void PetternSolver::solveSubproblem(Anct::Array<bool,hash_size> i
         std::cout << polyomino << std::endl;
         std::cout << subproblem << std::endl;
         std::cout << "-----" << std::endl;
-        
+        std::cout << "hash" << std::endl;
         
         solveSubproblem(isCalcedTable, subproblem | polyomino , table );
-        table[problem_hash][Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(polyomino)] = Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(subproblem | polyomino);
+        std::cout << Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(polyomino) << ',' << Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(subproblem | polyomino) << std::endl;
+        table[problem_hash][Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(polyomino)]
+                            = Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(subproblem | polyomino);
         
         reachable = getReachable(source, polyomino);
         auto poly_list = getPolyominoList(polyomino, reachable);
         for(auto _polyomino : poly_list){
             if(_polyomino.count() == 0)break;
-            itr++;
             polyomino_queue[itr]= _polyomino;
+            itr++;
         }
     }
 }
@@ -191,6 +192,7 @@ CONSTEXPR_RIYA Anct::Array< Point,4 > PetternSolver::getReachable(const solve_fi
     solve_field reachable_matrix = polyomino.GetReachable();
     reachable_matrix = ( reachable_matrix^subproblem ) & reachable_matrix;
     Anct::Array< Point,4 > reachable;
+    reachable.fill(Point(-1,-1));
     int count=0;
     for(int i=0;i<PETTERN_MATCH_MAX_HEIGHT;i++){
         for(int j=0;j<PETTERN_MATCH_MAX_WIDTH;j++){
