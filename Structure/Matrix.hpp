@@ -272,7 +272,8 @@ constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>
 }
 MEMBER_TEMPLATE
 constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Normalize(){
-	std::set<current> sample;
+	//std::set<current> sample;
+	current sample[8];
 	//rotate reverse
 	for(int i=0;i<4;i++){
 		for(int j=0;j<2;j++){
@@ -292,27 +293,32 @@ constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>
 					}
 				}
 			}
-			sample.insert(tmp.Move(origin));
+			sample[j*4 + i] = tmp.Move(origin);
 		}
 	}
+	current& most = sample[0];
+	for(int i=0;i<8;i++){
+		if(most < sample[i])most = sample[i];
+	}
+
 	//move2
 	Point origin = Point(MATRIX_WIDTH,MATRIX_HEIGHT);
 	for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
 		for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
-			if((*sample.begin())[i][j]){
+			if(most[i][j]){
 				origin.y = -i;
 			}
 		}
 	}
 	for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
 		for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
-			if((*sample.begin())[j][i]){
+			if(most[j][i]){
 				origin.x = -i;
 			}
 		}
 	}
 	//std::cout << origin << std::endl;
-	(*this) = sample.begin()->GetMove(origin);
+	(*this) = most.GetMove(origin);
 	return (*this);
 }
 
