@@ -27,3 +27,7 @@ public:
     Layer(){};
 	virtual ~Layer(){};
 };
+
+typedef Layer<BLOCK_WIDTH,BLOCK_HEIGHT> BlockLayer;
+typedef Layer<FIELD_WIDTH,FIELD_HEIGHT> FieldLayer;
+

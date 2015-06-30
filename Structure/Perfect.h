@@ -1,9 +1,9 @@
 
 #pragma once
 
-template<class ArgType...>
+template<class... ArgType>
 class Perfect{
 public:
-	virtual bool Execution(const ArgType...& arg)=0;
+	virtual bool Execution(const ArgType&...)=0;
 };
 
