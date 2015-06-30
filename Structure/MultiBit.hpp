@@ -224,7 +224,7 @@ public:
 	constexpr current& operator<<=(size_t value){
 		if(value >= BYTE_SIZE){
 			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)byte[i-value/BYTE_SIZE] = byte[i];
-			for(int i = ARRAY_MATRIX_SIZE-1;i>value/BYTE_SIZE;i--)byte[i] = 0;
+			for(int i = ARRAY_MATRIX_SIZE-1;i>=(value/BYTE_SIZE);i--)byte[i] = 0;
 			value %= 8;
 		}
 		if(!value)return (*this);
