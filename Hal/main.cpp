@@ -10,28 +10,41 @@
 #include "Solver/AStar.h"
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
+#include "Solver/PerfectBackTrack.h"
+#include "Perfect/BlockSize.h"
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest7.txt");
+	Problem prob("../Problem/quest10.txt");
 	std::ofstream ofs("Answer.txt");
+	
+	PerfectBackTrack p(prob);
+	
+	p.AddPerfect(new BlockSize());
+	p.Solve();
+
+	/*
+	BlockSize bs;
+	BlockLayer l;
+	l.resize(prob.Count());
+	for(int i=0;i<prob.Count();i++)l[i].matrix = prob.GetBlock(i);
+	bs.Execution(prob.GetField(),l);
+	*/
+	/*
 	Solver* solver;
 	WeightComposit* density;
-	auto f = Field(prob.GetBlock(0).GetReverse(false).Rotate(Constants::ANGLE0)).Move(Point(0,0));
-	//auto t = std::hash<Field>()(f);
-
 
 	density = new WeightComposit();
 	
 	density->AddHeuristic(new DensityAround(),1.0f);
 	density->AddHeuristic(new Cavity(),-16.0f);
-	solver = new DLS(prob,density,2);
+	solver = new DLS(prob,density,1);
 
 	//prob.GetField().Projection(prob.GetBlock(0),Transform(Point(0,9),Constants::ANGLE180,false));
 	Answer ans = solver->Solve();
 	ofs << ans << std::endl;
 	//std::cout  << ans << std::endl;
-
+	*/
 	std::cout << "-----End of program-----" << std::endl;
 	return 0;
 }
