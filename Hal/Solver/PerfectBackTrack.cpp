@@ -37,18 +37,26 @@ std::vector<Field> PerfectBackTrack::DivisionSpaces(const Field& field)const{
 		}
 	}
 
-	for(Field f :answer){
-		std::cout << f << std::endl;
-	}
+	for(Field f :answer)std::cout << f << std::endl;
+	
 
 	return answer;
 }
 
 Answer PerfectBackTrack::Solve(){
+	Answer ans;
 	BlockLayer blay;
+	
 	blay.resize(problem.Count());
 	for(int j=0;j < this->problem.Count();j++)blay[j].matrix = problem.GetBlock(j);
-	std::cout << perfect[0]->Execution(problem.GetField(),blay) << std::endl;
+	std::cout << std::boolalpha;
+	std::cout << "  BlockSize:" << perfect[0]->Execution(problem.GetField(),blay) << std::endl;
+	std::cout << "DPBlockSize:" << perfect[1]->Execution(problem.GetField(),blay) << std::endl;
+	std::cout << "ParityCheck:" << perfect[2]->Execution(problem.GetField(),blay) << std::endl;
+	
+	std::cout << std::noboolalpha;
+	
+	return ans;
 }
 
 PerfectBackTrack::PerfectBackTrack(Problem prob):

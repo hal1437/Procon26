@@ -11,6 +11,8 @@ add_executable(Procon26-Hal
   Heuristics/Density.cpp
   Heuristics/Score.cpp
   Perfect/BlockSize.cpp
+  Perfect/ParityCheck.cpp
+  Perfect/DPBlockSize.cpp
   ../Structure/Transform.cpp
   ../Structure/Point.cpp
   ../Structure/Heuristic.cpp

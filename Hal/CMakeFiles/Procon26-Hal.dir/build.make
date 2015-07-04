@@ -279,9 +279,55 @@ CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o.provides: CMakeFiles/Procon2
 
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o
 
+CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
+CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: Perfect/ParityCheck.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_11)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp
+
+CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.i
+
+CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.s
+
+CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.requires:
+.PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.requires
+
+CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.provides: CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.provides.build
+.PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.provides
+
+CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o
+
+CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
+CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o: Perfect/DPBlockSize.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_12)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp
+
+CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.i
+
+CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.s
+
+CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.requires:
+.PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.requires
+
+CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.provides: CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.provides.build
+.PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.provides
+
+CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o
+
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_13)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
 
@@ -304,7 +350,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_12)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_14)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Point.cpp
 
@@ -327,7 +373,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_13)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_15)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp
 
@@ -350,7 +396,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_14)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_16)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Problem.cpp
 
@@ -373,7 +419,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cp
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_15)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_17)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 
@@ -406,6 +452,8 @@ Procon26__Hal_OBJECTS = \
 "CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o" \
+"CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o" \
+"CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o" \
@@ -425,6 +473,8 @@ Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o
+Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o
+Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o
@@ -449,6 +499,8 @@ CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Heuristics/Wei
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o.requires
+CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.requires
+CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o.requires

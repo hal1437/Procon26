@@ -66,6 +66,24 @@ iostream
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
 
+/Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp
+DPBlockSize.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.h
+iostream
+-
+
+/Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+
+/Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp
+ParityCheck.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.h
+
+/Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+
 /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
@@ -161,8 +179,12 @@ Solver/BestFirst.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.h
 Solver/PerfectBackTrack.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.h
+Perfect/DPBlockSize.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.h
 Perfect/BlockSize.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.h
+Perfect/ParityCheck.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.h
 
 /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 Answer.h

@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o"
+  "CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o"
+  "CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o"

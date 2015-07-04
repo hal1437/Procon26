@@ -11,16 +11,20 @@
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
 #include "Solver/PerfectBackTrack.h"
+#include "Perfect/DPBlockSize.h"
 #include "Perfect/BlockSize.h"
+#include "Perfect/ParityCheck.h"
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest10.txt");
+	Problem prob("../Problem/quest9.txt");
 	std::ofstream ofs("Answer.txt");
 	
 	PerfectBackTrack p(prob);
 	
 	p.AddPerfect(new BlockSize());
+	p.AddPerfect(new DPBlockSize());
+	p.AddPerfect(new ParityCheck());
 	p.Solve();
 
 	/*

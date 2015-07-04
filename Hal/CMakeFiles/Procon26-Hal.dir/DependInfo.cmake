@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o"
+  "/Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o"
+  "/Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Solver/DLS.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o"

@@ -258,6 +258,54 @@ Perfect/BlockSize.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.s
 .PHONY : Perfect/BlockSize.cpp.s
 
+Perfect/DPBlockSize.o: Perfect/DPBlockSize.cpp.o
+.PHONY : Perfect/DPBlockSize.o
+
+# target to build an object file
+Perfect/DPBlockSize.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o
+.PHONY : Perfect/DPBlockSize.cpp.o
+
+Perfect/DPBlockSize.i: Perfect/DPBlockSize.cpp.i
+.PHONY : Perfect/DPBlockSize.i
+
+# target to preprocess a source file
+Perfect/DPBlockSize.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.i
+.PHONY : Perfect/DPBlockSize.cpp.i
+
+Perfect/DPBlockSize.s: Perfect/DPBlockSize.cpp.s
+.PHONY : Perfect/DPBlockSize.s
+
+# target to generate assembly for a file
+Perfect/DPBlockSize.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.s
+.PHONY : Perfect/DPBlockSize.cpp.s
+
+Perfect/ParityCheck.o: Perfect/ParityCheck.cpp.o
+.PHONY : Perfect/ParityCheck.o
+
+# target to build an object file
+Perfect/ParityCheck.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o
+.PHONY : Perfect/ParityCheck.cpp.o
+
+Perfect/ParityCheck.i: Perfect/ParityCheck.cpp.i
+.PHONY : Perfect/ParityCheck.i
+
+# target to preprocess a source file
+Perfect/ParityCheck.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.i
+.PHONY : Perfect/ParityCheck.cpp.i
+
+Perfect/ParityCheck.s: Perfect/ParityCheck.cpp.s
+.PHONY : Perfect/ParityCheck.s
+
+# target to generate assembly for a file
+Perfect/ParityCheck.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.s
+.PHONY : Perfect/ParityCheck.cpp.s
+
 Solver/BestFirst.o: Solver/BestFirst.cpp.o
 .PHONY : Solver/BestFirst.o
 
@@ -501,6 +549,12 @@ help:
 	@echo "... Perfect/BlockSize.o"
 	@echo "... Perfect/BlockSize.i"
 	@echo "... Perfect/BlockSize.s"
+	@echo "... Perfect/DPBlockSize.o"
+	@echo "... Perfect/DPBlockSize.i"
+	@echo "... Perfect/DPBlockSize.s"
+	@echo "... Perfect/ParityCheck.o"
+	@echo "... Perfect/ParityCheck.i"
+	@echo "... Perfect/ParityCheck.s"
 	@echo "... Solver/BestFirst.o"
 	@echo "... Solver/BestFirst.i"
 	@echo "... Solver/BestFirst.s"
