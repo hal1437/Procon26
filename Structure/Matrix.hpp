@@ -114,7 +114,7 @@ public:
 	M_TMP constexpr Matrix(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
 		for(int i=0;i<ARGS_HEIGHT;i++){
 			for(int j=0;j<ARGS_WIDTH;j++){
-				//this->set(j,i,matrix.get(j,i));
+				this->set(j,i,matrix.get(j,i));
 			}
 		}
 	}
