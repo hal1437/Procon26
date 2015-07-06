@@ -65,7 +65,7 @@ public:
 
 	//util
 	M_TMP std::vector<struct Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask = current())const;
-	M_TMP constexpr bool ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans)const;
+	M_TMP constexpr bool ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans,const current& Mask = current())const;
 	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix                              )const;
 	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Point& pos             )const;
 	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& hand )const;
@@ -101,7 +101,8 @@ public:
 	}
 
 	constexpr Matrix(){};
-	constexpr Matrix(const Base&   base):Base(base){};
+	constexpr Matrix(const Base&  base):Base(base){};
+	constexpr Matrix(const Base&& base):Base(base){}
 	constexpr Matrix(size_t hash){
 		for(int i=MATRIX_HEIGHT-1;i>=0;i--){
 			for(int j=MATRIX_WIDTH-1;j>=0;j--){
@@ -110,7 +111,7 @@ public:
 			}
 		}
 	};
-		template<class T> constexpr Matrix(const std::initializer_list<std::initializer_list<T>> list):Base(list){}
+	template<class T> constexpr Matrix(const std::initializer_list<std::initializer_list<T>> list):Base(list){}
 	M_TMP constexpr Matrix(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
 		for(int i=0;i<ARGS_HEIGHT;i++){
 			for(int j=0;j<ARGS_WIDTH;j++){
@@ -169,7 +170,7 @@ constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Cross(const Matrix<ARGS_WIDTH
 }
 
 MEMBER_TEMPLATE_TEMPLATE
-constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans)const{
+constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans,const current& Mask)const{
 	if(!trans.isEnable())return false;
 	Matrix<ARGS_WIDTH,ARGS_HEIGHT>&& mat = matrix.GetTransform(Transform::Transform(Point(0,0),trans.angle,trans.reverse));
 	bool adjacent = false;
@@ -178,7 +179,7 @@ constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<A
 		for(int j = 0;j < ARGS_WIDTH;j++){
 			if(mat.get(j,i)){
 				if(trans.pos.y+i < 0 || trans.pos.x+j < 0 || trans.pos.y+i >= MATRIX_HEIGHT || trans.pos.x+j >= MATRIX_WIDTH)return false;
-				if((*this)[trans.pos.y + i][trans.pos.x + j])return false;
+				if( ((*this) | Mask)[trans.pos.y + i][trans.pos.x + j])return false;
 				
 				CLOCKWISE_FOR(clockwise){
 					Point seach_point = trans.pos + Point(j,i) + clockwise;
@@ -216,7 +217,7 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 			for(int r=0;r<2;r++){
 				for(int k=0;k<4;k++){
 					Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
-					if((field | Mask).ProjectionTest(sample[r][k],move_trans)){
+					if(field.ProjectionTest(sample[r][k],move_trans,Mask)){
 						struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
 						map.insert(std::make_pair(current(field).Projection(sample[r][k],move_trans),t));
 					}
