@@ -101,7 +101,8 @@ public:
 	}
 
 	constexpr Matrix(){};
-	constexpr Matrix(const Base&   base):Base(base){};
+	constexpr Matrix(const Base&  base):Base(base){};
+	constexpr Matrix(const Base&& base):Base(base){}
 	constexpr Matrix(size_t hash){
 		for(int i=MATRIX_HEIGHT-1;i>=0;i--){
 			for(int j=MATRIX_WIDTH-1;j>=0;j--){
@@ -110,7 +111,7 @@ public:
 			}
 		}
 	};
-		template<class T> constexpr Matrix(const std::initializer_list<std::initializer_list<T>> list):Base(list){}
+	template<class T> constexpr Matrix(const std::initializer_list<std::initializer_list<T>> list):Base(list){}
 	M_TMP constexpr Matrix(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix){
 		for(int i=0;i<ARGS_HEIGHT;i++){
 			for(int j=0;j<ARGS_WIDTH;j++){
@@ -216,7 +217,7 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 			for(int r=0;r<2;r++){
 				for(int k=0;k<4;k++){
 					Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
-					if((field | Mask).ProjectionTest(sample[r][k],move_trans)){
+					if(current(field | Mask).ProjectionTest(sample[r][k],move_trans)){
 						struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
 						map.insert(std::make_pair(current(field).Projection(sample[r][k],move_trans),t));
 					}
