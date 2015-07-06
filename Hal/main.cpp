@@ -14,19 +14,28 @@
 #include "Perfect/DPBlockSize.h"
 #include "Perfect/BlockSize.h"
 #include "Perfect/ParityCheck.h"
+#include "Perfect/PerfectComposit.h"
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest9.txt");
+	Problem prob("../Problem/quest6.txt");
 	std::ofstream ofs("Answer.txt");
 	
 	PerfectBackTrack p(prob);
-	
-	p.AddPerfect(new BlockSize());
-	p.AddPerfect(new DPBlockSize());
-	p.AddPerfect(new ParityCheck());
+	PerfectComposit* p_h = new PerfectComposit();
+	WeightComposit * h   = new WeightComposit();
+
+	h->AddHeuristic(new DensityAround(),1.0f);
+	h->AddHeuristic(new Cavity(),-15.0f);
+	//p_h->AddHeuristic(new BlockSize());
+	//p_h->AddHeuristic(new DPBlockSize());
+	p_h->AddHeuristic(new ParityCheck());
+	p.SetPerfect(p_h);
+	p.SetHeuristic(h);
 	p.Solve();
 
+	delete p_h;
+	delete h;
 	/*
 	BlockSize bs;
 	BlockLayer l;

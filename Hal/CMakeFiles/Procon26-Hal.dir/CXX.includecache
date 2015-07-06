@@ -84,6 +84,16 @@ ParityCheck.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
 
+/Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp
+PerfectComposit.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.h
+
+/Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+vector
+-
+
 /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
@@ -126,6 +136,8 @@ PerfectBackTrack.h
 ../../Utility/CLOCKWISE_FOR.hpp
 /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
 queue
+-
+random
 -
 
 /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.h
@@ -185,6 +197,8 @@ Perfect/BlockSize.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.h
 Perfect/ParityCheck.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.h
+Perfect/PerfectComposit.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.h
 
 /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 Answer.h

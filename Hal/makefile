@@ -306,6 +306,30 @@ Perfect/ParityCheck.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.s
 .PHONY : Perfect/ParityCheck.cpp.s
 
+Perfect/PerfectComposit.o: Perfect/PerfectComposit.cpp.o
+.PHONY : Perfect/PerfectComposit.o
+
+# target to build an object file
+Perfect/PerfectComposit.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o
+.PHONY : Perfect/PerfectComposit.cpp.o
+
+Perfect/PerfectComposit.i: Perfect/PerfectComposit.cpp.i
+.PHONY : Perfect/PerfectComposit.i
+
+# target to preprocess a source file
+Perfect/PerfectComposit.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.i
+.PHONY : Perfect/PerfectComposit.cpp.i
+
+Perfect/PerfectComposit.s: Perfect/PerfectComposit.cpp.s
+.PHONY : Perfect/PerfectComposit.s
+
+# target to generate assembly for a file
+Perfect/PerfectComposit.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.s
+.PHONY : Perfect/PerfectComposit.cpp.s
+
 Solver/BestFirst.o: Solver/BestFirst.cpp.o
 .PHONY : Solver/BestFirst.o
 
@@ -555,6 +579,9 @@ help:
 	@echo "... Perfect/ParityCheck.o"
 	@echo "... Perfect/ParityCheck.i"
 	@echo "... Perfect/ParityCheck.s"
+	@echo "... Perfect/PerfectComposit.o"
+	@echo "... Perfect/PerfectComposit.i"
+	@echo "... Perfect/PerfectComposit.s"
 	@echo "... Solver/BestFirst.o"
 	@echo "... Solver/BestFirst.i"
 	@echo "... Solver/BestFirst.s"

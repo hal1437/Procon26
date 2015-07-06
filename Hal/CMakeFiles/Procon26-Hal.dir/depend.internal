@@ -111,6 +111,22 @@ CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o
  /Users/hal1437/Programs/Procon26/Structure/Transform.h
  /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
  /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o
+ /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp
+ /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.h
+ /Users/hal1437/Programs/Procon26/Hal/Structures.h
+ /Users/hal1437/Programs/Procon26/Structure/Answer.h
+ /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+ /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
+ /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+ /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+ /Users/hal1437/Programs/Procon26/Structure/Perfect.h
+ /Users/hal1437/Programs/Procon26/Structure/Point.h
+ /Users/hal1437/Programs/Procon26/Structure/Problem.h
+ /Users/hal1437/Programs/Procon26/Structure/Solver.h
+ /Users/hal1437/Programs/Procon26/Structure/Transform.h
+ /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+ /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o
  /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp
  /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.h
@@ -199,6 +215,7 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o
  /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.h
  /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.h
  /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.h
+ /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.h
  /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
  /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.h
  /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.h

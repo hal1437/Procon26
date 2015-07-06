@@ -13,6 +13,7 @@ add_executable(Procon26-Hal
   Perfect/BlockSize.cpp
   Perfect/ParityCheck.cpp
   Perfect/DPBlockSize.cpp
+  Perfect/PerfectComposit.cpp
   ../Structure/Transform.cpp
   ../Structure/Point.cpp
   ../Structure/Heuristic.cpp

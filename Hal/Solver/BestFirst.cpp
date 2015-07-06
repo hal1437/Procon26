@@ -20,11 +20,9 @@ Answer BestFirst::Solve(){
 	const int count = problem.Count();
 	std::random_device rd;
 
-
 	std::cout << field << std::endl;
 	//seach best first block
 	ans.SetField(field);
-
 
 	//random transform
 	
