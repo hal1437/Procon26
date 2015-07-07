@@ -258,6 +258,30 @@ Perfect/BlockSize.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.s
 .PHONY : Perfect/BlockSize.cpp.s
 
+Perfect/CavityBlocks.o: Perfect/CavityBlocks.cpp.o
+.PHONY : Perfect/CavityBlocks.o
+
+# target to build an object file
+Perfect/CavityBlocks.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o
+.PHONY : Perfect/CavityBlocks.cpp.o
+
+Perfect/CavityBlocks.i: Perfect/CavityBlocks.cpp.i
+.PHONY : Perfect/CavityBlocks.i
+
+# target to preprocess a source file
+Perfect/CavityBlocks.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.i
+.PHONY : Perfect/CavityBlocks.cpp.i
+
+Perfect/CavityBlocks.s: Perfect/CavityBlocks.cpp.s
+.PHONY : Perfect/CavityBlocks.s
+
+# target to generate assembly for a file
+Perfect/CavityBlocks.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.s
+.PHONY : Perfect/CavityBlocks.cpp.s
+
 Perfect/DPBlockSize.o: Perfect/DPBlockSize.cpp.o
 .PHONY : Perfect/DPBlockSize.o
 
@@ -573,6 +597,9 @@ help:
 	@echo "... Perfect/BlockSize.o"
 	@echo "... Perfect/BlockSize.i"
 	@echo "... Perfect/BlockSize.s"
+	@echo "... Perfect/CavityBlocks.o"
+	@echo "... Perfect/CavityBlocks.i"
+	@echo "... Perfect/CavityBlocks.s"
 	@echo "... Perfect/DPBlockSize.o"
 	@echo "... Perfect/DPBlockSize.i"
 	@echo "... Perfect/DPBlockSize.s"

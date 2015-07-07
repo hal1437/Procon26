@@ -46,31 +46,29 @@ std::vector<Field> PerfectBackTrack::DivisionSpaces(const Field& field)const{
 
 PerfectBackTrack::Iterative_type PerfectBackTrack::Iterative(const Field& field,const Field& block_field,BlockLayer layer)const{
 	//反復
-	//std::cout << block << std::endl;
+	std::cout << (~(field | block_field)).count() << std::endl;
 	std::cout << (field | block_field) << std::endl;
 
 	//終了
-	if(field.count()==0){
-		std::cout << "esc" << std::endl;
+	if((~(field | block_field)).count()==0){
+		while(1);
 		return Iterative_type(std::vector<Transform>(),true);	//無効手　：　終了
 	}
 	if(layer.empty()){
-		std::cout << "esc" << std::endl;
 		return Iterative_type(std::vector<Transform>(),false);	//無効手　：　継続
 	}
 	//抽出
 	Block block = layer.front().matrix;
-	layer.erase(layer.begin());
 	std::vector<Transform> hands = block_field.GetListLayPossible(block,field);
 	
 
 	//不適解削除
 	hands.erase(std::remove_if(hands.begin(),hands.end(),[&](const Transform& trans){
 		//非完全問題
-		if(!perfect->Execution(field,layer))return true;
-		return ((field & block.GetTransform<FIELD_WIDTH,FIELD_HEIGHT>(trans)).count()>0);
+		return !perfect->Execution(field | block_field,layer);
 	}),hands.end());
-	std::cout << hands.size() << std::endl;
+	layer.erase(layer.begin());
+	//std::cout << hands.size() << std::endl;
 
 
 	//パス追加

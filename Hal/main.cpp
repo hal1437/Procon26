@@ -15,6 +15,8 @@
 #include "Perfect/BlockSize.h"
 #include "Perfect/ParityCheck.h"
 #include "Perfect/PerfectComposit.h"
+#include "Perfect/CavityBlocks.h"
+
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
@@ -27,9 +29,10 @@ int main(){
 
 	h->AddHeuristic(new DensityAround(),1.0f);
 	h->AddHeuristic(new Cavity(),-15.0f);
-	//p_h->AddHeuristic(new BlockSize());
+	p_h->AddHeuristic(new BlockSize());
 	//p_h->AddHeuristic(new DPBlockSize());
-	p_h->AddHeuristic(new ParityCheck());
+	p_h->AddHeuristic(new CavityBlocks());
+	//p_h->AddHeuristic(new ParityCheck());
 	p.SetPerfect(p_h);
 	p.SetHeuristic(h);
 	p.Solve();

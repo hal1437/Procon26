@@ -66,6 +66,18 @@ iostream
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
 
+/Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.cpp
+CavityBlocks.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.h
+iostream
+-
+set
+-
+
+/Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+
 /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp
 DPBlockSize.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.h
@@ -199,6 +211,8 @@ Perfect/ParityCheck.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.h
 Perfect/PerfectComposit.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.h
+Perfect/CavityBlocks.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.h
 
 /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 Answer.h

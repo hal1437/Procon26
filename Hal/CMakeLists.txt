@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-add_definitions("-O0 -std=c++1y")
+add_definitions("-O3 -std=c++1y")
 add_executable(Procon26-Hal
   main.cpp
   Solver/BestFirst.cpp
@@ -13,6 +13,7 @@ add_executable(Procon26-Hal
   Perfect/BlockSize.cpp
   Perfect/ParityCheck.cpp
   Perfect/DPBlockSize.cpp
+  Perfect/CavityBlocks.cpp
   Perfect/PerfectComposit.cpp
   ../Structure/Transform.cpp
   ../Structure/Point.cpp
