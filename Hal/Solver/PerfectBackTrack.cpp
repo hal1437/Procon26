@@ -17,28 +17,31 @@ std::vector<Field> PerfectBackTrack::DivisionSpaces(const Field& field)const{
 
 	for(int i=0;i<FIELD_HEIGHT;i++){
 		for(int j=0;j<FIELD_WIDTH;j++){
-			if(c_field[i][j]){
+			if(c_field[i][j]==0){
 				Field tmp_field;
 				tmp_field = ~tmp_field;
+				tmp_field[i][j] = 0;
 				std::queue<Point> queue;
-
-				queue.push(Point(i,j));
+				queue.push(Point(j,i));
 				while(queue.size() != 0){
 					CLOCKWISE_FOR(clock){
-						Point s_pos = Point(i,j) + clock;
+						Point s_pos = queue.front() + clock;
 						if(s_pos.x >= 0 && s_pos.x < FIELD_WIDTH &&
-						   s_pos.y >= 0 && s_pos.y < FIELD_HEIGHT){
-							c_field[s_pos.y][s_pos.x] = 1;
+						   s_pos.y >= 0 && s_pos.y < FIELD_HEIGHT &&
+						   c_field[s_pos.y][s_pos.x]==0){
+							c_field  [s_pos.y][s_pos.x] = 1;
+							tmp_field[s_pos.y][s_pos.x] = 0;
 							queue.push(s_pos);
 						}
 					} 
+					queue.pop();
 				}
 				answer.push_back(tmp_field);
 			}
 		}
 	}
 
-	for(Field f :answer)std::cout << f << std::endl;
+	//for(Field f :answer)std::cout << f << std::endl;
 	
 
 	return answer;
@@ -62,10 +65,18 @@ PerfectBackTrack::Iterative_type PerfectBackTrack::Iterative(const Field& field,
 	std::vector<Transform> hands = block_field.GetListLayPossible(block,field);
 	
 
+	std::vector<Field> div = DivisionSpaces(field | block_field);
 	//不適解削除
 	hands.erase(std::remove_if(hands.begin(),hands.end(),[&](const Transform& trans){
 		//非完全問題
-		return !perfect->Execution(field | block_field,layer);
+		bool f=false;
+		for(const Field& div_field : div){
+			if(!perfect->Execution(div_field,layer)){
+				f=true;
+				break;
+			}
+		}
+		return f;
 	}),hands.end());
 	layer.erase(layer.begin());
 	//std::cout << hands.size() << std::endl;

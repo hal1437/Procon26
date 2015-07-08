@@ -29,8 +29,8 @@ int main(){
 
 	h->AddHeuristic(new DensityAround(),1.0f);
 	h->AddHeuristic(new Cavity(),-15.0f);
-	p_h->AddHeuristic(new BlockSize());
-	//p_h->AddHeuristic(new DPBlockSize());
+	//p_h->AddHeuristic(new BlockSize());
+	p_h->AddHeuristic(new DPBlockSize());
 	p_h->AddHeuristic(new CavityBlocks());
 	//p_h->AddHeuristic(new ParityCheck());
 	p.SetPerfect(p_h);
@@ -39,28 +39,8 @@ int main(){
 
 	delete p_h;
 	delete h;
-	/*
-	BlockSize bs;
-	BlockLayer l;
-	l.resize(prob.Count());
-	for(int i=0;i<prob.Count();i++)l[i].matrix = prob.GetBlock(i);
-	bs.Execution(prob.GetField(),l);
-	*/
-	/*
-	Solver* solver;
-	WeightComposit* density;
 
-	density = new WeightComposit();
 	
-	density->AddHeuristic(new DensityAround(),1.0f);
-	density->AddHeuristic(new Cavity(),-16.0f);
-	solver = new DLS(prob,density,1);
-
-	//prob.GetField().Projection(prob.GetBlock(0),Transform(Point(0,9),Constants::ANGLE180,false));
-	Answer ans = solver->Solve();
-	ofs << ans << std::endl;
-	//std::cout  << ans << std::endl;
-	*/
 	std::cout << "-----End of program-----" << std::endl;
 	return 0;
 }

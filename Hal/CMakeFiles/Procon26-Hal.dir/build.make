@@ -53,15 +53,15 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: main.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/main.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/main.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/main.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/main.cpp
 
 CMakeFiles/Procon26-Hal.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/main.cpp > CMakeFiles/Procon26-Hal.dir/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/main.cpp > CMakeFiles/Procon26-Hal.dir/main.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/main.cpp -o CMakeFiles/Procon26-Hal.dir/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/main.cpp -o CMakeFiles/Procon26-Hal.dir/main.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/main.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/main.cpp.o.requires
@@ -76,15 +76,15 @@ CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o: CMakeFiles/Procon26-Hal.dir/
 CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o: Solver/BestFirst.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp
 
 CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp > CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp > CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp -o CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp -o CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o.requires
@@ -99,15 +99,15 @@ CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.
 CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o: Solver/DLS.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.cpp
 
 CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.cpp > CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.cpp > CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.cpp -o CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.cpp -o CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o.requires
@@ -122,15 +122,15 @@ CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o: CMakeFiles/Procon26-H
 CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o: Solver/PerfectBackTrack.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.cpp
 
 CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.cpp > CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.cpp > CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.cpp -o CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.cpp -o CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o.requires
@@ -145,15 +145,15 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o: CMakeFiles/Procon26-Hal.dir
 CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o: Heuristics/Cavity.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.cpp
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o.requires
@@ -168,15 +168,15 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o: CMakeFiles/Procon26-
 CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o: Heuristics/DensityAround.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.cpp
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o.requires
@@ -191,15 +191,15 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o: CMakeFiles/Procon26
 CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o: Heuristics/WeightComposit.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.cpp
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o.requires
@@ -214,15 +214,15 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o: CMakeFiles/Procon26-Hal.di
 CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o: Heuristics/Density.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.cpp
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o.requires
@@ -237,15 +237,15 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o: CMakeFiles/Procon26-Hal.dir/
 CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o: Heuristics/Score.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp > CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp -o CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o.requires
@@ -260,15 +260,15 @@ CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o: CMakeFiles/Procon26-Hal.dir
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o: Perfect/BlockSize.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp
 
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o.requires
@@ -283,15 +283,15 @@ CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: CMakeFiles/Procon26-Hal.d
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: Perfect/ParityCheck.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp
 
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.requires
@@ -306,15 +306,15 @@ CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o: CMakeFiles/Procon26-Hal.d
 CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o: Perfect/DPBlockSize.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_12)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp
 
 CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.requires
@@ -329,15 +329,15 @@ CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o: CMakeFiles/Procon26-Hal.
 CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o: Perfect/CavityBlocks.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_13)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.cpp
 
 CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o.requires
@@ -352,15 +352,15 @@ CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o: CMakeFiles/Procon26-H
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o: Perfect/PerfectComposit.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_14)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp
 
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o.requires
@@ -375,15 +375,15 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_15)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Transform.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Transform.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Transform.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Transform.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o.requires
@@ -398,15 +398,15 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_16)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Point.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Point.cpp
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Point.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Point.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Point.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Point.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o.requires
@@ -421,15 +421,15 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_17)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o.requires
@@ -444,15 +444,15 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cp
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_18)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Problem.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Problem.cpp
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Problem.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Problem.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Problem.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Problem.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o.requires
@@ -467,15 +467,15 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_19)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Answer.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Structure/Answer.cpp > CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.i
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Answer.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Structure/Answer.cpp -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.s
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o.requires:
 .PHONY : CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o.requires

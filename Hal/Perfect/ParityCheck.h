@@ -1,14 +1,21 @@
 
 #pragma once
 #include "../Structures.h"
+#include <set>
 
 class ParityCheck : public Perfect<Field,BlockLayer>{
-private:
+public:
 	typedef Perfect<Field,BlockLayer> h_type;
 	struct Parity{
 		int odd;	//奇数
 		int even;	//偶数
+
+		Parity operator+(const Parity& rhs)const;
+		bool   operator<(const Parity& rhs)const;
+		constexpr Parity():odd(0),even(0){};
+		constexpr Parity(int Odd,int Even):odd(Odd),even(Even){};
 	};
+private:
 
 	template<size_t WIDTH,size_t HEIGHT>
 	constexpr Parity GetParity(const Matrix<WIDTH,HEIGHT>& matrix)const;
@@ -23,12 +30,13 @@ public:
 	ParityCheck();
 };
 
+
 template<size_t WIDTH,size_t HEIGHT>
 constexpr ParityCheck::Parity ParityCheck::GetParity(const Matrix<WIDTH,HEIGHT>& matrix)const{
-	constexpr Matrix<WIDTH,HEIGHT> mask = CreateCheckeredPattern<WIDTH,HEIGHT>();
-	constexpr Matrix<WIDTH,HEIGHT> mask_r = ~mask;
+	Matrix<WIDTH,HEIGHT> mask = CreateCheckeredPattern<WIDTH,HEIGHT>();
+	Matrix<WIDTH,HEIGHT> mask_r = ~mask;
 
-	return Parity{(matrix & mask).count(),(matrix & mask_r).count()};
+	return Parity((matrix & mask).count(),(matrix & mask_r).count());
 }
 
 template<size_t WIDTH,size_t HEIGHT>
@@ -43,6 +51,5 @@ constexpr Matrix<WIDTH,HEIGHT> ParityCheck::CreateCheckeredPattern()const{
 	}
 	return ans;
 }
-
 
 
