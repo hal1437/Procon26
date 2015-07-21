@@ -144,6 +144,22 @@ vector
 algorithm
 -
 
+/Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.cpp
+IterativeCover.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
+
+/Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+vector
+-
+algorithm
+-
+random
+-
+utility
+-
+
 /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.cpp
 PerfectBackTrack.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.h
@@ -205,6 +221,8 @@ Solver/BestFirst.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.h
 Solver/PerfectBackTrack.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.h
+Solver/IterativeCover.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
 Perfect/DPBlockSize.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.h
 Perfect/BlockSize.h

@@ -402,6 +402,30 @@ Solver/DLS.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.s
 .PHONY : Solver/DLS.cpp.s
 
+Solver/IterativeCover.o: Solver/IterativeCover.cpp.o
+.PHONY : Solver/IterativeCover.o
+
+# target to build an object file
+Solver/IterativeCover.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.o
+.PHONY : Solver/IterativeCover.cpp.o
+
+Solver/IterativeCover.i: Solver/IterativeCover.cpp.i
+.PHONY : Solver/IterativeCover.i
+
+# target to preprocess a source file
+Solver/IterativeCover.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.i
+.PHONY : Solver/IterativeCover.cpp.i
+
+Solver/IterativeCover.s: Solver/IterativeCover.cpp.s
+.PHONY : Solver/IterativeCover.s
+
+# target to generate assembly for a file
+Solver/IterativeCover.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.s
+.PHONY : Solver/IterativeCover.cpp.s
+
 Solver/PerfectBackTrack.o: Solver/PerfectBackTrack.cpp.o
 .PHONY : Solver/PerfectBackTrack.o
 
@@ -615,6 +639,9 @@ help:
 	@echo "... Solver/DLS.o"
 	@echo "... Solver/DLS.i"
 	@echo "... Solver/DLS.s"
+	@echo "... Solver/IterativeCover.o"
+	@echo "... Solver/IterativeCover.i"
+	@echo "... Solver/IterativeCover.s"
 	@echo "... Solver/PerfectBackTrack.o"
 	@echo "... Solver/PerfectBackTrack.i"
 	@echo "... Solver/PerfectBackTrack.s"

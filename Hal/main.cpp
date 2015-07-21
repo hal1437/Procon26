@@ -11,6 +11,7 @@
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
 #include "Solver/PerfectBackTrack.h"
+#include "Solver/IterativeCover.h"
 #include "Perfect/DPBlockSize.h"
 #include "Perfect/BlockSize.h"
 #include "Perfect/ParityCheck.h"
@@ -20,27 +21,28 @@
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest6.txt");
+	Problem prob("../Problem/1.txt");
 	std::ofstream ofs("Answer.txt");
-	
+
 	PerfectBackTrack p(prob);
-	PerfectComposit* p_h = new PerfectComposit();
-	WeightComposit * h   = new WeightComposit();
+	PerfectComposit* p_h    = new PerfectComposit();
+	WeightComposit * h      = new WeightComposit();
+	IterativeCover*  solver = new IterativeCover(prob,h);
+	//Solver*  solver = new BestFirst(prob,h);
 
 	h->AddHeuristic(new DensityAround(),1.0f);
 	h->AddHeuristic(new Cavity(),-15.0f);
-	//p_h->AddHeuristic(new BlockSize());
 	p_h->AddHeuristic(new DPBlockSize());
 	p_h->AddHeuristic(new CavityBlocks());
-	//p_h->AddHeuristic(new ParityCheck());
+
 	p.SetPerfect(p_h);
 	p.SetHeuristic(h);
-	p.Solve();
+	solver->Solve().Export("Answer.txt");
 
+	delete solver;
 	delete p_h;
 	delete h;
 
-	
 	std::cout << "-----End of program-----" << std::endl;
 	return 0;
 }

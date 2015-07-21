@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o"
+  "CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o"
