@@ -39,7 +39,7 @@ Field Answer::GetProjectedField()const{
 bool Answer::Export(std::string filename)const{
 	std::ofstream ofs(filename);
 	if(!ofs)return false;
-	ofs << (*this) << std::endl;
+	ofs << (*this);
 	return true;
 }
 
@@ -55,7 +55,7 @@ std::ostream& operator<<(std::ostream& ost,const Answer& answer){
 			ost << " ";
 			ost << answer[i].trans.angle;
 		}
-		if(i != answer.size()-1)ost << "\r\n";
+		ost << "\r\n";
 	}
 	return ost;
 }
