@@ -135,10 +135,16 @@ public:
 		return FirstProxy(this,index);
 	}
 	constexpr bool operator==(const current& rhs)const{
-		return std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++){
+			if(byte[i] != rhs.byte[i])return true;
+		}
+		return false;
 	}
 	constexpr bool operator!=(const current& rhs)const{
-		return !std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++){
+			if(byte[i] == rhs.byte[i])return false;
+		}
+		return true;
 	}
 	constexpr bool operator<(const current rhs)const{
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++){
