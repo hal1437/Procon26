@@ -224,14 +224,14 @@ public:
 	constexpr current& operator<<=(size_t value){
 		if(value >= BYTE_SIZE){
 			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)byte[i-value/BYTE_SIZE] = byte[i];
-			for(int i = ARRAY_MATRIX_SIZE-1;i>=(value/BYTE_SIZE);i--)byte[i] = 0;
+			for(int i = ARRAY_MATRIX_SIZE-1;i>(value/BYTE_SIZE);i--)byte[i] = 0;
 			value %= 8;
 		}
 		if(!value)return (*this);
 
 		char hi=0, lo=0;
 		char mask = (char)(0xFF << (BYTE_SIZE - value));
-		for(int  i = ARRAY_MATRIX_SIZE-2 ; i >= 0 ; i-- ){
+		for(int  i = ARRAY_MATRIX_SIZE ; i >= 0 ; i-- ){
 			hi = (byte[i + 1] & mask) << (BYTE_SIZE - value);
 			lo = (byte[i + 0] << value);
 			if ( i != 0 )byte[i] = (hi | lo);
