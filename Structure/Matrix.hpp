@@ -295,9 +295,6 @@ constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>
 				}
 			}
 			sample[j*4 + i] = tmp.GetMove(origin);
-			std::cout << "count" << j*4+i << std::endl;
-			std::cout << tmp << std::endl;
-			std::cout << sample[j*4 + i] << std::endl;
 		}
 	}
 	current& most = sample[0];
