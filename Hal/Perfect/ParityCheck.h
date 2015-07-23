@@ -6,10 +6,13 @@
 class ParityCheck : public Perfect<Field,BlockLayer>{
 public:
 	typedef Perfect<Field,BlockLayer> h_type;
+	
 	struct Parity{
 		int odd;	//奇数
 		int even;	//偶数
 
+
+		bool isEqualParity()const;
 		Parity operator+(const Parity& rhs)const;
 		bool   operator<(const Parity& rhs)const;
 		constexpr Parity():odd(0),even(0){};

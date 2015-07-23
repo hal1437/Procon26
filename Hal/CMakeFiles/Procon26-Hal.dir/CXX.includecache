@@ -157,6 +157,8 @@ algorithm
 /Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.cpp
 IterativeCover.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
+vector
+-
 
 /Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
 ../Structures.h
@@ -179,11 +181,15 @@ queue
 -
 random
 -
+utility
+-
 
 /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
 vector
+-
+set
 -
 algorithm
 -

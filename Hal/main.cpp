@@ -22,27 +22,29 @@
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/1.txt");
+	Problem prob("../Problem/quest5.txt");
 	std::ofstream ofs("Answer.txt");
 
-	PerfectBackTrack p(prob);
-	PerfectComposit* p_h    = new PerfectComposit();
-	WeightComposit * h      = new WeightComposit();
-	IterativeCover*  solver = new IterativeCover(prob,h);
+	//PerfectBackTrack p(prob);
+	PerfectComposit* p = new PerfectComposit();
+	WeightComposit * h = new WeightComposit();
+	//IterativeCover*  solver = new IterativeCover(prob,h);
+	Solver*  solver = new PerfectBackTrack(prob,h,p);
 	//Solver*  solver = new BestFirst(prob,h);
 
 	h->AddHeuristic(new DensityAround(),1.0f);
 	h->AddHeuristic(new Cavity(),-15.0f);
-	p_h->AddHeuristic(new DPBlockSize());
-	p_h->AddHeuristic(new CavityBlocks());
-	p_h->AddHeuristic(new MinTriming());
+	//p->AddHeuristic(new DPBlockSize());
+	p->AddHeuristic(new CavityBlocks());
+	p->AddHeuristic(new MinTriming());
+	p->AddHeuristic(new ParityCheck());
 
-	p.SetPerfect(p_h);
-	p.SetHeuristic(h);
+	//solver->SetPerfect(p);
+	//solver->SetHeuristic(h);
 	solver->Solve().Export("Answer.txt");
 
 	delete solver;
-	delete p_h;
+	delete p;
 	delete h;
 
 	std::cout << "-----End of program-----" << std::endl;

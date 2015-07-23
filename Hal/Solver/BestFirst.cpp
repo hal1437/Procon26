@@ -60,21 +60,16 @@ Answer BestFirst::Solve(){
 	std::cout << (field | block_field) << std::endl;
 	for(int i=1;i < count;i++){
 		//std::cout << block_field << std::endl;
-		hands = block_field.GetListLayPossible(problem.GetBlock(i));
+		hands = block_field.GetListLayPossible(problem.GetBlock(i),field);
 
-		hands.erase(std::remove_if(hands.begin(),hands.end(),[&](const Transform& trans){
-			return ((field & problem.GetBlock(i).GetTransform<FIELD_WIDTH,FIELD_HEIGHT>(trans)).count()>0);
-		}),hands.end());
 
 		std::cout << i << ":";
 		if(hands.size() != 0){
 			Transform best = *std::max_element(hands.begin(),hands.end(),[&](const Transform& lhs,const Transform& rhs){
 				Field l_field,r_field;
-				l_field = r_field = block_field;
+				l_field = r_field = (block_field | field);
 				l_field.Projection(problem.GetBlock(i),lhs);
 				r_field.Projection(problem.GetBlock(i),rhs);
-				l_field |= field;
-				r_field |= field;
 				return heuristic->Execution(l_field) < heuristic->Execution(r_field);
 			});
 			std::cout << std::endl;
@@ -83,8 +78,8 @@ Answer BestFirst::Solve(){
 			auto b = problem.GetBlock(i).GetTransform<FIELD_WIDTH,FIELD_WIDTH>(best);
 			
 			block_field.Projection(b);
-			std::cout << hands.size() << ":" << heuristic->Execution(field) << std::endl;
-			std::cout << (field | block_field) << std::endl;
+			//std::cout << hands.size() << ":" << heuristic->Execution(field) << std::endl;
+			std::cout << Field(field | block_field) << std::endl;
 			ans.SetTransform(i,best);
 		}else{
 			ans.SetTransform(i,Transform());

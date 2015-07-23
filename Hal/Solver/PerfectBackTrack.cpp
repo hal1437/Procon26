@@ -3,6 +3,7 @@
 #include "../../Utility/CLOCKWISE_FOR.hpp"
 #include <queue>
 #include <random>
+#include <utility>
 
 void PerfectBackTrack::SetHeuristic(Heuristics_type* h){
 	heuristic = h;
@@ -47,7 +48,7 @@ std::vector<Field> PerfectBackTrack::DivisionSpaces(const Field& field)const{
 	return answer;
 }
 
-PerfectBackTrack::Iterative_type PerfectBackTrack::Iterative(const Field& field,const Field& block_field,BlockLayer layer)const{
+PerfectBackTrack::Iterative_type PerfectBackTrack::Iterative(const Field& field,const Field& block_field,BlockLayer layer){
 	//反復
 	std::cout << (~(field | block_field)).count() << std::endl;
 	std::cout << (field | block_field) << std::endl;
@@ -65,18 +66,21 @@ PerfectBackTrack::Iterative_type PerfectBackTrack::Iterative(const Field& field,
 	std::vector<Transform> hands = block_field.GetListLayPossible(block,field);
 	
 
-	std::vector<Field> div = DivisionSpaces(field | block_field);
 	//不適解削除
 	hands.erase(std::remove_if(hands.begin(),hands.end(),[&](const Transform& trans){
+		std::vector<Field> div = DivisionSpaces(field | (block_field.GetProjection(block,trans)));
+		
+		//重複
+		if(past_trans.find(std::make_pair(block,trans)) != past_trans.end())return true;
+		
 		//非完全問題
-		bool f=false;
 		for(const Field& div_field : div){
 			if(!perfect->Execution(div_field,layer)){
-				f=true;
-				break;
+				//std::cout << "NotPerfect" << std::endl;
+				return true;
 			}
 		}
-		return f;
+		return false;
 	}),hands.end());
 	layer.erase(layer.begin());
 	//std::cout << hands.size() << std::endl;
@@ -88,16 +92,15 @@ PerfectBackTrack::Iterative_type PerfectBackTrack::Iterative(const Field& field,
 	//評価値ソート
 	std::sort(hands.begin(),hands.end(),[&](const Transform& lhs,const Transform& rhs){
 		Field l_field,r_field;
-		l_field = r_field = block_field;
+		l_field = r_field = (block_field | field);
 		l_field.Projection(block,lhs);
 		r_field.Projection(block,rhs);
-		l_field |= field;
-		r_field |= field;
 		return heuristic->Execution(l_field) > heuristic->Execution(r_field);
 	});
 	
 	//展開
 	for(Transform hand:hands){
+		past_trans.insert(std::make_pair(block,hand));
 		Iterative_type return_value = Iterative(field,block_field.GetProjection(block,hand),layer);
 		
 		if(return_value.second){
@@ -164,8 +167,10 @@ Answer PerfectBackTrack::Solve(){
 	return ans;
 }
 
-PerfectBackTrack::PerfectBackTrack(Problem prob):
-	Solver(prob){
+PerfectBackTrack::PerfectBackTrack(Problem prob,PerfectBackTrack::Heuristics_type* h,PerfectBackTrack::Perfect_type* p):
+	Solver(prob),
+	heuristic(h),
+	perfect(p){
 }
 PerfectBackTrack::~PerfectBackTrack(){
 

@@ -1,11 +1,17 @@
 
 #include "IterativeCover.h"
+#include <vector>
+
+constexpr int IterativeCover::BEGINING_NUM;
+constexpr int IterativeCover::DIVISION_SIZE_NUM;
+constexpr int IterativeCover::DIVS_SIZES[DIVISION_SIZE_NUM];
 
 
 Answer IterativeCover::Solve(){
 	Answer answer(problem);
-	
-	//while(1){
+	std::vector<Transform> first_hands;
+
+	while(1){
 	
 	std::random_device rd;
 	Field first = problem.GetField();
@@ -37,17 +43,19 @@ Answer IterativeCover::Solve(){
 			}
 		}
 		if(f)continue;
-		
+		//if(std::find(first_hands.begin(),first_hands.end(),rand_trans) != first_hands.end())continue;
+
 		//std::cout << b << std::endl;
 		if((first & b).count() == 0 && b.count() == problem.GetBlock(0).count()){
 			layer[0].trans = rand_trans;
 			block_field.Projection(problem.GetBlock(0),rand_trans);
+			first_hands.push_back(rand_trans);
 			break;
 		}
 	}
 
-	std::cout << "first map" << std::endl;
-	std::cout << (first | block_field)  << std::endl;
+	//std::cout << "first map" << std::endl;
+	//std::cout << (first | block_field)  << std::endl;
 
 	//BEGINING_NUMまでBestFirst
 	for(int i=1;i<BEGINING_NUM;i++){
@@ -67,17 +75,18 @@ Answer IterativeCover::Solve(){
 			layer[i].trans = best;
 		}else{
 			layer[i].trans = Transform();
-			std::cout << "nothing" << std::endl;
+			//std::cout << "nothing" << std::endl;
 		}
 	}
 
-	std::cout << "second map" << std::endl;
-	std::cout << (first | block_field)  << std::endl;
+	//std::cout << "second map" << std::endl;
+	//std::cout << (first | block_field)  << std::endl;
 
 	Field future_mask;
 	
 	//大きい順にとにかく置く
-	for(int i = 16;i >= 0;i--){
+	for(int div_c =0;div_c < DIVISION_SIZE_NUM-1;div_c++){
+	//for(int i = 16;i >= 0;i--){
 		
 		Field sequense_field = block_field;
 		for(int j = BEGINING_NUM;j < problem.Count();j++){
@@ -85,7 +94,8 @@ Answer IterativeCover::Solve(){
 			//std::cout << j << ":" << std::endl;
 			
 			//未決定、検索中サイズと一致
-			if(problem.GetBlock(j).count() == i){
+			if(problem.GetBlock(j).count() <= DIVS_SIZES[div_c] &&
+			   problem.GetBlock(j).count() >  DIVS_SIZES[div_c + 1]){
 				
 				//最善手の検索
 				std::cout << j << ":" << std::endl;
@@ -114,7 +124,7 @@ Answer IterativeCover::Solve(){
 					sequense_field.Projection(layer[j].matrix,best);
 
 				}
-			}else if(problem.GetBlock(j).count() > i){
+			}else if(problem.GetBlock(j).count() > DIVS_SIZES[div_c]){
 				//でかい
 
 				//決定済み
@@ -132,14 +142,18 @@ Answer IterativeCover::Solve(){
 	
 	
 	bool exit_flag = false;
-	//Field field = problem.F;
+	Field field = problem.GetField();
 	//回答出力
 	for(int i=0;i < problem.Count();i++){
-		std::cout << i << ":" << layer[i].trans << std::endl;
+		//std::cout << i << ":" << layer[i].trans << std::endl;
 		answer.SetTransform(i,layer[i].trans);
+		field.Projection(layer[i].matrix,layer[i].trans);
 	}
-
-	//}
+	
+	std::cout << "Score:" << (~field).count() << std::endl;
+	std::cout << std::noboolalpha;
+	for(int c=0;c<100000000;c++);
+	}
 
 	return answer;
 }

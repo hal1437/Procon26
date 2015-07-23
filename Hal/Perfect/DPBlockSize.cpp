@@ -7,7 +7,7 @@ bool DPBlockSize::Execution(const Field& field,const BlockLayer& layer){
 	std::set<int> dp;
 
 	block_size.resize(layer.size());
-	
+
 	for(int i=0;i<layer.size();i++){
 		block_size[i] = layer[i].matrix.count();
 	}

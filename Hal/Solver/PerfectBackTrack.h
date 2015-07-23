@@ -2,6 +2,7 @@
 #pragma once 
 #include "../Structures.h"
 #include <vector>
+#include <set>
 #include <algorithm>
 
 //完全回答
@@ -12,10 +13,11 @@ class PerfectBackTrack:public Solver{
 public:
 	Heuristics_type* heuristic;
 	Perfect_type*    perfect;
+	std::set<std::pair<Block,Transform>> past_trans;
 
 private:
 	std::vector<Field> DivisionSpaces(const Field& field)const;
-	Iterative_type Iterative(const Field& field,const Field& block_field,BlockLayer layer)const;
+	Iterative_type Iterative(const Field& field,const Field& block_field,BlockLayer layer);
 
 public:
 	void SetHeuristic(Heuristics_type* h);
@@ -23,7 +25,7 @@ public:
 
 	Answer Solve()override;
 
-	PerfectBackTrack(Problem prob);
+	PerfectBackTrack(Problem prob,Heuristics_type* h,Perfect_type* p);
 	virtual ~PerfectBackTrack();
 };
 
