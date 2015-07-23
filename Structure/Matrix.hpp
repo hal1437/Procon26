@@ -380,9 +380,6 @@ namespace Anct{
     template<size_t MATRIX_WIDTH, size_t MATIRX_HEIGHT>
     struct hash{
         constexpr size_t operator()(const Matrix<MATRIX_WIDTH,MATIRX_HEIGHT>& s)const{
-            std::cout << s << std::endl;
-            std::cout << s.GetNormalize() << std::endl;
-            std::cout << s.GetNormalize().to_hash() << std::endl; //debug
             return s.GetNormalize().to_hash();
         }
     };
