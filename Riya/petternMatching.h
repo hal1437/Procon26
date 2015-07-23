@@ -19,12 +19,12 @@
 #include"../Structure/module.hpp"
 #include"../Utility/CLOCKWISE_FOR.hpp"
 
-#define PETTERN_MATCH_MAX_WIDTH 3
-#define PETTERN_MATCH_MAX_HEIGHT 3
+#define PETTERN_MATCH_MAX_WIDTH 4
+#define PETTERN_MATCH_MAX_HEIGHT 4
 #define BIT_SIZE PETTERN_MATCH_MAX_WIDTH * PETTERN_MATCH_MAX_HEIGHT
-#define MAX_POLYOMINO 300
+#define MAX_POLYOMINO 10000
 
-#define CONSTEXPR_RIYA constexpr
+#define CONSTEXPR_RIYA
 
 
 constexpr std::size_t hash_size = Anct::pow(2,PETTERN_MATCH_MAX_WIDTH*PETTERN_MATCH_MAX_HEIGHT);
@@ -70,7 +70,7 @@ private:
 public:
     
     CONSTEXPR_RIYA PetternSolver(){solvePettern();}
-    petternTable _Table;
+    petternTable _table;
     
     //static CONSTEXPR_RIYA int MAX_WIDTH=3;
     //static CONSTEXPR_RIYA int MAH_HEIGHT=3;
@@ -79,11 +79,11 @@ public:
     
 private:
     std::vector<solve_field> removeElement(std::vector<solve_field> list,int i)const;
-    static CONSTEXPR_RIYA void solveSubproblem(solve_field subproblem, petternTable& table);
-    static CONSTEXPR_RIYA Anct::Array< Point,BIT_SIZE > getReachable(const solve_field& subproblem,const solve_field& polyomino);
-    static CONSTEXPR_RIYA Anct::Array< Point,BIT_SIZE > getReachable(const solve_field subproblem,solve_field polyomino,Point target);
-    static CONSTEXPR_RIYA solve_field addPointToMatrix(solve_field source,Point pos);
-    static CONSTEXPR_RIYA Anct::Array< solve_field,BIT_SIZE > getPolyominoList(solve_field& polyomino,Anct::Array<Point,BIT_SIZE> reachable);
+    CONSTEXPR_RIYA void solveSubproblem(solve_field subproblem);
+    CONSTEXPR_RIYA Anct::Array< Point,BIT_SIZE > getReachable(const solve_field& subproblem,const solve_field& polyomino);
+    CONSTEXPR_RIYA Anct::Array< Point,BIT_SIZE > getReachable(const solve_field subproblem,solve_field polyomino,Point target);
+    CONSTEXPR_RIYA solve_field addPointToMatrix(solve_field source,Point pos);
+    CONSTEXPR_RIYA Anct::Array< solve_field,BIT_SIZE > getPolyominoList(solve_field& polyomino,Anct::Array<Point,BIT_SIZE> reachable);
 };
 
 //CONSTEXPR_RIYA petternTable PetternSolver::_Table;
@@ -102,8 +102,8 @@ bool PetternSolver::isMatched(size_t subproblem_hash,std::vector<solve_field> bl
         std::cout << "---polyomino---" << std::endl;
         std::cout << solve_field(block_list[i]) << std::endl;
         std::cout << Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(block_list[i]) << std::endl;
-        auto& subproblem_list = _Table[subproblem_hash].second;
-        for(int j=0; j<_Table[subproblem_hash].first; j++){
+        auto& subproblem_list = _table[subproblem_hash].second;
+        for(int j=0; j<_table[subproblem_hash].first; j++){
             if(subproblem_list[j].first == Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(block_list[i])){
                     std::cout << block_list[i] << std::endl;
                     std::cout << solve_field(subproblem_list[j].second) << std::endl;
@@ -123,15 +123,15 @@ bool petternMatch(petternTable& table,size_t solve_hash, std::vector<Matrix<PETT
 
 CONSTEXPR_RIYA void PetternSolver::solvePettern(){
     //petternTable table = petternTable();
-    for(auto& n: _Table){
+    for(auto& n: _table){
         n.first = 0;
     }
     solve_field problem;
-    solveSubproblem(problem, _Table);
+    solveSubproblem(problem);
     return;
 }
 
-CONSTEXPR_RIYA void PetternSolver::solveSubproblem(solve_field subproblem, petternTable& table){
+CONSTEXPR_RIYA void PetternSolver::solveSubproblem(solve_field subproblem){
     Anct::Array < Point,BIT_SIZE > reachable;
     Anct::Array< solve_field,MAX_POLYOMINO> polyomino_queue;
     solve_field polyomino;
@@ -144,7 +144,7 @@ CONSTEXPR_RIYA void PetternSolver::solveSubproblem(solve_field subproblem, pette
     std::cout << subproblem << std::endl;
     std::cout << "-----" << std::endl;
     */
-    if(table[problem_hash].first != 0)return;
+    if(_table[problem_hash].first != 0)return;
     
     /*
     table[problem_hash].push_back(std::make_pair(problem_hash,
@@ -172,22 +172,22 @@ CONSTEXPR_RIYA void PetternSolver::solveSubproblem(solve_field subproblem, pette
         polyomino_queue = Anct::arrayTruncate<solve_field,MAX_POLYOMINO>(polyomino_queue,1); //constexpr queue pop
         itr--; //constexpr queue iterator
  
-        /*
+        
         std::cout << "-- solve problem --" << std::endl;
         std::cout << source << std::endl;
         std::cout << "-----" << std::endl;
         std::cout << polyomino << std::endl;
         std::cout << static_cast<solve_field>(subproblem | polyomino) << std::endl;
         std::cout << "-----" << std::endl;
-        */
+        
 
-        solveSubproblem(subproblem | polyomino , table );
+        solveSubproblem(subproblem | polyomino);
  
-        table[problem_hash].second[ table[problem_hash].first ] =
+        _table[problem_hash].second[ _table[problem_hash].first ] =
                         hash_pair( Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(polyomino) ,
                                    Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()((subproblem | polyomino))
                                   );
-        table[problem_hash].first++;
+        _table[problem_hash].first++;
         
         reachable = getReachable(source, polyomino);
         auto poly_list = getPolyominoList(polyomino, reachable);
