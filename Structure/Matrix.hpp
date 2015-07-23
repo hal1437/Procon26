@@ -294,7 +294,7 @@ constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>
 					}
 				}
 			}
-			sample[j*4 + i] = tmp.Move(origin);
+			sample[j*4 + i] = tmp.GetMove(origin);
 		}
 	}
 	current& most = sample[0];
