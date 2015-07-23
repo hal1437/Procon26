@@ -394,9 +394,32 @@ CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o.provides: CMakeFiles/P
 
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o
 
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: Perfect/MinTriming.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_16)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.cpp
+
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.cpp > CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.i
+
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.cpp -o CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.s
+
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.requires:
+.PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.requires
+
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.provides: CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.provides.build
+.PHONY : CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.provides
+
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o
+
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_16)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_17)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
 
@@ -419,7 +442,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_17)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_18)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Point.cpp
 
@@ -442,7 +465,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_18)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_19)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp
 
@@ -465,7 +488,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_19)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_20)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Problem.cpp
 
@@ -488,7 +511,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cp
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_20)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_21)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 
@@ -526,6 +549,7 @@ Procon26__Hal_OBJECTS = \
 "CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o" \
+"CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o" \
@@ -550,6 +574,7 @@ Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o
+Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o
@@ -579,6 +604,7 @@ CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/Parity
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o.requires
+CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o.requires

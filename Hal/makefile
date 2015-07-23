@@ -306,6 +306,30 @@ Perfect/DPBlockSize.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.s
 .PHONY : Perfect/DPBlockSize.cpp.s
 
+Perfect/MinTriming.o: Perfect/MinTriming.cpp.o
+.PHONY : Perfect/MinTriming.o
+
+# target to build an object file
+Perfect/MinTriming.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o
+.PHONY : Perfect/MinTriming.cpp.o
+
+Perfect/MinTriming.i: Perfect/MinTriming.cpp.i
+.PHONY : Perfect/MinTriming.i
+
+# target to preprocess a source file
+Perfect/MinTriming.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.i
+.PHONY : Perfect/MinTriming.cpp.i
+
+Perfect/MinTriming.s: Perfect/MinTriming.cpp.s
+.PHONY : Perfect/MinTriming.s
+
+# target to generate assembly for a file
+Perfect/MinTriming.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.s
+.PHONY : Perfect/MinTriming.cpp.s
+
 Perfect/ParityCheck.o: Perfect/ParityCheck.cpp.o
 .PHONY : Perfect/ParityCheck.o
 
@@ -627,6 +651,9 @@ help:
 	@echo "... Perfect/DPBlockSize.o"
 	@echo "... Perfect/DPBlockSize.i"
 	@echo "... Perfect/DPBlockSize.s"
+	@echo "... Perfect/MinTriming.o"
+	@echo "... Perfect/MinTriming.i"
+	@echo "... Perfect/MinTriming.s"
 	@echo "... Perfect/ParityCheck.o"
 	@echo "... Perfect/ParityCheck.i"
 	@echo "... Perfect/ParityCheck.s"

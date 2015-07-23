@@ -17,6 +17,7 @@
 #include "Perfect/ParityCheck.h"
 #include "Perfect/PerfectComposit.h"
 #include "Perfect/CavityBlocks.h"
+#include "Perfect/MinTriming.h"
 
 
 int main(){
@@ -34,6 +35,7 @@ int main(){
 	h->AddHeuristic(new Cavity(),-15.0f);
 	p_h->AddHeuristic(new DPBlockSize());
 	p_h->AddHeuristic(new CavityBlocks());
+	p_h->AddHeuristic(new MinTriming());
 
 	p.SetPerfect(p_h);
 	p.SetHeuristic(h);

@@ -14,6 +14,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o"
+  "CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o"

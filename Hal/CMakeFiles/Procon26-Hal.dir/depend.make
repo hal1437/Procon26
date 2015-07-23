@@ -111,6 +111,22 @@ CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o: /Users/hal1437/Programs/P
 CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
 CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: Perfect/MinTriming.cpp
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: Perfect/MinTriming.h
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: Structures.h
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.h
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Perfect.h
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.h
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.h
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Solver.h
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.h
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: Perfect/ParityCheck.cpp
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: Perfect/ParityCheck.h
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: Structures.h
@@ -246,6 +262,7 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/WeightComposit.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/BlockSize.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/CavityBlocks.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/DPBlockSize.h
+CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/MinTriming.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/ParityCheck.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/PerfectComposit.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/AStar.h

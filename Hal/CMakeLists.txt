@@ -16,6 +16,7 @@ add_executable(Procon26-Hal
   Perfect/DPBlockSize.cpp
   Perfect/CavityBlocks.cpp
   Perfect/PerfectComposit.cpp
+  Perfect/MinTriming.cpp
   ../Structure/Transform.cpp
   ../Structure/Point.cpp
   ../Structure/Heuristic.cpp

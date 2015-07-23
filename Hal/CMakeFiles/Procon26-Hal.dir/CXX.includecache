@@ -88,6 +88,16 @@ iostream
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
 
+/Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.cpp
+MinTriming.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.h
+iostream
+-
+
+/Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+
 /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp
 ParityCheck.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.h
@@ -233,6 +243,8 @@ Perfect/PerfectComposit.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.h
 Perfect/CavityBlocks.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.h
+Perfect/MinTriming.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.h
 
 /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 Answer.h
