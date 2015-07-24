@@ -7,6 +7,7 @@
 #include "Heuristics/DensityAround.h"
 #include "Heuristics/Cavity.h"
 #include "Heuristics/WeightComposit.h"
+#include "Heuristics/SD.h"
 #include "Solver/AStar.h"
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
@@ -22,19 +23,20 @@
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest5.txt");
+	Problem prob("../Problem/1.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
 	PerfectComposit* p = new PerfectComposit();
 	WeightComposit * h = new WeightComposit();
-	//IterativeCover*  solver = new IterativeCover(prob,h);
-	Solver*  solver = new PerfectBackTrack(prob,h,p);
-	//Solver*  solver = new BestFirst(prob,h);
+	
+	//Solver* solver = new PerfectBackTrack(prob,h,p);
+	//Solver*  solver = new IterativeCover(prob,h);
+	Solver*  solver = new BestFirst(prob,h);
 
 	h->AddHeuristic(new DensityAround(),1.0f);
 	h->AddHeuristic(new Cavity(),-15.0f);
-	//p->AddHeuristic(new DPBlockSize());
+	h->AddHeuristic(new SD(),-100.0f);
 	p->AddHeuristic(new CavityBlocks());
 	p->AddHeuristic(new MinTriming());
 	p->AddHeuristic(new ParityCheck());

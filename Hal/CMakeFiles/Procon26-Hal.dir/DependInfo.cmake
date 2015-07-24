@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o"
+  "/Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o"

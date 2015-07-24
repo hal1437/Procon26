@@ -11,6 +11,7 @@ add_executable(Procon26-Hal
   Heuristics/WeightComposit.cpp
   Heuristics/Density.cpp
   Heuristics/Score.cpp
+  Heuristics/SD.cpp
   Perfect/BlockSize.cpp
   Perfect/ParityCheck.cpp
   Perfect/DPBlockSize.cpp

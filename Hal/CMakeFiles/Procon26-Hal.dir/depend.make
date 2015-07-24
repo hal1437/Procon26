@@ -37,6 +37,16 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o: /Users/hal1437/Progr
 CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
 CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 
+CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: Heuristics/SD.cpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: Heuristics/SD.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+
 CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o: Heuristics/Score.cpp
 CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o: Heuristics/Score.h
 CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
@@ -257,6 +267,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Cavity.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Density.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/DensityAround.h
+CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/SD.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Score.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/WeightComposit.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/BlockSize.h

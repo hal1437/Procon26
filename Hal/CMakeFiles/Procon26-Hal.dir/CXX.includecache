@@ -36,6 +36,18 @@ DensityAround.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
 
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.cpp
+SD.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
+cmath
+-
+
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
+../../Structure/Matrix.hpp
+/Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+../../Structure/Heuristic.h
+/Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp
 Score.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.h
@@ -229,6 +241,8 @@ Heuristics/Cavity.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.h
 Heuristics/WeightComposit.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.h
+Heuristics/SD.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
 Solver/AStar.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
 Solver/DLS.h
