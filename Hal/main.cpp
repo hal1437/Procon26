@@ -8,6 +8,7 @@
 #include "Heuristics/Cavity.h"
 #include "Heuristics/WeightComposit.h"
 #include "Heuristics/SD.h"
+#include "Heuristics/Dent.h"
 #include "Solver/AStar.h"
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
@@ -36,10 +37,11 @@ int main(){
 
 	h->AddHeuristic(new DensityAround(),1.0f);
 	h->AddHeuristic(new Cavity(),-15.0f);
-	h->AddHeuristic(new SD(),-100.0f);
+	h->AddHeuristic(new Dent(),-5.0f);
+	//h->AddHeuristic(new SD(),-100.0f);
 	p->AddHeuristic(new CavityBlocks());
-	p->AddHeuristic(new MinTriming());
-	p->AddHeuristic(new ParityCheck());
+	//p->AddHeuristic(new MinTriming());
+	//p->AddHeuristic(new ParityCheck());
 
 	//solver->SetPerfect(p);
 	//solver->SetHeuristic(h);

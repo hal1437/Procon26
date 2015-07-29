@@ -36,6 +36,18 @@ DensityAround.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
 
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.cpp
+Dent.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.h
+../../Utility/CLOCKWISE_FOR.hpp
+/Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.h
+../../Structure/Matrix.hpp
+/Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+../../Structure/Heuristic.h
+/Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.cpp
 SD.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
@@ -243,6 +255,8 @@ Heuristics/WeightComposit.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.h
 Heuristics/SD.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
+Heuristics/Dent.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.h
 Solver/AStar.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
 Solver/DLS.h

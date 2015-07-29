@@ -186,6 +186,30 @@ Heuristics/DensityAround.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.s
 .PHONY : Heuristics/DensityAround.cpp.s
 
+Heuristics/Dent.o: Heuristics/Dent.cpp.o
+.PHONY : Heuristics/Dent.o
+
+# target to build an object file
+Heuristics/Dent.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o
+.PHONY : Heuristics/Dent.cpp.o
+
+Heuristics/Dent.i: Heuristics/Dent.cpp.i
+.PHONY : Heuristics/Dent.i
+
+# target to preprocess a source file
+Heuristics/Dent.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.i
+.PHONY : Heuristics/Dent.cpp.i
+
+Heuristics/Dent.s: Heuristics/Dent.cpp.s
+.PHONY : Heuristics/Dent.s
+
+# target to generate assembly for a file
+Heuristics/Dent.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.s
+.PHONY : Heuristics/Dent.cpp.s
+
 Heuristics/SD.o: Heuristics/SD.cpp.o
 .PHONY : Heuristics/SD.o
 
@@ -660,6 +684,9 @@ help:
 	@echo "... Heuristics/DensityAround.o"
 	@echo "... Heuristics/DensityAround.i"
 	@echo "... Heuristics/DensityAround.s"
+	@echo "... Heuristics/Dent.o"
+	@echo "... Heuristics/Dent.i"
+	@echo "... Heuristics/Dent.s"
 	@echo "... Heuristics/SD.o"
 	@echo "... Heuristics/SD.i"
 	@echo "... Heuristics/SD.s"

@@ -16,7 +16,7 @@ SD::Point_f operator/(SD::Point_f lhs,float rhs){
 }
 
 
-unsigned SD::Execution(const Field& field){
+double SD::Execution(const Field& field){
 	Point_f average;
 	int count = 0;
 
