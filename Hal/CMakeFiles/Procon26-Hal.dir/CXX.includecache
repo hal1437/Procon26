@@ -122,6 +122,16 @@ iostream
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
 
+/Users/hal1437/Programs/Procon26/Hal/Perfect/PPPP.cpp
+PPPP.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/PPPP.h
+iostream
+-
+
+/Users/hal1437/Programs/Procon26/Hal/Perfect/PPPP.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+
 /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp
 ParityCheck.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.h
@@ -145,6 +155,28 @@ vector
 /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
+
+/Users/hal1437/Programs/Procon26/Hal/Solver/BestBackTrack.cpp
+BestBackTrack.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/BestBackTrack.h
+random
+-
+set
+-
+../../Utility/TimeWait.hpp
+/Users/hal1437/Programs/Procon26/Utility/TimeWait.hpp
+../../Utility/Quickout.hpp
+/Users/hal1437/Programs/Procon26/Utility/Quickout.hpp
+
+/Users/hal1437/Programs/Procon26/Hal/Solver/BestBackTrack.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+vector
+-
+set
+-
+algorithm
+-
 
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp
 BestFirst.h
@@ -263,6 +295,8 @@ Solver/DLS.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.h
 Solver/BestFirst.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.h
+Solver/BestBackTrack.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/BestBackTrack.h
 Solver/PerfectBackTrack.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.h
 Solver/IterativeCover.h
@@ -279,6 +313,8 @@ Perfect/CavityBlocks.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.h
 Perfect/MinTriming.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.h
+Perfect/PPPP.h
+/Users/hal1437/Programs/Procon26/Hal/Perfect/PPPP.h
 
 /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 Answer.h
@@ -397,4 +433,18 @@ ostream
 /Users/hal1437/Programs/Procon26/Structure/Point.h
 
 /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+
+/Users/hal1437/Programs/Procon26/Utility/Quickout.hpp
+iostream
+-
+
+/Users/hal1437/Programs/Procon26/Utility/TimeWait.hpp
+chrono
+-
+iostream
+-
+sstream
+-
+string
+-
 

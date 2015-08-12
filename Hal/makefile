@@ -378,6 +378,30 @@ Perfect/MinTriming.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.s
 .PHONY : Perfect/MinTriming.cpp.s
 
+Perfect/PPPP.o: Perfect/PPPP.cpp.o
+.PHONY : Perfect/PPPP.o
+
+# target to build an object file
+Perfect/PPPP.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o
+.PHONY : Perfect/PPPP.cpp.o
+
+Perfect/PPPP.i: Perfect/PPPP.cpp.i
+.PHONY : Perfect/PPPP.i
+
+# target to preprocess a source file
+Perfect/PPPP.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.i
+.PHONY : Perfect/PPPP.cpp.i
+
+Perfect/PPPP.s: Perfect/PPPP.cpp.s
+.PHONY : Perfect/PPPP.s
+
+# target to generate assembly for a file
+Perfect/PPPP.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.s
+.PHONY : Perfect/PPPP.cpp.s
+
 Perfect/ParityCheck.o: Perfect/ParityCheck.cpp.o
 .PHONY : Perfect/ParityCheck.o
 
@@ -425,6 +449,30 @@ Perfect/PerfectComposit.s: Perfect/PerfectComposit.cpp.s
 Perfect/PerfectComposit.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.s
 .PHONY : Perfect/PerfectComposit.cpp.s
+
+Solver/BestBackTrack.o: Solver/BestBackTrack.cpp.o
+.PHONY : Solver/BestBackTrack.o
+
+# target to build an object file
+Solver/BestBackTrack.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o
+.PHONY : Solver/BestBackTrack.cpp.o
+
+Solver/BestBackTrack.i: Solver/BestBackTrack.cpp.i
+.PHONY : Solver/BestBackTrack.i
+
+# target to preprocess a source file
+Solver/BestBackTrack.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.i
+.PHONY : Solver/BestBackTrack.cpp.i
+
+Solver/BestBackTrack.s: Solver/BestBackTrack.cpp.s
+.PHONY : Solver/BestBackTrack.s
+
+# target to generate assembly for a file
+Solver/BestBackTrack.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.s
+.PHONY : Solver/BestBackTrack.cpp.s
 
 Solver/BestFirst.o: Solver/BestFirst.cpp.o
 .PHONY : Solver/BestFirst.o
@@ -708,12 +756,18 @@ help:
 	@echo "... Perfect/MinTriming.o"
 	@echo "... Perfect/MinTriming.i"
 	@echo "... Perfect/MinTriming.s"
+	@echo "... Perfect/PPPP.o"
+	@echo "... Perfect/PPPP.i"
+	@echo "... Perfect/PPPP.s"
 	@echo "... Perfect/ParityCheck.o"
 	@echo "... Perfect/ParityCheck.i"
 	@echo "... Perfect/ParityCheck.s"
 	@echo "... Perfect/PerfectComposit.o"
 	@echo "... Perfect/PerfectComposit.i"
 	@echo "... Perfect/PerfectComposit.s"
+	@echo "... Solver/BestBackTrack.o"
+	@echo "... Solver/BestBackTrack.i"
+	@echo "... Solver/BestBackTrack.s"
 	@echo "... Solver/BestFirst.o"
 	@echo "... Solver/BestFirst.i"
 	@echo "... Solver/BestFirst.s"

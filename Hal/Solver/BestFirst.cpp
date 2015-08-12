@@ -89,7 +89,7 @@ Answer BestFirst::Solve(){
 	//std::cout << field << std::endl;
 	std::cout << (~(field | block_field)).count() << std::endl;
 	std::cout << (field | block_field) << std::endl;
-	/*if((~(field|block_field)).count()==0)*/return ans;
+	if((~(field|block_field)).count()<=3)return ans;
 
 	}
 }

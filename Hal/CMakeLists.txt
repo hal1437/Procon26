@@ -6,6 +6,7 @@ add_executable(Procon26-Hal
   Solver/DLS.cpp
   Solver/PerfectBackTrack.cpp
   Solver/IterativeCover.cpp
+  Solver/BestBackTrack.cpp
   Heuristics/Cavity.cpp
   Heuristics/DensityAround.cpp
   Heuristics/WeightComposit.cpp
@@ -19,6 +20,7 @@ add_executable(Procon26-Hal
   Perfect/CavityBlocks.cpp
   Perfect/PerfectComposit.cpp
   Perfect/MinTriming.cpp
+  Perfect/PPPP.cpp
   ../Structure/Transform.cpp
   ../Structure/Point.cpp
   ../Structure/Heuristic.cpp

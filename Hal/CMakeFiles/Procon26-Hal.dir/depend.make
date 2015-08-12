@@ -147,6 +147,22 @@ CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Pr
 CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
 CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: Perfect/PPPP.cpp
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: Perfect/PPPP.h
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: Structures.h
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.h
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Perfect.h
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.h
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.h
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Solver.h
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.h
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: Perfect/ParityCheck.cpp
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: Perfect/ParityCheck.h
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: Structures.h
@@ -178,6 +194,24 @@ CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o: /Users/hal1437/Progra
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.h
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: Solver/BestBackTrack.cpp
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: Solver/BestBackTrack.h
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: Structures.h
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.h
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Perfect.h
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.h
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.h
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Solver.h
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.h
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Quickout.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Utility/TimeWait.hpp
 
 CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o: Solver/BestFirst.cpp
 CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o: Solver/BestFirst.h
@@ -285,9 +319,11 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/BlockSize.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/CavityBlocks.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/DPBlockSize.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/MinTriming.h
+CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/PPPP.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/ParityCheck.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Perfect/PerfectComposit.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/AStar.h
+CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/BestBackTrack.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/BestFirst.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/DLS.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/IterativeCover.h
