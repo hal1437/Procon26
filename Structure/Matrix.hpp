@@ -64,7 +64,7 @@ public:
 	DEFINITION_GETTER(Normalize)
 
 	//util
-	M_TMP std::vector<struct Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask = current())const;
+	M_TMP std::vector<struct Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask = current(),bool first=false)const;
 	M_TMP constexpr bool ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans,const current& Mask = current())const;
 	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix                              )const;
 	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Point& pos             )const;
@@ -193,12 +193,13 @@ constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<A
 }
 
 MEMBER_TEMPLATE_TEMPLATE
-std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask)const{
+std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask,bool first)const{
 	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
 	Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> field;
 	std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT>,struct Transform> map;
 
-	field.Projection(*this);
+	if(first)field.Projection(Mask);
+	else     field.Projection(*this);
 	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample_base(matrix);
 
 	//std::cout << matrix << std::endl;
