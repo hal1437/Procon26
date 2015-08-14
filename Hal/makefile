@@ -474,6 +474,30 @@ Solver/BestBackTrack.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.s
 .PHONY : Solver/BestBackTrack.cpp.s
 
+Solver/BestBeam.o: Solver/BestBeam.cpp.o
+.PHONY : Solver/BestBeam.o
+
+# target to build an object file
+Solver/BestBeam.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o
+.PHONY : Solver/BestBeam.cpp.o
+
+Solver/BestBeam.i: Solver/BestBeam.cpp.i
+.PHONY : Solver/BestBeam.i
+
+# target to preprocess a source file
+Solver/BestBeam.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.i
+.PHONY : Solver/BestBeam.cpp.i
+
+Solver/BestBeam.s: Solver/BestBeam.cpp.s
+.PHONY : Solver/BestBeam.s
+
+# target to generate assembly for a file
+Solver/BestBeam.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.s
+.PHONY : Solver/BestBeam.cpp.s
+
 Solver/BestFirst.o: Solver/BestFirst.cpp.o
 .PHONY : Solver/BestFirst.o
 
@@ -768,6 +792,9 @@ help:
 	@echo "... Solver/BestBackTrack.o"
 	@echo "... Solver/BestBackTrack.i"
 	@echo "... Solver/BestBackTrack.s"
+	@echo "... Solver/BestBeam.o"
+	@echo "... Solver/BestBeam.i"
+	@echo "... Solver/BestBeam.s"
 	@echo "... Solver/BestFirst.o"
 	@echo "... Solver/BestFirst.i"
 	@echo "... Solver/BestFirst.s"

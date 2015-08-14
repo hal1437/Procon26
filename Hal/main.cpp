@@ -12,6 +12,7 @@
 #include "Solver/AStar.h"
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
+#include "Solver/BestBeam.h"
 #include "Solver/BestBackTrack.h"
 #include "Solver/PerfectBackTrack.h"
 #include "Solver/IterativeCover.h"
@@ -25,21 +26,22 @@
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest8.txt");
+	Problem prob("../Problem/quest6.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
 	PerfectComposit* p = new PerfectComposit();
 	WeightComposit * h = new WeightComposit();
 
-	Solver* solver = new PerfectBackTrack(prob,h,p);
+	//Solver* solver = new PerfectBackTrack(prob,h,p);
 	//Solver*  solver = new IterativeCover(prob,h);
 	//Solver*  solver = new BestBackTrack(prob,h);
+	Solver* solver = new BestBeam(prob,h);
 
 	h->AddHeuristic(new DensityAround(),1.0f);
 	h->AddHeuristic(new Cavity(),-20.0f);
 	//h->AddHeuristic(new DPBlockSize(),)
-	h->AddHeuristic(new Dent(),-5.0f);
+	//h->AddHeuristic(new Dent(),-5.0f);
 	//h->AddHeuristic(new SD(),-100.0f);
 	
 	//p->AddHeuristic(new CavityBlocks());

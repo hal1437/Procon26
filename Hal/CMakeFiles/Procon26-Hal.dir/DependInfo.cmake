@@ -19,6 +19,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Solver/BestBackTrack.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o"
+  "/Users/hal1437/Programs/Procon26/Hal/Solver/BestBeam.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Solver/DLS.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.o"

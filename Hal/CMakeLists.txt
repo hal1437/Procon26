@@ -7,6 +7,7 @@ add_executable(Procon26-Hal
   Solver/PerfectBackTrack.cpp
   Solver/IterativeCover.cpp
   Solver/BestBackTrack.cpp
+  Solver/BestBeam.cpp
   Heuristics/Cavity.cpp
   Heuristics/DensityAround.cpp
   Heuristics/WeightComposit.cpp

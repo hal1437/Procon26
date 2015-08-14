@@ -178,6 +178,22 @@ set
 algorithm
 -
 
+/Users/hal1437/Programs/Procon26/Hal/Solver/BestBeam.cpp
+BestBeam.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/BestBeam.h
+
+/Users/hal1437/Programs/Procon26/Hal/Solver/BestBeam.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+vector
+-
+set
+-
+algorithm
+-
+limits
+-
+
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.cpp
 BestFirst.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.h
@@ -295,6 +311,8 @@ Solver/DLS.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.h
 Solver/BestFirst.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.h
+Solver/BestBeam.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/BestBeam.h
 Solver/BestBackTrack.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestBackTrack.h
 Solver/PerfectBackTrack.h
