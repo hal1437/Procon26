@@ -1,8 +1,5 @@
 
-#include <chrono>
-#include <iostream>
-#include <sstream>
-#include <string>
+#include "TimeWait.h"
 
 void Timewait(std::size_t msec){
 	std::chrono::time_point<std::chrono::system_clock> begin  = std::chrono::system_clock::now();
