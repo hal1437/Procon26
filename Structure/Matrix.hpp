@@ -349,7 +349,15 @@ std::ostream& operator<<(std::ostream& ost,const Matrix<MATRIX_WIDTH,MATRIX_HEIG
 	ost << std::noboolalpha;
 	for(int i=0;i<MATRIX_HEIGHT;i++){
 		for(int j=0;j<MATRIX_WIDTH;j++){
+#ifdef MATRIX_WIDEOUT
+			if(matrix[i][j]){
+				ost << "■";
+			}else{
+				ost << "□";
+			}
+#else
 			ost << matrix[i][j];
+#endif
 		}
 		ost << "\n";
 	}
