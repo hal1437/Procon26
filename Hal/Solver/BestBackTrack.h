@@ -4,6 +4,7 @@
 #include <vector>
 #include <set>
 #include <algorithm>
+#include "../../Utility/TimeWait.h"
 
 //いい感じにバックトラック
 class BestBackTrack:public Solver{

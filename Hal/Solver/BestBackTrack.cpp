@@ -2,8 +2,6 @@
 #include "BestBackTrack.h"
 #include <random>
 #include <set>
-#include "../../Utility/TimeWait.hpp"
-#include "../../Utility/Quickout.hpp"
 
 
 
@@ -73,7 +71,6 @@ int BestBackTrack::Iterative(Field field,int depth){
 					field.Projection(problem.GetBlock(0),rand_trans);
 					break;
 				}
-				Qo("a");
 			}
 			//完了
 			if(Iterative(field,depth+1) == -1)return -1;
@@ -99,7 +96,6 @@ int BestBackTrack::Iterative(Field field,int depth){
 				}
 			}
 		}
-		Qo("BT:",lack);
 		if(lack==256)lack=-1;
 		return lack;
 	}else{
@@ -116,7 +112,6 @@ int BestBackTrack::Iterative(Field field,int depth){
 				return heuristic->Execution(l_field) < heuristic->Execution(r_field);
 			});
 			
-			Qo(field);
 			Timewait(500);
 			
 			//反復

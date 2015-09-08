@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 add_definitions("-O3 -std=c++1y")
 add_executable(Procon26-Hal
   main.cpp
+  Characteristics.cpp
   Solver/BestFirst.cpp
   Solver/DLS.cpp
   Solver/PerfectBackTrack.cpp
@@ -27,4 +28,5 @@ add_executable(Procon26-Hal
   ../Structure/Heuristic.cpp
   ../Structure/Problem.cpp	
   ../Structure/Answer.cpp
+  ../Utility/Timewait.cpp
 )

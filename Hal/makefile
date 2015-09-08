@@ -114,6 +114,30 @@ Procon26-Hal/fast:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/build
 .PHONY : Procon26-Hal/fast
 
+Characteristics.o: Characteristics.cpp.o
+.PHONY : Characteristics.o
+
+# target to build an object file
+Characteristics.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Characteristics.cpp.o
+.PHONY : Characteristics.cpp.o
+
+Characteristics.i: Characteristics.cpp.i
+.PHONY : Characteristics.i
+
+# target to preprocess a source file
+Characteristics.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Characteristics.cpp.i
+.PHONY : Characteristics.cpp.i
+
+Characteristics.s: Characteristics.cpp.s
+.PHONY : Characteristics.s
+
+# target to generate assembly for a file
+Characteristics.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Characteristics.cpp.s
+.PHONY : Characteristics.cpp.s
+
 Heuristics/Cavity.o: Heuristics/Cavity.cpp.o
 .PHONY : Heuristics/Cavity.o
 
@@ -714,6 +738,30 @@ Users/hal1437/Programs/Procon26/Structure/Transform.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.s
 .PHONY : Users/hal1437/Programs/Procon26/Structure/Transform.cpp.s
 
+Users/hal1437/Programs/Procon26/Utility/Timewait.o: Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.o
+.PHONY : Users/hal1437/Programs/Procon26/Utility/Timewait.o
+
+# target to build an object file
+Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.o
+.PHONY : Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.o
+
+Users/hal1437/Programs/Procon26/Utility/Timewait.i: Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.i
+.PHONY : Users/hal1437/Programs/Procon26/Utility/Timewait.i
+
+# target to preprocess a source file
+Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.i
+.PHONY : Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.i
+
+Users/hal1437/Programs/Procon26/Utility/Timewait.s: Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.s
+.PHONY : Users/hal1437/Programs/Procon26/Utility/Timewait.s
+
+# target to generate assembly for a file
+Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.s
+.PHONY : Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -747,6 +795,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Procon26-Hal"
+	@echo "... Characteristics.o"
+	@echo "... Characteristics.i"
+	@echo "... Characteristics.s"
 	@echo "... Heuristics/Cavity.o"
 	@echo "... Heuristics/Cavity.i"
 	@echo "... Heuristics/Cavity.s"
@@ -822,6 +873,9 @@ help:
 	@echo "... Users/hal1437/Programs/Procon26/Structure/Transform.o"
 	@echo "... Users/hal1437/Programs/Procon26/Structure/Transform.i"
 	@echo "... Users/hal1437/Programs/Procon26/Structure/Transform.s"
+	@echo "... Users/hal1437/Programs/Procon26/Utility/Timewait.o"
+	@echo "... Users/hal1437/Programs/Procon26/Utility/Timewait.i"
+	@echo "... Users/hal1437/Programs/Procon26/Utility/Timewait.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

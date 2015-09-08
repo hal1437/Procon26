@@ -38,14 +38,14 @@ int main(){
 	//Solver*  solver = new BestBackTrack(prob,h);
 	Solver* solver = new BestBeam(prob,h);
 
-	h->AddHeuristic(new DensityAround(),1.0f);
-	h->AddHeuristic(new Cavity(),-20.0f);
+	h->AddHeuristic(new DensityAround(),2.0f);
+	h->AddHeuristic(new Cavity(),-10.0f);
 	//h->AddHeuristic(new DPBlockSize(),)
 	//h->AddHeuristic(new Dent(),-5.0f);
 	//h->AddHeuristic(new SD(),-100.0f);
 	
-	//p->AddHeuristic(new CavityBlocks());
-	//p->AddHeuristic(new DPBlockSize());
+	p->AddHeuristic(new CavityBlocks());
+	p->AddHeuristic(new DPBlockSize());
 	//p->AddHeuristic(new MinTriming());
 	//p->AddHeuristic(new ParityCheck());
 	p->AddHeuristic(new PPPP());

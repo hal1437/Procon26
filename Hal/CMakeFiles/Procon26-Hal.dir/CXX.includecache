@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/Users/hal1437/Programs/Procon26/Hal/Characteristics.cpp
+Characteristics.h
+/Users/hal1437/Programs/Procon26/Hal/Characteristics.h
+
+/Users/hal1437/Programs/Procon26/Hal/Characteristics.h
+Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.cpp
 Cavity.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.h
@@ -131,6 +139,8 @@ iostream
 /Users/hal1437/Programs/Procon26/Hal/Perfect/PPPP.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
+../Characteristics.h
+/Users/hal1437/Programs/Procon26/Hal/Characteristics.h
 
 /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp
 ParityCheck.h
@@ -163,10 +173,6 @@ random
 -
 set
 -
-../../Utility/TimeWait.hpp
-/Users/hal1437/Programs/Procon26/Utility/TimeWait.hpp
-../../Utility/Quickout.hpp
-/Users/hal1437/Programs/Procon26/Utility/Quickout.hpp
 
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestBackTrack.h
 ../Structures.h
@@ -177,6 +183,8 @@ set
 -
 algorithm
 -
+../../Utility/TimeWait.h
+/Users/hal1437/Programs/Procon26/Utility/TimeWait.h
 
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestBeam.cpp
 BestBeam.h
@@ -185,6 +193,8 @@ BestBeam.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/BestBeam.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
+../../Utility/Timewait.h
+/Users/hal1437/Programs/Procon26/Utility/Timewait.h
 vector
 -
 set
@@ -452,11 +462,21 @@ ostream
 
 /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 
-/Users/hal1437/Programs/Procon26/Utility/Quickout.hpp
+/Users/hal1437/Programs/Procon26/Utility/TimeWait.h
+chrono
+-
 iostream
 -
+sstream
+-
+string
+-
 
-/Users/hal1437/Programs/Procon26/Utility/TimeWait.hpp
+/Users/hal1437/Programs/Procon26/Utility/Timewait.cpp
+TimeWait.h
+/Users/hal1437/Programs/Procon26/Utility/TimeWait.h
+
+/Users/hal1437/Programs/Procon26/Utility/Timewait.h
 chrono
 -
 iostream
