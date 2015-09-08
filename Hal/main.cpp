@@ -1,4 +1,5 @@
 
+#define MATRIX_WIDEOUT
 #include <iostream>
 #include <fstream>
 #include "../Structure/Problem.h"
@@ -26,7 +27,7 @@
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest6.txt");
+	Problem prob("../Problem/quest1.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
@@ -39,7 +40,7 @@ int main(){
 	Solver* solver = new BestBeam(prob,h);
 
 	h->AddHeuristic(new DensityAround(),2.0f);
-	h->AddHeuristic(new Cavity(),-10.0f);
+	h->AddHeuristic(new Cavity(),-20.0f);
 	//h->AddHeuristic(new DPBlockSize(),)
 	//h->AddHeuristic(new Dent(),-5.0f);
 	//h->AddHeuristic(new SD(),-100.0f);
@@ -54,9 +55,9 @@ int main(){
 	//solver->SetHeuristic(h);
 	solver->Solve().Export("Answer.txt");
 
-	delete solver;
-	delete p;
-	delete h;
+	//delete solver;
+	//delete p;
+	//delete h;
 
 	std::cout << "-----End of program-----" << std::endl;
 	return 0;

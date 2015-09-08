@@ -4,17 +4,27 @@
 
 
 BestBeam::Factor::Factor(){
-	heuristic = std::numeric_limits<double>::max();
+	heuristic = std::numeric_limits<double>::min();
 }
 BestBeam::Factor::Factor(Field f,double h):
 	field(f),
 	heuristic(h){
 }
+bool operator==(const Transform& lhs ,const Transform& rhs){
+	return (lhs.angle   == rhs.angle &&
+			lhs.pos     == rhs.pos   &&
+			lhs.reverse == rhs.reverse);
+}
+
+
 bool operator==(const BestBeam::Factor& lhs,const BestBeam::Factor& rhs){
-	return (lhs.field == rhs.field && lhs.transes.size() == rhs.transes.size());
+	return (lhs.transes == rhs.transes);
 }
 
 bool operator<(const BestBeam::Factor& lhs,const BestBeam::Factor& rhs){
+	return (lhs.heuristic < rhs.heuristic);
+}
+bool operator>(const BestBeam::Factor& lhs,const BestBeam::Factor& rhs){
 	return (lhs.heuristic > rhs.heuristic);
 }
 
@@ -30,6 +40,9 @@ BestBeam::~BestBeam(){
 Answer BestBeam::Solve(){
 
 	std::vector<Factor> list;//探索リスト
+	std::set<Factor> log;	//探索記録
+	Factor best;
+	Answer ans(problem);
 
 	//初期手
 	list.push_back(Factor());
@@ -39,11 +52,10 @@ Answer BestBeam::Solve(){
 
 	//探索ループ
 	while(!list.empty()){
-		int loop_count = std::min(100,static_cast<int>(list.size()));
+		int loop_count = std::min(BEAM_DEPTH,static_cast<int>(list.size()));
 		for(int i = 0;i < loop_count;i++){
 			const Factor top = list.front();
-			//完了
-			if((~(top.field | problem.GetField())).count() == 0)break;
+			
 			
 			//pop
 			list.erase(list.begin());
@@ -52,13 +64,24 @@ Answer BestBeam::Solve(){
 			if(top.transes.size() == problem.Count())continue;
 
 			//盤面出力
+			
 			std::cout << "ループ  ：" << i << std::endl;
 			std::cout << "ビーム　：" << list.size() << "/" << BEAM_DEPTH << std::endl;
 			std::cout << "空きマス：" << (~(top.field | problem.GetField())).count() << std::endl;
 			std::cout << "深さ　　：" << top.transes.size() << std::endl;
 			std::cout << "評価値　：" << top.heuristic << std::endl;
-			std::cout << "盤面状態：\n" << (top.field | problem.GetField()) << std::endl;
-			Timewait(100);
+			std::cout << "盤面状態：\n" << problem.GetBlock(top.transes.size());
+			std::cout << (top.field | problem.GetField()) << std::endl;
+			
+			//完了
+			best = std::max(top,best);
+			if((~(top.field | problem.GetField())).count() == 0){
+				best = top;
+				list.clear();
+				break;
+			}
+			//Timewait(100);
+
 
 			//遷移
 			std::vector<Transform> hands = top.field.GetListLayPossible(problem.GetBlock(top.transes.size()),problem.GetField(),top.transes.size()==0);
@@ -67,7 +90,9 @@ Answer BestBeam::Solve(){
 	
 			//パスも追加
 			hands.push_back(Transform());
-		
+			
+
+			//std::cout << "候補数　：" << hands.size() << std::endl;
 			//キューに追加
 			for(Transform hand:hands){
 				std::vector<Transform> tmp = top.transes;
@@ -79,16 +104,16 @@ Answer BestBeam::Solve(){
 				fact.transes   = tmp;
 				
 				//探索済みでなければ追加
-				if(log.find(fact.field) == log.end()){
+				//if(log.find(fact) == log.end()){
 					list.push_back(fact);
-					log.insert(fact.field);
-				}
+					log.insert(fact);
+				//}
 			
 			}
 		}
 		
 		//ソートし、ビーム幅でソート
-		std::sort(list.begin(),list.end());
+		std::sort(list.begin(),list.end(),std::greater<>());
 		list.erase(std::unique(list.begin(),list.end()),list.end());
 		if(list.size() > BEAM_DEPTH)list.erase(list.begin() + BEAM_DEPTH,list.end());
 	
@@ -99,16 +124,18 @@ Answer BestBeam::Solve(){
 	}
 
 	//以下完了時に実行
-	if(list.empty())std::cout << "ビーム切れ" << std::endl;
+	if((~(best.field | problem.GetField())).count() != 0)std::cout << "ビーム切れ" << std::endl;
 	else std::cout << "完了" << std::endl;
-	std::cout << (~list.front().field).count() << std::endl;
-	std::cout << list.front().field << std::endl;
+	std::cout << "最終評価値：" << best.heuristic << std::endl;
+	std::cout << "空きマス数：" << (~(best.field | problem.GetField())).count() << std::endl;
+	std::cout << "使用石数　：" << (best.transes.size() - std::count(best.transes.begin(),best.transes.end(),Transform())) << std::endl;
+
 	
-	for(Transform trans : list.front().transes){
-		std::cout << trans << std::endl;;
+	for(int i=0;i < best.transes.size();i++){
+		//std::cout << best.transes[i] << std::endl;
+		ans.SetTransform(i,best.transes[i]);
 	}
-	while(1){}
-	Answer ans;
+
 	return ans;
 }
 
