@@ -14,7 +14,8 @@ void Cavity::FillAround(Field& field,const Point& pos)const{
 	}
 }
 
-unsigned Cavity::Execution(const Field& field){
+double Cavity::Execution(const Field& field){
+
 	Field _field = field;
 	unsigned score = 0;
 	for(int i=0;i<FIELD_HEIGHT;i++){

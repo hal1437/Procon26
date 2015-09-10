@@ -27,7 +27,7 @@
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest1.txt");
+	Problem prob("../Problem/quest8.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
@@ -40,10 +40,10 @@ int main(){
 	Solver* solver = new BestBeam(prob,h);
 
 	h->AddHeuristic(new DensityAround(),2.0f);
-	h->AddHeuristic(new Cavity(),-20.0f);
+	h->AddHeuristic(new Cavity(),-30.0f);
+	h->AddHeuristic(new SD(),-10.0f);
 	//h->AddHeuristic(new DPBlockSize(),)
 	//h->AddHeuristic(new Dent(),-5.0f);
-	//h->AddHeuristic(new SD(),-100.0f);
 	
 	p->AddHeuristic(new CavityBlocks());
 	p->AddHeuristic(new DPBlockSize());

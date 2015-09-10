@@ -128,11 +128,11 @@ Answer BestBeam::Solve(){
 	else std::cout << "完了" << std::endl;
 	std::cout << "最終評価値：" << best.heuristic << std::endl;
 	std::cout << "空きマス数：" << (~(best.field | problem.GetField())).count() << std::endl;
-	std::cout << "使用石数　：" << (best.transes.size() - std::count(best.transes.begin(),best.transes.end(),Transform())) << std::endl;
+	std::cout << "使用石数　：" << (problem.Count() - std::count(best.transes.begin(),best.transes.end(),Transform())) << std::endl;
 
 	
 	for(int i=0;i < best.transes.size();i++){
-		//std::cout << best.transes[i] << std::endl;
+		std::cout << best.transes[i] << std::endl;
 		ans.SetTransform(i,best.transes[i]);
 	}
 

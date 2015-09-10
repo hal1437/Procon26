@@ -10,8 +10,16 @@
 
 //最良優先ビームサーチ
 class BestBeam:public Solver{
+	/*
+	 *記録
+	 *評価関数：密度　　 2.0f
+	 *　　　　　閉空間数 -20.0f
+	 *ビーム幅 30~200
+	 *
+	 * */
+
 	typedef Heuristics<double,Field> Heuristics;
-	const int BEAM_DEPTH = 20;//ビーム幅
+	const int BEAM_DEPTH = 100;//ビーム幅
 	
 public:
 	//要素

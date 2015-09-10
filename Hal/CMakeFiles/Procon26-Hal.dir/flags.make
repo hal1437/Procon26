@@ -4,5 +4,5 @@
 # compile CXX with /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
 CXX_FLAGS =   -O3 -std=c++1y
 
-CXX_DEFINES = -DMATRIX_WIDEOUT
+CXX_DEFINES = 
 

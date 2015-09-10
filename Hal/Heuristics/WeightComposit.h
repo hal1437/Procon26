@@ -5,7 +5,7 @@
 
 class WeightComposit : public Heuristics<double,Field>{
 private:
-	typedef Heuristics<unsigned,Field> h_type;
+	typedef Heuristics<double,Field> h_type;
 	std::map<h_type*,double> h_list;
 
 public:

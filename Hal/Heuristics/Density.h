@@ -3,9 +3,9 @@
 #include "../../Structure/Matrix.hpp"
 #include "../../Structure/Heuristic.h"
 
-class Density : public Heuristics<unsigned,Field>{
+class Density : public Heuristics<double,Field>{
 public:
-	unsigned Execution(const Field& field);
+	double Execution(const Field& field);
 
 	Density();
 };
