@@ -194,10 +194,11 @@ public:
 		current answer(*this);
 		if(value >= BYTE_SIZE){
 			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i-value/BYTE_SIZE] = answer.byte[i];
-			for(int i = ARRAY_MATRIX_SIZE-1;i>=ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i--)answer.byte[i] = 0;
+			for(int i = ARRAY_MATRIX_SIZE-1;i>MATRIX_HEIGHT-(value/BYTE_SIZE)-1;i--)byte[i] = 0;
+
 			value %= 8;
 		}
-		if(!value)return answer;
+		if(value==0)return answer;
 
 		char hi=0, lo=0;
 		char mask = (char)(0xFF << (BYTE_SIZE - value));
@@ -216,7 +217,7 @@ public:
 			for(int i = 0;i<value/BYTE_SIZE;i++)answer.byte[i] = 0;
 			value %= 8;
 		}
-		if(!value)return answer;
+		if(value==0)return answer;
 		char hi=0, lo=0;
 		char mask = (char)(0xFF >> (BYTE_SIZE - value));
 		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
@@ -230,7 +231,7 @@ public:
 	constexpr current& operator<<=(size_t value){
 		if(value >= BYTE_SIZE){
 			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)byte[i-value/BYTE_SIZE] = byte[i];
-			for(int i = ARRAY_MATRIX_SIZE-1;i>(value/BYTE_SIZE);i--)byte[i] = 0;
+			for(int i = ARRAY_MATRIX_SIZE-1;i>MATRIX_HEIGHT-(value/BYTE_SIZE)-1;i--)byte[i] = 0;
 			value %= 8;
 		}
 		if(!value)return (*this);
