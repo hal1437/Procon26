@@ -27,7 +27,7 @@
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest8.txt");
+	Problem prob("../Problem/14.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
@@ -41,7 +41,7 @@ int main(){
 
 	h->AddHeuristic(new DensityAround(),2.0f);
 	h->AddHeuristic(new Cavity(),-30.0f);
-	h->AddHeuristic(new SD(),-10.0f);
+	h->AddHeuristic(new SD(),-10.0);
 	//h->AddHeuristic(new DPBlockSize(),)
 	//h->AddHeuristic(new Dent(),-5.0f);
 	

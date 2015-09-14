@@ -19,7 +19,8 @@ class BestBeam:public Solver{
 	 * */
 
 	typedef Heuristics<double,Field> Heuristics;
-	const int BEAM_DEPTH = 100;//ビーム幅
+	typedef Perfect<Field ,BlockLayer> Perfect;
+	const int BEAM_DEPTH = 400;//ビーム幅
 	
 public:
 	//要素
@@ -34,11 +35,13 @@ public:
 	};
 public:
 	Heuristics* heuristic;
+	Perfect* perfect;
 public:
 
 	Answer Solve()override;
 
 	BestBeam(Problem prob,Heuristics* h);
+	BestBeam(Problem prob,Heuristics* h,Perfect* p);
 	virtual ~BestBeam();
 };
 

@@ -5,9 +5,9 @@
 
 //減点評価
 //へこむとつらいよね
-class Dent : public Heuristics<unsigned,Field>{
+class Dent : public Heuristics<double,Field>{
 public:
-	unsigned Execution(const Field& field);
+	double Execution(const Field& field);
 
 	Dent();
 };
