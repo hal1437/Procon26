@@ -1,7 +1,41 @@
 
 #include "BestBeam.h"
 
+int BestBeam::BEAM_DEPTH;
 
+
+std::vector<Field> DivisionSpaces(const Field& field){
+	std::vector<Field> answer;
+	Field c_field(field);
+
+	for(int i=0;i<FIELD_HEIGHT;i++){
+		for(int j=0;j<FIELD_WIDTH;j++){
+			if(c_field[i][j]==0){
+				Field tmp_field;
+				tmp_field = ~tmp_field;
+				tmp_field[i][j] = 0;
+				std::queue<Point> queue;
+				queue.push(Point(j,i));
+				while(queue.size() != 0){
+					CLOCKWISE_FOR(clock){
+						Point s_pos = queue.front() + clock;
+						if(s_pos.x >= 0 && s_pos.x < FIELD_WIDTH &&
+						   s_pos.y >= 0 && s_pos.y < FIELD_HEIGHT &&
+						   c_field[s_pos.y][s_pos.x]==0){
+							c_field  [s_pos.y][s_pos.x] = 1;
+							tmp_field[s_pos.y][s_pos.x] = 0;
+							queue.push(s_pos);
+						}
+					} 
+					queue.pop();
+				}
+				answer.push_back(tmp_field);
+			}
+		}
+	}
+
+	return answer;
+}
 
 BestBeam::Factor::Factor(){
 	heuristic = std::numeric_limits<double>::min();
@@ -10,6 +44,7 @@ BestBeam::Factor::Factor(Field f,double h):
 	field(f),
 	heuristic(h){
 }
+
 bool operator==(const Transform& lhs ,const Transform& rhs){
 	return (lhs.angle   == rhs.angle &&
 			lhs.pos     == rhs.pos   &&
@@ -22,15 +57,52 @@ bool operator==(const BestBeam::Factor& lhs,const BestBeam::Factor& rhs){
 }
 
 bool operator<(const BestBeam::Factor& lhs,const BestBeam::Factor& rhs){
-	return (lhs.heuristic < rhs.heuristic);
+	return (lhs.transes < rhs.transes);
 }
-bool operator>(const BestBeam::Factor& lhs,const BestBeam::Factor& rhs){
-	return (lhs.heuristic > rhs.heuristic);
+
+bool BestBeam::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
+	return lhs.heuristic > rhs.heuristic;
 }
+
+bool BestBeam::Factor::isPerfect(const Problem& problem)const{
+	
+	if((~(field | problem.GetField())).count()<100){
+		BestBeam::BEAM_DEPTH=300;
+		//-DivisionSpace-
+		std::vector<Field> div = DivisionSpaces(field | problem.GetField());
+
+		/*
+		for(const Field& ff:div){
+			std::cout << ff << std::endl;
+		}
+		Timewait(100);
+		*/
+
+		//DBBLockSize
+		std::set<int> dp_size;
+		for(int i=transes.size();i<problem.Count();i++){
+			int current_size = problem.GetBlock(i).count();
+			dp_size.insert(current_size);
+			for(int v : dp_size){
+				if(v + current_size < 100)dp_size.insert(v + current_size);
+			}
+		}
+
+		//全てのdiv.sizeうち一つでもdp_size内に存在していなければ。
+		if(std::any_of(div.begin(),div.end(),[&](const Field& f){
+			return (dp_size.find((~f).count()) ==dp_size.end());
+		})){
+			return false;
+		}
+	}
+	return true;
+}
+
 
 BestBeam::BestBeam(Problem prob,Heuristics* h):
 	Solver(prob),
 	heuristic(h){
+	BEAM_DEPTH=100;
 }
 BestBeam::~BestBeam(){
 
@@ -49,18 +121,6 @@ Answer BestBeam::Solve(){
 	
 	//list[0].field = problem.GetField();
 	std::cout << list.size() << std::endl;
-
-	/*
-	for(int i=0;i<4;i++){
-		for(int j=0;j<2;j++){
-			Transform trans(Point(-1,-2),static_cast<Constants::ANGLE>(90*i),j);
-			std::cout << trans << std::endl;
-			std::cout << problem.GetBlock(5).GetTransform(trans) << std::endl;
-		}
-	}*/
-
-	while(1){}
-
 
 	//探索ループ
 	while(!list.empty()){
@@ -86,13 +146,12 @@ Answer BestBeam::Solve(){
 			std::cout << (top.field | problem.GetField()) << std::endl;
 			
 			//完了
-			best = std::max(top,best);
-			if((~(top.field | problem.GetField())).count() == 5){
+			best = std::min(top,best,Factor::HeuristicCompare);
+			if((~(top.field | problem.GetField())).count() == 0){
 				best = top;
 				list.clear();
 				break;
 			}
-			//Timewait(100);
 
 
 			//遷移
@@ -115,7 +174,7 @@ Answer BestBeam::Solve(){
 				fact.transes   = tmp;
 				
 				//探索済みでなければ追加
-				if(log.find(fact) == log.end()){
+				if(log.find(fact) == log.end() && fact.isPerfect(problem)){
 					list.push_back(fact);
 					log.insert(fact);
 				}
@@ -124,7 +183,7 @@ Answer BestBeam::Solve(){
 		}
 		
 		//ソートし、ビーム幅でソート
-		std::sort(list.begin(),list.end(),std::greater<>());
+		std::sort(list.begin(),list.end(),Factor::HeuristicCompare);
 		list.erase(std::unique(list.begin(),list.end()),list.end());
 		if(list.size() > BEAM_DEPTH)list.erase(list.begin() + BEAM_DEPTH,list.end());
 	

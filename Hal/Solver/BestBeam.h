@@ -3,10 +3,13 @@
 #include "../Structures.h"
 #include "../../Utility/Timewait.h"
 #include <vector>
+#include <queue>
 #include <functional>
 #include <set>
 #include <algorithm>
 #include <limits>
+
+std::vector<Field> DivisionSpace(const Field& field);
 
 //最良優先ビームサーチ
 class BestBeam:public Solver{
@@ -20,7 +23,7 @@ class BestBeam:public Solver{
 
 	typedef Heuristics<double,Field> Heuristics;
 	typedef Perfect<Field ,BlockLayer> Perfect;
-	const int BEAM_DEPTH = 400;//ビーム幅
+	static int BEAM_DEPTH;//ビーム幅
 	
 public:
 	//要素
@@ -29,19 +32,21 @@ public:
 		double heuristic = std::numeric_limits<double>::min();
 		std::vector<Transform> transes;
 
+		static bool HeuristicCompare(const Factor& lhs,const Factor& rhs);
+		
+		bool isPerfect(const Problem& problem)const;
 		Factor();
 		Factor(Field f,double h);
 
 	};
 public:
 	Heuristics* heuristic;
-	Perfect* perfect;
 public:
 
 	Answer Solve()override;
+	
 
 	BestBeam(Problem prob,Heuristics* h);
-	BestBeam(Problem prob,Heuristics* h,Perfect* p);
 	virtual ~BestBeam();
 };
 
