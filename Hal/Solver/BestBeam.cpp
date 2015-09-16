@@ -66,6 +66,8 @@ bool BestBeam::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
 
 bool BestBeam::Factor::isPerfect(const Problem& problem)const{
 	
+	static std::set<std::pair<int,std::set<int>>> log;
+
 	if((~(field | problem.GetField())).count()<100){
 		BestBeam::BEAM_DEPTH=300;
 		//-DivisionSpace-
@@ -80,12 +82,22 @@ bool BestBeam::Factor::isPerfect(const Problem& problem)const{
 
 		//DBBLockSize
 		std::set<int> dp_size;
-		for(int i=transes.size();i<problem.Count();i++){
-			int current_size = problem.GetBlock(i).count();
-			dp_size.insert(current_size);
-			for(int v : dp_size){
-				if(v + current_size < 100)dp_size.insert(v + current_size);
+		
+		//load
+		for(const std::pair<int,std::set<int>> v:log){
+			if(v.first == transes.size())dp_size = v.second;
+		}
+		//if notfound log
+		if(dp_size == std::set<int>()){
+			for(int i=transes.size();i<problem.Count();i++){
+				int current_size = problem.GetBlock(i).count();
+				dp_size.insert(current_size);
+				for(int v : dp_size){
+					if(v + current_size < 100)dp_size.insert(v + current_size);
+				}
 			}
+			//save
+			log.insert(std::make_pair(transes.size(),dp_size));
 		}
 
 		//全てのdiv.sizeうち一つでもdp_size内に存在していなければ。
