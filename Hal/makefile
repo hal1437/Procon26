@@ -618,6 +618,30 @@ Solver/PerfectBackTrack.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.s
 .PHONY : Solver/PerfectBackTrack.cpp.s
 
+Solver/QuickBeam.o: Solver/QuickBeam.cpp.o
+.PHONY : Solver/QuickBeam.o
+
+# target to build an object file
+Solver/QuickBeam.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o
+.PHONY : Solver/QuickBeam.cpp.o
+
+Solver/QuickBeam.i: Solver/QuickBeam.cpp.i
+.PHONY : Solver/QuickBeam.i
+
+# target to preprocess a source file
+Solver/QuickBeam.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.i
+.PHONY : Solver/QuickBeam.cpp.i
+
+Solver/QuickBeam.s: Solver/QuickBeam.cpp.s
+.PHONY : Solver/QuickBeam.s
+
+# target to generate assembly for a file
+Solver/QuickBeam.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.s
+.PHONY : Solver/QuickBeam.cpp.s
+
 Users/hal1437/Programs/Procon26/Structure/Answer.o: Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o
 .PHONY : Users/hal1437/Programs/Procon26/Structure/Answer.o
 
@@ -858,6 +882,9 @@ help:
 	@echo "... Solver/PerfectBackTrack.o"
 	@echo "... Solver/PerfectBackTrack.i"
 	@echo "... Solver/PerfectBackTrack.s"
+	@echo "... Solver/QuickBeam.o"
+	@echo "... Solver/QuickBeam.i"
+	@echo "... Solver/QuickBeam.s"
 	@echo "... Users/hal1437/Programs/Procon26/Structure/Answer.o"
 	@echo "... Users/hal1437/Programs/Procon26/Structure/Answer.i"
 	@echo "... Users/hal1437/Programs/Procon26/Structure/Answer.s"

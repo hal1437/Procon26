@@ -25,6 +25,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/hal1437/Programs/Procon26/Hal/Solver/DLS.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.o"
   "/Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o"
+  "/Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o"
   "/Users/hal1437/Programs/Procon26/Structure/Answer.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o"
   "/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o"
   "/Users/hal1437/Programs/Procon26/Structure/Point.cpp" "/Users/hal1437/Programs/Procon26/Hal/CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o"

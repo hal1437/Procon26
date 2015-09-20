@@ -310,6 +310,23 @@ CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o
  /Users/hal1437/Programs/Procon26/Structure/Transform.h
  /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
  /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o
+ /Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.cpp
+ /Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.h
+ /Users/hal1437/Programs/Procon26/Hal/Structures.h
+ /Users/hal1437/Programs/Procon26/Structure/Answer.h
+ /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+ /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
+ /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+ /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+ /Users/hal1437/Programs/Procon26/Structure/Perfect.h
+ /Users/hal1437/Programs/Procon26/Structure/Point.h
+ /Users/hal1437/Programs/Procon26/Structure/Problem.h
+ /Users/hal1437/Programs/Procon26/Structure/Solver.h
+ /Users/hal1437/Programs/Procon26/Structure/Transform.h
+ /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+ /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+ /Users/hal1437/Programs/Procon26/Utility/Timewait.h
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o
  /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
  /Users/hal1437/Programs/Procon26/Structure/Answer.h
@@ -367,6 +384,7 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o
  /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.h
  /Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
  /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.h
+ /Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.h
  /Users/hal1437/Programs/Procon26/Hal/Structures.h
  /Users/hal1437/Programs/Procon26/Hal/main.cpp
  /Users/hal1437/Programs/Procon26/Structure/Answer.h

@@ -233,9 +233,32 @@ CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o.provides: CMakeFiles/Procon26-
 
 CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o
 
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: Solver/QuickBeam.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_9)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.cpp
+
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.cpp > CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.i
+
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.cpp -o CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.s
+
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o.requires:
+.PHONY : CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o.requires
+
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o.provides: CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o.provides.build
+.PHONY : CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o.provides
+
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o
+
 CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o: Heuristics/Cavity.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.cpp
 
@@ -258,7 +281,7 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o.provides.build: CMakeFiles/P
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o: Heuristics/DensityAround.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_10)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.cpp
 
@@ -281,7 +304,7 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o.provides.build: CMake
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o: Heuristics/WeightComposit.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_12)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.cpp
 
@@ -304,7 +327,7 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o.provides.build: CMak
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o: Heuristics/Density.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_12)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_13)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.cpp
 
@@ -327,7 +350,7 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/Density.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o: Heuristics/Score.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_13)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_14)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp
 
@@ -350,7 +373,7 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/Score.cpp.o.provides.build: CMakeFiles/Pr
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: Heuristics/SD.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_14)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_15)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.cpp
 
@@ -373,7 +396,7 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o.provides.build: CMakeFiles/Proco
 
 CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o: Heuristics/Dent.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_15)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_16)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.cpp
 
@@ -396,7 +419,7 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o.provides.build: CMakeFiles/Pro
 
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o: Perfect/BlockSize.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_16)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_17)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp
 
@@ -419,7 +442,7 @@ CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o.provides.build: CMakeFiles/P
 
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o: Perfect/ParityCheck.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_17)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_18)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.cpp
 
@@ -442,7 +465,7 @@ CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o: Perfect/DPBlockSize.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_18)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_19)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.cpp
 
@@ -465,7 +488,7 @@ CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o: Perfect/CavityBlocks.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_19)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_20)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.cpp
 
@@ -488,7 +511,7 @@ CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o: Perfect/PerfectComposit.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_20)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_21)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.cpp
 
@@ -511,7 +534,7 @@ CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o.provides.build: CMakeF
 
 CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o: Perfect/MinTriming.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_21)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_22)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.cpp
 
@@ -534,7 +557,7 @@ CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o: Perfect/PPPP.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_22)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_23)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Perfect/PPPP.cpp
 
@@ -557,7 +580,7 @@ CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o.provides.build: CMakeFiles/Procon
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_23)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_24)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
 
@@ -580,7 +603,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_24)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_25)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Point.cpp
 
@@ -603,7 +626,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_25)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_26)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp
 
@@ -626,7 +649,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_26)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_27)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Problem.cpp
 
@@ -649,7 +672,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Problem.cp
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_27)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_28)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o -c /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 
@@ -672,7 +695,7 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Timewait.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_28)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_29)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Utility/Timewait.cpp.o -c /Users/hal1437/Programs/Procon26/Utility/Timewait.cpp
 
@@ -703,6 +726,7 @@ Procon26__Hal_OBJECTS = \
 "CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o" \
+"CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o" \
@@ -735,6 +759,7 @@ Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o
+Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o
@@ -772,6 +797,7 @@ CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Solver/Perfect
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o.requires
+CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o.requires

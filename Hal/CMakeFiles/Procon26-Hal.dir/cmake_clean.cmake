@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o"
+  "CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Heuristics/Cavity.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Heuristics/DensityAround.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o"

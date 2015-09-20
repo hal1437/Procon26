@@ -280,6 +280,24 @@ set
 algorithm
 -
 
+/Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.cpp
+QuickBeam.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.h
+random
+-
+set
+-
+
+/Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+../../Utility/Timewait.h
+/Users/hal1437/Programs/Procon26/Utility/Timewait.h
+vector
+-
+algorithm
+-
+
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
 ../Structure/Matrix.hpp
 /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
@@ -333,6 +351,8 @@ Solver/PerfectBackTrack.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.h
 Solver/IterativeCover.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
+Solver/QuickBeam.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.h
 Perfect/DPBlockSize.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.h
 Perfect/BlockSize.h

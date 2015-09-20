@@ -45,13 +45,6 @@ BestBeam::Factor::Factor(Field f,double h):
 	heuristic(h){
 }
 
-bool operator==(const Transform& lhs ,const Transform& rhs){
-	return (lhs.angle   == rhs.angle &&
-			lhs.pos     == rhs.pos   &&
-			lhs.reverse == rhs.reverse);
-}
-
-
 bool operator==(const BestBeam::Factor& lhs,const BestBeam::Factor& rhs){
 	return (lhs.transes == rhs.transes);
 }
@@ -114,7 +107,7 @@ bool BestBeam::Factor::isPerfect(const Problem& problem)const{
 BestBeam::BestBeam(Problem prob,Heuristics* h):
 	Solver(prob),
 	heuristic(h){
-	BEAM_DEPTH=100;
+	BEAM_DEPTH=300;
 }
 BestBeam::~BestBeam(){
 
@@ -129,7 +122,15 @@ Answer BestBeam::Solve(){
 	Answer ans(problem);
 
 	//初期手
-	list.push_back(Factor());
+	//((22,-3),270,false)
+	Factor fact;
+	Transform t(Point(22,-3),Constants::ANGLE270,false);
+	fact.field     = Field().GetProjection(problem.GetBlock(0),t);
+	fact.heuristic = heuristic->Execution(fact.field | problem.GetField());
+	fact.transes   = {t};
+
+	list.push_back(fact);
+	//list.push_back(Factor());
 	
 	//list[0].field = problem.GetField();
 	std::cout << list.size() << std::endl;

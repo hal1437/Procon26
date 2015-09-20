@@ -16,6 +16,7 @@
 #include "Solver/BestBackTrack.h"
 #include "Solver/PerfectBackTrack.h"
 #include "Solver/IterativeCover.h"
+#include "Solver/QuickBeam.h"
 #include "Perfect/DPBlockSize.h"
 #include "Perfect/BlockSize.h"
 #include "Perfect/ParityCheck.h"
@@ -26,7 +27,7 @@
 
 int main(){
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/17.txt");
+	Problem prob("../Problem/37.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
@@ -36,11 +37,11 @@ int main(){
 	//Solver* solver = new PerfectBackTrack(prob,h,p);
 	//Solver*  solver = new IterativeCover(prob,h);
 	//Solver*  solver = new BestBackTrack(prob,h);
-	Solver* solver = new BestBeam(prob,h);
+	Solver* solver = new QuickBeam(prob,h);
 
 	h->AddHeuristic(new DensityAround(),1.0f);
 	h->AddHeuristic(new Cavity(),-30.0f);
-	h->AddHeuristic(new SD(),10.0);
+	//h->AddHeuristic(new SD(),6.0);
 	//h->AddHeuristic(new DPBlockSize(),)
 	
 	//p->AddHeuristic(new CavityBlocks());

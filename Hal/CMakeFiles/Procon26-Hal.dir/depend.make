@@ -310,6 +310,23 @@ CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o: /Users/hal1437/Progra
 CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
 CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: Solver/QuickBeam.cpp
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: Solver/QuickBeam.h
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: Structures.h
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.h
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Perfect.h
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.h
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.h
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Solver.h
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.h
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Timewait.h
+
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.h
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
@@ -366,6 +383,7 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/BestFirst.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/DLS.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/IterativeCover.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/PerfectBackTrack.h
+CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/QuickBeam.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Structures.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: main.cpp
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.h
