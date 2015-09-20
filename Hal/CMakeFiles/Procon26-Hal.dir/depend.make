@@ -63,6 +63,22 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o: /Users/hal1437/Programs/Proco
 CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
 CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: Heuristics/Frame.cpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: Heuristics/Frame.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: Structures.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Perfect.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Solver.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.h
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+
 CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: Heuristics/SD.cpp
 CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: Heuristics/SD.h
 CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
@@ -366,6 +382,7 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Cavity.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Density.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/DensityAround.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Dent.h
+CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Frame.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/SD.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Score.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/WeightComposit.h

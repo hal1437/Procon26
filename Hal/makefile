@@ -234,6 +234,30 @@ Heuristics/Dent.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.s
 .PHONY : Heuristics/Dent.cpp.s
 
+Heuristics/Frame.o: Heuristics/Frame.cpp.o
+.PHONY : Heuristics/Frame.o
+
+# target to build an object file
+Heuristics/Frame.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o
+.PHONY : Heuristics/Frame.cpp.o
+
+Heuristics/Frame.i: Heuristics/Frame.cpp.i
+.PHONY : Heuristics/Frame.i
+
+# target to preprocess a source file
+Heuristics/Frame.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.i
+.PHONY : Heuristics/Frame.cpp.i
+
+Heuristics/Frame.s: Heuristics/Frame.cpp.s
+.PHONY : Heuristics/Frame.s
+
+# target to generate assembly for a file
+Heuristics/Frame.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.s
+.PHONY : Heuristics/Frame.cpp.s
+
 Heuristics/SD.o: Heuristics/SD.cpp.o
 .PHONY : Heuristics/SD.o
 
@@ -834,6 +858,9 @@ help:
 	@echo "... Heuristics/Dent.o"
 	@echo "... Heuristics/Dent.i"
 	@echo "... Heuristics/Dent.s"
+	@echo "... Heuristics/Frame.o"
+	@echo "... Heuristics/Frame.i"
+	@echo "... Heuristics/Frame.s"
 	@echo "... Heuristics/SD.o"
 	@echo "... Heuristics/SD.i"
 	@echo "... Heuristics/SD.s"

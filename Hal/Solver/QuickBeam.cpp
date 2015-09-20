@@ -167,7 +167,7 @@ Answer QuickBeam::Solve(){
 				ans.SetTransform(i,Transform());
 			}
 		}
-		if((~(problem.GetField() | best.field)).count()<=37)return ans;
+		if((~(problem.GetField() | best.field)).count()<=0)return ans;
 	}
 }
 

@@ -56,6 +56,14 @@ Dent.h
 ../../Structure/Heuristic.h
 /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
 
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.cpp
+Frame.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.h
+
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.cpp
 SD.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
@@ -337,6 +345,8 @@ Heuristics/SD.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
 Heuristics/Dent.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.h
+Heuristics/Frame.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.h
 Solver/AStar.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
 Solver/DLS.h

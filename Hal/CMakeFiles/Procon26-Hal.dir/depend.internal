@@ -63,6 +63,22 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o
  /Users/hal1437/Programs/Procon26/Structure/Transform.h
  /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
  /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o
+ /Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.cpp
+ /Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.h
+ /Users/hal1437/Programs/Procon26/Hal/Structures.h
+ /Users/hal1437/Programs/Procon26/Structure/Answer.h
+ /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+ /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
+ /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+ /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+ /Users/hal1437/Programs/Procon26/Structure/Perfect.h
+ /Users/hal1437/Programs/Procon26/Structure/Point.h
+ /Users/hal1437/Programs/Procon26/Structure/Problem.h
+ /Users/hal1437/Programs/Procon26/Structure/Solver.h
+ /Users/hal1437/Programs/Procon26/Structure/Transform.h
+ /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+ /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 CMakeFiles/Procon26-Hal.dir/Heuristics/SD.cpp.o
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.cpp
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
@@ -367,6 +383,7 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.h
+ /Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.h

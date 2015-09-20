@@ -18,6 +18,7 @@ add_executable(Procon26-Hal
   Heuristics/Score.cpp
   Heuristics/SD.cpp
   Heuristics/Dent.cpp
+  Heuristics/Frame.cpp
   Perfect/BlockSize.cpp
   Perfect/ParityCheck.cpp
   Perfect/DPBlockSize.cpp
