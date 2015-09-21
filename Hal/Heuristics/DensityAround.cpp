@@ -2,7 +2,7 @@
 #include "DensityAround.h"
 
 
-double DensityAround::Execution(const Field& field){
+double DensityAround::Execution(const Field& field,const Problem& prob){
 	int score = 0;
 	for(int i=0;i<FIELD_HEIGHT;i++){
 		for(int j=0;j<FIELD_WIDTH;j++){

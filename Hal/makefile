@@ -258,6 +258,30 @@ Heuristics/Frame.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.s
 .PHONY : Heuristics/Frame.cpp.s
 
+Heuristics/MinArea.o: Heuristics/MinArea.cpp.o
+.PHONY : Heuristics/MinArea.o
+
+# target to build an object file
+Heuristics/MinArea.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/MinArea.cpp.o
+.PHONY : Heuristics/MinArea.cpp.o
+
+Heuristics/MinArea.i: Heuristics/MinArea.cpp.i
+.PHONY : Heuristics/MinArea.i
+
+# target to preprocess a source file
+Heuristics/MinArea.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/MinArea.cpp.i
+.PHONY : Heuristics/MinArea.cpp.i
+
+Heuristics/MinArea.s: Heuristics/MinArea.cpp.s
+.PHONY : Heuristics/MinArea.s
+
+# target to generate assembly for a file
+Heuristics/MinArea.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/MinArea.cpp.s
+.PHONY : Heuristics/MinArea.cpp.s
+
 Heuristics/SD.o: Heuristics/SD.cpp.o
 .PHONY : Heuristics/SD.o
 
@@ -594,6 +618,30 @@ Solver/DLS.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.s
 .PHONY : Solver/DLS.cpp.s
 
+Solver/DoubleLimit.o: Solver/DoubleLimit.cpp.o
+.PHONY : Solver/DoubleLimit.o
+
+# target to build an object file
+Solver/DoubleLimit.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/DoubleLimit.cpp.o
+.PHONY : Solver/DoubleLimit.cpp.o
+
+Solver/DoubleLimit.i: Solver/DoubleLimit.cpp.i
+.PHONY : Solver/DoubleLimit.i
+
+# target to preprocess a source file
+Solver/DoubleLimit.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/DoubleLimit.cpp.i
+.PHONY : Solver/DoubleLimit.cpp.i
+
+Solver/DoubleLimit.s: Solver/DoubleLimit.cpp.s
+.PHONY : Solver/DoubleLimit.s
+
+# target to generate assembly for a file
+Solver/DoubleLimit.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/DoubleLimit.cpp.s
+.PHONY : Solver/DoubleLimit.cpp.s
+
 Solver/IterativeCover.o: Solver/IterativeCover.cpp.o
 .PHONY : Solver/IterativeCover.o
 
@@ -861,6 +909,9 @@ help:
 	@echo "... Heuristics/Frame.o"
 	@echo "... Heuristics/Frame.i"
 	@echo "... Heuristics/Frame.s"
+	@echo "... Heuristics/MinArea.o"
+	@echo "... Heuristics/MinArea.i"
+	@echo "... Heuristics/MinArea.s"
 	@echo "... Heuristics/SD.o"
 	@echo "... Heuristics/SD.i"
 	@echo "... Heuristics/SD.s"
@@ -903,6 +954,9 @@ help:
 	@echo "... Solver/DLS.o"
 	@echo "... Solver/DLS.i"
 	@echo "... Solver/DLS.s"
+	@echo "... Solver/DoubleLimit.o"
+	@echo "... Solver/DoubleLimit.i"
+	@echo "... Solver/DoubleLimit.s"
 	@echo "... Solver/IterativeCover.o"
 	@echo "... Solver/IterativeCover.i"
 	@echo "... Solver/IterativeCover.s"

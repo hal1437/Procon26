@@ -1,10 +1,9 @@
 
-#include "BestBeam.h"
-
-int BestBeam::BEAM_DEPTH;
+#include "DoubleLimit.h"
 
 
-std::vector<Field> DivisionSpaces(const Field& field){
+
+std::vector<Field> DoubleLimit::DivisionSpaces(const Field& field){
 	std::vector<Field> answer;
 	Field c_field(field);
 
@@ -37,84 +36,56 @@ std::vector<Field> DivisionSpaces(const Field& field){
 	return answer;
 }
 
-BestBeam::Factor::Factor(){
+
+DoubleLimit::DoubleLimit(Problem prob,Heuristics* h):
+	Solver(prob),
+	heuristic(h){
+}
+DoubleLimit::~DoubleLimit(){
+
+}
+
+DoubleLimit::Factor::Factor(){
 	heuristic = std::numeric_limits<double>::min();
 }
-BestBeam::Factor::Factor(Field f,double h):
+DoubleLimit::Factor::Factor(Field f,double h):
 	field(f),
 	heuristic(h){
 }
 
-bool operator==(const BestBeam::Factor& lhs,const BestBeam::Factor& rhs){
+
+bool operator==(const DoubleLimit::Factor& lhs,const DoubleLimit::Factor& rhs){
 	return (lhs.transes == rhs.transes);
 }
 
-bool operator<(const BestBeam::Factor& lhs,const BestBeam::Factor& rhs){
+bool operator<(const DoubleLimit::Factor& lhs,const DoubleLimit::Factor& rhs){
 	return (lhs.transes < rhs.transes);
 }
 
-bool BestBeam::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
+bool DoubleLimit::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
 	return lhs.heuristic > rhs.heuristic;
 }
 
-bool BestBeam::Factor::isPerfect(const Problem& problem)const{
-	
-	static std::set<std::pair<int,std::set<int>>> log;
-
-	if((~(field | problem.GetField())).count()<100){
-		BestBeam::BEAM_DEPTH=300;
-		//-DivisionSpace-
-		std::vector<Field> div = DivisionSpaces(field | problem.GetField());
-
-		/*
-		for(const Field& ff:div){
-			std::cout << ff << std::endl;
-		}
-		Timewait(100);
-		*/
-
-		//DBBLockSize
-		std::set<int> dp_size;
-		
-		//load
-		for(const std::pair<int,std::set<int>> v:log){
-			if(v.first == transes.size())dp_size = v.second;
-		}
-		//if notfound log
-		if(dp_size == std::set<int>()){
-			for(int i=transes.size();i<problem.Count();i++){
-				int current_size = problem.GetBlock(i).count();
-				dp_size.insert(current_size);
-				for(int v : dp_size){
-					if(v + current_size < 100)dp_size.insert(v + current_size);
-				}
+bool DoubleLimit::isPerfect(const Factor& f)const{
+	std::vector<Field> div = DivisionSpaces(f.field | problem.GetField());
+	std::set<int>used;
+	for(Field field : div){
+		if(field.count()>3)continue;
+		int i;
+		for(i = f.transes.size();i < problem.Count();i++){
+			if((~field).count() == problem.GetBlock(i).count() && used.find(i) == used.end()){
+				used.insert(i);
+				std::cout << "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa" << std::endl;
+				break;
 			}
-			//save
-			log.insert(std::make_pair(transes.size(),dp_size));
 		}
-
-		//全てのdiv.sizeうち一つでもdp_size内に存在していなければ。
-		if(std::any_of(div.begin(),div.end(),[&](const Field& f){
-			return (dp_size.find((~f).count()) ==dp_size.end());
-		})){
-			return false;
-		}
+		if(i == problem.Count())return false;
 	}
 	return true;
 }
 
 
-BestBeam::BestBeam(Problem prob,Heuristics* h):
-	Solver(prob),
-	heuristic(h){
-	BEAM_DEPTH=100;
-}
-BestBeam::~BestBeam(){
-
-}
-
-
-Answer BestBeam::Solve(){
+Answer DoubleLimit::Solve(){
 
 	std::vector<Factor> list;//探索リスト
 	std::set<Factor> log;	//探索記録
@@ -122,23 +93,11 @@ Answer BestBeam::Solve(){
 	Answer ans(problem);
 
 	//初期手
-	//((22,-3),270,false)
-	/*
-	Factor fact;
-	Transform t(Point(22,-3),Constants::ANGLE270,false);
-	fact.field     = Field().GetProjection(problem.GetBlock(0),t);
-	fact.heuristic = heuristic->Execution(fact.field | problem.GetField());
-	fact.transes   = {t};
-	*/
-	//list.push_back(fact);
 	list.push_back(Factor());
 	
-	//list[0].field = problem.GetField();
-	std::cout << list.size() << std::endl;
-
 	//探索ループ
 	while(!list.empty()){
-		int loop_count = std::min(BEAM_DEPTH,static_cast<int>(list.size()));
+		int loop_count = std::min(PRIORITY_DEPTH,static_cast<int>(list.size()));
 		for(int i = 0;i < loop_count;i++){
 			const Factor top = list.front();
 			const Block  next = problem.GetBlock(top.transes.size());
@@ -150,14 +109,14 @@ Answer BestBeam::Solve(){
 			if(top.transes.size() == problem.Count())continue;
 
 			//盤面出力
-			
-			std::cout << "ループ  ：" << i << std::endl;
-			std::cout << "ビーム　：" << list.size() << "/" << BEAM_DEPTH << std::endl;
-			std::cout << "空きマス：" << (~(top.field | problem.GetField())).count() << std::endl;
-			std::cout << "深さ　　：" << top.transes.size() << std::endl;
-			std::cout << "評価値　：" << top.heuristic << std::endl;
+			std::cout << "ループ  ：" << i << "                 \n";
+			std::cout << "ビーム　：" << list.size() << "/" << BEAM_DEPTH << "                 \n";
+			std::cout << "空きマス：" << (~(top.field | problem.GetField())).count() << "                 \n";
+			std::cout << "深さ　　：" << top.transes.size() << "                 \n";
+			std::cout << "評価値　：" << top.heuristic << "                 \n";
 			std::cout << "盤面状態：\n" << next;
-			std::cout << (top.field | problem.GetField()) << std::endl;
+			std::cout << (top.field | problem.GetField()) << "                 \n";
+			std::cout << DivisionSpaces(top.field | problem.GetField()).size() << "                 \n";
 			
 			//完了
 			best = std::min(top,best,Factor::HeuristicCompare);
@@ -170,13 +129,10 @@ Answer BestBeam::Solve(){
 
 			//遷移
 			std::vector<Transform> hands = top.field.GetListLayPossible(next,problem.GetField(),top.transes.size()==0);
-			//std::cout << problem.GetBlock(top.transes.size()) << std::endl;
-			//std::cout << hands.size() << std::endl;
 	
 			//パスも追加
 			hands.push_back(Transform());
 
-			//std::cout << "候補数　：" << hands.size() << std::endl;
 			//キューに追加
 			for(Transform hand:hands){
 				std::vector<Transform> tmp = top.transes;
@@ -188,23 +144,22 @@ Answer BestBeam::Solve(){
 				fact.transes   = tmp;
 				
 				//探索済みでなければ追加
-				if(log.find(fact) == log.end() && fact.isPerfect(problem)){
+				if(log.find(fact) == log.end() && isPerfect(fact)){
 					list.push_back(fact);
 					log.insert(fact);
 				}
 			
 			}
+			std::cout << "\x1b[0;0H";
+			std::cout << "\x1b[2J";
 		}
 		
-		//ソートし、ビーム幅でソート
+		//ソートし、ビーム幅で枝刈り
 		std::sort(list.begin(),list.end(),Factor::HeuristicCompare);
 		list.erase(std::unique(list.begin(),list.end()),list.end());
 		if(list.size() > BEAM_DEPTH)list.erase(list.begin() + BEAM_DEPTH,list.end());
 	
-		/*
-		for(int i=0;i<list.size() ;i++){
-			std::cout << i << ":" << list[i].heuristic << std::endl;
-		}*/
+
 	}
 
 	//conflict
@@ -241,5 +196,4 @@ Answer BestBeam::Solve(){
 
 	return ans;
 }
-
 

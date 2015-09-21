@@ -80,7 +80,7 @@ Answer QuickBeam::Solve(){
 				
 				Factor fact;
 				fact.field     = Field().GetProjection(problem.GetBlock(0),rand_trans);
-				fact.heuristic = heuristic->Execution(fact.field | problem.GetField());
+				fact.heuristic = heuristic->Execution(fact.field | problem.GetField(),problem);
 				fact.transes   = {rand_trans};
 
 				first_trans = rand_trans;
@@ -138,7 +138,7 @@ Answer QuickBeam::Solve(){
 
 					Factor fact;
 					fact.field     = top.field.GetProjection(next,hand);
-					fact.heuristic = heuristic->Execution(fact.field | problem.GetField());
+					fact.heuristic = heuristic->Execution(fact.field | problem.GetField(),problem);
 					fact.transes   = tmp;
 					
 					//探索済みでなければ追加

@@ -23,6 +23,8 @@ Cavity.h
 /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
 ../../Structure/Heuristic.h
 /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+../../Structure/Problem.h
+/Users/hal1437/Programs/Procon26/Structure/Problem.h
 ../../Utility/CLOCKWISE_FOR.hpp
 /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
 
@@ -43,6 +45,8 @@ DensityAround.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
+../../Structure/Problem.h
+/Users/hal1437/Programs/Procon26/Structure/Problem.h
 
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.cpp
 Dent.h
@@ -55,6 +59,8 @@ Dent.h
 /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
 ../../Structure/Heuristic.h
 /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+../../Structure/Problem.h
+/Users/hal1437/Programs/Procon26/Structure/Problem.h
 
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.cpp
 Frame.h
@@ -63,6 +69,20 @@ Frame.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.h
 ../Structures.h
 /Users/hal1437/Programs/Procon26/Hal/Structures.h
+
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/MinArea.cpp
+MinArea.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/MinArea.h
+
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/MinArea.h
+../../Structure/Matrix.hpp
+/Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+../../Structure/Heuristic.h
+/Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+../../Structure/Problem.h
+/Users/hal1437/Programs/Procon26/Structure/Problem.h
+set
+-
 
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.cpp
 SD.h
@@ -75,6 +95,8 @@ cmath
 /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
 ../../Structure/Heuristic.h
 /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+../../Structure/Problem.h
+/Users/hal1437/Programs/Procon26/Structure/Problem.h
 
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.cpp
 Score.h
@@ -248,6 +270,28 @@ vector
 algorithm
 -
 
+/Users/hal1437/Programs/Procon26/Hal/Solver/DoubleLimit.cpp
+DoubleLimit.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/DoubleLimit.h
+
+/Users/hal1437/Programs/Procon26/Hal/Solver/DoubleLimit.h
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+../../Utility/Timewait.h
+/Users/hal1437/Programs/Procon26/Utility/Timewait.h
+vector
+-
+queue
+-
+functional
+-
+set
+-
+algorithm
+-
+limits
+-
+
 /Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.cpp
 IterativeCover.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
@@ -347,6 +391,8 @@ Heuristics/Dent.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.h
 Heuristics/Frame.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.h
+Heuristics/MinArea.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/MinArea.h
 Solver/AStar.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
 Solver/DLS.h
@@ -363,6 +409,8 @@ Solver/IterativeCover.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
 Solver/QuickBeam.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.h
+Solver/DoubleLimit.h
+/Users/hal1437/Programs/Procon26/Hal/Solver/DoubleLimit.h
 Perfect/DPBlockSize.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.h
 Perfect/BlockSize.h
@@ -377,6 +425,8 @@ Perfect/MinTriming.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.h
 Perfect/PPPP.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/PPPP.h
+string
+-
 
 /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 Answer.h

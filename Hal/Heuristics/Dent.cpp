@@ -2,7 +2,7 @@
 #include "Dent.h"
 #include "../../Utility/CLOCKWISE_FOR.hpp"
 
-double Dent::Execution(const Field& field){
+double Dent::Execution(const Field& field,const Problem& prob){
 	int score = 0;
 	
 	for(int i=0;i<FIELD_HEIGHT;i++){

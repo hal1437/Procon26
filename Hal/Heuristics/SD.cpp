@@ -16,7 +16,7 @@ SD::Point_f operator/(SD::Point_f lhs,float rhs){
 }
 
 
-double SD::Execution(const Field& field){
+double SD::Execution(const Field& field,const Problem& prob){
 	Point_f average;
 	int count = 0;
 
@@ -37,7 +37,7 @@ double SD::Execution(const Field& field){
 	Point_f accumulate;
 	for(int i=0;i<FIELD_HEIGHT;i++){
 		for(int j=0;j<FIELD_WIDTH;j++){
-			if(field[i][j]){
+			if(field[i][j] && !prob.GetField()[i][j]){
 				accumulate.x += std::pow(j - average.x,2);
 				accumulate.y += std::pow(i - average.y,2);
 			}
@@ -46,10 +46,10 @@ double SD::Execution(const Field& field){
 	accumulate.x = accumulate.x / (count-1);
 	accumulate.y = accumulate.y / (count-1);
 
-	//std::cout << "--SD--" << std::endl;
-	//std::cout << "accumulate.x = " << accumulate.x << std::endl;
-	//std::cout << "accumulate.y = " << accumulate.y << std::endl;
-	//std::cout << "------" << std::endl;
+// 	std::cout << "--SD--" << std::endl;
+// 	std::cout << "accumulate.x = " << accumulate.x << std::endl;
+// 	std::cout << "accumulate.y = " << accumulate.y << std::endl;
+// 	std::cout << "------" << std::endl;
 
 	return (accumulate.x + accumulate.y);
 }

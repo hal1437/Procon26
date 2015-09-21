@@ -11,6 +11,7 @@ add_executable(Procon26-Hal
   Solver/BestBackTrack.cpp
   Solver/BestBeam.cpp
   Solver/QuickBeam.cpp
+  Solver/DoubleLimit.cpp
   Heuristics/Cavity.cpp
   Heuristics/DensityAround.cpp
   Heuristics/WeightComposit.cpp
@@ -19,6 +20,7 @@ add_executable(Procon26-Hal
   Heuristics/SD.cpp
   Heuristics/Dent.cpp
   Heuristics/Frame.cpp
+  Heuristics/MinArea.cpp
   Perfect/BlockSize.cpp
   Perfect/ParityCheck.cpp
   Perfect/DPBlockSize.cpp

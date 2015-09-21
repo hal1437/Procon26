@@ -2,10 +2,11 @@
 #pragma once
 #include "../../Structure/Matrix.hpp"
 #include "../../Structure/Heuristic.h"
+#include "../../Structure/Problem.h"
 
 
 //標準偏差
-class SD : public Heuristics<double,Field>{
+class SD : public Heuristics<double,Field,Problem>{
 public:
 	struct Point_f{
 		float x,y;
@@ -15,7 +16,7 @@ public:
 public:
 
 	//集まってる度算出
-	double Execution(const Field& field);
+	double Execution(const Field& field,const Problem& prob);
 
 	SD();
 };

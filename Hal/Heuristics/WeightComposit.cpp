@@ -5,10 +5,10 @@ void WeightComposit::AddHeuristic(h_type* heuristics,double weight){
 	h_list.insert(std::pair<h_type*,double>(heuristics,weight));
 }
 
-double WeightComposit::Execution(const Field& field){
+double WeightComposit::Execution(const Field& field,const Problem& prob){
 	double score = 0;
 	for(std::pair<h_type*,double> h : h_list){
-		double ss = h.first->Execution(field) * h.second;
+		double ss = h.first->Execution(field,prob) * h.second;
 		score += ss;
 		//std::cout << "heuristic:" << ss << std::endl;
 	}

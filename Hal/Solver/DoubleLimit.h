@@ -9,22 +9,14 @@
 #include <algorithm>
 #include <limits>
 
-std::vector<Field> DivisionSpaces(const Field& field);
-
-//最良優先ビームサーチ
-class BestBeam:public Solver{
-	/*
-	 *記録
-	 *評価関数：密度　　 2.0f
-	 *　　　　　閉空間数 -20.0f
-	 *ビーム幅 30~200
-	 *
-	 * */
-
+//二重制限探索
+class DoubleLimit:public Solver{
 	typedef Heuristics<double,Field,Problem> Heuristics;
 	typedef Perfect<Field ,BlockLayer> Perfect;
-	static int BEAM_DEPTH;//ビーム幅
-	
+	const int BEAM_DEPTH     = 1000;//ビーム幅
+	const int PRIORITY_DEPTH = 50;//ビーム幅
+	//PRIORITY_DEPTH <= BEAM_DEPTH
+
 public:
 	//要素
 	struct Factor{
@@ -34,7 +26,7 @@ public:
 
 		static bool HeuristicCompare(const Factor& lhs,const Factor& rhs);
 		
-		bool isPerfect(const Problem& problem)const;
+		//bool isPerfect(const Problem& problem)const;
 		Factor();
 		Factor(Field f,double h);
 
@@ -43,10 +35,15 @@ public:
 	Heuristics* heuristic;
 public:
 
+
+	static std::vector<Field> DivisionSpaces(const Field& field);
+
+	bool isPerfect(const Factor& f)const;
+
 	Answer Solve()override;
 	
 
-	BestBeam(Problem prob,Heuristics* h);
-	virtual ~BestBeam();
+	DoubleLimit(Problem prob,Heuristics* h);
+	virtual ~DoubleLimit();
 };
 

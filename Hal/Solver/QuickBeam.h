@@ -7,7 +7,7 @@
 
 //最良優先ビーム
 class QuickBeam:public Solver{
-	typedef Heuristics<double,Field> Heuristics;
+	typedef Heuristics<double,Field,Problem> Heuristics;
 public:
 	int BEAM_DEPTH = 3;
 	Heuristics* heuristic;

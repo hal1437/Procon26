@@ -10,6 +10,7 @@
 #include "Heuristics/SD.h"
 #include "Heuristics/Dent.h"
 #include "Heuristics/Frame.h"
+#include "Heuristics/MinArea.h"
 #include "Solver/AStar.h"
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
@@ -18,6 +19,7 @@
 #include "Solver/PerfectBackTrack.h"
 #include "Solver/IterativeCover.h"
 #include "Solver/QuickBeam.h"
+#include "Solver/DoubleLimit.h"
 #include "Perfect/DPBlockSize.h"
 #include "Perfect/BlockSize.h"
 #include "Perfect/ParityCheck.h"
@@ -25,10 +27,12 @@
 #include "Perfect/CavityBlocks.h"
 #include "Perfect/MinTriming.h"
 #include "Perfect/PPPP.h"
+#include <string>
 
 int main(){
+
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest2.txt");
+	Problem prob("../Problem/quest4.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
@@ -38,12 +42,14 @@ int main(){
 	//Solver* solver = new PerfectBackTrack(prob,h,p);
 	//Solver*  solver = new IterativeCover(prob,h);
 	//Solver*  solver = new BestBackTrack(prob,h);
-	Solver* solver = new BestBeam(prob,h);
+	Solver* solver = new DoubleLimit(prob,h);
 
-	//h->AddHeuristic(new DensityAround(),3.0f);
-	h->AddHeuristic(new Cavity(),-100.0f);
-	h->AddHeuristic(new Frame(),2.0f);
-	h->AddHeuristic(new SD(),6.0);
+	h->AddHeuristic(new DensityAround(),10.0f);
+	//h->AddHeuristic(new Cavity()       ,-100.0f);
+	h->AddHeuristic(new MinArea()      ,-20.0f);
+	h->AddHeuristic(new Frame()        , 5.0f);
+	h->AddHeuristic(new SD()           ,-10.0);
+	//h->AddHeuristic(new Dent()         ,-20.0);
 	//h->AddHeuristic(new DPBlockSize(),)
 	
 	//p->AddHeuristic(new CavityBlocks());
