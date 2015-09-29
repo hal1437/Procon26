@@ -218,7 +218,7 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 			for(int r=0;r<2;r++){
 				for(int k=0;k<4;k++){
 					Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
-					if((first && (~field & Mask.GetProjection(sample[r][k],move_trans)).count()==0) || field.ProjectionTest(sample[r][k],move_trans,Mask)){
+					if((first && (Mask & current().GetProjection(sample[r][k],move_trans)).count()==0) || field.ProjectionTest(sample[r][k],move_trans,Mask)){
 						struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
 						map.insert(std::make_pair(current(field).Projection(sample[r][k],move_trans),t));
 					}
