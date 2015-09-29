@@ -1,12 +1,21 @@
 
 #include "DoubleLimit.h"
+#include "../../Utility/BenchMark.hpp"
 
-
+bool complated = false;
+void CallbackSingnalControl(int sig) {
+	if(sig==SIGINT){
+		signal(SIGINT, CallbackSingnalControl);
+		std::cout << "-----Solver Stoped-----" << std::endl;
+		complated = true;
+	}
+}
 
 std::vector<Field> DoubleLimit::DivisionSpaces(const Field& field){
 	std::vector<Field> answer;
 	Field c_field(field);
 
+	//くそおもい
 	for(int i=0;i<FIELD_HEIGHT;i++){
 		for(int j=0;j<FIELD_WIDTH;j++){
 			if(c_field[i][j]==0){
@@ -55,11 +64,11 @@ DoubleLimit::Factor::Factor(Field f,double h):
 
 
 bool operator==(const DoubleLimit::Factor& lhs,const DoubleLimit::Factor& rhs){
-	return (lhs.field == rhs.field);
+	return (lhs.transes == rhs.transes);
 }
 
 bool operator<(const DoubleLimit::Factor& lhs,const DoubleLimit::Factor& rhs){
-	return (lhs.field < rhs.field);
+	return (lhs.transes < rhs.transes);
 }
 
 bool DoubleLimit::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
@@ -67,21 +76,13 @@ bool DoubleLimit::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
 }
 
 bool DoubleLimit::isPerfect(const Factor& f)const{
-	std::vector<Field> div = DivisionSpaces(f.field | problem.GetField());
-	std::set<int>used;
-	
-	for(Field field : div){
-		if((~field).count()>5)continue;
-		int i;
-		for(i = f.transes.size();i < problem.Count();i++){
-			if((~field).count() == problem.GetBlock(i).count() && used.find(i) == used.end()){
-				used.insert(i);
-				break;
-			}
-		}
-		if(i == problem.Count())return false;
+	//残り空きマス数とブロック数を比較
+	int space = (~f.field).count();
+	int block = 0;
+	for(int i=f.transes.size();i<problem.Count();i++){
+		block += problem.GetBlock(i).count();
 	}
-	return true;
+	return space <= block;
 }
 
 
@@ -91,9 +92,10 @@ Answer DoubleLimit::Solve(){
 	std::set<Factor> log;	//探索記録
 	Factor best;
 	Answer ans(problem);
-
 	std::mutex mtx;
-	bool complated = false;
+
+	//シグナル接続
+	std::signal(SIGINT, CallbackSingnalControl);
 
 	//初期手
 	list.push_back(Factor());
@@ -113,7 +115,7 @@ Answer DoubleLimit::Solve(){
 				}
 				const Factor top = list.front();
 				const Block  next = problem.GetBlock(top.transes.size());
-				PRIORITY_DEPTH = 10 + top.transes.size()/10;
+				PRIORITY_DEPTH = 10 + top.field.count()/20;
 				//pop
 				list.erase(list.begin());
 				mtx.unlock();
@@ -150,7 +152,6 @@ Answer DoubleLimit::Solve(){
 
 				//遷移
 				std::vector<Transform> hands = top.field.GetListLayPossible(next,problem.GetField(),top.transes.size()==0);
-
 				//パスも追加
 				hands.push_back(Transform());
 
@@ -165,7 +166,7 @@ Answer DoubleLimit::Solve(){
 					fact.transes   = tmp;
 					
 					//探索済みでなければ追加
-					if(log.find(fact) == log.end() && isPerfect(fact)){
+					if(log.find(fact) == log.end() /*&& isPerfect(fact)*/){
 						
 						mtx.lock();
 						list.push_back(fact);
@@ -204,7 +205,7 @@ Answer DoubleLimit::Solve(){
 	std::cout << "盤面状態　：\n" << (best.field | problem.GetField()) << std::endl;
 	std::cout << "最終評価値：" << best.heuristic << std::endl;
 	std::cout << "空きマス数：" << (~(best.field | problem.GetField())).count() << std::endl;
-	std::cout << "使用石数　：" << (problem.Count() - std::count(best.transes.begin(),best.transes.end(),Transform())) << std::endl;
+	//std::cout << "使用石数　：" << (std::count_if(best.transes.begin(),best.transes.end(),[](Transform& trans){return !(trans == Transform());})) << std::endl;
 	
 	
 	for(int i=0;i < problem.Count();i++){

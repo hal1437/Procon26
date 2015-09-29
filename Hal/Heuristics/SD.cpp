@@ -23,7 +23,7 @@ double SD::Execution(const Field& field,const Problem& prob){
 	//おもむろに平均を出す
 	for(int i=0;i<FIELD_HEIGHT;i++){
 		for(int j=0;j<FIELD_WIDTH;j++){
-			if(field[i][j] && !prob.GetField()[i][j]){
+			if(!field[i][j] && !prob.GetField()[i][j]){
 				average.x += j;
 				average.y += i;
 				count++;
@@ -37,7 +37,7 @@ double SD::Execution(const Field& field,const Problem& prob){
 	Point_f accumulate;
 	for(int i=0;i<FIELD_HEIGHT;i++){
 		for(int j=0;j<FIELD_WIDTH;j++){
-			if(field[i][j] && !prob.GetField()[i][j]){
+			if(!field[i][j] && !prob.GetField()[i][j]){
 				accumulate.x += std::pow(j - average.x,2);
 				accumulate.y += std::pow(i - average.y,2);
 			}

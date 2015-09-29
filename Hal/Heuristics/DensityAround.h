@@ -9,4 +9,10 @@ public:
 
 	DensityAround();
 };
+class AntiDensityAround : public Heuristics<double,Field,Problem>{
+public:
+	double Execution(const Field& field,const Problem& prob);
+
+	AntiDensityAround();
+};
 

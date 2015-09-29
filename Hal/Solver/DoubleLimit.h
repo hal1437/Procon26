@@ -10,14 +10,14 @@
 #include <limits>
 #include <thread>
 #include <mutex>
-
+#include <csignal>
 
 //二重制限探索
 class DoubleLimit:public Solver{
 	typedef Heuristics<double,Field,Problem> Heuristics;
 	typedef Perfect<Field ,BlockLayer> Perfect;
-	int BEAM_DEPTH     = 1000;//ビーム幅
-	int PRIORITY_DEPTH = 50;//ビーム幅
+	int BEAM_DEPTH     = 3000;//ビーム幅
+	int PRIORITY_DEPTH = 10;//ビーム幅
 	//PRIORITY_DEPTH <= BEAM_DEPTH
 
 public:
