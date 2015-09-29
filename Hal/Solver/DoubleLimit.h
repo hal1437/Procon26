@@ -13,8 +13,8 @@
 class DoubleLimit:public Solver{
 	typedef Heuristics<double,Field,Problem> Heuristics;
 	typedef Perfect<Field ,BlockLayer> Perfect;
-	const int BEAM_DEPTH     = 1000;//ビーム幅
-	const int PRIORITY_DEPTH = 50;//ビーム幅
+	int BEAM_DEPTH     = 1000;//ビーム幅
+	int PRIORITY_DEPTH = 50;//ビーム幅
 	//PRIORITY_DEPTH <= BEAM_DEPTH
 
 public:

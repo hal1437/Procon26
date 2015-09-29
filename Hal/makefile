@@ -282,6 +282,30 @@ Heuristics/MinArea.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/MinArea.cpp.s
 .PHONY : Heuristics/MinArea.cpp.s
 
+Heuristics/Random.o: Heuristics/Random.cpp.o
+.PHONY : Heuristics/Random.o
+
+# target to build an object file
+Heuristics/Random.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Random.cpp.o
+.PHONY : Heuristics/Random.cpp.o
+
+Heuristics/Random.i: Heuristics/Random.cpp.i
+.PHONY : Heuristics/Random.i
+
+# target to preprocess a source file
+Heuristics/Random.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Random.cpp.i
+.PHONY : Heuristics/Random.cpp.i
+
+Heuristics/Random.s: Heuristics/Random.cpp.s
+.PHONY : Heuristics/Random.s
+
+# target to generate assembly for a file
+Heuristics/Random.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/Random.cpp.s
+.PHONY : Heuristics/Random.cpp.s
+
 Heuristics/SD.o: Heuristics/SD.cpp.o
 .PHONY : Heuristics/SD.o
 
@@ -912,6 +936,9 @@ help:
 	@echo "... Heuristics/MinArea.o"
 	@echo "... Heuristics/MinArea.i"
 	@echo "... Heuristics/MinArea.s"
+	@echo "... Heuristics/Random.o"
+	@echo "... Heuristics/Random.i"
+	@echo "... Heuristics/Random.s"
 	@echo "... Heuristics/SD.o"
 	@echo "... Heuristics/SD.i"
 	@echo "... Heuristics/SD.s"

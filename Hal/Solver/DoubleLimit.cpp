@@ -69,13 +69,13 @@ bool DoubleLimit::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
 bool DoubleLimit::isPerfect(const Factor& f)const{
 	std::vector<Field> div = DivisionSpaces(f.field | problem.GetField());
 	std::set<int>used;
+	
 	for(Field field : div){
-		if(field.count()>3)continue;
+		if((~field).count()>5)continue;
 		int i;
 		for(i = f.transes.size();i < problem.Count();i++){
 			if((~field).count() == problem.GetBlock(i).count() && used.find(i) == used.end()){
 				used.insert(i);
-				std::cout << "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa" << std::endl;
 				break;
 			}
 		}
@@ -101,7 +101,7 @@ Answer DoubleLimit::Solve(){
 		for(int i = 0;i < loop_count;i++){
 			const Factor top = list.front();
 			const Block  next = problem.GetBlock(top.transes.size());
-
+			PRIORITY_DEPTH = 10 + top.transes.size()/5;
 			//pop
 			list.erase(list.begin());
 
@@ -110,13 +110,14 @@ Answer DoubleLimit::Solve(){
 
 			//盤面出力
 			std::cout << "ループ  ：" << i << "                 \n";
-			std::cout << "ビーム　：" << list.size() << "/" << BEAM_DEPTH << "                 \n";
+			std::cout << "ビーム　：" << list.size() << "/" << BEAM_DEPTH << "(" << PRIORITY_DEPTH << ")" << "                 \n";
 			std::cout << "空きマス：" << (~(top.field | problem.GetField())).count() << "                 \n";
 			std::cout << "深さ　　：" << top.transes.size() << "                 \n";
 			std::cout << "評価値　：" << top.heuristic << "                 \n";
 			std::cout << "盤面状態：\n" << next;
 			std::cout << (top.field | problem.GetField()) << "                 \n";
-			std::cout << DivisionSpaces(top.field | problem.GetField()).size() << "                 \n";
+
+			std::cout << "\x1b[0;0H\x1b[2J";
 			
 			//完了
 			best = std::min(top,best,Factor::HeuristicCompare);
@@ -129,7 +130,7 @@ Answer DoubleLimit::Solve(){
 
 			//遷移
 			std::vector<Transform> hands = top.field.GetListLayPossible(next,problem.GetField(),top.transes.size()==0);
-	
+
 			//パスも追加
 			hands.push_back(Transform());
 
@@ -150,8 +151,6 @@ Answer DoubleLimit::Solve(){
 				}
 			
 			}
-			std::cout << "\x1b[0;0H";
-			std::cout << "\x1b[2J";
 		}
 		
 		//ソートし、ビーム幅で枝刈り
@@ -159,7 +158,6 @@ Answer DoubleLimit::Solve(){
 		list.erase(std::unique(list.begin(),list.end()),list.end());
 		if(list.size() > BEAM_DEPTH)list.erase(list.begin() + BEAM_DEPTH,list.end());
 	
-
 	}
 
 	//conflict

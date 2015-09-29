@@ -95,8 +95,7 @@ Answer QuickBeam::Solve(){
 		std::cout << (field | block_field) << std::endl;
 
 		while(!list.empty()){
-			BEAM_DEPTH = /*((500 - (~(list.front().field | problem.GetField())).count())/10)*/  3;
-			int count = std::min(BEAM_DEPTH,static_cast<int>(list.size()));
+			int count = std::min(PRIORITY_DEPTH,static_cast<int>(list.size()));
 			for(int i=0;i<count;i++){
 				//先頭取り出してアレ
 				const Factor top = list.front();
@@ -167,7 +166,7 @@ Answer QuickBeam::Solve(){
 				ans.SetTransform(i,Transform());
 			}
 		}
-		if((~(problem.GetField() | best.field)).count()<=0)return ans;
+		if((~(problem.GetField() | best.field)).count()<=44)return ans;
 	}
 }
 

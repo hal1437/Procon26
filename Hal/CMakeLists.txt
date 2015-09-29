@@ -21,6 +21,7 @@ add_executable(Procon26-Hal
   Heuristics/Dent.cpp
   Heuristics/Frame.cpp
   Heuristics/MinArea.cpp
+  Heuristics/Random.cpp
   Perfect/BlockSize.cpp
   Perfect/ParityCheck.cpp
   Perfect/DPBlockSize.cpp

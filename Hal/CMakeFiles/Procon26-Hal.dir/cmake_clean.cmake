@@ -18,6 +18,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Procon26-Hal.dir/Heuristics/Dent.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Heuristics/Frame.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Heuristics/MinArea.cpp.o"
+  "CMakeFiles/Procon26-Hal.dir/Heuristics/Random.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Perfect/ParityCheck.cpp.o"
   "CMakeFiles/Procon26-Hal.dir/Perfect/DPBlockSize.cpp.o"

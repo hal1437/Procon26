@@ -84,6 +84,20 @@ MinArea.h
 set
 -
 
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Random.cpp
+Random.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Random.h
+
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Random.h
+../../Structure/Matrix.hpp
+/Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+../../Structure/Heuristic.h
+/Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+../../Structure/Problem.h
+/Users/hal1437/Programs/Procon26/Structure/Problem.h
+random
+-
+
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.cpp
 SD.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
@@ -393,6 +407,8 @@ Heuristics/Frame.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.h
 Heuristics/MinArea.h
 /Users/hal1437/Programs/Procon26/Hal/Heuristics/MinArea.h
+Heuristics/Random.h
+/Users/hal1437/Programs/Procon26/Hal/Heuristics/Random.h
 Solver/AStar.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
 Solver/DLS.h

@@ -23,7 +23,7 @@ double SD::Execution(const Field& field,const Problem& prob){
 	//おもむろに平均を出す
 	for(int i=0;i<FIELD_HEIGHT;i++){
 		for(int j=0;j<FIELD_WIDTH;j++){
-			if(field[i][j]){
+			if(field[i][j] && !prob.GetField()[i][j]){
 				average.x += j;
 				average.y += i;
 				count++;

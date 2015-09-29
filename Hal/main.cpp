@@ -11,6 +11,7 @@
 #include "Heuristics/Dent.h"
 #include "Heuristics/Frame.h"
 #include "Heuristics/MinArea.h"
+#include "Heuristics/Random.h"
 #include "Solver/AStar.h"
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
@@ -32,7 +33,7 @@
 int main(){
 
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest4.txt");
+	Problem prob("../Problem/quest1.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
@@ -44,12 +45,13 @@ int main(){
 	//Solver*  solver = new BestBackTrack(prob,h);
 	Solver* solver = new DoubleLimit(prob,h);
 
-	h->AddHeuristic(new DensityAround(),10.0f);
+	h->AddHeuristic(new DensityAround(),1.0f);
 	//h->AddHeuristic(new Cavity()       ,-100.0f);
-	h->AddHeuristic(new MinArea()      ,-20.0f);
-	h->AddHeuristic(new Frame()        , 5.0f);
-	h->AddHeuristic(new SD()           ,-10.0);
+	h->AddHeuristic(new MinArea()      ,-8.0f);
+	h->AddHeuristic(new Frame()       , 0.5f);
+	//h->AddHeuristic(new SD()           ,-5.0);
 	//h->AddHeuristic(new Dent()         ,-20.0);
+	h->AddHeuristic(new Random()       ,2.0);
 	//h->AddHeuristic(new DPBlockSize(),)
 	
 	//p->AddHeuristic(new CavityBlocks());

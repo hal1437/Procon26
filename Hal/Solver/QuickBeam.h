@@ -9,7 +9,8 @@
 class QuickBeam:public Solver{
 	typedef Heuristics<double,Field,Problem> Heuristics;
 public:
-	int BEAM_DEPTH = 3;
+	const int BEAM_DEPTH = 30;
+	const int PRIORITY_DEPTH = 5;
 	Heuristics* heuristic;
 
 	struct Factor{
@@ -22,7 +23,6 @@ public:
 		bool isPerfect(const Problem& problem)const;
 		Factor();
 		Factor(Field f,double h);
-
 	};
 
 public:
