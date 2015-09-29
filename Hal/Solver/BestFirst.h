@@ -6,7 +6,7 @@
 
 //最良優先探索
 class BestFirst:public Solver{
-	typedef Heuristics<unsigned,Field> Heuristics;
+	typedef Heuristics<double,Field> Heuristics;
 public:
 	Heuristics* heuristic;
 

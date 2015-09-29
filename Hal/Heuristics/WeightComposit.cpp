@@ -1,15 +1,18 @@
 
 #include "WeightComposit.h"
 
-void WeightComposit::AddHeuristic(h_type* heuristics,float weight){
-	h_list.insert(std::pair<h_type*,float>(heuristics,weight));
+void WeightComposit::AddHeuristic(h_type* heuristics,double weight){
+	h_list.insert(std::pair<h_type*,double>(heuristics,weight));
 }
 
-unsigned WeightComposit::Execution(const Field& field){
-	unsigned score = 0;
-	for(std::pair<h_type*,float> h : h_list){
-		score += h.first->Execution(field) * h.second;
+double WeightComposit::Execution(const Field& field,const Problem& prob){
+	double score = 0;
+	for(std::pair<h_type*,double> h : h_list){
+		double ss = h.first->Execution(field,prob) * h.second;
+		score += ss;
+		//std::cout << "heuristic:" << ss << std::endl;
 	}
+	//std::cout << std::endl;
 	return score;
 }
 

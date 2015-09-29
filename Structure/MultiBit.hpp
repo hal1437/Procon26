@@ -114,9 +114,9 @@ public:
 	}
 	constexpr size_t count()const{
 		size_t size=0;
-		for(int i=0;i < MATRIX_SIZE / BYTE_SIZE;i++){
-			char s = byte[i];
-			for(int j=0;j<BYTE_SIZE;j++){
+		for(int i=0;i < ARRAY_MATRIX_SIZE;i++){
+			unsigned char s = byte[i];
+			for(int j=0;j<ARRAY_MATRIX_WIDTH*BYTE_SIZE;j++){
 				if(s & 1)size++;
 				s >>= 1;
 			}
@@ -135,10 +135,16 @@ public:
 		return FirstProxy(this,index);
 	}
 	constexpr bool operator==(const current& rhs)const{
-		return std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++){
+			if(byte[i] != rhs.byte[i])return false;
+		}
+		return true;
 	}
 	constexpr bool operator!=(const current& rhs)const{
-		return !std::equal(byte,byte+ARRAY_MATRIX_SIZE,rhs.byte);
+		for(int i=0;i<ARRAY_MATRIX_SIZE;i++){
+			if(byte[i] == rhs.byte[i])return false;
+		}
+		return true;
 	}
 	constexpr bool operator<(const current rhs)const{
 		for(int i=0;i<ARRAY_MATRIX_SIZE;i++){
@@ -188,10 +194,11 @@ public:
 		current answer(*this);
 		if(value >= BYTE_SIZE){
 			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)answer.byte[i-value/BYTE_SIZE] = answer.byte[i];
-			for(int i = ARRAY_MATRIX_SIZE-1;i>=ARRAY_MATRIX_SIZE - 1 - value/BYTE_SIZE;i--)answer.byte[i] = 0;
+			for(int i = ARRAY_MATRIX_SIZE-1;i>MATRIX_HEIGHT-(value/BYTE_SIZE)-1;i--)byte[i] = 0;
+
 			value %= 8;
 		}
-		if(!value)return answer;
+		if(value==0)return answer;
 
 		char hi=0, lo=0;
 		char mask = (char)(0xFF << (BYTE_SIZE - value));
@@ -210,7 +217,7 @@ public:
 			for(int i = 0;i<value/BYTE_SIZE;i++)answer.byte[i] = 0;
 			value %= 8;
 		}
-		if(!value)return answer;
+		if(value==0)return answer;
 		char hi=0, lo=0;
 		char mask = (char)(0xFF >> (BYTE_SIZE - value));
 		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
@@ -224,15 +231,15 @@ public:
 	constexpr current& operator<<=(size_t value){
 		if(value >= BYTE_SIZE){
 			for(int i = value/BYTE_SIZE;i<ARRAY_MATRIX_SIZE;i++)byte[i-value/BYTE_SIZE] = byte[i];
-			for(int i = ARRAY_MATRIX_SIZE-1;i>value/BYTE_SIZE;i--)byte[i] = 0;
+			for(int i = ARRAY_MATRIX_SIZE-1;i>MATRIX_HEIGHT-(value/BYTE_SIZE)-1;i--)byte[i] = 0;
 			value %= 8;
 		}
 		if(!value)return (*this);
 
 		char hi=0, lo=0;
 		char mask = (char)(0xFF << (BYTE_SIZE - value));
-		for(int  i = ARRAY_MATRIX_SIZE-1 ; i >= 0 ; i-- ){
-			hi = (byte[i + 1] & mask) << (BYTE_SIZE - value);
+		for(int  i = ARRAY_MATRIX_SIZE-2 ; i >= 0 ; i-- ){
+			hi = ((byte[i + 1] & mask) << (BYTE_SIZE - value));
 			lo = (byte[i + 0] << value);
 			if ( i != 0 )byte[i] = (hi | lo);
 			else         byte[i] = (lo);
@@ -287,7 +294,15 @@ template <size_t MATRIX_WIDTH,size_t MATRIX_HEIGHT>
 std::ostream& operator<<(std::ostream& ost,const MultiBit<MATRIX_WIDTH,MATRIX_HEIGHT>& matrix){
 	for(int i=0;i < MATRIX_HEIGHT;i++){
 		for(int j=0;j < MATRIX_WIDTH;j++){
+#ifdef MATRIX_WIDEOUT
+			if(matrix[i][j]){
+				ost << "■";
+			}else{
+				ost << "□";
+			}
+#else
 			ost << matrix[i][j];
+#endif
 		}
 		ost << "\n";
 	}
