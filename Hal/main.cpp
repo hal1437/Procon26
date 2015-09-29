@@ -38,7 +38,7 @@ int main(){
 	BenchMark<1>()([](){
 
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest13.txt");
+	Problem prob("../Problem/quest1.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
@@ -50,16 +50,15 @@ int main(){
 	//Solver*  solver = new BestBackTrack(prob,h);
 	Solver* solver = new DoubleLimit(prob,h);
 
-	h->AddHeuristic(new DensityAround()    ,1.0f);
-	h->AddHeuristic(new AntiDensityAround(),1.2f);
-	//h->AddHeuristic(new Cavity()       ,-100.0f);
-	h->AddHeuristic(new MinArea()          ,-2.5f);
-	h->AddHeuristic(new Frame()            , 0.5f);
-	//h->AddHeuristic(new SD()           ,-3.0);
-	//h->AddHeuristic(new Dent()         ,-20.0);
-	h->AddHeuristic(new Random()       ,5.0);
-	//h->AddHeuristic(new DPBlockSize(),)
-	
+	h->AddHeuristic(new DensityAround()    ,   1.0f);
+	h->AddHeuristic(new AntiDensityAround(),   0.7f);
+	//h->AddHeuristic(new Cavity()           ,   0.0f);
+	h->AddHeuristic(new MinArea()          ,  -1.3f);
+	h->AddHeuristic(new Frame()            ,   0.0f);
+	//h->AddHeuristic(new SD()               ,   0.0f);
+	//h->AddHeuristic(new Dent()             ,   0.0f);
+	h->AddHeuristic(new Random()           ,   5.0);
+
 	//p->AddHeuristic(new CavityBlocks());
 	p->AddHeuristic(new DPBlockSize());
 	//p->AddHeuristic(new MinTriming());

@@ -166,7 +166,7 @@ Answer DoubleLimit::Solve(){
 					fact.transes   = tmp;
 					
 					//探索済みでなければ追加
-					if(log.find(fact) == log.end() /*&& isPerfect(fact)*/){
+					if(log.find(fact) == log.end()/* && isPerfect(fact)*/){
 						
 						mtx.lock();
 						list.push_back(fact);
@@ -210,10 +210,10 @@ Answer DoubleLimit::Solve(){
 	
 	for(int i=0;i < problem.Count();i++){
 		if(i < best.transes.size()){
-			std::cout << i << ":" << best.transes[i] << std::endl;
+			//std::cout << i << ":" << best.transes[i] << std::endl;
 			ans.SetTransform(i,best.transes[i]);
 		}else{
-			std::cout << i << ":" << Transform() << std::endl;
+			//std::cout << i << ":" << Transform() << std::endl;
 			ans.SetTransform(i,Transform());
 		}
 	}
