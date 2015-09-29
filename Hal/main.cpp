@@ -28,12 +28,17 @@
 #include "Perfect/CavityBlocks.h"
 #include "Perfect/MinTriming.h"
 #include "Perfect/PPPP.h"
+#include "../Utility/BenchMark.hpp"
 #include <string>
 
 int main(){
 
+	std::cout << "\x1b[2J";
+
+	BenchMark<1>()([](){
+
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest1.txt");
+	Problem prob("../Problem/1.txt");
 	std::ofstream ofs("Answer.txt");
 
 	//PerfectBackTrack p(prob);
@@ -47,7 +52,7 @@ int main(){
 
 	h->AddHeuristic(new DensityAround(),1.0f);
 	//h->AddHeuristic(new Cavity()       ,-100.0f);
-	h->AddHeuristic(new MinArea()      ,-8.0f);
+	h->AddHeuristic(new MinArea()      ,-10.0f);
 	h->AddHeuristic(new Frame()       , 0.5f);
 	//h->AddHeuristic(new SD()           ,-5.0);
 	//h->AddHeuristic(new Dent()         ,-20.0);
@@ -67,7 +72,22 @@ int main(){
 	//delete solver;
 	//delete p;
 	//delete h;
-
 	std::cout << "-----End of program-----" << std::endl;
+	});
+
+//quest6:（出力なし　マルチスレッド）
+// ===========BENCHMARK RESULT===========
+//     [COUNT]            1 times
+// [FULL TIME]         1566 msec
+//  [PER TIME]         1566 msec/function 
+// ======================================
+//
+//quest6:（出力あり　マルチスレッド）
+//===========BENCHMARK RESULT===========
+//     [COUNT]            1 times
+// [FULL TIME]         1985 msec
+//  [PER TIME]         1985 msec/function 
+// ======================================
+
 	return 0;
 }

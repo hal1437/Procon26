@@ -8,6 +8,9 @@
 #include <set>
 #include <algorithm>
 #include <limits>
+#include <thread>
+#include <mutex>
+
 
 //二重制限探索
 class DoubleLimit:public Solver{

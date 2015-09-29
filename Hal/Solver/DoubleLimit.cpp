@@ -55,11 +55,11 @@ DoubleLimit::Factor::Factor(Field f,double h):
 
 
 bool operator==(const DoubleLimit::Factor& lhs,const DoubleLimit::Factor& rhs){
-	return (lhs.transes == rhs.transes);
+	return (lhs.field == rhs.field);
 }
 
 bool operator<(const DoubleLimit::Factor& lhs,const DoubleLimit::Factor& rhs){
-	return (lhs.transes < rhs.transes);
+	return (lhs.field < rhs.field);
 }
 
 bool DoubleLimit::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
@@ -92,73 +92,97 @@ Answer DoubleLimit::Solve(){
 	Factor best;
 	Answer ans(problem);
 
+	std::mutex mtx;
+	bool complated = false;
+
 	//初期手
 	list.push_back(Factor());
 	
 	//探索ループ
-	while(!list.empty()){
+	while(!list.empty() && !complated){
 		int loop_count = std::min(PRIORITY_DEPTH,static_cast<int>(list.size()));
+		
+		std::vector<std::thread> threads;
+		
 		for(int i = 0;i < loop_count;i++){
-			const Factor top = list.front();
-			const Block  next = problem.GetBlock(top.transes.size());
-			PRIORITY_DEPTH = 10 + top.transes.size()/5;
-			//pop
-			list.erase(list.begin());
-
-			//終端
-			if(top.transes.size() == problem.Count())continue;
-
-			//盤面出力
-			std::cout << "ループ  ：" << i << "                 \n";
-			std::cout << "ビーム　：" << list.size() << "/" << BEAM_DEPTH << "(" << PRIORITY_DEPTH << ")" << "                 \n";
-			std::cout << "空きマス：" << (~(top.field | problem.GetField())).count() << "                 \n";
-			std::cout << "深さ　　：" << top.transes.size() << "                 \n";
-			std::cout << "評価値　：" << top.heuristic << "                 \n";
-			std::cout << "盤面状態：\n" << next;
-			std::cout << (top.field | problem.GetField()) << "                 \n";
-
-			std::cout << "\x1b[0;0H\x1b[2J";
-			
-			//完了
-			best = std::min(top,best,Factor::HeuristicCompare);
-			if((~(top.field | problem.GetField())).count() == 0){
-				best = top;
-				list.clear();
-				break;
-			}
-
-
-			//遷移
-			std::vector<Transform> hands = top.field.GetListLayPossible(next,problem.GetField(),top.transes.size()==0);
-
-			//パスも追加
-			hands.push_back(Transform());
-
-			//キューに追加
-			for(Transform hand:hands){
-				std::vector<Transform> tmp = top.transes;
-				tmp.push_back(hand);
-
-				Factor fact;
-				fact.field     = top.field.GetProjection(next,hand);
-				fact.heuristic = heuristic->Execution(fact.field | problem.GetField(),problem);
-				fact.transes   = tmp;
-				
-				//探索済みでなければ追加
-				if(log.find(fact) == log.end() && isPerfect(fact)){
-					list.push_back(fact);
-					log.insert(fact);
+			threads.push_back(std::thread([&](){
+				mtx.lock();
+				if(complated==true){
+					mtx.unlock();
+					return;
 				}
-			
-			}
+				const Factor top = list.front();
+				const Block  next = problem.GetBlock(top.transes.size());
+				PRIORITY_DEPTH = 10 + top.transes.size()/10;
+				//pop
+				list.erase(list.begin());
+				mtx.unlock();
+
+				//終端
+				if(top.transes.size() == problem.Count())return;
+
+				//盤面出力
+				
+				mtx.lock();
+				std::cout << "\x1b[0;0H";
+				std::cout << "ループ  ：" << i << "                 \n";
+				std::cout << "ビーム　：" << list.size() << "/" << BEAM_DEPTH << "(" << PRIORITY_DEPTH << ")" << "                 \n";
+				std::cout << "空きマス：" << (~(top.field | problem.GetField())).count() << "                 \n";
+				std::cout << "深さ　　：" << top.transes.size() << "                 \n";
+				std::cout << "評価値　：" << top.heuristic << "                 \n";
+				std::cout << "スレッド：" << std::this_thread::get_id() << std::endl;
+				std::cout << "盤面状態：\n" << next;
+				std::cout << (top.field | problem.GetField()) ;
+				mtx.unlock();
+
+				
+				//完了
+				best = std::min(top,best,Factor::HeuristicCompare);
+				if((~(top.field | problem.GetField())).count() == 0){
+					mtx.lock();
+					best = top;
+					list.clear();
+					complated = true;
+					mtx.unlock();
+					return;
+				}
+
+
+				//遷移
+				std::vector<Transform> hands = top.field.GetListLayPossible(next,problem.GetField(),top.transes.size()==0);
+
+				//パスも追加
+				hands.push_back(Transform());
+
+				//キューに追加
+				for(Transform hand:hands){
+					std::vector<Transform> tmp = top.transes;
+					tmp.push_back(hand);
+
+					Factor fact; 
+					fact.field     = top.field.GetProjection(next,hand);
+					fact.heuristic = heuristic->Execution(fact.field | problem.GetField(),problem);
+					fact.transes   = tmp;
+					
+					//探索済みでなければ追加
+					if(log.find(fact) == log.end() && isPerfect(fact)){
+						
+						mtx.lock();
+						list.push_back(fact);
+						log.insert(fact);
+						mtx.unlock();
+					}
+				}
+			}));
 		}
+		for(auto& t:threads)t.join();
 		
 		//ソートし、ビーム幅で枝刈り
 		std::sort(list.begin(),list.end(),Factor::HeuristicCompare);
 		list.erase(std::unique(list.begin(),list.end()),list.end());
 		if(list.size() > BEAM_DEPTH)list.erase(list.begin() + BEAM_DEPTH,list.end());
-	
 	}
+
 
 	//conflict
 	Field test = problem.GetField();
@@ -167,12 +191,13 @@ Answer DoubleLimit::Solve(){
 			std::cout << "conflicted" << std::endl;
 		}
 		test.Projection(problem.GetBlock(i),best.transes[i]);
-		std::cout << i << std::endl;
-		std::cout << test << std::endl;
+		//std::cout << i << std::endl;
+		//std::cout << test << std::endl;
 	}
 
 
 	//以下完了時に実行
+	
 	std::cout << "-----------------------------" << std::endl;
 	if((~(best.field | problem.GetField())).count() != 0)std::cout << "ビーム切れ" << std::endl;
 	else std::cout << "完了" << std::endl;
@@ -180,7 +205,7 @@ Answer DoubleLimit::Solve(){
 	std::cout << "最終評価値：" << best.heuristic << std::endl;
 	std::cout << "空きマス数：" << (~(best.field | problem.GetField())).count() << std::endl;
 	std::cout << "使用石数　：" << (problem.Count() - std::count(best.transes.begin(),best.transes.end(),Transform())) << std::endl;
-
+	
 	
 	for(int i=0;i < problem.Count();i++){
 		if(i < best.transes.size()){
