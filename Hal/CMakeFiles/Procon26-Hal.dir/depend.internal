@@ -426,33 +426,12 @@ CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Utility/Timewait.cpp
  /Users/hal1437/Programs/Procon26/Utility/TimeWait.h
  /Users/hal1437/Programs/Procon26/Utility/Timewait.cpp
 CMakeFiles/Procon26-Hal.dir/main.cpp.o
- /Users/hal1437/Programs/Procon26/Hal/Characteristics.h
- /Users/hal1437/Programs/Procon26/Hal/Heuristics/Cavity.h
- /Users/hal1437/Programs/Procon26/Hal/Heuristics/Density.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/DensityAround.h
- /Users/hal1437/Programs/Procon26/Hal/Heuristics/Dent.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/Frame.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/MinArea.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/Random.h
- /Users/hal1437/Programs/Procon26/Hal/Heuristics/SD.h
- /Users/hal1437/Programs/Procon26/Hal/Heuristics/Score.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.h
- /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.h
- /Users/hal1437/Programs/Procon26/Hal/Perfect/CavityBlocks.h
- /Users/hal1437/Programs/Procon26/Hal/Perfect/DPBlockSize.h
- /Users/hal1437/Programs/Procon26/Hal/Perfect/MinTriming.h
- /Users/hal1437/Programs/Procon26/Hal/Perfect/PPPP.h
- /Users/hal1437/Programs/Procon26/Hal/Perfect/ParityCheck.h
- /Users/hal1437/Programs/Procon26/Hal/Perfect/PerfectComposit.h
- /Users/hal1437/Programs/Procon26/Hal/Solver/AStar.h
- /Users/hal1437/Programs/Procon26/Hal/Solver/BestBackTrack.h
- /Users/hal1437/Programs/Procon26/Hal/Solver/BestBeam.h
- /Users/hal1437/Programs/Procon26/Hal/Solver/BestFirst.h
- /Users/hal1437/Programs/Procon26/Hal/Solver/DLS.h
  /Users/hal1437/Programs/Procon26/Hal/Solver/DoubleLimit.h
- /Users/hal1437/Programs/Procon26/Hal/Solver/IterativeCover.h
- /Users/hal1437/Programs/Procon26/Hal/Solver/PerfectBackTrack.h
- /Users/hal1437/Programs/Procon26/Hal/Solver/QuickBeam.h
  /Users/hal1437/Programs/Procon26/Hal/Structures.h
  /Users/hal1437/Programs/Procon26/Hal/main.cpp
  /Users/hal1437/Programs/Procon26/Structure/Answer.h
@@ -468,5 +447,4 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o
  /Users/hal1437/Programs/Procon26/Utility/BenchMark.hpp
  /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
  /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
- /Users/hal1437/Programs/Procon26/Utility/TimeWait.h
  /Users/hal1437/Programs/Procon26/Utility/Timewait.h

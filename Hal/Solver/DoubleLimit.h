@@ -29,7 +29,6 @@ public:
 
 		static bool HeuristicCompare(const Factor& lhs,const Factor& rhs);
 		
-		//bool isPerfect(const Problem& problem)const;
 		Factor();
 		Factor(Field f,double h);
 
@@ -38,13 +37,9 @@ public:
 	Heuristics* heuristic;
 public:
 
-
-	static std::vector<Field> DivisionSpaces(const Field& field);
-
 	bool isPerfect(const Factor& f)const;
 
 	Answer Solve()override;
-	
 
 	DoubleLimit(Problem prob,Heuristics* h);
 	virtual ~DoubleLimit();
