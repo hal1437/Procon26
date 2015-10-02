@@ -378,6 +378,30 @@ Heuristics/WeightComposit.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.s
 .PHONY : Heuristics/WeightComposit.cpp.s
 
+Http/SendAnswer.o: Http/SendAnswer.cpp.o
+.PHONY : Http/SendAnswer.o
+
+# target to build an object file
+Http/SendAnswer.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o
+.PHONY : Http/SendAnswer.cpp.o
+
+Http/SendAnswer.i: Http/SendAnswer.cpp.i
+.PHONY : Http/SendAnswer.i
+
+# target to preprocess a source file
+Http/SendAnswer.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.i
+.PHONY : Http/SendAnswer.cpp.i
+
+Http/SendAnswer.s: Http/SendAnswer.cpp.s
+.PHONY : Http/SendAnswer.s
+
+# target to generate assembly for a file
+Http/SendAnswer.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.s
+.PHONY : Http/SendAnswer.cpp.s
+
 Perfect/BlockSize.o: Perfect/BlockSize.cpp.o
 .PHONY : Perfect/BlockSize.o
 
@@ -948,6 +972,9 @@ help:
 	@echo "... Heuristics/WeightComposit.o"
 	@echo "... Heuristics/WeightComposit.i"
 	@echo "... Heuristics/WeightComposit.s"
+	@echo "... Http/SendAnswer.o"
+	@echo "... Http/SendAnswer.i"
+	@echo "... Http/SendAnswer.s"
 	@echo "... Perfect/BlockSize.o"
 	@echo "... Perfect/BlockSize.i"
 	@echo "... Perfect/BlockSize.s"

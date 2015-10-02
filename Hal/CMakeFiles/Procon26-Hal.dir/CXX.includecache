@@ -132,6 +132,24 @@ WeightComposit.h
 map
 -
 
+/Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.cpp
+SendAnswer.h
+/Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.h
+boost/asio.hpp
+-
+iostream
+-
+fstream
+-
+sstream
+-
+
+/Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.h
+string
+-
+../Structures.h
+/Users/hal1437/Programs/Procon26/Hal/Structures.h
+
 /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp
 BlockSize.h
 /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.h
@@ -403,6 +421,10 @@ Solver/DoubleLimit.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/DoubleLimit.h
 ../Utility/BenchMark.hpp
 /Users/hal1437/Programs/Procon26/Utility/BenchMark.hpp
+Http/SendAnswer.h
+/Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.h
+boost/asio.hpp
+-
 
 /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 Answer.h

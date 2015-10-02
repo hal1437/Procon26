@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 add_definitions(-DMATRIX_WIDEOUT)
 add_definitions("-O3 -std=c++1y")
+
 add_executable(Procon26-Hal
   main.cpp
   Characteristics.cpp
@@ -29,6 +30,7 @@ add_executable(Procon26-Hal
   Perfect/PerfectComposit.cpp
   Perfect/MinTriming.cpp
   Perfect/PPPP.cpp
+  Http/SendAnswer.cpp
   ../Structure/Transform.cpp
   ../Structure/Point.cpp
   ../Structure/Heuristic.cpp
@@ -36,3 +38,4 @@ add_executable(Procon26-Hal
   ../Structure/Answer.cpp
   ../Utility/Timewait.cpp
 )
+target_link_libraries(Procon26-Hal boost_system)

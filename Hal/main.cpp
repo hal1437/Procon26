@@ -7,8 +7,13 @@
 #include "Heuristics/Random.h"
 #include "Solver/DoubleLimit.h"
 #include "../Utility/BenchMark.hpp"
+#include "Http/SendAnswer.h"
+#include <boost/asio.hpp>
+
 
 int main(){
+
+
 
 	//コンソール全消し
 	std::cout << "\x1b[2J";
@@ -16,7 +21,9 @@ int main(){
 
 	//ベンチマーク関数オブジェクト実行
 	BenchMark<1>()([](){
-		Problem prob("../Problem/41.txt");
+		std::cout << HostSolver("testform26.procon-online.net") << std::endl;
+		Problem prob = GetProblem(HostSolver("testform26.procon-online.net"),"0123456789abcdef",1,"Host:testform26.procon-online.net");
+		//Problem prob("../Problem/41.txt");
 
 		WeightComposit * h = new WeightComposit();
 		Solver* solver = new DoubleLimit(prob,h);
@@ -33,6 +40,8 @@ int main(){
 		//解放
 		delete solver;
 		delete h;
+		//SendAnswer(HostSolver("testform26.procon-online.net"),"0123456789abcdef",1,"Host:testform26.procon-online.net");
+		//std::cout << SendAnswer(HostSolver("www.kumei.ne.jp"),"") << std::endl;;
 	});
 
 	std::cout << "-----End of program-----" << std::endl;

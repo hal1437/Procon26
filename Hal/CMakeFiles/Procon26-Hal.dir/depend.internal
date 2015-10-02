@@ -145,6 +145,22 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o
  /Users/hal1437/Programs/Procon26/Structure/Transform.h
  /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
  /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o
+ /Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.cpp
+ /Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.h
+ /Users/hal1437/Programs/Procon26/Hal/Structures.h
+ /Users/hal1437/Programs/Procon26/Structure/Answer.h
+ /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
+ /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
+ /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
+ /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
+ /Users/hal1437/Programs/Procon26/Structure/Perfect.h
+ /Users/hal1437/Programs/Procon26/Structure/Point.h
+ /Users/hal1437/Programs/Procon26/Structure/Problem.h
+ /Users/hal1437/Programs/Procon26/Structure/Solver.h
+ /Users/hal1437/Programs/Procon26/Structure/Transform.h
+ /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
+ /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o
  /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp
  /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.h
@@ -431,6 +447,7 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/MinArea.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/Random.h
  /Users/hal1437/Programs/Procon26/Hal/Heuristics/WeightComposit.h
+ /Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.h
  /Users/hal1437/Programs/Procon26/Hal/Solver/DoubleLimit.h
  /Users/hal1437/Programs/Procon26/Hal/Structures.h
  /Users/hal1437/Programs/Procon26/Hal/main.cpp
