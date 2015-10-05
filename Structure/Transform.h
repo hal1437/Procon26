@@ -19,6 +19,7 @@ public:
 		return enable;
 	}
 
+	bool operator==(const Transform& rhs)const;
 	bool operator<(const Transform& rhs)const;
 	friend std::ostream& operator<<(std::ostream& ost,const Transform& hand);
 

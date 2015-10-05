@@ -64,8 +64,8 @@ public:
 	DEFINITION_GETTER(Normalize)
 
 	//util
-	M_TMP std::vector<struct Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask = current())const;
-	M_TMP constexpr bool ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans,const current& Mask = current())const;
+	M_TMP std::vector<struct Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask = current(),bool first=false)const;
+	M_TMP constexpr bool ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans,const current& Mask = current(),bool first=false)const;
 	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix                              )const;
 	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const Point& pos             )const;
 	M_TMP constexpr bool Cross         (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& hand )const;
@@ -170,7 +170,7 @@ constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Cross(const Matrix<ARGS_WIDTH
 }
 
 MEMBER_TEMPLATE_TEMPLATE
-constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans,const current& Mask)const{
+constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans,const current& Mask,bool first)const{
 	if(!trans.isEnable())return false;
 	Matrix<ARGS_WIDTH,ARGS_HEIGHT>&& mat = matrix.GetTransform(Transform::Transform(Point(0,0),trans.angle,trans.reverse));
 	bool adjacent = false;
@@ -181,24 +181,27 @@ constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<A
 				if(trans.pos.y+i < 0 || trans.pos.x+j < 0 || trans.pos.y+i >= MATRIX_HEIGHT || trans.pos.x+j >= MATRIX_WIDTH)return false;
 				if( ((*this) | Mask)[trans.pos.y + i][trans.pos.x + j])return false;
 				
-				CLOCKWISE_FOR(clockwise){
-					Point seach_point = trans.pos + Point(j,i) + clockwise;
-					if(seach_point.x < 0 || seach_point.y < 0 || seach_point.y >= MATRIX_HEIGHT || seach_point.x >= MATRIX_WIDTH)continue;
-					if(this->get(seach_point.x,seach_point.y))adjacent = true;
+				if(!first){
+					CLOCKWISE_FOR(clockwise){
+						Point seach_point = trans.pos + Point(j,i) + clockwise;
+						if(seach_point.x < 0 || seach_point.y < 0 || seach_point.y >= MATRIX_HEIGHT || seach_point.x >= MATRIX_WIDTH)continue;
+						if(this->get(seach_point.x,seach_point.y))adjacent = true;
+					}
 				}
 			}
 		}
 	}
-	return adjacent;
+	return (first || adjacent);
 }
 
 MEMBER_TEMPLATE_TEMPLATE
-std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask)const{
+std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask,bool first)const{
 	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
-	Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> field;
+	Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> field(*this);
 	std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT>,struct Transform> map;
 
-	field.Projection(*this);
+	//if(first)field.Projection(Mask);
+	//field.Projection(*this);
 	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample_base(matrix);
 
 	//std::cout << matrix << std::endl;
@@ -217,7 +220,7 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 			for(int r=0;r<2;r++){
 				for(int k=0;k<4;k++){
 					Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
-					if(field.ProjectionTest(sample[r][k],move_trans,Mask)){
+					if((first && (Mask.ProjectionTest(sample[r][k],move_trans,current(),true))) || field.ProjectionTest(sample[r][k],move_trans,Mask)){
 						struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
 						map.insert(std::make_pair(current(field).Projection(sample[r][k],move_trans),t));
 					}
@@ -348,7 +351,15 @@ std::ostream& operator<<(std::ostream& ost,const Matrix<MATRIX_WIDTH,MATRIX_HEIG
 	ost << std::noboolalpha;
 	for(int i=0;i<MATRIX_HEIGHT;i++){
 		for(int j=0;j<MATRIX_WIDTH;j++){
+#ifdef MATRIX_WIDEOUT
+			if(matrix[i][j]){
+				ost << "■";
+			}else{
+				ost << "□";
+			}
+#else
 			ost << matrix[i][j];
+#endif
 		}
 		ost << "\n";
 	}
