@@ -27,7 +27,9 @@ public:
     Block_SA& initState(auxType& problem);
     int calcEvalution(auxType& problem);
     
-    Block_SA(stateType state);
+    explicit Block_SA(stateType state);
+    Block_SA(Block_SA& rhs)=default;
+    //Block_SA()=default;
     
     Field getField(){return _field;}
     
@@ -36,6 +38,7 @@ private:
     Heuristics<double,Field>* _heuristics;
     Heuristics<unsigned, Field>* _Cavity;
 };
+
 
 
 

@@ -17,33 +17,38 @@
 template<class TRANSFORM,class BLOCK>
 class Answer_history{
 public:
+    explicit Answer_history(Problem& problem){ans_list.resize(problem.Count()); eval_list.resize(problem.Count());}
+    Answer_history()=default;
     
-    void push_back(std::pair<TRANSFORM, BLOCK> node){ans_list.push_back(node);};
+    
+    void set_ans(std::pair<TRANSFORM, BLOCK> &&node,int i){ans_list[i] = node;}
+    void set_ans(std::pair<TRANSFORM, BLOCK> &node,int i){ans_list[i] = node;}
+    void set_eval(long eval,int i){eval_list[i] = eval;}
+    long get_eval(int i){return eval_list[i];};
     std::pair<TRANSFORM,BLOCK>& operator[](int index){return ans_list[index];}
-    int size(){return ans_list.size();}
-    
+    long size(){return ans_list.size();}
+
     void returnTheHand(int index,Field& field){
-        int size = ans_list.size();
+        long size = ans_list.size();
         std::cout << field << std::endl;
-        for(int i=0;i<size-index;i++){
-            field.ReverseProjection(ans_list.back().second, ans_list.back().first);
-            ans_list.pop_back();
-            std::cout << field << std::endl;
+        for(long i=size-1;i>=index;i--){
+            field.ReverseProjection(ans_list[i].second, ans_list[i].first);
         }
     }
-    /*
     Answer TranslateAnswer(Problem& problem){
         Answer answer(problem);
         for(int i=0;i<ans_list.size();i++){
-            if(ans_list[i].first.isEnable())
-                answer.AddBlocks(ans_list[i].first);
-            else answer.AddBlocks();
+            if(ans_list[i].first.isEnable()){
+                answer.SetBlock(i,ans_list[i].second);
+                answer.SetTransform(i, ans_list[i].first);
+            }
+            else answer.SetTransform(i,Transform());
         }
         return answer;
-    }*/
-    
+    }
 private:
     std::vector< std::pair<TRANSFORM,BLOCK> > ans_list;
+    std::vector<long> eval_list;
 };
 
 #endif

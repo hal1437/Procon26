@@ -52,7 +52,7 @@ _T _SA_Solver<_T,_STime,_ETime,_Schedule>::solveAnswer(){
     _target.initState(_aux);
     
     _T old = _target, best(_target.getState());
-    typename _T::stateType best_state;
+    typename _T::stateType best_state(_aux);
     int  old_eval=_target.calcEvalution(_aux) , best_eval=0;
     
     while(current_time >= _ETime){

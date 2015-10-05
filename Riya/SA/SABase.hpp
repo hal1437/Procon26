@@ -17,6 +17,8 @@ class SA_Base{ //Interface Template class for SA
 public:
     
     SA_Base(_StateType state):_state(state){};
+    SA_Base(SA_Base&)=default;
+    SA_Base()=default;
 
     using auxType = _AuxType;
     using stateType = _StateType;
