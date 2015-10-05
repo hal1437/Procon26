@@ -8,6 +8,12 @@
 namespace asio = boost::asio;
 namespace ip = asio::ip;
 
+#include <boost/function_output_iterator.hpp>
+#include <boost/bind.hpp>
+#include <iterator>
+#include <iomanip>
+
+
 std::string HostSolver(std::string hostname){
 	asio::io_service io_service;
 	
@@ -21,20 +27,28 @@ std::string HostSolver(std::string hostname){
 	return 	ip::tcp::endpoint(*resolver.resolve(query)).address().to_string();
 }
 
-std::string SendAnswer(std::string ip,std::string token,std::string host){
+std::string SendAnswer(std::string host,std::string token,Answer answer){
 	try{
 
 		asio::io_service io_service;
 		ip::tcp::socket sock(io_service);
 
 		//boost::system::error_code error;
-		sock.connect(ip::tcp::endpoint(ip::address::from_string(ip), 443));
+		sock.connect(ip::tcp::endpoint(ip::address::from_string(HostSolver(host)), 80));
+
+		std::string answer_str;
+		std::stringstream ss;
+		ss << answer;
+		answer_str = ss.str();
+
 
 		//メッセージを送信
 		asio::streambuf request;
 		std::ostream request_ostream(&request);
-		request_ostream << std::string("GET") +  "/ HTTP/1.0\r\n\r\n";
-		//request_ostream << "POST  /quest" << ProblemID << ".txt?token=" << token << " HTTP/1.0" << host << "\r\n\r\n";
+		request_ostream << "POST /answer?token=" << token << " HTTP/1.0\r\n";
+		request_ostream << "Host:" << host << "\r\n\r\n";
+		request_ostream << "answer=" << answer_str << "\r\n";
+		std::cout << answer_str << std::endl;
 		asio::write(sock, request);
 
 		//メッセージを受信
@@ -53,7 +67,7 @@ std::string SendAnswer(std::string ip,std::string token,std::string host){
 	
 	return "";
 }
-Problem GetProblem(std::string ip,std::string token,int ProblemID,std::string host){
+Problem GetProblem(std::string host,std::string token,int ProblemID){
 	try{
 		boost::asio::io_service io_service;
 
@@ -61,18 +75,19 @@ Problem GetProblem(std::string ip,std::string token,int ProblemID,std::string ho
 		ip::tcp::socket sock(io_service);
 
 		//ホスト情報を設定する
-		ip::tcp::endpoint endpoint(asio::ip::address::from_string("202.242.38.62"),80);
+		ip::tcp::endpoint endpoint(asio::ip::address::from_string(HostSolver(host)),80);
 
 		//ソケットへ接続
 		sock.connect(endpoint);
 
 		//メッセージを送信
-		if(!host.empty())host = std::string("\r\n") + host;
+		//if(!host.empty())host = std::string("\r\nHost:") + host;
 		asio::streambuf request;
 		std::ostream request_ostream(&request);
-		request_ostream << "GET  /quest" << ProblemID << ".txt?token=" << token << " HTTP/1.0" << host << "\r\n\r\n";
+		request_ostream << "GET  /quest" << ProblemID << ".txt?token=" << token << " HTTP/1.0\r\n";
+		request_ostream << "Host:" << host << "\r\n\r\n";
 		asio::write(sock, request);
- 
+
 		//メッセージを受信
 		asio::streambuf buffer;
 		boost::system::error_code error;

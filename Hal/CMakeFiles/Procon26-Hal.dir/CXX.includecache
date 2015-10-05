@@ -143,6 +143,14 @@ fstream
 -
 sstream
 -
+boost/function_output_iterator.hpp
+-
+boost/bind.hpp
+-
+iterator
+-
+iomanip
+-
 
 /Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.h
 string
