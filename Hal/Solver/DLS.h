@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 
-//反復深化
+//深さ制限探索
 class DLS:public Solver{
 	typedef Heuristics<double,Field> Heuristics;
 public:

@@ -1,17 +1,41 @@
 cmake_minimum_required(VERSION 2.8)
-add_definitions("-Wall -std=c++11")
+add_definitions(-DMATRIX_WIDEOUT)
+add_definitions("-O3 -std=c++1y")
+
 add_executable(Procon26-Hal
   main.cpp
+  Characteristics.cpp
   Solver/BestFirst.cpp
   Solver/DLS.cpp
+  Solver/PerfectBackTrack.cpp
+  Solver/IterativeCover.cpp
+  Solver/BestBackTrack.cpp
+  Solver/BestBeam.cpp
+  Solver/QuickBeam.cpp
+  Solver/DoubleLimit.cpp
   Heuristics/Cavity.cpp
   Heuristics/DensityAround.cpp
   Heuristics/WeightComposit.cpp
   Heuristics/Density.cpp
   Heuristics/Score.cpp
+  Heuristics/SD.cpp
+  Heuristics/Dent.cpp
+  Heuristics/Frame.cpp
+  Heuristics/MinArea.cpp
+  Heuristics/Random.cpp
+  Perfect/BlockSize.cpp
+  Perfect/ParityCheck.cpp
+  Perfect/DPBlockSize.cpp
+  Perfect/CavityBlocks.cpp
+  Perfect/PerfectComposit.cpp
+  Perfect/MinTriming.cpp
+  Perfect/PPPP.cpp
+  Http/SendAnswer.cpp
   ../Structure/Transform.cpp
   ../Structure/Point.cpp
   ../Structure/Heuristic.cpp
   ../Structure/Problem.cpp	
   ../Structure/Answer.cpp
+  ../Utility/Timewait.cpp
 )
+target_link_libraries(Procon26-Hal boost_system)

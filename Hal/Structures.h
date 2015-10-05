@@ -6,6 +6,7 @@
 #include "../Structure/Problem.h"
 #include "../Structure/Answer.h"
 #include "../Structure/Solver.h"
+#include "../Structure/Perfect.h"
 
 #include "../Utility/CLOCKWISE_FOR.hpp"
 

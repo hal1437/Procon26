@@ -80,7 +80,7 @@ Answer DLS::Solve(){
 	const int count = problem.Count();
 	std::random_device rd;
 	
-	//std::cout << field << std::endl;
+	std::cout << field << std::endl;
 	//std::cout << problem.Count() << std::endl;
 	//反復深化
 	
@@ -123,7 +123,7 @@ Answer DLS::Solve(){
 			//std::cout << i*DEPTH+1 << std::endl;
 			field.Projection(problem.GetBlock(i*DEPTH+j+1), hands[j]);
 			ans.SetTransform(i*DEPTH+j+1,hands[j]);
-			//std::cout << field << std::endl;
+			std::cout << field << std::endl;
 		} 
 	}
 

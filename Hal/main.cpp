@@ -1,38 +1,60 @@
 
-#include <iostream>
-#include <fstream>
 #include "../Structure/Problem.h"
-#include "Heuristics/Score.h"
-#include "Heuristics/Density.h"
 #include "Heuristics/DensityAround.h"
-#include "Heuristics/Cavity.h"
 #include "Heuristics/WeightComposit.h"
+<<<<<<< HEAD
 #include "Solver/AStar.h"
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
 /*
+=======
+#include "Heuristics/Frame.h"
+#include "Heuristics/MinArea.h"
+#include "Heuristics/Random.h"
+#include "Solver/DoubleLimit.h"
+#include "../Utility/BenchMark.hpp"
+#include "Http/SendAnswer.h"
+#include <boost/asio.hpp>
+
+
+>>>>>>> 7151c307bf34b602cfb38f6b9b679a72f71d3920
 int main(){
+
+
+
+	//コンソール全消し
+	std::cout << "\x1b[2J";
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest7.txt");
-	std::ofstream ofs("Answer.txt");
-	Solver* solver;
-	WeightComposit* density;
-	auto f = Field(prob.GetBlock(0).GetReverse(false).Rotate(Constants::ANGLE0)).Move(Point(0,0));
-	//auto t = std::hash<Field>()(f);
 
+	//ベンチマーク関数オブジェクト実行
+	BenchMark<1>()([](){
+		std::cout << HostSolver("testform26.procon-online.net") << std::endl;
+		Problem prob = GetProblem("testform26.procon-online.net","0123456789abcdef",1);
+		
+		//Problem prob("../Problem/41.txt");
 
-	density = new WeightComposit();
-	
-	density->AddHeuristic(new DensityAround(),1.0f);
-	density->AddHeuristic(new Cavity(),-16.0f);
-	solver = new DLS(prob,density,2);
+		WeightComposit * h = new WeightComposit();
+		Solver* solver = new DoubleLimit(prob,h);
 
-	//prob.GetField().Projection(prob.GetBlock(0),Transform(Point(0,9),Constants::ANGLE180,false));
-	Answer ans = solver->Solve();
-	ofs << ans << std::endl;
-	//std::cout  << ans << std::endl;
+		//評価関数追加
+		h->AddHeuristic(new DensityAround()    ,   1.0f);
+		h->AddHeuristic(new AntiDensityAround(),   0.9f);
+		h->AddHeuristic(new MinArea()          ,  -1.0f);
+		h->AddHeuristic(new Frame()            ,   0.1f);
+		h->AddHeuristic(new Random()           ,   15.0);
+
+		Answer ans = solver->Solve();
+		ans.Export("Answer.txt");
+
+		//解放
+		delete solver;
+		delete h;
+		//SendAnswer(HostSolver("testform26.procon-online.net"),"0123456789abcdef",1,"Host:testform26.procon-online.net");
+		std::cout << SendAnswer("testform26.procon-online.net","0123456789abcdef",ans) << std::endl;;
+	});
 
 	std::cout << "-----End of program-----" << std::endl;
+
 	return 0;
 }
 */
