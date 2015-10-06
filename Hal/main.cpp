@@ -21,20 +21,21 @@ int main(){
 
 	//ベンチマーク関数オブジェクト実行
 	BenchMark<1>()([](){
-		std::cout << HostSolver("testform26.procon-online.net") << std::endl;
-		Problem prob = GetProblem("testform26.procon-online.net","0123456789abcdef",1);
+		//std::cout << HostSolver("testform26.procon-online.net") << std::endl;
+		//Problem prob = GetProblem("testform26.procon-online.net","0123456789abcdef",1);
+
 		
-		//Problem prob("../Problem/41.txt");
+		Problem prob("../Problem/18.txt");
 
 		WeightComposit * h = new WeightComposit();
 		Solver* solver = new DoubleLimit(prob,h);
 
 		//評価関数追加
 		h->AddHeuristic(new DensityAround()    ,   1.0f);
-		h->AddHeuristic(new AntiDensityAround(),   0.9f);
-		h->AddHeuristic(new MinArea()          ,  -1.0f);
+		h->AddHeuristic(new AntiDensityAround(),   0.8f);
+		h->AddHeuristic(new MinArea()          ,  -5.0f);
 		h->AddHeuristic(new Frame()            ,   0.1f);
-		h->AddHeuristic(new Random()           ,   15.0);
+		h->AddHeuristic(new Random()           ,   30.0);
 
 		Answer ans = solver->Solve();
 		ans.Export("Answer.txt");
@@ -43,7 +44,7 @@ int main(){
 		delete solver;
 		delete h;
 		//SendAnswer(HostSolver("testform26.procon-online.net"),"0123456789abcdef",1,"Host:testform26.procon-online.net");
-		std::cout << SendAnswer("testform26.procon-online.net","0123456789abcdef",ans) << std::endl;;
+		//std::cout << SendAnswer("testform26.procon-online.net","0123456789abcdef",ans) << std::endl;;
 	});
 
 	std::cout << "-----End of program-----" << std::endl;

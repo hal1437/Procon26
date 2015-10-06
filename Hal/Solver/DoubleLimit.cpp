@@ -45,19 +45,21 @@ bool DoubleLimit::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
 
 bool DoubleLimit::isPerfect(const Factor& f)const{
 	//残り空きマス数とブロック数を比較
-	int space = (~f.field).count();
+	int space = (~(f.field | problem.GetField())).count();
 	int block = 0;
 	for(int i=f.transes.size();i<problem.Count();i++){
 		block += problem.GetBlock(i).count();
 	}
+	//std::cout << space << ":" << block << std::endl;
+	//if(space == 0)return true;
 	return space <= block;
 }
 
 
 Answer DoubleLimit::Solve(){
 
-	std::vector<Factor> list;//探索リスト
 	std::set<Factor> log;	//探索記録
+	std::vector<Factor> list;//探索リスト
 	Factor best;
 	Answer ans(problem);
 	std::mutex mtx;
@@ -67,7 +69,8 @@ Answer DoubleLimit::Solve(){
 
 	//初期手
 	list.push_back(Factor());
-	
+
+
 	//探索ループ
 	while(!list.empty() && !complated){
 		int loop_count = std::min(PRIORITY_DEPTH,static_cast<int>(list.size()));
@@ -83,16 +86,15 @@ Answer DoubleLimit::Solve(){
 				}
 				const Factor top = list.front();
 				const Block  next = problem.GetBlock(top.transes.size());
-				PRIORITY_DEPTH = 10 + top.field.count()/50;
+				//PRIORITY_DEPTH =/* problem.Count()/30 - top.transes.size()/30 +*/ 2;
 				//pop
 				list.erase(list.begin());
 				mtx.unlock();
 
 				//終端
-				if(top.transes.size() == problem.Count())return;
+				if(top.transes.size()-1 == problem.Count())return;
 
 				//盤面出力
-				
 				mtx.lock();
 				std::cout << "\x1b[0;0H";
 				std::cout << "ループ  ：" << i << "                 \n";
@@ -102,10 +104,9 @@ Answer DoubleLimit::Solve(){
 				std::cout << "評価値　：" << top.heuristic << "                 \n";
 				std::cout << "スレッド：" << std::this_thread::get_id() << std::endl;
 				std::cout << "盤面状態：\n" << next;
-				std::cout << (top.field | problem.GetField()) ;
+				std::cout << (top.field | problem.GetField());
 				mtx.unlock();
 
-				
 				//完了
 				best = std::min(top,best,Factor::HeuristicCompare);
 				if((~(top.field | problem.GetField())).count() == 0){
@@ -123,6 +124,7 @@ Answer DoubleLimit::Solve(){
 				hands.push_back(Transform());
 
 				//キューに追加
+				std::vector<Factor> local_transes;
 				for(Transform hand:hands){
 					std::vector<Transform> tmp = top.transes;
 					tmp.push_back(hand);
@@ -133,14 +135,24 @@ Answer DoubleLimit::Solve(){
 					fact.transes   = tmp;
 					
 					//探索済みでなければ追加
-					if(log.find(fact) == log.end() /*&& isPerfect(fact)*/){
-						
+					local_transes.push_back(fact);
+				}
+				//APPEND_DEPTHにトリム
+				std::sort(local_transes.begin(),local_transes.end(),Factor::HeuristicCompare);
+				local_transes.erase(std::unique(local_transes.begin(),local_transes.end()),local_transes.end());
+				if(local_transes.size() > APPEND_DEPTH)local_transes.erase(local_transes.begin() + APPEND_DEPTH,local_transes.end());
+				
+				//追加
+				for(const Factor& t:local_transes){
+					if(log.find(t) == log.end() /*&& isPerfect(t)*/){
 						mtx.lock();
-						list.push_back(fact);
-						log.insert(fact);
+						list.push_back(t);
+						log.insert(t);
 						mtx.unlock();
 					}
 				}
+				
+				
 			}));
 		}
 		for(auto& t:threads)t.join();
