@@ -197,15 +197,43 @@ constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<A
 MEMBER_TEMPLATE_TEMPLATE
 std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask,bool first)const{
 	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
-	Matrix<MATRIX_WIDTH,MATRIX_HEIGHT> field(*this);
+	const Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& field = *this;
 	std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT>,struct Transform> map;
-
-	//if(first)field.Projection(Mask);
-	//field.Projection(*this);
 	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample_base(matrix);
+	int triming[4];
 
-	//std::cout << matrix << std::endl;
-	//std::cout << field << std::endl;
+	std::fill(triming,triming+4,-1);
+
+	std::cout << field << std::endl;
+	for(int i=0;i<MATRIX_HEIGHT;i++){
+		for(int j=0;j<MATRIX_WIDTH;j++){
+			Point mirror(MATRIX_WIDTH-j-1,MATRIX_HEIGHT-i-1);
+			if(triming[Constants::DIRECTION::UP] == -1 && field[i][j]==false){
+				triming[Constants::DIRECTION::UP] = j;
+			}
+			if(triming[Constants::DIRECTION::LEFT] == -1 && field[j][i]==false){
+				triming[Constants::DIRECTION::LEFT] = i;
+			}
+			if(triming[Constants::DIRECTION::DOWN] == -1 && field[mirror.y][mirror.x]==false){
+				triming[Constants::DIRECTION::DOWN] = mirror.y;
+			}
+			if(triming[Constants::DIRECTION::RIGHT] == -1 && field[mirror.y][mirror.x]==false){
+				triming[Constants::DIRECTION::RIGHT] = mirror.x;
+			}
+
+			if(triming[Constants::DIRECTION::UP]    != -1 &&
+			   triming[Constants::DIRECTION::RIGHT] != -1 &&
+			   triming[Constants::DIRECTION::DOWN]  != -1 &&
+			   triming[Constants::DIRECTION::LEFT]  != -1){
+				break;
+			}
+		}
+	}
+
+	for(int i=0;i<4;i++){
+		std::cout << i << ":" << triming[i] << std::endl;
+	}
+
 	for(int i=0;i<2;i++){
 		sample_base.Reverse(i);
 		for(int j=0;j<4;j++){
@@ -214,11 +242,13 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 		}
 	}
 
+	int times=0;
 	std::vector<class Transform> answer;
-	for(int i = -8;i < static_cast<int>(MATRIX_HEIGHT);i++){
-		for(int j = -8;j < static_cast<int>(MATRIX_WIDTH);j++){
+	for(int i = -8 + triming[Constants::DIRECTION::UP];i < static_cast<int>(MATRIX_HEIGHT) - triming[Constants::DIRECTION::DOWN];i++){
+		for(int j = -8 + triming[Constants::DIRECTION::LEFT];j < static_cast<int>(MATRIX_WIDTH) - triming[Constants::DIRECTION::RIGHT];j++){
 			for(int r=0;r<2;r++){
 				for(int k=0;k<4;k++){
+					times++;
 					Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
 					if((first && (Mask.ProjectionTest(sample[r][k],move_trans,current(),true))) || field.ProjectionTest(sample[r][k],move_trans,Mask)){
 						struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
@@ -228,6 +258,8 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 			}
 		}
 	}
+
+	std::cout << times << "times" << std::endl;
 	for(auto x:map)answer.push_back(x.second);
 	return answer;
 }
