@@ -7,13 +7,10 @@
 #include "Heuristics/Random.h"
 #include "Solver/DoubleLimit.h"
 #include "../Utility/BenchMark.hpp"
-#include "Http/SendAnswer.h"
-#include <boost/asio.hpp>
+#include "Network/ProblemIO.h"
 
 
 int main(){
-
-
 
 	//コンソール全消し
 	std::cout << "\x1b[2J";
@@ -22,28 +19,29 @@ int main(){
 	//ベンチマーク関数オブジェクト実行
 	BenchMark<1>()([](){
 		//std::cout << HostSolver("testform26.procon-online.net") << std::endl;
-		//Problem prob = GetProblem("testform26.procon-online.net","0123456789abcdef",1);
+		Problem prob = GetProblem("testform26.procon-online.net","quest1.txt","0123456789abcdef");
 
 		
-		Problem prob("../Problem/18.txt");
+		//Problem prob("../Problem/quest16.txt");
 
 		WeightComposit * h = new WeightComposit();
 		Solver* solver = new DoubleLimit(prob,h);
 
 		//評価関数追加
 		h->AddHeuristic(new DensityAround()    ,   1.0f);
-		h->AddHeuristic(new AntiDensityAround(),   0.8f);
-		h->AddHeuristic(new MinArea()          ,  -5.0f);
-		h->AddHeuristic(new Frame()            ,   0.1f);
-		h->AddHeuristic(new Random()           ,   30.0);
+		h->AddHeuristic(new AntiDensityAround(),   0.7f);
+		h->AddHeuristic(new MinArea()          ,  -1.5f);
+		h->AddHeuristic(new Frame()            ,   0.0f);
+		h->AddHeuristic(new Random()           ,   3.0f);
 
+		
 		Answer ans = solver->Solve();
 		ans.Export("Answer.txt");
 
 		//解放
 		delete solver;
 		delete h;
-		//SendAnswer(HostSolver("testform26.procon-online.net"),"0123456789abcdef",1,"Host:testform26.procon-online.net");
+		SendAnswer("testform26.procon-online.net","Answer.txt","0123456789abcdef");
 		//std::cout << SendAnswer("testform26.procon-online.net","0123456789abcdef",ans) << std::endl;;
 	});
 

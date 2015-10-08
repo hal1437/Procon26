@@ -670,28 +670,28 @@ CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o.provides: CMakeFiles/Procon26-Hal
 
 CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o
 
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: Http/SendAnswer.cpp
+CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
+CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o: Network/ProblemIO.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/hal1437/Programs/Procon26/Hal/CMakeFiles $(CMAKE_PROGRESS_28)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o -c /Users/hal1437/Programs/Procon26/Hal/Network/ProblemIO.cpp
 
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.cpp > CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.i
+CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/hal1437/Programs/Procon26/Hal/Network/ProblemIO.cpp > CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.i
 
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.cpp -o CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.s
+CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/hal1437/Programs/Procon26/Hal/Network/ProblemIO.cpp -o CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.s
 
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o.requires:
-.PHONY : CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o.requires
+CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o.requires:
+.PHONY : CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o.requires
 
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o.provides: CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o.provides.build
-.PHONY : CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o.provides
+CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o.provides: CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o.provides.build
+.PHONY : CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o.provides
 
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o
+CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o.provides.build: CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o
 
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o: CMakeFiles/Procon26-Hal.dir/flags.make
 CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.cpp
@@ -860,7 +860,7 @@ Procon26__Hal_OBJECTS = \
 "CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o" \
-"CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o" \
+"CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o" \
 "CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o" \
@@ -898,7 +898,7 @@ Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/CavityBlocks.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o
-Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o
+Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o
 Procon26-Hal: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o
@@ -941,7 +941,7 @@ CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/Cavity
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/MinTriming.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Perfect/PPPP.cpp.o.requires
-CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o.requires
+CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Transform.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Point.cpp.o.requires
 CMakeFiles/Procon26-Hal.dir/requires: CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Structure/Heuristic.cpp.o.requires

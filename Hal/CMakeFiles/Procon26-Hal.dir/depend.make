@@ -145,21 +145,8 @@ CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o: /Users/hal1437/Prog
 CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
 CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
 
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: Http/SendAnswer.cpp
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: Http/SendAnswer.h
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: Structures.h
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Answer.h
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Heuristic.h
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Layer.hpp
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Matrix.hpp
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/MultiBit.hpp
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Perfect.h
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Point.h
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Problem.h
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Solver.h
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Structure/Transform.h
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Utility/CLOCKWISE_FOR.hpp
-CMakeFiles/Procon26-Hal.dir/Http/SendAnswer.cpp.o: /Users/hal1437/Programs/Procon26/Utility/Constants.hpp
+CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o: Network/ProblemIO.cpp
+CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o: Network/ProblemIO.h
 
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o: Perfect/BlockSize.cpp
 CMakeFiles/Procon26-Hal.dir/Perfect/BlockSize.cpp.o: Perfect/BlockSize.h
@@ -446,7 +433,7 @@ CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Frame.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/MinArea.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/Random.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Heuristics/WeightComposit.h
-CMakeFiles/Procon26-Hal.dir/main.cpp.o: Http/SendAnswer.h
+CMakeFiles/Procon26-Hal.dir/main.cpp.o: Network/ProblemIO.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Solver/DoubleLimit.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: Structures.h
 CMakeFiles/Procon26-Hal.dir/main.cpp.o: main.cpp

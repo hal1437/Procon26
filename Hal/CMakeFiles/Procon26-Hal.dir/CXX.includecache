@@ -132,31 +132,23 @@ WeightComposit.h
 map
 -
 
-/Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.cpp
-SendAnswer.h
-/Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.h
-boost/asio.hpp
--
+/Users/hal1437/Programs/Procon26/Hal/Network/ProblemIO.cpp
+ProblemIO.h
+/Users/hal1437/Programs/Procon26/Hal/Network/ProblemIO.h
+
+/Users/hal1437/Programs/Procon26/Hal/Network/ProblemIO.h
+../Structure/Problem.h
+/Users/hal1437/Programs/Procon26/Hal/Structure/Problem.h
+../Structure/Answer.h
+/Users/hal1437/Programs/Procon26/Hal/Structure/Answer.h
 iostream
 -
 fstream
 -
-sstream
--
-boost/function_output_iterator.hpp
--
-boost/bind.hpp
--
-iterator
--
-iomanip
--
-
-/Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.h
 string
 -
-../Structures.h
-/Users/hal1437/Programs/Procon26/Hal/Structures.h
+cstdlib
+-
 
 /Users/hal1437/Programs/Procon26/Hal/Perfect/BlockSize.cpp
 BlockSize.h
@@ -429,10 +421,8 @@ Solver/DoubleLimit.h
 /Users/hal1437/Programs/Procon26/Hal/Solver/DoubleLimit.h
 ../Utility/BenchMark.hpp
 /Users/hal1437/Programs/Procon26/Utility/BenchMark.hpp
-Http/SendAnswer.h
-/Users/hal1437/Programs/Procon26/Hal/Http/SendAnswer.h
-boost/asio.hpp
--
+Network/ProblemIO.h
+/Users/hal1437/Programs/Procon26/Hal/Network/ProblemIO.h
 
 /Users/hal1437/Programs/Procon26/Structure/Answer.cpp
 Answer.h
