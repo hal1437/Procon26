@@ -10,5 +10,7 @@
 #define Procon26_project_Parameters_h
 
 #define SOLVE_PROBREM "../Problem/quest1.txt"
+#define USE_PARALLEL
 
 #endif
+

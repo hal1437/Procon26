@@ -10,6 +10,7 @@
 #define __GA_SASolver_
 
 #include<cmath>
+#include<iostream>
 #include "SABase.hpp"
 
 /* Prototype Definition */
@@ -53,7 +54,7 @@ _T _SA_Solver<_T,_STime,_ETime,_Schedule>::solveAnswer(){
     
     _T old = _target, best(_target.getState());
     typename _T::stateType best_state(_aux);
-    int  old_eval=_target.calcEvalution(_aux) , best_eval=0;
+    int  old_eval=_target.calcEvalution(_aux) , best_eval=old_eval;
     
     while(current_time >= _ETime){
         old = _target;
@@ -64,6 +65,7 @@ _T _SA_Solver<_T,_STime,_ETime,_Schedule>::solveAnswer(){
             if(best_eval < next_eval){
                 best = _target;
                 best_eval = next_eval;
+                std::cout << "best evalution= " << best_eval << std::endl;
             }
             old_eval = next_eval;
         }

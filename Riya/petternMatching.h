@@ -259,37 +259,5 @@ CONSTEXPR_RIYA Anct::Array< Point,BIT_SIZE > PetternSolver::getReachable(const s
     return reachable;
 }
 
-/*
-std::vector< std::vector<int> > particalProblem(std::vector< std::vector<int> > table){
-    for(int i=0; i<table.size(); i++){
-        for(int j=0; j<table[i].size(); j++){
-            if(table[i][j] == 0){
-                break;
-            }
-            if(j==table[i].size()-1 && (i==0 || i==table.size()-1)){
-                table.erase(table.begin()+i);
-                i--;
-                break;
-            }
-        }
-    }
-    
-    for(int j=0; j<table[0].size(); j++){
-        for(int i=0; i<table.size(); i++){
-            if(table[i][j] == 0){
-                if(j != table[0].size()-1)j = table[0].size()-2;
-                break;
-            }
-            if(i==table[i].size()-1 && (j==0 || j==table[0].size()-1)){
-                for(int k=0; k<table.size(); k++){
-                    table[k].erase(table[k].begin());
-                    j--;
-                }
-            }
-        }
-    }
-    return table;
-}
-*/
 
 #endif
