@@ -209,7 +209,7 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 		for(int j=0;j<MATRIX_WIDTH;j++){
 			Point mirror(MATRIX_WIDTH-j-1,MATRIX_HEIGHT-i-1);
 			if(triming[Constants::DIRECTION::UP] == -1 && project[i][j]==false){
-				triming[Constants::DIRECTION::UP] = j;
+				triming[Constants::DIRECTION::UP] = i;
 			}
 			if(triming[Constants::DIRECTION::LEFT] == -1 && project[j][i]==false){
 				triming[Constants::DIRECTION::LEFT] = i;
