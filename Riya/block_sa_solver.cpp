@@ -8,6 +8,7 @@
 
 #include "block_sa_solver.h"
 #include "Contain.hpp"
+#include "PerfectContain.hpp"
 #include<random>
 
 Block_SA& Block_SA::turnState(auxType& problem){
@@ -18,27 +19,44 @@ Block_SA& Block_SA::turnState(auxType& problem){
     
     std::size_t r = _state.search_bad_index();
     
+    PerfectContain p_contain(problem);
     Contain contain(problem);
     
     _state.returnTheHand(r ,_field);
+    
+    for(auto& trans: reserveTrans){
+        trans = Transform();
+    }
+    
     std::cout << "restart hand number = " << r << " evalution = " << _state.get_eval(r) <<std::endl;
     std::cout << (_field | problem.GetField()) << std::endl;
     
     for(long i=r; i < problem.Count(); i++){
+        if(p_contain.isEnableReserve){
+            if(reserveTrans[i].isEnable()){
+                _state.set_ans(std::make_pair(reserveTrans[i], problem.GetBlock(i)),i);
+                _state.set_eval( Board_Eval(problem), i);
+                continue;
+            }
+        }
+        
+        p_contain.Execution(_field, i, reserveTrans);
+        
         hands = _field.GetListLayPossible(problem.GetBlock(i),problem.GetField(),i==0);
+        std::cout << (_field | problem.GetField()) << std::endl;
+        
+        next_evals.resize(hands.size());
+        for(int j=0; j<hands.size(); j++){
+            const Field new_field = static_cast<Field>(_field | problem.GetField()).GetProjection(problem.GetBlock(i),hands[j]);
+            if(!contain.Execution(new_field, i)){hands.erase(hands.begin() + j); j--; continue;}
+            next_evals[j] = std::make_pair(_heuristics->Execution(static_cast<Field>(new_field |
+                                    problem.GetField()),problem),hands[j]);
+        }
         
         if(hands.empty()){
             _state.set_ans( std::make_pair(Transform(), problem.GetBlock(i)),i );
             _state.set_eval( _state.get_eval(i-1), i);
             continue;
-        }
-        
-        next_evals.resize(hands.size());
-        for(int j=0; j<hands.size(); j++){
-            const Field new_field = static_cast<Field>(_field | problem.GetField()).GetProjection(problem.GetBlock(i),hands[j]);
-            next_evals[j] = std::make_pair(_heuristics->Execution(static_cast<Field>(new_field |
-                                    problem.GetField()),problem),hands[j]);
-           next_evals[j].first -= (contain.Execution(static_cast<Field>(_field | problem.GetField()), i)) ? -10000 : 0;
         }
         
         std::sort(next_evals.begin(), next_evals.end(), [&](const HAND_PAIR& lhs,const HAND_PAIR& rhs){
@@ -49,7 +67,8 @@ Block_SA& Block_SA::turnState(auxType& problem){
         _field.Projection(problem.GetBlock(i), selected_haad.second);
         _state.set_ans(std::make_pair(selected_haad.second, problem.GetBlock(i)),i);
         _state.set_eval( Board_Eval(problem),i );
-
+        
+        std::cout << (_field | problem.GetField()) << std::endl;
     }
     
     std::cout << (_field | problem.GetField()) << std::endl;
@@ -64,6 +83,11 @@ Block_SA& Block_SA::initState(auxType& problem){
     const int count = problem.Count();
     
     std::cout << _field << std::endl;
+    
+    reserveTrans.resize(problem.Count());
+    for(auto& trans: reserveTrans){
+        trans = Transform();
+    }
     
     for(int i=0; i<count; i++){
         hands = _field.GetListLayPossible(problem.GetBlock(i),problem.GetField(),i==0);
@@ -105,7 +129,7 @@ Block_SA::Block_SA(stateType state) : SA_Base<Block_SA, Problem, Answer_history<
     auto density = new WeightComposit();
     
     density->AddHeuristic(new DensityAround(),1.0f);
-    density->AddHeuristic(new MinArea(), -1.0f);
+    //density->AddHeuristic(new MinArea(), -1.0f);
     //density->AddHeuristic(new AntiDensityAround(), 0.9f);
     //density->AddHeuristic(new Frame(), 0.1f);
     

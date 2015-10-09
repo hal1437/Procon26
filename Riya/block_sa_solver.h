@@ -39,6 +39,8 @@ public:
 private:
     typedef std::pair<double,Transform> HAND_PAIR;
     std::vector< HAND_PAIR > next_evals;
+    std::vector< Transform > reserveTrans;
+    
     Field _field;
     Heuristics<double,Field,Problem>* _heuristics;
     Heuristics<double,Field,Problem>* _Cavity;

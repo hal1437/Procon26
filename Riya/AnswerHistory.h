@@ -33,8 +33,8 @@ public:
     void returnTheHand(std::size_t index,Field& field){
         long size = ans_list.size();
         for(long i=size-1;i>=static_cast<long>(index);i--){
-            Field reversed;
-            field = field & ~(reversed.GetProjection(ans_list[i].second,ans_list[i].first));
+            field.ReverseProjection(ans_list[i].second,ans_list[i].first);
+            std::cout << field << std::endl;
         }
     }
     Answer TranslateAnswer(Problem& problem){
@@ -55,12 +55,15 @@ private:
 
 template<class TRANSFORM,class BLOCK>
 std::size_t Answer_history<TRANSFORM,BLOCK>::search_bad_index(){
+    int i;
+    bool isPathed=false;;
+    
+    /*
     auto it = std::min_element(ans_list.begin(),ans_list.end());
     std::size_t worst_index = it - ans_list.begin();
     bool upward=false;
     long i,old_eval = -1;
     
-    /*
     for(i=worst_index-1; i>=0; i--){
         if(!upward){
             if(old_eval < eval_list[i].first){
@@ -75,7 +78,16 @@ std::size_t Answer_history<TRANSFORM,BLOCK>::search_bad_index(){
     }
      */
     
-    return std::mt19937(std::random_device()())() % ans_list.size();
+    for(i=ans_list.size()-1; i>=0; i--){
+        if(i==0)break;
+        if(isPathed && ans_list[i].first.isEnable())break;
+        if(!ans_list[i].first.isEnable()){
+            isPathed = true;
+            continue;
+        }
+    }
+    
+    return i;
 }
 
 #endif
