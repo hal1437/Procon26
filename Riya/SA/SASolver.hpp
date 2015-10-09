@@ -57,6 +57,7 @@ _T _SA_Solver<_T,_STime,_ETime,_Schedule>::solveAnswer(){
     int  old_eval=_target.calcEvalution(_aux) , best_eval=old_eval;
     
     while(current_time >= _ETime){
+        std::cout << "time schedule = " << current_time << std::endl;
         old = _target;
         _target.turnState(_aux);
         int next_eval = _target.calcEvalution(_aux);

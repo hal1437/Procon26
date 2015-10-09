@@ -28,8 +28,11 @@ private:
     std::vector<h_type*> heuristicses;
 public:
     static constexpr bool isEnableReserve = true;
+    static constexpr int  MAX_CLOSED_FIELD_SIZE = 10;
     
     bool Execution(Field& field,std::size_t index,std::vector<Transform>& reserve_trans);
+    bool Execution(Field& field,std::size_t index);
+    
     PerfectContain(const Problem& prob);
     //Contain()=default;
     PerfectContain(const PerfectContain&)=default;
@@ -101,20 +104,25 @@ std::vector<std::vector<int>> PerfectContain::trimField(const Matrix<WIDTH, HEIG
 bool PerfectContain::isFieldContainAllRemainBlocks(Field& field,const closed_range& closed,std::size_t index,std::vector<Transform>& reserve_trans){
     bool isFieldContain=false;
     int N = static_cast<int>(_prob.Count());
+    
+    if((closed.first.end.x - closed.first.begin.x) + (closed.first.end.y - closed.first.begin.y) > MAX_CLOSED_FIELD_SIZE)return true;
+    
     for(int i=int(index); i<N; i++){
-        //std::cout << _prob.GetBlock(i) << std::endl;
+        if(reserve_trans[i].isEnable())continue;
         switch(isContain(closed.second,_features[i])){
             case CONTAIN_PARAMS::CONTAIN:
-                isFieldContain=false;
+                isFieldContain = true;
                 break;
             case CONTAIN_PARAMS::NO_CONTAIN:
-                isFieldContain=false;
                 break;
             case CONTAIN_PARAMS::PERFECT_CONTAIN:
+                isFieldContain = true;
+                
                 std::vector<Transform> hands = GetListLayPossible(closed.second, _prob.GetBlock(i), trimField(_prob.GetField(), closed.first));
                 if(hands.size()!=0){
                     hands[0].pos = hands[0].pos + closed.first.begin;
                     reserve_trans[i] = hands[0];
+                    field.Projection(_prob.GetBlock(i),hands[0]);
                 }
                 break;
         }
@@ -125,7 +133,6 @@ bool PerfectContain::isFieldContainAllRemainBlocks(Field& field,const closed_ran
 PerfectContain::closed_range PerfectContain::searchClosedField(const Field& field,const Point& pos){
     std::queue<Point> work;
     Field _field = field;
-    
     square closed_sq;
     
     work.push(pos);
@@ -159,10 +166,31 @@ bool PerfectContain::Execution(Field& field,std::size_t index,std::vector<Transf
     square closed_sq;
     bool isAllFieldContainRemainBlock=true;
     
+    _field = static_cast<Field>(_field | _prob.GetField());
+    
     for(int i=0;i<FIELD_HEIGHT;i++){
         for(int j=0;j<FIELD_WIDTH;j++){
             if(_field[i][j] == false){
-                isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,searchClosedField(static_cast<Field>(_field | _prob.GetField()) ,Point(j,i)),index,reserve_trans);
+                isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,searchClosedField(_field ,Point(j,i)),index,reserve_trans);
+                if(!isAllFieldContainRemainBlock)return false;
+            }
+        }
+    }
+    return isAllFieldContainRemainBlock;
+}
+
+bool PerfectContain::Execution(Field& field,std::size_t index){
+    Field _field = field;
+    square closed_sq;
+    std::vector<Transform> reserve_trans(_prob.Count());
+    bool isAllFieldContainRemainBlock=true;
+    
+    _field = static_cast<Field>(_field | _prob.GetField());
+    
+    for(int i=0;i<FIELD_HEIGHT;i++){
+        for(int j=0;j<FIELD_WIDTH;j++){
+            if(_field[i][j] == false){
+                isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,searchClosedField(_field ,Point(j,i)),index,reserve_trans);
                 if(!isAllFieldContainRemainBlock)return false;
             }
         }
@@ -311,7 +339,7 @@ PerfectContain::geometry_feature PerfectContain::calcGeometryFeatureField(const 
 }
 
 PerfectContain::CONTAIN_PARAMS PerfectContain::isContain(const std::vector< std::vector<int> >& field,geometry_feature gf){
-    geometry_feature root_gf = calcGeometryFeatureField(field);
+    geometry_feature root_gf = calcGeometryFeature(field);
     bool isPerfect = true;
     
     if(root_gf.first.size() < gf.first.size() || root_gf.second.size() < gf.second.size())return CONTAIN_PARAMS::NO_CONTAIN;
@@ -337,12 +365,12 @@ std::vector<Transform> PerfectContain::GetListLayPossible(const std::vector< std
     typedef Matrix<WIDTH,HEIGHT> current;
 
     Matrix<WIDTH,HEIGHT> sample_base(matrix),field,Mask;
-    field ^= field;
+    field = ~field;
     
     for(int i=0; i<_field.size(); i++){
         for(int j=0; j<_field[i].size(); j++){
-            field = _field[i][j];
-            Mask = _Mask[i][j];
+            field[i][j] = _field[i][j] ? 0 : 1;
+            Mask[i][j] = _Mask[i][j];
         }
     }
     
@@ -353,14 +381,13 @@ std::vector<Transform> PerfectContain::GetListLayPossible(const std::vector< std
             sample_base.Rotate(Constants::ANGLE90);
         }
     }
-    
     std::vector<class Transform> answer;
     for(int i = -8;i < static_cast<int>(_field.size());i++){
-        for(int j = -8;j < static_cast<int>(_field[i].size()); j++){
+        for(int j = -8;j < static_cast<int>(_field[0].size()); j++){
             for(int r=0;r<2;r++){
                 for(int k=0;k<4;k++){
                     Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
-                    if(((Mask.ProjectionTest(sample[r][k],move_trans,current(),true))) || field.ProjectionTest(sample[r][k],move_trans,Mask)){
+                    if(field.ProjectionTest(sample[r][k],move_trans,Mask)){
                         struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
                         map.insert(std::make_pair(current(field).Projection(sample[r][k],move_trans),t));
                     }

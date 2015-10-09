@@ -34,7 +34,6 @@ public:
         long size = ans_list.size();
         for(long i=size-1;i>=static_cast<long>(index);i--){
             field.ReverseProjection(ans_list[i].second,ans_list[i].first);
-            std::cout << field << std::endl;
         }
     }
     Answer TranslateAnswer(Problem& problem){

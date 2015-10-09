@@ -39,6 +39,7 @@ public:
 private:
     typedef std::pair<double,Transform> HAND_PAIR;
     std::vector< HAND_PAIR > next_evals;
+    std::vector< int >       hand_iterator;
     std::vector< Transform > reserveTrans;
     
     Field _field;

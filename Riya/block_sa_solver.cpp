@@ -17,19 +17,20 @@ Block_SA& Block_SA::turnState(auxType& problem){
     std::uniform_int_distribution<int> distribution;
     std::vector<Transform> hands;
     
-    std::size_t r = _state.search_bad_index();
-    
     PerfectContain p_contain(problem);
     Contain contain(problem);
     
+    std::size_t r = _state.search_bad_index();
+    
     _state.returnTheHand(r ,_field);
+    std::fill(hand_iterator.begin()+r,hand_iterator.end(),0);
     
     for(auto& trans: reserveTrans){
         trans = Transform();
     }
     
-    std::cout << "restart hand number = " << r << " evalution = " << _state.get_eval(r) <<std::endl;
     std::cout << (_field | problem.GetField()) << std::endl;
+    std::cout << "restart hand number = " << r << " evalution = " << _state.get_eval(r) <<std::endl;
     
     for(long i=r; i < problem.Count(); i++){
         if(p_contain.isEnableReserve){
@@ -43,17 +44,16 @@ Block_SA& Block_SA::turnState(auxType& problem){
         p_contain.Execution(_field, i, reserveTrans);
         
         hands = _field.GetListLayPossible(problem.GetBlock(i),problem.GetField(),i==0);
-        std::cout << (_field | problem.GetField()) << std::endl;
         
         next_evals.resize(hands.size());
         for(int j=0; j<hands.size(); j++){
-            const Field new_field = static_cast<Field>(_field | problem.GetField()).GetProjection(problem.GetBlock(i),hands[j]);
-            if(!contain.Execution(new_field, i)){hands.erase(hands.begin() + j); j--; continue;}
+            Field new_field = static_cast<Field>(_field | problem.GetField()).GetProjection(problem.GetBlock(i),hands[j]);
+            if(!p_contain.Execution(new_field, i)){hands.erase(hands.begin() + j); j--; continue;}
             next_evals[j] = std::make_pair(_heuristics->Execution(static_cast<Field>(new_field |
                                     problem.GetField()),problem),hands[j]);
         }
         
-        if(hands.empty()){
+        if(hands.empty() || hand_iterator[i] > next_evals.size()){
             _state.set_ans( std::make_pair(Transform(), problem.GetBlock(i)),i );
             _state.set_eval( _state.get_eval(i-1), i);
             continue;
@@ -63,15 +63,17 @@ Block_SA& Block_SA::turnState(auxType& problem){
             return lhs.first < rhs.first;
         });
         
-        auto& selected_haad = next_evals[std::uniform_int_distribution<long>(0,next_evals.size())(mt)];
-        _field.Projection(problem.GetBlock(i), selected_haad.second);
-        _state.set_ans(std::make_pair(selected_haad.second, problem.GetBlock(i)),i);
+        auto& selected_hand = next_evals[hand_iterator[i]];
+        hand_iterator[i]++;
+        _field.Projection(problem.GetBlock(i), selected_hand.second);
+        _state.set_ans(std::make_pair(selected_hand.second, problem.GetBlock(i)),i);
         _state.set_eval( Board_Eval(problem),i );
         
         std::cout << (_field | problem.GetField()) << std::endl;
     }
     
     std::cout << (_field | problem.GetField()) << std::endl;
+    std::cout << "turned state. evalution = " << calcEvalution(problem) <<std::endl;
     return *this;
 }
 
@@ -85,11 +87,16 @@ Block_SA& Block_SA::initState(auxType& problem){
     std::cout << _field << std::endl;
     
     reserveTrans.resize(problem.Count());
+    hand_iterator.resize(problem.Count());
+    std::fill(hand_iterator.begin(),hand_iterator.end(),0);
     for(auto& trans: reserveTrans){
         trans = Transform();
     }
     
     for(int i=0; i<count; i++){
+        _state.set_ans( std::make_pair(Transform(), problem.GetBlock(i)),i );
+        _state.set_eval( _state.get_eval(i-1), i);
+        /*
         hands = _field.GetListLayPossible(problem.GetBlock(i),problem.GetField(),i==0);
         
         if(hands.empty()){
@@ -112,6 +119,7 @@ Block_SA& Block_SA::initState(auxType& problem){
         _state.set_eval( Board_Eval(problem),i );
         std::cout << i << "th" << std::endl;
         std::cout << (_field | problem.GetField()) << std::endl;
+         */
     }
     std::cout << (_field | problem.GetField()) << std::endl;
     return *this;
