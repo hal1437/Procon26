@@ -22,8 +22,11 @@ public:
     
     void set_ans(std::pair<TRANSFORM, BLOCK> &&node,int i){ans_list[i] = node;}
     void set_ans(std::pair<TRANSFORM, BLOCK> &node,int i){ans_list[i] = node;}
+    
     void set_eval(long eval,int i){eval_list[i] = std::make_pair(eval,i);}
     long get_eval(int i){return eval_list[i].first;};
+    
+    const std::pair<TRANSFORM,BLOCK>& get_ans(int i){return ans_list[i];}
     
     std::size_t search_bad_index();
     

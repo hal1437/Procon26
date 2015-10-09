@@ -17,6 +17,7 @@
 #include<queue>
 #include<algorithm>
 #include<future>
+#include"petternMatching.h"
 
 class PerfectContain/* : public Perfect<Field,BlockLayer>*/{
 private:
@@ -28,10 +29,10 @@ private:
     std::vector<h_type*> heuristicses;
 public:
     static constexpr bool isEnableReserve = true;
-    static constexpr int  MAX_CLOSED_FIELD_SIZE = 10;
+    static constexpr int  MAX_CLOSED_FIELD_SIZE = 20;
     
-    bool Execution(Field& field,std::size_t index,std::vector<Transform>& reserve_trans);
-    bool Execution(Field& field,std::size_t index);
+    bool Execution(Field& field, const Transform& trans,std::size_t index,std::vector<Transform>& reserve_trans);
+    bool Execution(Field& field, const Transform& trans,std::size_t index);
     
     PerfectContain(const Problem& prob);
     //Contain()=default;
@@ -44,33 +45,37 @@ public:
     };
     
 private:
+    static constexpr PetternSolver pettern = PetternSolver();
     const Problem& _prob;
     std::vector<geometry_feature> _features;
     struct square{
         Point begin,end;
+        bool operator==(const square& rhs){return this->begin == rhs.begin && this->end == rhs.end;}
     };
     
-    closed_range searchClosedField(const Field& field,const Point& pos);
+    closed_range searchClosedField(const Field& field,const Point& pos)const;
     
     template<std::size_t WIDTH,std::size_t HEIGHT>
-    std::vector<std::vector<int>> trimField(const Matrix<WIDTH, HEIGHT>& field, const  square& sq);
+    std::vector<std::vector<int>> trimField(const Matrix<WIDTH, HEIGHT>& field, const  square& sq)const;
     
     bool isFieldContainAllRemainBlocks(Field& field,const closed_range& closed,std::size_t index,std::vector<Transform>& reserve_trans);
     
     template<std::size_t WIDTH,std::size_t HEIGHT>
-    geometry_feature calcGeometryFeature(const Matrix<WIDTH,HEIGHT>& block);
+    geometry_feature calcGeometryFeature(const Matrix<WIDTH,HEIGHT>& block)const;
     
-    geometry_feature calcGeometryFeature(const std::vector< std::vector<int> >& block);
-    
-    template<std::size_t WIDTH,std::size_t HEIGHT>
-    geometry_feature calcGeometryFeatureField(const Matrix<WIDTH,HEIGHT>& field);
-    
-    geometry_feature calcGeometryFeatureField(const std::vector< std::vector<int> >& field);
-    
-    CONTAIN_PARAMS isContain(const std::vector< std::vector<int> >& field,geometry_feature gf);
+    geometry_feature calcGeometryFeature(const std::vector< std::vector<int> >& block)const;
     
     template<std::size_t WIDTH,std::size_t HEIGHT>
-    std::vector<Transform> GetListLayPossible(const std::vector< std::vector<int> >& _field,const Matrix<WIDTH,HEIGHT>& matrix, const std::vector< std::vector<int> >& _Mask);
+    geometry_feature calcGeometryFeatureField(const Matrix<WIDTH,HEIGHT>& field)const;
+    
+    geometry_feature calcGeometryFeatureField(const std::vector< std::vector<int> >& field)const;
+    
+    CONTAIN_PARAMS isContain(const std::vector< std::vector<int> >& field,geometry_feature gf)const;
+    
+    template<std::size_t WIDTH,std::size_t HEIGHT>
+    std::vector<Transform> GetListLayPossible(const std::vector< std::vector<int> >& _field,const Matrix<WIDTH,HEIGHT>& matrix, const std::vector< std::vector<int> >& _Mask)const;
+    
+    std::vector<Point> getReachable(const Field& field,const Block& block,const Transform& trans);
     
     
 };
@@ -84,7 +89,7 @@ PerfectContain::PerfectContain(const Problem& prob):_prob(prob){
 }
 
 template<std::size_t WIDTH,std::size_t HEIGHT>
-std::vector<std::vector<int>> PerfectContain::trimField(const Matrix<WIDTH, HEIGHT>& field, const square& sq){
+std::vector<std::vector<int>> PerfectContain::trimField(const Matrix<WIDTH, HEIGHT>& field, const square& sq)const{
     std::vector<std::vector<int>> parted_field;
     
     parted_field.resize(sq.end.y - sq.begin.y + 1);
@@ -105,8 +110,26 @@ bool PerfectContain::isFieldContainAllRemainBlocks(Field& field,const closed_ran
     bool isFieldContain=false;
     int N = static_cast<int>(_prob.Count());
     
-    if((closed.first.end.x - closed.first.begin.x) + (closed.first.end.y - closed.first.begin.y) > MAX_CLOSED_FIELD_SIZE)return true;
-    
+#ifdef USE_PARALLEL
+    PARALLEL_FOR(index, N, if(reserve_trans[P_IT].isEnable())continue;
+                 switch(isContain(closed.second,_features[P_IT])){
+                     case CONTAIN_PARAMS::CONTAIN:
+                         isFieldContain = true;
+                         break;
+                     case CONTAIN_PARAMS::NO_CONTAIN:
+                         break;
+                     case CONTAIN_PARAMS::PERFECT_CONTAIN:
+                         isFieldContain = true;
+                         
+                         std::vector<Transform> hands = GetListLayPossible(closed.second, _prob.GetBlock(P_IT), trimField(_prob.GetField(), closed.first));
+                         if(hands.size()!=0){
+                             hands[0].pos = hands[0].pos + closed.first.begin;
+                             reserve_trans[P_IT] = hands[0];
+                             field.Projection(_prob.GetBlock(P_IT),hands[0]);
+                         }
+                         P_IT = N; break;
+                 })
+#else
     for(int i=int(index); i<N; i++){
         if(reserve_trans[i].isEnable())continue;
         switch(isContain(closed.second,_features[i])){
@@ -117,20 +140,23 @@ bool PerfectContain::isFieldContainAllRemainBlocks(Field& field,const closed_ran
                 break;
             case CONTAIN_PARAMS::PERFECT_CONTAIN:
                 isFieldContain = true;
-                
                 std::vector<Transform> hands = GetListLayPossible(closed.second, _prob.GetBlock(i), trimField(_prob.GetField(), closed.first));
                 if(hands.size()!=0){
+                    std::cout << (field | _prob.GetField()) << std::endl;
                     hands[0].pos = hands[0].pos + closed.first.begin;
                     reserve_trans[i] = hands[0];
                     field.Projection(_prob.GetBlock(i),hands[0]);
+                    std::cout << _prob.GetBlock(i) << std::endl;
+                    std::cout << (field | _prob.GetField()) << std::endl;
                 }
-                break;
+                return true;
         }
     }
+#endif
     return isFieldContain;
 }
 
-PerfectContain::closed_range PerfectContain::searchClosedField(const Field& field,const Point& pos){
+PerfectContain::closed_range PerfectContain::searchClosedField(const Field& field,const Point& pos)const{
     std::queue<Point> work;
     Field _field = field;
     square closed_sq;
@@ -139,6 +165,7 @@ PerfectContain::closed_range PerfectContain::searchClosedField(const Field& fiel
     closed_sq.begin = pos; closed_sq.end = pos;
     
     while(!work.empty()){
+        if(work.size() > MAX_CLOSED_FIELD_SIZE){closed_sq.begin = Point(-1,-1); return std::make_pair(closed_sq, std::vector<std::vector<int>>());}
         Point pos = work.front();
         
         closed_sq.begin.x = std::min(closed_sq.begin.x,pos.x);
@@ -161,45 +188,66 @@ PerfectContain::closed_range PerfectContain::searchClosedField(const Field& fiel
     return std::make_pair(closed_sq , xorField(trimField(field, closed_sq),trimField(_field, closed_sq)));
 }
 
-bool PerfectContain::Execution(Field& field,std::size_t index,std::vector<Transform>& reserve_trans){
+bool PerfectContain::Execution(Field& field,const Transform& trans, std::size_t index,std::vector<Transform>& reserve_trans){
     Field _field = field;
     square closed_sq;
+    std::vector<Point> reachable = getReachable(field | _prob.GetField(), _prob.GetBlock(index), trans);
+    std::vector<square> tabu_list;
     bool isAllFieldContainRemainBlock=true;
     
     _field = static_cast<Field>(_field | _prob.GetField());
     
-    for(int i=0;i<FIELD_HEIGHT;i++){
-        for(int j=0;j<FIELD_WIDTH;j++){
-            if(_field[i][j] == false){
-                isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,searchClosedField(_field ,Point(j,i)),index,reserve_trans);
-                if(!isAllFieldContainRemainBlock)return false;
-            }
-        }
+#ifdef USE_PARALLEL
+    PARALLEL_FOR(0,reachable.size(),auto closed = searchClosedField(_field ,reachable[P_IT]);
+                 if(closed.second.size() != 0)isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,searchClosedField(_field ,reachable[P_IT]),index,reserve_trans);
+                 else continue;
+                 if(!isAllFieldContainRemainBlock)break;)
+#else
+    for(Point& pos: reachable){
+        std::cout << _field << std::endl;
+        auto closed = searchClosedField(_field ,pos);
+        if(closed.second.size() == 0 || std::find(tabu_list.begin(),tabu_list.end(),closed.first) != tabu_list.end() ) continue;
+        printBlock(closed.second);
+        tabu_list.push_back(closed.first);
+        isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,closed,index,reserve_trans);
+        if(!isAllFieldContainRemainBlock)return false;
     }
+#endif
     return isAllFieldContainRemainBlock;
 }
 
-bool PerfectContain::Execution(Field& field,std::size_t index){
+bool PerfectContain::Execution(Field& field,const Transform& trans,std::size_t index){
     Field _field = field;
     square closed_sq;
     std::vector<Transform> reserve_trans(_prob.Count());
+    std::vector<square> tabu_list;
+    std::vector<Point> reachable = getReachable(field | _prob.GetField(), _prob.GetBlock(index), trans);
+    
     bool isAllFieldContainRemainBlock=true;
     
     _field = static_cast<Field>(_field | _prob.GetField());
     
-    for(int i=0;i<FIELD_HEIGHT;i++){
-        for(int j=0;j<FIELD_WIDTH;j++){
-            if(_field[i][j] == false){
-                isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,searchClosedField(_field ,Point(j,i)),index,reserve_trans);
-                if(!isAllFieldContainRemainBlock)return false;
-            }
-        }
+#ifdef USE_PARALLEL
+    PARALLEL_FOR(0,reachable.size(),auto closed = searchClosedField(_field ,reachable[P_IT]);
+                 if(closed.second.size() != 0)isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,searchClosedField(_field ,reachable[P_IT]),index,reserve_trans);
+                 else continue;
+                 if(!isAllFieldContainRemainBlock)break;)
+#else
+    for(Point& pos: reachable){
+        //std::cout << _field << std::endl;
+        auto closed = searchClosedField(_field,pos);
+        if(closed.second.size() == 0 || std::find(tabu_list.begin(),tabu_list.end(),closed.first) != tabu_list.end() ) continue;
+        tabu_list.push_back(closed.first);
+        isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,closed,index,reserve_trans);
+        if(!isAllFieldContainRemainBlock)return false;
     }
+#endif
+    
     return isAllFieldContainRemainBlock;
 }
 
 template<std::size_t WIDTH,std::size_t HEIGHT>
-PerfectContain::geometry_feature PerfectContain::calcGeometryFeature(const Matrix<WIDTH,HEIGHT>& block){
+PerfectContain::geometry_feature PerfectContain::calcGeometryFeature(const Matrix<WIDTH,HEIGHT>& block)const{
     std::vector< std::vector<int> > parted_block = particalProblem(block);
     geometry_feature gf;
     int initial_point,segment_size;
@@ -232,7 +280,7 @@ PerfectContain::geometry_feature PerfectContain::calcGeometryFeature(const Matri
     return gf;
 }
 
-PerfectContain::geometry_feature PerfectContain::calcGeometryFeature(const std::vector< std::vector<int> >& block){
+PerfectContain::geometry_feature PerfectContain::calcGeometryFeature(const std::vector< std::vector<int> >& block)const{
     std::vector< std::vector<int> > parted_block = particalBlock(block);
     geometry_feature gf;
     int initial_point,segment_size;
@@ -267,7 +315,7 @@ PerfectContain::geometry_feature PerfectContain::calcGeometryFeature(const std::
     return gf;
 }
 
-PerfectContain::geometry_feature PerfectContain::calcGeometryFeatureField(const std::vector< std::vector<int> >& field){
+PerfectContain::geometry_feature PerfectContain::calcGeometryFeatureField(const std::vector< std::vector<int> >& field)const{
     std::vector< std::vector<int> > parted_block = particalClosedField(field);
     geometry_feature gf;
     int initial_point,segment_size;
@@ -303,7 +351,7 @@ PerfectContain::geometry_feature PerfectContain::calcGeometryFeatureField(const 
 }
 
 template<std::size_t WIDTH,std::size_t HEIGHT>
-PerfectContain::geometry_feature PerfectContain::calcGeometryFeatureField(const Matrix<WIDTH,HEIGHT>& field){
+PerfectContain::geometry_feature PerfectContain::calcGeometryFeatureField(const Matrix<WIDTH,HEIGHT>& field)const{
     std::vector< std::vector<int> > parted_block = particalClosedField(field);
     geometry_feature gf;
     int initial_point,segment_size;
@@ -338,7 +386,7 @@ PerfectContain::geometry_feature PerfectContain::calcGeometryFeatureField(const 
     return gf;
 }
 
-PerfectContain::CONTAIN_PARAMS PerfectContain::isContain(const std::vector< std::vector<int> >& field,geometry_feature gf){
+PerfectContain::CONTAIN_PARAMS PerfectContain::isContain(const std::vector< std::vector<int> >& field,geometry_feature gf)const{
     geometry_feature root_gf = calcGeometryFeature(field);
     bool isPerfect = true;
     
@@ -359,7 +407,7 @@ PerfectContain::CONTAIN_PARAMS PerfectContain::isContain(const std::vector< std:
 }
 
 template<std::size_t WIDTH,std::size_t HEIGHT>
-std::vector<Transform> PerfectContain::GetListLayPossible(const std::vector< std::vector<int> >& _field,const Matrix<WIDTH,HEIGHT>& matrix, const std::vector< std::vector<int> >& _Mask){
+std::vector<Transform> PerfectContain::GetListLayPossible(const std::vector< std::vector<int> >& _field,const Matrix<WIDTH,HEIGHT>& matrix, const std::vector< std::vector<int> >& _Mask)const{
     Matrix<WIDTH,HEIGHT> sample[2][4];
     std::map< Matrix<WIDTH,HEIGHT>,struct Transform > map;
     typedef Matrix<WIDTH,HEIGHT> current;
@@ -399,5 +447,25 @@ std::vector<Transform> PerfectContain::GetListLayPossible(const std::vector< std
     return answer;
 }
 
+std::vector<Point> PerfectContain::getReachable(const Field& field,const Block& block,const Transform& trans){
+    std::vector<Point> reachable;
+    
+    Transform setLarge(Point(1,1),Constants::ANGLE0,false);
+    Matrix<BLOCK_WIDTH+2, BLOCK_HEIGHT+2> L_Block;
+    
+    L_Block.Projection(block,setLarge);
+    L_Block = (L_Block.GetReachable()).GetRotate(trans.angle).GetReverse(trans.reverse);
+    
+    for(int i=0; i<BLOCK_HEIGHT+2; i++){
+        for(int j=0; j<BLOCK_WIDTH+2; j++){
+            Point onFieldPos = Point(j,i) + trans.pos - Point(1,1);
+            if(onFieldPos.x >= 0 && onFieldPos.x < FIELD_WIDTH && onFieldPos.y >= 0 && onFieldPos.y < FIELD_HEIGHT){
+                if(L_Block[i][j]==1 && field[onFieldPos.y][onFieldPos.x]==0)reachable.push_back(Point(j,i) + trans.pos - Point(1,1));
+            }
+        }
+    }
+    
+    return reachable;
+}
 
 #endif /* PerfectContain_h */

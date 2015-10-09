@@ -41,16 +41,17 @@ Block_SA& Block_SA::turnState(auxType& problem){
             }
         }
         
-        p_contain.Execution(_field, i, reserveTrans);
+        if(i!=0)p_contain.Execution(_field, _state.get_ans(i-1).first, i-1, reserveTrans);
         
         hands = _field.GetListLayPossible(problem.GetBlock(i),problem.GetField(),i==0);
         
-        next_evals.resize(hands.size());
+        std::cout << _field << std::endl;
+        next_evals.clear();
         for(int j=0; j<hands.size(); j++){
             Field new_field = static_cast<Field>(_field | problem.GetField()).GetProjection(problem.GetBlock(i),hands[j]);
-            if(!p_contain.Execution(new_field, i)){hands.erase(hands.begin() + j); j--; continue;}
-            next_evals[j] = std::make_pair(_heuristics->Execution(static_cast<Field>(new_field |
-                                    problem.GetField()),problem),hands[j]);
+            if(!p_contain.Execution(new_field,hands[j],i)){hands.erase(hands.begin() + j); j--; continue;}
+            next_evals.push_back(std::make_pair(_heuristics->Execution(static_cast<Field>(new_field |
+                                    problem.GetField()),problem),hands[j]));
         }
         
         if(hands.empty() || hand_iterator[i] > next_evals.size()){
@@ -60,9 +61,10 @@ Block_SA& Block_SA::turnState(auxType& problem){
         }
         
         std::sort(next_evals.begin(), next_evals.end(), [&](const HAND_PAIR& lhs,const HAND_PAIR& rhs){
-            return lhs.first < rhs.first;
+            return lhs.first > rhs.first;
         });
         
+        std::cout << (_field | problem.GetField()) << std::endl;
         auto& selected_hand = next_evals[hand_iterator[i]];
         hand_iterator[i]++;
         _field.Projection(problem.GetBlock(i), selected_hand.second);

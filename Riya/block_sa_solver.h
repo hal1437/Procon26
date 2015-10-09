@@ -22,6 +22,7 @@
 #include "../Hal/Heuristics/DensityAround.h"
 #include "../Hal/Heuristics/MinArea.h"
 #include "../Hal/Heuristics/Frame.h"
+//#include "petternMatching.h"
 
 class Block_SA: public SA_Base<Block_SA,Problem,Answer_history<Transform, Block>>{
 public:
@@ -37,6 +38,7 @@ public:
     Field getField(){return _field;}
     
 private:
+    //PetternSolver closed_solver = PetternSolver();
     typedef std::pair<double,Transform> HAND_PAIR;
     std::vector< HAND_PAIR > next_evals;
     std::vector< int >       hand_iterator;
