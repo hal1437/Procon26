@@ -69,11 +69,6 @@ private:
     
     geometry_feature calcGeometryFeature(const std::vector< std::vector<int> >& block)const;
     
-    template<std::size_t WIDTH,std::size_t HEIGHT>
-    geometry_feature calcGeometryFeatureField(const Matrix<WIDTH,HEIGHT>& field)const;
-    
-    geometry_feature calcGeometryFeatureField(const std::vector< std::vector<int> >& field)const;
-    
     CONTAIN_PARAMS isContain(const std::vector< std::vector<int> >& field,geometry_feature gf)const;
     
     template<std::size_t WIDTH,std::size_t HEIGHT>
@@ -146,23 +141,24 @@ bool PerfectContain::isFieldContainAllRemainBlocks(Field& field,const closed_ran
         }
         
         std::cout << subproblem << std::endl;
-        
         std::vector< std::pair< solve_field, bool > > block_list;
         std::vector< std::size_t > indexes;
         
         for(int i=0; i<_prob.Count(); i++){
-            if(min_closed_fix_blocks[i].second != -1){
+            if(min_closed_fix_blocks[i].second != -1 && !reserve_trans[i].isEnable()){
                 block_list.push_back(std::make_pair( min_closed_fix_blocks[i].first , true ));
                 indexes.push_back(min_closed_fix_blocks[i].second);
             }
         }
+        
         if(closed_solver.isMatched(std::hash<solve_field>()(subproblem), block_list, solve_index)){
             if(solveSubproblem(field, closed,indexes,hands)){
                 for(int i=0; i<solve_index.size(); i++){
                     reserve_trans[indexes[solve_index[i]]] = hands[i];
                     field.Projection(_prob.GetBlock(indexes[solve_index[i]]),hands[i]);
-                    return true;
+                    std::cout << (field | _prob.GetField()) << std::endl;
                 }
+                return true;
             }
         }
     }
@@ -288,10 +284,8 @@ bool PerfectContain::Execution(Field& field,const Transform& trans, std::size_t 
                  if(!isAllFieldContainRemainBlock)break;)
 #else
     for(Point& pos: reachable){
-        std::cout << _field << std::endl;
         auto closed = searchClosedField(_field ,pos);
         if(closed.second.size() == 0 || std::find(tabu_list.begin(),tabu_list.end(),closed.first) != tabu_list.end() ) continue;
-        printBlock(closed.second);
         tabu_list.push_back(closed.first);
         isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,closed,index,reserve_trans);
         if(!isAllFieldContainRemainBlock)return false;
@@ -399,76 +393,6 @@ PerfectContain::geometry_feature PerfectContain::calcGeometryFeature(const std::
     return gf;
 }
 
-PerfectContain::geometry_feature PerfectContain::calcGeometryFeatureField(const std::vector< std::vector<int> >& field)const{
-    std::vector< std::vector<int> > parted_block = particalClosedField(field);
-    geometry_feature gf;
-    int initial_point,segment_size;
-    
-    for(int j=0; j<parted_block[0].size(); j++){
-        initial_point=-1;
-        segment_size=0;
-        for(int i=0; i<parted_block.size(); i++){
-            if(initial_point == -1 && parted_block[i][j] == 1)initial_point = i;
-            if(initial_point != -1 && parted_block[i][j] == 0){segment_size = i - initial_point; initial_point = -1;}
-            if(initial_point != -1 && parted_block[i][j] == 1)segment_size = std::max(segment_size ,i - initial_point + 1);
-        }
-        if(segment_size > 0)gf.first.push_back(segment_size);
-    }
-    
-    for(int i=0; i<parted_block.size(); i++){
-        initial_point=-1;
-        segment_size=0;
-        for(int j=0; j<parted_block[i].size(); j++){
-            if(initial_point == -1 && parted_block[i][j] == 0)initial_point = j;
-            if(initial_point != -1 && parted_block[i][j] == 1){segment_size = j - initial_point; initial_point = -1;}
-            if(initial_point != -1 && parted_block[i][j] == 0)segment_size = std::max(segment_size ,j - initial_point + 1);
-        }
-        if(segment_size > 0)gf.second.push_back(segment_size);
-    }
-    
-    if(gf.second.size() > gf.first.size())std::swap(gf.first,gf.second);
-    
-    std::sort(gf.first.begin(),gf.first.end(),std::greater<int>());
-    std::sort(gf.second.begin(),gf.second.end(),std::greater<int>());
-    
-    return gf;
-}
-
-template<std::size_t WIDTH,std::size_t HEIGHT>
-PerfectContain::geometry_feature PerfectContain::calcGeometryFeatureField(const Matrix<WIDTH,HEIGHT>& field)const{
-    std::vector< std::vector<int> > parted_block = particalClosedField(field);
-    geometry_feature gf;
-    int initial_point,segment_size;
-    
-    for(int j=0; j<parted_block[0].size(); j++){
-        initial_point=-1;
-        segment_size=0;
-        for(int i=0; i<parted_block.size(); i++){
-            if(initial_point == -1 && parted_block[i][j] == 0)initial_point = i;
-            if(initial_point != -1 && parted_block[i][j] == 1){segment_size = i - initial_point; initial_point = -1;}
-            if(initial_point != -1 && parted_block[i][j] == 0)segment_size = std::max(segment_size ,i - initial_point + 1);
-        }
-        if(segment_size > 0)gf.first.push_back(segment_size);
-    }
-    
-    for(int i=0; i<parted_block.size(); i++){
-        initial_point=-1;
-        segment_size=0;
-        for(int j=0; j<parted_block[i].size(); j++){
-            if(initial_point == -1 && parted_block[i][j] == 0)initial_point = j;
-            if(initial_point != -1 && parted_block[i][j] == 1){segment_size = j - initial_point; initial_point = -1;}
-            if(initial_point != -1 && parted_block[i][j] == 0)segment_size = std::max(segment_size ,j - initial_point + 1);
-        }
-        if(segment_size > 0)gf.second.push_back(segment_size);
-    }
-    
-    if(gf.second.size() > gf.first.size())std::swap(gf.first,gf.second);
-    
-    std::sort(gf.first.begin(),gf.first.end(),std::greater<int>());
-    std::sort(gf.second.begin(),gf.second.end(),std::greater<int>());
-    
-    return gf;
-}
 
 PerfectContain::CONTAIN_PARAMS PerfectContain::isContain(const std::vector< std::vector<int> >& field,geometry_feature gf)const{
     geometry_feature root_gf = calcGeometryFeature(field);

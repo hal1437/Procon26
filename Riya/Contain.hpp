@@ -14,6 +14,7 @@
 #include"../Hal/Perfect/PerfectComposit.h"
 #include"Config.h"
 #include<queue>
+#include<numeric>
 #include<algorithm>
 #include<future>
 
@@ -38,15 +39,15 @@ class Contain/* : public Perfect<Field,BlockLayer>*/{
 private:
     struct square;
     typedef Perfect<Field,BlockLayer> h_type;
-    typedef std::pair<std::vector<int>,std::vector<int>> geometry_feature;
     typedef std::pair<square, std::vector<std::vector<int>> > closed_range;
     
     std::vector<h_type*> heuristicses;
 public:
+    typedef std::pair<std::vector<int>,std::vector<int>> geometry_feature;
     static constexpr bool isEnableReserve = false;
     static constexpr int  MAX_CLOSED_FIELD_SIZE = 20;
     
-    bool Execution(const Field& field,const Transform& trans,std::size_t index,std::vector<int>& reserveBlocks);
+    bool Execution(const Field& field,const Transform& trans,std::size_t index);
     
     Contain(const Problem& prob);
     //Contain()=default;
@@ -55,6 +56,8 @@ public:
 private:
     const Problem& _prob;
     std::vector<geometry_feature> _features;
+    std::vector<std::size_t> _features_index;
+    
     struct square{
         Point begin,end;
         bool operator==(const square& rhs){return this->begin == rhs.begin && this->end == rhs.end;}
@@ -65,12 +68,14 @@ private:
     template<std::size_t WIDTH,std::size_t HEIGHT>
     std::vector<std::vector<int>> trimField(const Matrix<WIDTH, HEIGHT>& field, const  square& sq);
 
-    bool isFieldContainAllRemainBlocks(const Field& field,const std::vector<std::vector<int>>& closed,std::size_t index,std::vector<int> reserveBlocks);
+    bool isFieldContainAllRemainBlocks(const Field& field,const std::vector<std::vector<int>>& closed,std::size_t index);
     
     template<std::size_t WIDTH,std::size_t HEIGHT>
     geometry_feature calcGeometryFeature(const Matrix<WIDTH,HEIGHT>& block);
     
     geometry_feature calcGeometryFeature(const std::vector< std::vector<int> >& block);
+    
+    geometry_feature calcGeometryFeatureField(const std::vector< std::vector<int> >& field);
     
     std::vector<Point> getReachable(const Field& field,const Block& block,const Transform& trans);
     
@@ -79,12 +84,36 @@ public:
     bool isContain(const std::vector< std::vector<int> >& field,geometry_feature gf);
 };
 
+bool operator<(const Contain::geometry_feature& rhs, const Contain::geometry_feature& lhs){
+    return std::accumulate(rhs.first.begin(), rhs.first.end(), 0) + std::accumulate(rhs.second.begin(), rhs.second.end(), 0) < std::accumulate(lhs.first.begin(), lhs.first.end(), 0) + std::accumulate(lhs.second.begin(), lhs.second.end(), 0);
+}
+
 Contain::Contain(const Problem& prob):_prob(prob){
-    _features.resize(prob.Count());;
+    std::vector< std::pair< geometry_feature, std::size_t > > _features_pair;
+    _features.resize(prob.Count());
+    _features_index.resize(prob.Count());
+    
+    _features_pair.push_back(std::make_pair(calcGeometryFeature(particalBlock(_prob.GetBlock(0))),0));
+    
+    for(std::size_t i=1; i<_prob.Count(); i++){
+        geometry_feature gf = calcGeometryFeature(particalBlock(_prob.GetBlock(i)));
+        for(long j=_features_pair.size()-1; j>=0; j--){
+            if(j==0){
+                _features_pair.insert(_features_pair.begin(), std::make_pair(gf,i));
+                break;
+            }
+            if(gf < _features_pair[j].first){
+                _features_pair.insert(_features_pair.begin()+j+1, std::make_pair(gf,i));
+                break;
+            }
+        }
+    }
     
     for(std::size_t i=0; i<_prob.Count(); i++){
-        _features[i] = calcGeometryFeature(particalBlock(_prob.GetBlock(i)));
+        _features[i] = _features_pair[i].first;
+        _features_index[i] = _features_pair[i].second;
     }
+    
 }
 
 template<std::size_t WIDTH,std::size_t HEIGHT>
@@ -105,12 +134,12 @@ std::vector<std::vector<int>> Contain::trimField(const Matrix<WIDTH, HEIGHT>& fi
     return parted_field;
 }
 
-bool Contain::isFieldContainAllRemainBlocks(const Field& field,const std::vector<std::vector<int>>& closed,std::size_t index,std::vector<int> reserveBlocks){
+bool Contain::isFieldContainAllRemainBlocks(const Field& field,const std::vector<std::vector<int>>& closed,std::size_t index){
     bool isFieldContain=false;
     int N = _prob.Count();
 #ifdef USE_PARALLEL
     PARALLEL_FOR(if(reserveBlocks[P_IT] < 0){
-        if(isContain(closed,_features[P_IT])){
+        if(isContain(closed,_features[_features_index[P_IT]])){
             isFieldContain = true;
             reserveBlocks[P_IT] = 1; //used
             break;
@@ -119,12 +148,9 @@ bool Contain::isFieldContainAllRemainBlocks(const Field& field,const std::vector
 #else
     for(int i=index; i<N; i++){
         //std::cout << _prob.GetBlock(i) << std::endl;
-        if(reserveBlocks[i] < 0){
-            if(isContain(closed,_features[i])){
-                isFieldContain = true;
-                reserveBlocks[i] = 1; //used
-                break;
-            }
+        if(isContain(closed,_features[_features_index[i]])){
+            isFieldContain = true;
+            break;
         }
     }
 #endif
@@ -135,6 +161,8 @@ Contain::closed_range Contain::searchClosedField(const Field& field,const Point&
     std::queue<Point> work;
     Field _field = field;
     square closed_sq;
+    
+    if(_field[pos.y][pos.x] == 1)std::make_pair(closed_sq, std::vector<std::vector<int>>());
     
     work.push(pos);
     closed_sq.begin = pos; closed_sq.end = pos;
@@ -163,25 +191,73 @@ Contain::closed_range Contain::searchClosedField(const Field& field,const Point&
     return std::make_pair(closed_sq , xorField(trimField(field, closed_sq),trimField(_field, closed_sq)));
 }
 
-bool Contain::Execution(const Field& field,const Transform& trans, std::size_t index,std::vector<int>& reserveBlocks){
-    Field _field = field;
+bool Contain::Execution(const Field& field,const Transform& trans, std::size_t index){
+    Field _field;
     square closed_sq;
     std::vector<Point> reachable = getReachable(field | _prob.GetField(), _prob.GetBlock(index), trans);
-    std::vector<square> tabu_list;
+    std::vector<closed_range> closed_fields;
 
     bool isAllFieldContainRemainBlock=true;
-    _field = static_cast<Field>(_field | _prob.GetField());
-    
+    _field = static_cast<Field>(field | _prob.GetField()); //copy
     for(Point& pos: reachable){
-        //std::cout << _field << std::endl;
         auto closed = searchClosedField(_field,pos);
-        if(closed.second.size() == 0 || std::find(tabu_list.begin(),tabu_list.end(),closed.first) != tabu_list.end() ) continue;
-        tabu_list.push_back(closed.first);
-        isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,closed.second,index,reserveBlocks);
+        if(closed.second.size() == 0) continue;
+        closed_fields.push_back(closed);
+    }
+
+    //sorting closed field
+    std::sort(closed_fields.begin(),closed_fields.end(),[&](const closed_range& rhs,const closed_range& lhs){
+        return std::count_if(rhs.second.begin(),rhs.second.end(),[](const std::vector<int>& v){
+                                                                                return std::count(v.begin(),v.end(),0);
+                                                                          }
+                             ) < std::count_if(rhs.second.begin(),rhs.second.end(),[](const std::vector<int>& v){
+                                                                                return std::count(v.begin(),v.end(),0);
+                                                                          }
+                                               );
+        }
+    );
+    
+    for(auto& closed: closed_fields){
+        isAllFieldContainRemainBlock &= isFieldContainAllRemainBlocks(field,closed.second,index);
         if(!isAllFieldContainRemainBlock)return false;
     }
     
     return isAllFieldContainRemainBlock;
+}
+
+Contain::geometry_feature Contain::calcGeometryFeatureField(const std::vector< std::vector<int> >& field){
+    std::vector< std::vector<int> > parted_block = particalClosedField(field);
+    geometry_feature gf;
+    int initial_point,segment_size;
+    
+    for(int j=0; j<parted_block[0].size(); j++){
+        initial_point=-1;
+        segment_size=0;
+        for(int i=0; i<parted_block.size(); i++){
+            if(initial_point == -1 && parted_block[i][j] == 0)initial_point = i;
+            if(initial_point != -1 && parted_block[i][j] == 1){segment_size = i - initial_point; initial_point = -1;}
+            if(initial_point != -1 && parted_block[i][j] == 0)segment_size = std::max(segment_size ,i - initial_point + 1);
+        }
+        if(segment_size > 0)gf.first.push_back(segment_size);
+    }
+    
+    for(int i=0; i<parted_block.size(); i++){
+        initial_point=-1;
+        segment_size=0;
+        for(int j=0; j<parted_block[i].size(); j++){
+            if(initial_point == -1 && parted_block[i][j] == 0)initial_point = j;
+            if(initial_point != -1 && parted_block[i][j] == 1){segment_size = j - initial_point; initial_point = -1;}
+            if(initial_point != -1 && parted_block[i][j] == 0)segment_size = std::max(segment_size ,j - initial_point + 1);
+        }
+        if(segment_size > 0)gf.second.push_back(segment_size);
+    }
+    
+    if(gf.second.size() > gf.first.size())std::swap(gf.first,gf.second);
+    
+    std::sort(gf.first.begin(),gf.first.end(),std::greater<int>());
+    std::sort(gf.second.begin(),gf.second.end(),std::greater<int>());
+    
+    return gf;
 }
 
 template<std::size_t WIDTH,std::size_t HEIGHT>
@@ -254,7 +330,7 @@ Contain::geometry_feature Contain::calcGeometryFeature(const std::vector< std::v
 }
 
 bool Contain::isContain(const std::vector< std::vector<int> >& field,geometry_feature gf){
-    geometry_feature root_gf = calcGeometryFeature(field);
+    geometry_feature root_gf = calcGeometryFeatureField(field);
     
     if(root_gf.first.size() < gf.first.size() || root_gf.second.size() < gf.second.size())return false;
     

@@ -114,8 +114,8 @@ bool PetternSolver::isMatched(size_t subproblem_hash,std::vector<std::pair<solve
         auto& subproblem_list = _table[subproblem_hash].second;
         for(int j=0; j<_table[subproblem_hash].first; j++){
             if(subproblem_list[j].first == Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(block_list[i].first)){
-                    std::cout << block_list[i].first << std::endl;
-                    std::cout << solve_field(subproblem_list[j].second) << std::endl;
+                    //std::cout << block_list[i].first << std::endl;
+                    //std::cout << solve_field(subproblem_list[j].second) << std::endl;
                 block_list[i].second = false;
                 if(isMatched(subproblem_list[j].second,block_list,solve_index)){
                     solve_index.push_back(i);
