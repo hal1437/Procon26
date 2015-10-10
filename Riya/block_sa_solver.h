@@ -38,7 +38,6 @@ public:
     Field getField(){return _field;}
     
 private:
-    //PetternSolver closed_solver = PetternSolver();
     typedef std::pair<double,Transform> HAND_PAIR;
     std::vector< HAND_PAIR > next_evals;
     std::vector< int >       hand_iterator;

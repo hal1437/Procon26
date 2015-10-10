@@ -24,7 +24,7 @@
 #define BIT_SIZE PETTERN_MATCH_MAX_WIDTH * PETTERN_MATCH_MAX_HEIGHT
 #define MAX_POLYOMINO 10000
 
-#define CONSTEXPR_RIYA constexpr
+#define CONSTEXPR_RIYA
 
 
 constexpr std::size_t hash_size = Anct::pow(2,PETTERN_MATCH_MAX_WIDTH*PETTERN_MATCH_MAX_HEIGHT);
@@ -95,20 +95,21 @@ std::vector<solve_field> PetternSolver::removeElement(std::vector<solve_field> l
 
 bool PetternSolver::isMatched(size_t subproblem_hash,std::vector<std::pair<solve_field,bool>>& block_list,std::vector<int>& solve_index)const{
     
-    
+    /*
     std::cout << "---subproblem---" << std::endl;
     std::cout << solve_field(subproblem_hash) << std::endl;
     std::cout << subproblem_hash << std::endl;
-    
+    */
      
     if(subproblem_hash == pow(2,PETTERN_MATCH_MAX_WIDTH*PETTERN_MATCH_MAX_HEIGHT)-1)return true;
     for(int i=0;i<block_list.size();i++){
         if(!block_list[i].second)continue;
         
+        /*
         std::cout << "---polyomino---" << std::endl;
         std::cout << solve_field(block_list[i].first) << std::endl;
         std::cout << Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(block_list[i].first) << std::endl;
-        
+        */
         
         auto& subproblem_list = _table[subproblem_hash].second;
         for(int j=0; j<_table[subproblem_hash].first; j++){

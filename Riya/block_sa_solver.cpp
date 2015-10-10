@@ -7,7 +7,6 @@
 //
 
 #include "block_sa_solver.h"
-#include "Contain.hpp"
 #include "PerfectContain.hpp"
 #include<random>
 
@@ -17,8 +16,7 @@ Block_SA& Block_SA::turnState(auxType& problem){
     std::uniform_int_distribution<int> distribution;
     std::vector<Transform> hands;
     
-    PerfectContain p_contain(problem);
-    Contain contain(problem);
+    PerfectContain *p_contain = new PerfectContain(problem);
     
     std::size_t r = _state.search_bad_index();
     
@@ -33,7 +31,7 @@ Block_SA& Block_SA::turnState(auxType& problem){
     std::cout << "restart hand number = " << r << " evalution = " << _state.get_eval(r) <<std::endl;
     
     for(long i=r; i < problem.Count(); i++){
-        if(p_contain.isEnableReserve){
+        if(p_contain->isEnableReserve){
             if(reserveTrans[i].isEnable()){
                 _state.set_ans(std::make_pair(reserveTrans[i], problem.GetBlock(i)),i);
                 _state.set_eval( Board_Eval(problem), i);
@@ -41,7 +39,7 @@ Block_SA& Block_SA::turnState(auxType& problem){
             }
         }
         
-        if(i!=0)p_contain.Execution(_field, _state.get_ans(i-1).first, i-1, reserveTrans);
+        if(i!=0)p_contain->Execution(_field, _state.get_ans(i-1).first, i-1, reserveTrans);
         
         hands = _field.GetListLayPossible(problem.GetBlock(i),problem.GetField(),i==0);
         
@@ -49,7 +47,7 @@ Block_SA& Block_SA::turnState(auxType& problem){
         next_evals.clear();
         for(int j=0; j<hands.size(); j++){
             Field new_field = static_cast<Field>(_field | problem.GetField()).GetProjection(problem.GetBlock(i),hands[j]);
-            if(!p_contain.Execution(new_field,hands[j],i)){hands.erase(hands.begin() + j); j--; continue;}
+            if(!p_contain->Execution(new_field,hands[j],i)){hands.erase(hands.begin() + j); j--; continue;}
             next_evals.push_back(std::make_pair(_heuristics->Execution(static_cast<Field>(new_field |
                                     problem.GetField()),problem),hands[j]));
         }
