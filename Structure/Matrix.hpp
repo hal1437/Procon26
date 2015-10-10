@@ -201,11 +201,10 @@ constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<A
 
 MEMBER_TEMPLATE_TEMPLATE
 std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask,bool first)const{
-	//Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
 	typedef std::tuple<Matrix<ARGS_WIDTH,ARGS_HEIGHT>,Constants::ANGLE,bool> node;
 	struct NodeCompare{
 		bool operator()(const node& lhs,const node& rhs)const{
-			return std::get<0>(lhs) < std::get<0>(rhs);
+			return std::get<0>(lhs).GetMoveNormalize() < std::get<0>(rhs).GetMoveNormalize();
 		}
 	};
 	std::set<node,NodeCompare> sample;
@@ -245,7 +244,9 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 	//make sample
 	for(int i=0;i<2;i++){
 		for(int j=0;j<4;j++){
-			sample.insert(std::make_tuple(matrix.GetTransform(Transform::Transform(Point(0,0),static_cast<Constants::ANGLE>(j),i)),static_cast<Constants::ANGLE>(j),i));
+			sample.insert(std::make_tuple(matrix.GetTransform(Transform::Transform(Point(0,0),static_cast<Constants::ANGLE>(j*90),i)),
+										  static_cast<Constants::ANGLE>(j*90),
+										  i));
 		}
 	}
 
@@ -364,7 +365,6 @@ constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>
 			if(origin.x == MATRIX_WIDTH  && (*this)[j][i]) origin.x = -i;
 		}
 	}
-	std::cout << origin << std::endl;
 	this->Move(origin);
 	return (*this);
 }
