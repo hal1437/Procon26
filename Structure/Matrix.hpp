@@ -54,6 +54,7 @@ public:
 	      constexpr current& Rotate           (const Constants::ANGLE& angle);
 	      constexpr current& Reverse          (bool  _reverse=true);
 	      constexpr current& Normalize        ();
+	      constexpr current& MoveNormalize    ();
 	//Copy-action
 	DEFINITION_GETTER(Projection)
 	DEFINITION_GETTER(ReverseProjection)
@@ -62,6 +63,7 @@ public:
 	DEFINITION_GETTER(Rotate)
 	DEFINITION_GETTER(Reverse)
 	DEFINITION_GETTER(Normalize)
+	DEFINITION_GETTER(MoveNormalize)
 
 	//util
 	M_TMP std::vector<struct Transform> GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask = current(),bool first=false)const;
@@ -172,18 +174,21 @@ constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Cross(const Matrix<ARGS_WIDTH
 MEMBER_TEMPLATE_TEMPLATE
 constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const struct Transform& trans,const current& Mask,bool first)const{
 	if(!trans.isEnable())return false;
-	Matrix<ARGS_WIDTH,ARGS_HEIGHT>&& mat = matrix.GetTransform(Transform::Transform(Point(0,0),trans.angle,trans.reverse));
+	const Matrix<ARGS_WIDTH,ARGS_HEIGHT>&& mat = matrix.GetTransform(Transform::Transform(Point(0,0),trans.angle,trans.reverse));
+	const Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>&& Masked = ((*this) | Mask);
 	bool adjacent = false;
+
 
 	for(int i = 0;i < ARGS_HEIGHT;i++){
 		for(int j = 0;j < ARGS_WIDTH;j++){
 			if(mat.get(j,i)){
 				if(trans.pos.y+i < 0 || trans.pos.x+j < 0 || trans.pos.y+i >= MATRIX_HEIGHT || trans.pos.x+j >= MATRIX_WIDTH)return false;
-				if( ((*this) | Mask)[trans.pos.y + i][trans.pos.x + j])return false;
+				if(Masked[trans.pos.y + i][trans.pos.x + j])return false;
 				
 				if(!first){
+					const Point&& local_point = trans.pos + Point(j,i);
 					CLOCKWISE_FOR(clockwise){
-						Point seach_point = trans.pos + Point(j,i) + clockwise;
+						const Point&& seach_point = local_point + clockwise;
 						if(seach_point.x < 0 || seach_point.y < 0 || seach_point.y >= MATRIX_HEIGHT || seach_point.x >= MATRIX_WIDTH)continue;
 						if(this->get(seach_point.x,seach_point.y))adjacent = true;
 					}
@@ -196,15 +201,21 @@ constexpr bool Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::ProjectionTest(const Matrix<A
 
 MEMBER_TEMPLATE_TEMPLATE
 std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& matrix,const current& Mask,bool first)const{
-	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample[2][4];
+	typedef std::tuple<Matrix<ARGS_WIDTH,ARGS_HEIGHT>,Constants::ANGLE,bool> node;
+	struct NodeCompare{
+		bool operator()(const node& lhs,const node& rhs)const{
+			return std::get<0>(lhs).GetMoveNormalize() < std::get<0>(rhs).GetMoveNormalize();
+		}
+	};
+	std::set<node,NodeCompare> sample;
+	
 	const Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& field = *this;
 	const Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>&& project = (*this|Mask);
 	std::map<Matrix<MATRIX_WIDTH+ARGS_WIDTH,MATRIX_HEIGHT+ARGS_HEIGHT>,struct Transform> map;
-	Matrix<ARGS_WIDTH,ARGS_HEIGHT> sample_base(matrix);
+	
+	//triming
 	int triming[4];
-
 	std::fill(triming,triming+4,-1);
-
 	for(int i=0;i<MATRIX_HEIGHT;i++){
 		for(int j=0;j<MATRIX_WIDTH;j++){
 			Point mirror(MATRIX_WIDTH-j-1,MATRIX_HEIGHT-i-1);
@@ -230,25 +241,39 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 		}
 	}
 
+	//make sample
 	for(int i=0;i<2;i++){
-		sample_base.Reverse(i);
 		for(int j=0;j<4;j++){
-			sample[i][j].Projection(sample_base);
-			sample_base.Rotate(Constants::ANGLE90);
+			sample.insert(std::make_tuple(matrix.GetTransform(Transform::Transform(Point(0,0),static_cast<Constants::ANGLE>(j*90),i)),
+										  static_cast<Constants::ANGLE>(j*90),
+										  i));
 		}
 	}
 
+	//探索
 	std::vector<class Transform> answer;
 	for(int i = -8 + triming[Constants::DIRECTION::UP];i < static_cast<int>(MATRIX_HEIGHT) - triming[Constants::DIRECTION::DOWN];i++){
 		for(int j = -8 + triming[Constants::DIRECTION::LEFT];j < static_cast<int>(MATRIX_WIDTH) - triming[Constants::DIRECTION::RIGHT];j++){
-			for(int r=0;r<2;r++){
-				for(int k=0;k<4;k++){
+			for(const node& value:sample){
+			//for(int r=0;r<2;r++){
+				//for(int k=0;k<4;k++){
 					Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
-					if((first && (Mask.ProjectionTest(sample[r][k],move_trans,current(),true))) || field.ProjectionTest(sample[r][k],move_trans,Mask)){
-						struct Transform t(Point(j,i),static_cast<Constants::ANGLE>(k*90),r);
-						map.insert(std::make_pair(current(field).Projection(sample[r][k],move_trans),t));
+					bool added = false;
+					if(first){
+						if(Mask.ProjectionTest(std::get<0>(value),move_trans,current(),true)){
+							added = true;
+						}
 					}
-				}
+					if(field.ProjectionTest(std::get<0>(value),move_trans,Mask)){
+						added = true;
+					}
+					
+					if(added){
+						struct Transform t(Point(j,i),std::get<1>(value),std::get<2>(value));
+						map.insert(std::make_pair(current(field).Projection(std::get<0>(value),move_trans),t));
+					}
+				//}
+			//}
 			}
 		}
 	}
@@ -303,6 +328,7 @@ MEMBER_TEMPLATE
 constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Normalize(){
 	//std::set<current> sample;
 	current sample[8];
+
 	//rotate reverse
 	for(int i=0;i<4;i++){
 		for(int j=0;j<2;j++){
@@ -325,28 +351,21 @@ constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>
 			sample[j*4 + i] = tmp.GetMove(origin);
 		}
 	}
-	current& most = sample[0];
-	for(int i=0;i<8;i++){
-		if(most < sample[i])most = sample[i];
-	}
 
 	//move2
+	(*this) = std::min_element(sample,sample+8)->GetMoveNormalize();
+	return (*this);
+}
+MEMBER_TEMPLATE
+constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::MoveNormalize(){
 	Point origin = Point(MATRIX_WIDTH,MATRIX_HEIGHT);
-	for(int i=0;i<MATRIX_WIDTH && origin.y == MATRIX_WIDTH;i++){
-		for(int j=0;j<MATRIX_HEIGHT && origin.y == MATRIX_WIDTH;j++){
-			if(most[i][j]){
-				origin.y = -i;
-			}
+	for(int i=0;i<MATRIX_WIDTH && (origin.x == MATRIX_WIDTH || origin.y == MATRIX_HEIGHT);i++){
+		for(int j=0;j<MATRIX_HEIGHT && (origin.x == MATRIX_WIDTH || origin.y == MATRIX_HEIGHT);j++){
+			if(origin.y == MATRIX_HEIGHT && (*this)[i][j]) origin.y = -i;
+			if(origin.x == MATRIX_WIDTH  && (*this)[j][i]) origin.x = -i;
 		}
 	}
-	for(int i=0;i<MATRIX_HEIGHT && origin.x == MATRIX_HEIGHT;i++){
-		for(int j=0;j<MATRIX_WIDTH && origin.x == MATRIX_HEIGHT;j++){
-			if(most[j][i]){
-				origin.x = -i;
-			}
-		}
-	}
-	(*this) = most.GetMove(origin);
+	this->Move(origin);
 	return (*this);
 }
 
