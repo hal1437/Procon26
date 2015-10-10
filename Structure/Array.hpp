@@ -9,7 +9,7 @@ struct Array{
     typedef value_type& reference;
     typedef value_type* iterator;
 
-    value_type elems[_Size];
+    value_type elems[_Size]={};
     constexpr reference operator[](size_t l){ //accessor
         return elems[l];
     }
@@ -25,7 +25,14 @@ struct Array{
 
     constexpr reference at(size_t _n) const;
 
-
+    constexpr void fill(value_type _n){
+        for(value_type& elem : elems){
+            elem = _n;
+        }
+    }
+    
+    constexpr Array(){}
+    constexpr Array(Array const&)=default;
 };
 
 template <class _Tp, size_t _Size>

@@ -2,6 +2,12 @@
 #include "../Structure/Problem.h"
 #include "Heuristics/DensityAround.h"
 #include "Heuristics/WeightComposit.h"
+<<<<<<< HEAD
+#include "Solver/AStar.h"
+#include "Solver/DLS.h"
+#include "Solver/BestFirst.h"
+/*
+=======
 #include "Heuristics/Frame.h"
 #include "Heuristics/MinArea.h"
 #include "Heuristics/Random.h"
@@ -10,6 +16,7 @@
 #include "Network/ProblemIO.h"
 
 
+>>>>>>> 7151c307bf34b602cfb38f6b9b679a72f71d3920
 int main(){
 
 	//コンソール全消し
@@ -51,3 +58,4 @@ int main(){
 
 	return 0;
 }
+*/
