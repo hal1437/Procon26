@@ -17,6 +17,8 @@ public:
     tsp_annealing(std::vector<int> state):SA_Base<tsp_annealing, std::vector<cv::Point> ,std::vector<int> >(state){};
 
     tsp_annealing& turnState(std::vector<cv::Point>& city_list);
+    tsp_annealing& initState(std::vector<cv::Point>& city_list);
+    
     int calcEvalution(std::vector<cv::Point>& city_list);
     
 };

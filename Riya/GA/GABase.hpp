@@ -19,9 +19,9 @@ public:
     
     /* Functions that you must define */
     
-    T* mutation(){ static_cast<T*>(this)->mutation(); }
-    T* crossOver(T*){ static_cast<T*>(this)->crossOver(); }
-    int calcEvalution(U& aux){ static_cast<T*>(this)->calcEvalution(); }
+    T* mutation(){ return static_cast<T*>(this)->mutation(); }
+    T* crossOver(T* t){ return static_cast<T*>(this)->crossOver(t); }
+    int calcEvalution(U& aux){ return static_cast<T*>(this)->calcEvalution(); }
     
     /* -------- */
     
@@ -35,6 +35,7 @@ public:
     double getProbability(){return probability;}
 
 protected:
+    GA_Base()=default;
     int _evalution;
     double probability;
 };

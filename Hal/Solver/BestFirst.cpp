@@ -44,7 +44,7 @@ Answer BestFirst::Solve(){
 			}
 		}
 		if(f)continue;
-		
+
 		std::cout << b << std::endl;
 		if((problem.GetField() & b).count() == 0 && b.count() == problem.GetBlock(0).count()){
 			ans.SetTransform(0,rand_trans);

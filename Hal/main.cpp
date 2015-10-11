@@ -1,17 +1,11 @@
 
-#include <iostream>
-#include <fstream>
 #include "../Structure/Problem.h"
-#include "Heuristics/Score.h"
-#include "Heuristics/Density.h"
 #include "Heuristics/DensityAround.h"
-#include "Heuristics/Cavity.h"
 #include "Heuristics/WeightComposit.h"
-#include "Heuristics/SD.h"
-#include "Heuristics/Dent.h"
 #include "Heuristics/Frame.h"
 #include "Heuristics/MinArea.h"
 #include "Heuristics/Random.h"
+<<<<<<< HEAD
 #include "Solver/AStar.h"
 #include "Solver/DLS.h"
 #include "Solver/BestFirst.h"
@@ -20,75 +14,56 @@
 #include "Solver/PerfectBackTrack.h"
 #include "Solver/IterativeCover.h"
 #include "Solver/QuickBeam.h"
+=======
+>>>>>>> Hal
 #include "Solver/DoubleLimit.h"
-#include "Perfect/DPBlockSize.h"
-#include "Perfect/BlockSize.h"
-#include "Perfect/ParityCheck.h"
-#include "Perfect/PerfectComposit.h"
-#include "Perfect/CavityBlocks.h"
-#include "Perfect/MinTriming.h"
-#include "Perfect/PPPP.h"
 #include "../Utility/BenchMark.hpp"
-#include <string>
+#include "Network/ProblemIO.h"
+
 
 int main(){
 
+	//コンソール全消し
 	std::cout << "\x1b[2J";
-
-	BenchMark<1>()([](){
-
 	std::cout << "----Begin of program----" << std::endl;
-	Problem prob("../Problem/quest1.txt");
-	std::ofstream ofs("Answer.txt");
 
-	//PerfectBackTrack p(prob);
-	PerfectComposit* p = new PerfectComposit();
-	WeightComposit * h = new WeightComposit();
 
-	//Solver* solver = new PerfectBackTrack(prob,h,p);
-	//Solver*  solver = new IterativeCover(prob,h);
-	//Solver*  solver = new BestBackTrack(prob,h);
-	Solver* solver = new DoubleLimit(prob,h);
+	//ベンチマーク関数オブジェクト実行
+	BenchMark<1>()([](){
+		//std::string token = "0edebbbd0258632e";
+		std::string token = "0123456789abcdef";
+		//std::cout << HostSolver("testform26.procon-online.net") << std::endl;
+		//Problem prob = GetProblem("testform26.procon-online.net","quest1.txt",token);
 
-	h->AddHeuristic(new DensityAround()    ,   1.0f);
-	h->AddHeuristic(new AntiDensityAround(),   0.7f);
-	//h->AddHeuristic(new Cavity()           ,   0.0f);
-	h->AddHeuristic(new MinArea()          ,  -1.3f);
-	h->AddHeuristic(new Frame()            ,   0.0f);
-	//h->AddHeuristic(new SD()               ,   0.0f);
-	//h->AddHeuristic(new Dent()             ,   0.0f);
-	h->AddHeuristic(new Random()           ,   5.0);
+		
+		Problem prob("../Problem/quest4.txt");
 
-	//p->AddHeuristic(new CavityBlocks());
-	p->AddHeuristic(new DPBlockSize());
-	//p->AddHeuristic(new MinTriming());
-	//p->AddHeuristic(new ParityCheck());
-	//p->AddHeuristic(new PPPP());
+		WeightComposit * h = new WeightComposit();
+		Solver* solver = new DoubleLimit(prob,h);
 
-	//solver->SetPerfect(p);
-	//solver->SetHeuristic(h);
-	solver->Solve().Export("Answer.txt");
+		//評価関数追加
+		h->AddHeuristic(new DensityAround()    ,   1.0f);
+		h->AddHeuristic(new AntiDensityAround(),   0.7f);
+		h->AddHeuristic(new MinArea()          ,  -1.4f);
+		h->AddHeuristic(new Frame()            ,   0.0f);
+		h->AddHeuristic(new Random()           ,   3.0f);
 
-	//delete solver;
-	//delete p;
-	//delete h;
-	std::cout << "-----End of program-----" << std::endl;
+		
+		Answer ans = solver->Solve();
+		ans.Export("Answer.txt");
+
+		//解放
+		delete solver;
+		delete h;
+		SendAnswer("testform26.procon-online.net","Answer.txt",token);
+		//std::cout << SendAnswer("testform26.procon-online.net",token,ans) << std::endl;;
 	});
 
-//quest6:（出力なし　マルチスレッド）
-// ===========BENCHMARK RESULT===========
-//     [COUNT]            1 times
-// [FULL TIME]         1566 msec
-//  [PER TIME]         1566 msec/function 
-// ======================================
-//
-//quest6:（出力あり　マルチスレッド）
-//===========BENCHMARK RESULT===========
-//     [COUNT]            1 times
-// [FULL TIME]         1985 msec
-//  [PER TIME]         1985 msec/function 
-// ======================================
+	std::cout << "-----End of program-----" << std::endl;
 
 	return 0;
 }
+<<<<<<< HEAD
 */
+=======
+>>>>>>> Hal
