@@ -44,6 +44,7 @@ bool DoubleLimit::Factor::HeuristicCompare(const Factor& lhs,const Factor& rhs){
 }
 
 bool DoubleLimit::isPerfect(const Factor& f)const{
+	static Contain contain(problem);
 	//残り空きマス数とブロック数を比較
 	int space = (~(f.field | problem.GetField())).count();
 	int block = 0;
@@ -52,7 +53,8 @@ bool DoubleLimit::isPerfect(const Factor& f)const{
 	}
 	//std::cout << space << ":" << block << std::endl;
 	//if(space == 0)return true;
-	return space <= block;
+	
+	return (space <= block) && contain.Execution(f.field,f.transes.back(),f.transes.size());
 }
 
 
@@ -144,7 +146,7 @@ Answer DoubleLimit::Solve(){
 				
 				//追加
 				for(const Factor& t:local_transes){
-					if(log.find(t) == log.end() /*&& isPerfect(t)*/){
+					if(log.find(t) == log.end() && isPerfect(t)){
 						mtx.lock();
 						list.push_back(t);
 						log.insert(t);

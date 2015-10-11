@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /Users/hal1437/Programs/Procon26/Hal
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/Cellar/cmake/3.2.3/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.1.1_1/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -378,29 +378,29 @@ Heuristics/WeightComposit.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Heuristics/WeightComposit.cpp.s
 .PHONY : Heuristics/WeightComposit.cpp.s
 
-Network/ProblemIO.o: Network/ProblemIO.cpp.o
-.PHONY : Network/ProblemIO.o
+NetWork/ProblemIO.o: NetWork/ProblemIO.cpp.o
+.PHONY : NetWork/ProblemIO.o
 
 # target to build an object file
-Network/ProblemIO.cpp.o:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.o
-.PHONY : Network/ProblemIO.cpp.o
+NetWork/ProblemIO.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/NetWork/ProblemIO.cpp.o
+.PHONY : NetWork/ProblemIO.cpp.o
 
-Network/ProblemIO.i: Network/ProblemIO.cpp.i
-.PHONY : Network/ProblemIO.i
+NetWork/ProblemIO.i: NetWork/ProblemIO.cpp.i
+.PHONY : NetWork/ProblemIO.i
 
 # target to preprocess a source file
-Network/ProblemIO.cpp.i:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.i
-.PHONY : Network/ProblemIO.cpp.i
+NetWork/ProblemIO.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/NetWork/ProblemIO.cpp.i
+.PHONY : NetWork/ProblemIO.cpp.i
 
-Network/ProblemIO.s: Network/ProblemIO.cpp.s
-.PHONY : Network/ProblemIO.s
+NetWork/ProblemIO.s: NetWork/ProblemIO.cpp.s
+.PHONY : NetWork/ProblemIO.s
 
 # target to generate assembly for a file
-Network/ProblemIO.cpp.s:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Network/ProblemIO.cpp.s
-.PHONY : Network/ProblemIO.cpp.s
+NetWork/ProblemIO.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/NetWork/ProblemIO.cpp.s
+.PHONY : NetWork/ProblemIO.cpp.s
 
 Perfect/BlockSize.o: Perfect/BlockSize.cpp.o
 .PHONY : Perfect/BlockSize.o
@@ -570,102 +570,6 @@ Perfect/PerfectComposit.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Perfect/PerfectComposit.cpp.s
 .PHONY : Perfect/PerfectComposit.cpp.s
 
-Solver/BestBackTrack.o: Solver/BestBackTrack.cpp.o
-.PHONY : Solver/BestBackTrack.o
-
-# target to build an object file
-Solver/BestBackTrack.cpp.o:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.o
-.PHONY : Solver/BestBackTrack.cpp.o
-
-Solver/BestBackTrack.i: Solver/BestBackTrack.cpp.i
-.PHONY : Solver/BestBackTrack.i
-
-# target to preprocess a source file
-Solver/BestBackTrack.cpp.i:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.i
-.PHONY : Solver/BestBackTrack.cpp.i
-
-Solver/BestBackTrack.s: Solver/BestBackTrack.cpp.s
-.PHONY : Solver/BestBackTrack.s
-
-# target to generate assembly for a file
-Solver/BestBackTrack.cpp.s:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBackTrack.cpp.s
-.PHONY : Solver/BestBackTrack.cpp.s
-
-Solver/BestBeam.o: Solver/BestBeam.cpp.o
-.PHONY : Solver/BestBeam.o
-
-# target to build an object file
-Solver/BestBeam.cpp.o:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.o
-.PHONY : Solver/BestBeam.cpp.o
-
-Solver/BestBeam.i: Solver/BestBeam.cpp.i
-.PHONY : Solver/BestBeam.i
-
-# target to preprocess a source file
-Solver/BestBeam.cpp.i:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.i
-.PHONY : Solver/BestBeam.cpp.i
-
-Solver/BestBeam.s: Solver/BestBeam.cpp.s
-.PHONY : Solver/BestBeam.s
-
-# target to generate assembly for a file
-Solver/BestBeam.cpp.s:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestBeam.cpp.s
-.PHONY : Solver/BestBeam.cpp.s
-
-Solver/BestFirst.o: Solver/BestFirst.cpp.o
-.PHONY : Solver/BestFirst.o
-
-# target to build an object file
-Solver/BestFirst.cpp.o:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.o
-.PHONY : Solver/BestFirst.cpp.o
-
-Solver/BestFirst.i: Solver/BestFirst.cpp.i
-.PHONY : Solver/BestFirst.i
-
-# target to preprocess a source file
-Solver/BestFirst.cpp.i:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.i
-.PHONY : Solver/BestFirst.cpp.i
-
-Solver/BestFirst.s: Solver/BestFirst.cpp.s
-.PHONY : Solver/BestFirst.s
-
-# target to generate assembly for a file
-Solver/BestFirst.cpp.s:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/BestFirst.cpp.s
-.PHONY : Solver/BestFirst.cpp.s
-
-Solver/DLS.o: Solver/DLS.cpp.o
-.PHONY : Solver/DLS.o
-
-# target to build an object file
-Solver/DLS.cpp.o:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.o
-.PHONY : Solver/DLS.cpp.o
-
-Solver/DLS.i: Solver/DLS.cpp.i
-.PHONY : Solver/DLS.i
-
-# target to preprocess a source file
-Solver/DLS.cpp.i:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.i
-.PHONY : Solver/DLS.cpp.i
-
-Solver/DLS.s: Solver/DLS.cpp.s
-.PHONY : Solver/DLS.s
-
-# target to generate assembly for a file
-Solver/DLS.cpp.s:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/DLS.cpp.s
-.PHONY : Solver/DLS.cpp.s
-
 Solver/DoubleLimit.o: Solver/DoubleLimit.cpp.o
 .PHONY : Solver/DoubleLimit.o
 
@@ -690,77 +594,53 @@ Solver/DoubleLimit.cpp.s:
 	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/DoubleLimit.cpp.s
 .PHONY : Solver/DoubleLimit.cpp.s
 
-Solver/IterativeCover.o: Solver/IterativeCover.cpp.o
-.PHONY : Solver/IterativeCover.o
+Users/hal1437/Programs/Procon26/Riya/Contain.o: Users/hal1437/Programs/Procon26/Riya/Contain.cpp.o
+.PHONY : Users/hal1437/Programs/Procon26/Riya/Contain.o
 
 # target to build an object file
-Solver/IterativeCover.cpp.o:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.o
-.PHONY : Solver/IterativeCover.cpp.o
+Users/hal1437/Programs/Procon26/Riya/Contain.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Riya/Contain.cpp.o
+.PHONY : Users/hal1437/Programs/Procon26/Riya/Contain.cpp.o
 
-Solver/IterativeCover.i: Solver/IterativeCover.cpp.i
-.PHONY : Solver/IterativeCover.i
+Users/hal1437/Programs/Procon26/Riya/Contain.i: Users/hal1437/Programs/Procon26/Riya/Contain.cpp.i
+.PHONY : Users/hal1437/Programs/Procon26/Riya/Contain.i
 
 # target to preprocess a source file
-Solver/IterativeCover.cpp.i:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.i
-.PHONY : Solver/IterativeCover.cpp.i
+Users/hal1437/Programs/Procon26/Riya/Contain.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Riya/Contain.cpp.i
+.PHONY : Users/hal1437/Programs/Procon26/Riya/Contain.cpp.i
 
-Solver/IterativeCover.s: Solver/IterativeCover.cpp.s
-.PHONY : Solver/IterativeCover.s
+Users/hal1437/Programs/Procon26/Riya/Contain.s: Users/hal1437/Programs/Procon26/Riya/Contain.cpp.s
+.PHONY : Users/hal1437/Programs/Procon26/Riya/Contain.s
 
 # target to generate assembly for a file
-Solver/IterativeCover.cpp.s:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/IterativeCover.cpp.s
-.PHONY : Solver/IterativeCover.cpp.s
+Users/hal1437/Programs/Procon26/Riya/Contain.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Riya/Contain.cpp.s
+.PHONY : Users/hal1437/Programs/Procon26/Riya/Contain.cpp.s
 
-Solver/PerfectBackTrack.o: Solver/PerfectBackTrack.cpp.o
-.PHONY : Solver/PerfectBackTrack.o
+Users/hal1437/Programs/Procon26/Riya/blockUtility.o: Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.o
+.PHONY : Users/hal1437/Programs/Procon26/Riya/blockUtility.o
 
 # target to build an object file
-Solver/PerfectBackTrack.cpp.o:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.o
-.PHONY : Solver/PerfectBackTrack.cpp.o
+Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.o:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.o
+.PHONY : Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.o
 
-Solver/PerfectBackTrack.i: Solver/PerfectBackTrack.cpp.i
-.PHONY : Solver/PerfectBackTrack.i
-
-# target to preprocess a source file
-Solver/PerfectBackTrack.cpp.i:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.i
-.PHONY : Solver/PerfectBackTrack.cpp.i
-
-Solver/PerfectBackTrack.s: Solver/PerfectBackTrack.cpp.s
-.PHONY : Solver/PerfectBackTrack.s
-
-# target to generate assembly for a file
-Solver/PerfectBackTrack.cpp.s:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/PerfectBackTrack.cpp.s
-.PHONY : Solver/PerfectBackTrack.cpp.s
-
-Solver/QuickBeam.o: Solver/QuickBeam.cpp.o
-.PHONY : Solver/QuickBeam.o
-
-# target to build an object file
-Solver/QuickBeam.cpp.o:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.o
-.PHONY : Solver/QuickBeam.cpp.o
-
-Solver/QuickBeam.i: Solver/QuickBeam.cpp.i
-.PHONY : Solver/QuickBeam.i
+Users/hal1437/Programs/Procon26/Riya/blockUtility.i: Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.i
+.PHONY : Users/hal1437/Programs/Procon26/Riya/blockUtility.i
 
 # target to preprocess a source file
-Solver/QuickBeam.cpp.i:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.i
-.PHONY : Solver/QuickBeam.cpp.i
+Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.i:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.i
+.PHONY : Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.i
 
-Solver/QuickBeam.s: Solver/QuickBeam.cpp.s
-.PHONY : Solver/QuickBeam.s
+Users/hal1437/Programs/Procon26/Riya/blockUtility.s: Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.s
+.PHONY : Users/hal1437/Programs/Procon26/Riya/blockUtility.s
 
 # target to generate assembly for a file
-Solver/QuickBeam.cpp.s:
-	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Solver/QuickBeam.cpp.s
-.PHONY : Solver/QuickBeam.cpp.s
+Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.s:
+	$(MAKE) -f CMakeFiles/Procon26-Hal.dir/build.make CMakeFiles/Procon26-Hal.dir/Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.s
+.PHONY : Users/hal1437/Programs/Procon26/Riya/blockUtility.cpp.s
 
 Users/hal1437/Programs/Procon26/Structure/Answer.o: Users/hal1437/Programs/Procon26/Structure/Answer.cpp.o
 .PHONY : Users/hal1437/Programs/Procon26/Structure/Answer.o
@@ -972,9 +852,9 @@ help:
 	@echo "... Heuristics/WeightComposit.o"
 	@echo "... Heuristics/WeightComposit.i"
 	@echo "... Heuristics/WeightComposit.s"
-	@echo "... Network/ProblemIO.o"
-	@echo "... Network/ProblemIO.i"
-	@echo "... Network/ProblemIO.s"
+	@echo "... NetWork/ProblemIO.o"
+	@echo "... NetWork/ProblemIO.i"
+	@echo "... NetWork/ProblemIO.s"
 	@echo "... Perfect/BlockSize.o"
 	@echo "... Perfect/BlockSize.i"
 	@echo "... Perfect/BlockSize.s"
@@ -996,30 +876,15 @@ help:
 	@echo "... Perfect/PerfectComposit.o"
 	@echo "... Perfect/PerfectComposit.i"
 	@echo "... Perfect/PerfectComposit.s"
-	@echo "... Solver/BestBackTrack.o"
-	@echo "... Solver/BestBackTrack.i"
-	@echo "... Solver/BestBackTrack.s"
-	@echo "... Solver/BestBeam.o"
-	@echo "... Solver/BestBeam.i"
-	@echo "... Solver/BestBeam.s"
-	@echo "... Solver/BestFirst.o"
-	@echo "... Solver/BestFirst.i"
-	@echo "... Solver/BestFirst.s"
-	@echo "... Solver/DLS.o"
-	@echo "... Solver/DLS.i"
-	@echo "... Solver/DLS.s"
 	@echo "... Solver/DoubleLimit.o"
 	@echo "... Solver/DoubleLimit.i"
 	@echo "... Solver/DoubleLimit.s"
-	@echo "... Solver/IterativeCover.o"
-	@echo "... Solver/IterativeCover.i"
-	@echo "... Solver/IterativeCover.s"
-	@echo "... Solver/PerfectBackTrack.o"
-	@echo "... Solver/PerfectBackTrack.i"
-	@echo "... Solver/PerfectBackTrack.s"
-	@echo "... Solver/QuickBeam.o"
-	@echo "... Solver/QuickBeam.i"
-	@echo "... Solver/QuickBeam.s"
+	@echo "... Users/hal1437/Programs/Procon26/Riya/Contain.o"
+	@echo "... Users/hal1437/Programs/Procon26/Riya/Contain.i"
+	@echo "... Users/hal1437/Programs/Procon26/Riya/Contain.s"
+	@echo "... Users/hal1437/Programs/Procon26/Riya/blockUtility.o"
+	@echo "... Users/hal1437/Programs/Procon26/Riya/blockUtility.i"
+	@echo "... Users/hal1437/Programs/Procon26/Riya/blockUtility.s"
 	@echo "... Users/hal1437/Programs/Procon26/Structure/Answer.o"
 	@echo "... Users/hal1437/Programs/Procon26/Structure/Answer.i"
 	@echo "... Users/hal1437/Programs/Procon26/Structure/Answer.s"

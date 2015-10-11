@@ -2,12 +2,6 @@
 #include "../Structure/Problem.h"
 #include "Heuristics/DensityAround.h"
 #include "Heuristics/WeightComposit.h"
-<<<<<<< HEAD
-#include "Solver/AStar.h"
-#include "Solver/DLS.h"
-#include "Solver/BestFirst.h"
-/*
-=======
 #include "Heuristics/Frame.h"
 #include "Heuristics/MinArea.h"
 #include "Heuristics/Random.h"
@@ -16,7 +10,6 @@
 #include "Network/ProblemIO.h"
 
 
->>>>>>> 7151c307bf34b602cfb38f6b9b679a72f71d3920
 int main(){
 
 	//コンソール全消し
@@ -26,12 +19,13 @@ int main(){
 
 	//ベンチマーク関数オブジェクト実行
 	BenchMark<1>()([](){
-		std::string token = "0edebbbd0258632e";
+		//std::string token = "0edebbbd0258632e";
+		std::string token = "0123456789abcdef";
 		//std::cout << HostSolver("testform26.procon-online.net") << std::endl;
-		Problem prob = GetProblem("testform26.procon-online.net","quest1.txt",token);
+		//Problem prob = GetProblem("testform26.procon-online.net","quest1.txt",token);
 
 		
-		//Problem prob("../Problem/quest16.txt");
+		Problem prob("../Problem/quest4.txt");
 
 		WeightComposit * h = new WeightComposit();
 		Solver* solver = new DoubleLimit(prob,h);
@@ -39,7 +33,7 @@ int main(){
 		//評価関数追加
 		h->AddHeuristic(new DensityAround()    ,   1.0f);
 		h->AddHeuristic(new AntiDensityAround(),   0.7f);
-		h->AddHeuristic(new MinArea()          ,  -2.0f);
+		h->AddHeuristic(new MinArea()          ,  -1.4f);
 		h->AddHeuristic(new Frame()            ,   0.0f);
 		h->AddHeuristic(new Random()           ,   3.0f);
 
@@ -58,4 +52,3 @@ int main(){
 
 	return 0;
 }
-*/

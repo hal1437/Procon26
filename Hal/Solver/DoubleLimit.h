@@ -11,6 +11,7 @@
 #include <thread>
 #include <mutex>
 #include <csignal>
+#include "../../Riya/Contain.h"
 
 //二重制限探索
 class DoubleLimit:public Solver{
@@ -36,6 +37,7 @@ public:
 	};
 public:
 	Heuristics* heuristic;
+// 	Contain contain;
 public:
 
 	bool isPerfect(const Factor& f)const;

@@ -5,13 +5,6 @@ add_definitions("-O3 -std=c++1y")
 add_executable(Procon26-Hal
   main.cpp
   Characteristics.cpp
-  Solver/BestFirst.cpp
-  Solver/DLS.cpp
-  Solver/PerfectBackTrack.cpp
-  Solver/IterativeCover.cpp
-  Solver/BestBackTrack.cpp
-  Solver/BestBeam.cpp
-  Solver/QuickBeam.cpp
   Solver/DoubleLimit.cpp
   Heuristics/Cavity.cpp
   Heuristics/DensityAround.cpp
@@ -30,7 +23,9 @@ add_executable(Procon26-Hal
   Perfect/PerfectComposit.cpp
   Perfect/MinTriming.cpp
   Perfect/PPPP.cpp
-  Network/ProblemIO.cpp
+  NetWork/ProblemIO.cpp
+  ../Riya/Contain.cpp
+  ../Riya/blockUtility.cpp
   ../Structure/Transform.cpp
   ../Structure/Point.cpp
   ../Structure/Heuristic.cpp
@@ -38,4 +33,3 @@ add_executable(Procon26-Hal
   ../Structure/Answer.cpp
   ../Utility/Timewait.cpp
 )
-target_link_libraries(Procon26-Hal boost_system)
