@@ -40,16 +40,15 @@ Block_SA& Block_SA::turnState(auxType& problem){
         }
         
         std::cout << (_field | problem.GetField()) << std::endl;
-        if(i!=0 && !p_contain->Execution(_field, _state.get_ans(i-1).first, i-1, reserveTrans))return *this;
+        if(i!=0 && i!=r && !p_contain->Execution(_field, _state.get_ans(i-1).first, i-1, reserveTrans))return *this;
         std::cout << (_field | problem.GetField()) << std::endl;
         
         hands = _field.GetListLayPossible(problem.GetBlock(i),problem.GetField(),i==0);
 
         next_evals.clear();
         for(int j=0; j<hands.size(); j++){
-            Field new_field = static_cast<Field>(_field | problem.GetField()).GetProjection(problem.GetBlock(i),hands[j]);
-            next_evals.push_back(std::make_pair(_heuristics->Execution(static_cast<Field>(new_field |
-                                    problem.GetField()),problem),hands[j]));
+            Field new_field = _field.GetProjection(problem.GetBlock(i),hands[j]);
+            next_evals.push_back(std::make_pair(_heuristics->Execution(static_cast<Field>(new_field | problem.GetField()),problem),hands[j]));
             if(i!=0 && static_cast<Field>(~(new_field | problem.GetField())).count() <= remain_number_of_blocks[j] && !p_contain->Execution(new_field,hands[j],i)){
                 hands.erase(hands.begin() + j); j--;
                 continue;
@@ -121,10 +120,9 @@ Block_SA& Block_SA::initState(auxType& problem){
         
         next_evals.clear();
         for(int j=0; j<hands.size(); j++){
-            Field new_field = static_cast<Field>(_field | problem.GetField()).GetProjection(problem.GetBlock(i),hands[j]);
+            Field new_field = _field.GetProjection(problem.GetBlock(i),hands[j]);
+            next_evals.push_back(std::make_pair(_heuristics->Execution(static_cast<Field>(new_field | problem.GetField()),problem),hands[j]));
             if(i!=0 && static_cast<Field>(~(new_field | problem.GetField())).count() <= remain_number_of_blocks[j] && !p_contain->Execution(new_field,hands[j],i)){hands.erase(hands.begin() + j); j--; continue;}
-            next_evals.push_back(std::make_pair(_heuristics->Execution(static_cast<Field>(new_field |
-                                                                                          problem.GetField()),problem),hands[j]));
         }
         
         if(hands.empty() || hand_iterator[i] > next_evals.size()){
@@ -158,7 +156,7 @@ Block_SA::Block_SA(stateType state) : SA_Base<Block_SA, Problem, Answer_history<
     auto density = new WeightComposit();
     
     density->AddHeuristic(new DensityAround(),1.0f);
-    density->AddHeuristic(new MinArea(), -1.0f);
+    density->AddHeuristic(new MinArea(), -0.5f);
     density->AddHeuristic(new AntiDensityAround(), 0.9f);
     //density->AddHeuristic(new Frame(), 0.1f);
     

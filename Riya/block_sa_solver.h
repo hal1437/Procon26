@@ -45,8 +45,7 @@ private:
     std::vector<int>         remain_number_of_blocks;
     
     Field _field;
-    Heuristics<double,Field,Problem>* _heuristics;
-    Heuristics<double,Field,Problem>* _Cavity;
+    Heuristics<double,Field,Problem>* _heuristics;  
 };
 
 

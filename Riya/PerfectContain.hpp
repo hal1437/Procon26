@@ -18,8 +18,6 @@
 #include<future>
 #include"petternMatching.h"
 
-static CONSTEXPR_RIYA PetternSolver closed_solver = PetternSolver();
-
 class PerfectContain/* : public Perfect<Field,BlockLayer>*/{
 private:
     struct square;
@@ -46,6 +44,7 @@ public:
     
 private:
     const Problem& _prob;
+    static CONSTEXPR_RIYA PetternSolver closed_solver = PetternSolver();
     std::vector<geometry_feature> _features;
     std::vector< std::pair<Block,std::size_t> > min_closed_fix_blocks;
     
@@ -176,7 +175,6 @@ bool PerfectContain::isFieldContainAllRemainBlocks(Field& field,const closed_ran
             case CONTAIN_PARAMS::NO_CONTAIN:
                 break;
             case CONTAIN_PARAMS::PERFECT_CONTAIN:
-                isFieldContain = true;
                 std::vector<Transform> hands = GetListLayPossible(closed.second, _prob.GetBlock(i), trimField(_prob.GetField(), closed.first));
                 if(hands.size()!=0){
                     hands[0].pos = hands[0].pos + closed.first.begin;
@@ -184,6 +182,7 @@ bool PerfectContain::isFieldContainAllRemainBlocks(Field& field,const closed_ran
                     field.Projection(_prob.GetBlock(i),hands[0]);
                     return true;
                 }
+                else isFieldContain=false;
                 break;
         }
     }
