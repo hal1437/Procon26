@@ -5,17 +5,6 @@
 #include "Heuristics/Frame.h"
 #include "Heuristics/MinArea.h"
 #include "Heuristics/Random.h"
-<<<<<<< HEAD
-#include "Solver/AStar.h"
-#include "Solver/DLS.h"
-#include "Solver/BestFirst.h"
-#include "Solver/BestBeam.h"
-#include "Solver/BestBackTrack.h"
-#include "Solver/PerfectBackTrack.h"
-#include "Solver/IterativeCover.h"
-#include "Solver/QuickBeam.h"
-=======
->>>>>>> Hal
 #include "Solver/DoubleLimit.h"
 #include "../Utility/BenchMark.hpp"
 #include "Network/ProblemIO.h"
@@ -31,7 +20,7 @@ int main(){
 	//ベンチマーク関数オブジェクト実行
 	BenchMark<1>()([](){
 		//std::string token = "0edebbbd0258632e";
-		std::string token = "0123456789abcdef";
+		//std::string token = "0123456789abcdef";
 		//std::cout << HostSolver("testform26.procon-online.net") << std::endl;
 		//Problem prob = GetProblem("testform26.procon-online.net","quest1.txt",token);
 
@@ -63,7 +52,4 @@ int main(){
 
 	return 0;
 }
-<<<<<<< HEAD
-*/
-=======
->>>>>>> Hal
+
