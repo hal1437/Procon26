@@ -14,16 +14,17 @@
 #include"../Structure/Transform.h"
 
 void printBlock(const std::vector< std::vector<int> >& block);
+
 std::vector< std::vector<int> > xorField(const std::vector< std::vector<int> >& rhs, const std::vector< std::vector<int> >& lhs);
-std::vector< std::vector<int> > particalBlock(const std::vector< std::vector<int> >& block);
+
 template<std::size_t WIDTH,std::size_t HEIGHT>
 std::vector< std::vector<int> > particalBlock(const Matrix<WIDTH,HEIGHT>& block);
 std::vector< std::vector<int> > particalBlock(const std::vector< std::vector<int> >& block);
-template<std::size_t WIDTH,std::size_t HEIGHT>
-std::vector< std::vector<int> > particalClosedField(const Matrix<WIDTH,HEIGHT>& block);
+
 template<std::size_t WIDTH,std::size_t HEIGHT>
 std::vector< std::vector<int> > particalClosedField(const Matrix<WIDTH,HEIGHT>& block);
 std::vector< std::vector<int> > particalClosedField(const std::vector< std::vector<int> >& block);
+
 std::vector< std::vector<int> > convertBlock(const std::vector< std::vector<int> >& field);
 
 template<std::size_t WIDTH,std::size_t HEIGHT>

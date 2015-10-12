@@ -31,11 +31,11 @@ public:
     bool operator<(const T* rhs){return this->_evalution < rhs->_evalution;}
     bool operator>(const T* rhs){return this->_evalution > rhs->_evalution;}
     
-    void setEvalution(int eval){_evalution = eval;}
-    int getEvalution(){return _evalution;}
+    void    setEvalution(int eval){_evalution = eval;}
+    int     getEvalution(){return _evalution;}
     
-    stateType getState(){return _state;}
-    void setState(stateType state){_state = state;}
+    stateType   getState(){return _state;}
+    void        setState(stateType state){_state = state;}
     
 protected:
     stateType _state;

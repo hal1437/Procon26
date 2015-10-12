@@ -20,11 +20,11 @@ public:
     explicit Answer_history(Problem& problem){ans_list.resize(problem.Count()); eval_list.resize(problem.Count());}
     Answer_history()=default;
     
-    void set_ans(std::pair<TRANSFORM, BLOCK> &&node,int i){ans_list[i] = node;}
-    void set_ans(std::pair<TRANSFORM, BLOCK> &node,int i){ans_list[i] = node;}
+    void set_ans(std::pair<TRANSFORM, BLOCK> &&node,int i)  {ans_list[i] = node;}
+    void set_ans(std::pair<TRANSFORM, BLOCK> &node,int i)   {ans_list[i] = node;}
     
-    void set_eval(long eval,int i){eval_list[i] = std::make_pair(eval,i);}
-    long get_eval(int i){return eval_list[i].first;};
+    void set_eval(long eval,int i)  {eval_list[i] = std::make_pair(eval,i);}
+    long get_eval(int i)            {return eval_list[i].first;};
     
     const std::pair<TRANSFORM,BLOCK>& get_ans(int i){return ans_list[i];}
     
@@ -39,6 +39,7 @@ public:
             field.ReverseProjection(ans_list[i].second,ans_list[i].first);
         }
     }
+    
     Answer TranslateAnswer(Problem& problem){
         Answer answer(problem);
         for(int i=0;i<ans_list.size();i++){
@@ -50,9 +51,10 @@ public:
         }
         return answer;
     }
+    
 private:
-    std::vector< std::pair<TRANSFORM,BLOCK> > ans_list;
-    std::vector< std::pair<long,std::size_t> > eval_list;
+    std::vector< std::pair<TRANSFORM,BLOCK> >   ans_list;
+    std::vector< std::pair<long,std::size_t> >  eval_list;
 };
 
 template<class TRANSFORM,class BLOCK>

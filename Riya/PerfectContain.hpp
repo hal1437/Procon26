@@ -21,9 +21,9 @@
 class PerfectContain/* : public Perfect<Field,BlockLayer>*/{
 private:
     struct square;
-    typedef Perfect<Field,BlockLayer> h_type;
-    typedef std::pair<std::vector<int>,std::vector<int>> geometry_feature;
-    typedef std::pair<square, std::vector<std::vector<int>> > closed_range;
+
+    typedef std::pair<std::vector<int>,std::vector<int>>        geometry_feature;
+    typedef std::pair<square, std::vector<std::vector<int>> >   closed_range;
     
 public:
     static constexpr bool isEnableReserve = true;
@@ -44,7 +44,8 @@ public:
     
 private:
     const Problem& _prob;
-    static CONSTEXPR_RIYA PetternSolver closed_solver = PetternSolver();
+    PetternSolver closed_solver = PetternSolver();
+    
     std::vector<geometry_feature> _features;
     std::vector< std::pair<Block,std::size_t> > min_closed_fix_blocks;
     
@@ -59,11 +60,11 @@ private:
     std::vector<std::vector<int>> trimField(const Matrix<WIDTH, HEIGHT>& field, const  square& sq)const;
     
     bool isFieldContainAllRemainBlocks(Field& field,const closed_range& closed,std::size_t index,std::vector<Transform>& reserve_trans);
+    
     bool solveSubproblem(const Field& field,const closed_range& closed,const std::vector< std::pair< Block*, bool > >& block_list, const std::vector<int>& solve_index,std::vector<Transform>& ans,int i=0);
     
     template<std::size_t WIDTH,std::size_t HEIGHT>
     geometry_feature calcGeometryFeature(const Matrix<WIDTH,HEIGHT>& block)const;
-    
     geometry_feature calcGeometryFeature(const std::vector< std::vector<int> >& block)const;
     
     CONTAIN_PARAMS isContain(const std::vector< std::vector<int> >& field,geometry_feature gf)const;
