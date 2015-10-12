@@ -24,7 +24,7 @@
 #define BIT_SIZE PETTERN_MATCH_MAX_WIDTH * PETTERN_MATCH_MAX_HEIGHT
 #define MAX_POLYOMINO 10000
 
-#define CONSTEXPR_RIYA
+#define CONSTEXPR_RIYA constexpr
 
 
 constexpr std::size_t hash_size = Anct::pow(2,PETTERN_MATCH_MAX_WIDTH*PETTERN_MATCH_MAX_HEIGHT);
@@ -75,7 +75,7 @@ public:
     //static CONSTEXPR_RIYA int MAX_WIDTH=3;
     //static CONSTEXPR_RIYA int MAH_HEIGHT=3;
     
-    bool isMatched(size_t subproblem_hash,std::vector<std::pair<solve_field,bool>>& block_list,std::vector<int>& solve_index)const;
+    bool isMatched(size_t subproblem_hash,std::vector<std::pair<Block*,bool>>& block_list,std::vector<int>& solve_index)const;
     
 private:
     std::vector<solve_field> removeElement(std::vector<solve_field> list,int i)const;
@@ -93,7 +93,7 @@ std::vector<solve_field> PetternSolver::removeElement(std::vector<solve_field> l
     return list;
 }
 
-bool PetternSolver::isMatched(size_t subproblem_hash,std::vector<std::pair<solve_field,bool>>& block_list,std::vector<int>& solve_index)const{
+bool PetternSolver::isMatched(size_t subproblem_hash,std::vector<std::pair<Block*,bool>>& block_list,std::vector<int>& solve_index)const{
     
     /*
     std::cout << "---subproblem---" << std::endl;
@@ -107,15 +107,15 @@ bool PetternSolver::isMatched(size_t subproblem_hash,std::vector<std::pair<solve
         
         /*
         std::cout << "---polyomino---" << std::endl;
-        std::cout << solve_field(block_list[i].first) << std::endl;
-        std::cout << Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(block_list[i].first) << std::endl;
+        std::cout << solve_field(*block_list[i].first) << std::endl;
+        std::cout << Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(*block_list[i].first) << std::endl;
         */
-        
+         
         auto& subproblem_list = _table[subproblem_hash].second;
         for(int j=0; j<_table[subproblem_hash].first; j++){
-            if(subproblem_list[j].first == Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(block_list[i].first)){
-                    //std::cout << block_list[i].first << std::endl;
-                    //std::cout << solve_field(subproblem_list[j].second) << std::endl;
+            if(subproblem_list[j].first == Anct::hash<PETTERN_MATCH_MAX_WIDTH,PETTERN_MATCH_MAX_HEIGHT>()(*block_list[i].first)){
+                //std::cout << block_list[i].first << std::endl;
+                //std::cout << solve_field(subproblem_list[j].second) << std::endl;
                 block_list[i].second = false;
                 if(isMatched(subproblem_list[j].second,block_list,solve_index)){
                     solve_index.push_back(i);

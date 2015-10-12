@@ -89,7 +89,7 @@ std::size_t Answer_history<TRANSFORM,BLOCK>::search_bad_index(){
         }
     }
     
-    return i;
+    return /*i*/ rand() % ans_list.size();
 }
 
 #endif

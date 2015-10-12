@@ -34,7 +34,8 @@ std::vector< std::vector<int> > xorField(const std::vector< std::vector<int> >& 
 
 
 std::vector< std::vector<int> > particalBlock(const std::vector< std::vector<int> >& block){
-    auto parted_block = block;
+    std::vector< std::vector<int> > parted_block(block);
+    
     if(block.size()==0)return parted_block;
     bool isTrimed=true;
     
@@ -73,7 +74,8 @@ std::vector< std::vector<int> > particalBlock(const std::vector< std::vector<int
 
 
 std::vector< std::vector<int> > particalClosedField(const std::vector< std::vector<int> >& block){
-    auto parted_block = block;
+    std::vector< std::vector<int> > parted_block(block);
+
     bool isTrimed=true;
     
     if(block.size()==0)return parted_block;
