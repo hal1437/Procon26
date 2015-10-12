@@ -25,7 +25,7 @@ int main(){
 		//Problem prob = GetProblem("testform26.procon-online.net","quest1.txt",token);
 
 		
-		Problem prob("../Problem/quest4.txt");
+		Problem prob("../Problem/1.txt");
 
 		WeightComposit * h = new WeightComposit();
 		Solver* solver = new DoubleLimit(prob,h);
@@ -44,7 +44,7 @@ int main(){
 		//解放
 		delete solver;
 		delete h;
-		SendAnswer("testform26.procon-online.net","Answer.txt",token);
+		//SendAnswer("testform26.procon-online.net","Answer.txt",token);
 		//std::cout << SendAnswer("testform26.procon-online.net",token,ans) << std::endl;;
 	});
 

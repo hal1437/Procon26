@@ -11,5 +11,6 @@ public:
 	virtual Answer Solve() = 0;
 	
 	explicit Solver(Problem prob):problem(prob){};
+	virtual  ~Solver(){};
 };
 
