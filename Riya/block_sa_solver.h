@@ -42,6 +42,7 @@ private:
     std::vector< HAND_PAIR > next_evals;
     std::vector< int >       hand_iterator;
     std::vector< Transform > reserveTrans;
+    std::vector<int>         remain_number_of_blocks;
     
     Field _field;
     Heuristics<double,Field,Problem>* _heuristics;
