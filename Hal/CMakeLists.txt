@@ -1,35 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
-add_definitions(-DMATRIX_WIDEOUT)
-add_definitions("-O3 -std=c++1y")
+add_definitions("-std=c++1y")
 
-add_executable(Procon26-Hal
-  main.cpp
-  Characteristics.cpp
-  Solver/DoubleLimit.cpp
-  Heuristics/Cavity.cpp
-  Heuristics/DensityAround.cpp
-  Heuristics/WeightComposit.cpp
-  Heuristics/Density.cpp
-  Heuristics/Score.cpp
-  Heuristics/SD.cpp
-  Heuristics/Dent.cpp
-  Heuristics/Frame.cpp
-  Heuristics/MinArea.cpp
-  Heuristics/Random.cpp
-  Perfect/BlockSize.cpp
-  Perfect/ParityCheck.cpp
-  Perfect/DPBlockSize.cpp
-  Perfect/CavityBlocks.cpp
-  Perfect/PerfectComposit.cpp
-  Perfect/MinTriming.cpp
-  Perfect/PPPP.cpp
-  NetWork/ProblemIO.cpp
-  ../Riya/Contain.cpp
-  ../Riya/blockUtility.cpp
-  ../Structure/Transform.cpp
-  ../Structure/Point.cpp
-  ../Structure/Heuristic.cpp
-  ../Structure/Problem.cpp	
-  ../Structure/Answer.cpp
-  ../Utility/Timewait.cpp
-)
+# ファイルをライブラリとして追加
+file(GLOB HAL_SOURCES *.cpp *.h *.hpp)
+add_library(hal ${HAL_SOURCES})
+
+# インクルードディレクトリ追加
+target_include_directories(hal PUBLIC .)
+
+add_subdirectory(Heuristics)
+add_subdirectory(Solver)
+add_subdirectory(Perfect)
+add_subdirectory(NetWork)

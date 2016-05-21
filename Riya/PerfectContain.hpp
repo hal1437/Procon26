@@ -10,7 +10,7 @@
 #define PerfectContain_h
 
 #include"blockUtility.h"
-#include"PARALLEL.hpp"
+#include"../Utility/PARALLEL.hpp"
 #include"../Hal/Perfect/PerfectComposit.h"
 #include"Config.h"
 #include<queue>

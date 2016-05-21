@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Structure/Problem.h"
-#include "../Structure/Answer.h"
+#include "../../Structure/Problem.h"
+#include "../../Structure/Answer.h"
 #include <iostream>
 #include <fstream>
 #include <string>
