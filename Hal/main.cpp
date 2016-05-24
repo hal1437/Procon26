@@ -10,22 +10,34 @@
 #include "Network/ProblemIO.h"
 
 
-int main(){
+int main(int argc,char* argv[]){
+
+	if(argc <= 1){
+		std::cout << "Not enough arguments." << std::endl;
+		return 0;
+	}else{
+		std::ifstream ifs(argv[1]);
+		if(!ifs){
+			std::cout << "Can't open problem file." << std::endl;
+			return 0;
+		}
+	}
+
 
 	//コンソール全消し
 	std::cout << "\x1b[2J";
 	std::cout << "----Begin of program----" << std::endl;
-
+	
 
 	//ベンチマーク関数オブジェクト実行
-	BenchMark<1>()([](){
+	BenchMark<1>()([&](){
 		//std::string token = "0edebbbd0258632e";
 		//std::string token = "0123456789abcdef";
 		//std::cout << HostSolver("testform26.procon-online.net") << std::endl;
 		//Problem prob = GetProblem("testform26.procon-online.net","quest1.txt",token);
-
 		
-		Problem prob("../Problem/1.txt");
+		
+		Problem prob(argv[1]);
 
 		WeightComposit * h = new WeightComposit();
 		Solver* solver = new DoubleLimit(prob,h);
