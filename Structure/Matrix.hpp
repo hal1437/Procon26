@@ -49,7 +49,7 @@ public:
 	M_TMP constexpr current& Projection       (const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans);
 	M_TMP constexpr current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat);
 	M_TMP constexpr current& ReverseProjection(const Matrix<ARGS_WIDTH,ARGS_HEIGHT>& mat,const Transform& trans);
-	      constexpr current& Transform        (const struct Transform& trnas);
+	      constexpr current& Trans            (const struct Transform& trnas);
 	      constexpr current& Move             (const Point& pos);
 	      constexpr current& Rotate           (const Constants::ANGLE& angle);
 	      constexpr current& Reverse          (bool  _reverse=true);
@@ -58,7 +58,7 @@ public:
 	//Copy-action
 	DEFINITION_GETTER(Projection)
 	DEFINITION_GETTER(ReverseProjection)
-	DEFINITION_GETTER(Transform)
+	DEFINITION_GETTER(Trans)
 	DEFINITION_GETTER(Move)
 	DEFINITION_GETTER(Rotate)
 	DEFINITION_GETTER(Reverse)
@@ -251,29 +251,25 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 	}
 
 	//探索
-	std::vector<class Transform> answer;
+	std::vector<Transform> answer;
 	for(int i = -8 + triming[Constants::DIRECTION::UP];i < static_cast<int>(MATRIX_HEIGHT) - triming[Constants::DIRECTION::DOWN];i++){
 		for(int j = -8 + triming[Constants::DIRECTION::LEFT];j < static_cast<int>(MATRIX_WIDTH) - triming[Constants::DIRECTION::RIGHT];j++){
 			for(const node& value:sample){
-			//for(int r=0;r<2;r++){
-				//for(int k=0;k<4;k++){
-					Transform::Transform move_trans(Point(j,i),Constants::ANGLE0,false);
-					bool added = false;
-					if(first){
-						if(Mask.ProjectionTest(std::get<0>(value),move_trans,current(),true)){
-							added = true;
-						}
-					}
-					if(field.ProjectionTest(std::get<0>(value),move_trans,Mask)){
+				Transform move_trans(Point(j,i),Constants::ANGLE0,false);
+				bool added = false;
+				if(first){
+					if(Mask.ProjectionTest(std::get<0>(value),move_trans,current(),true)){
 						added = true;
 					}
-					
-					if(added){
-						struct Transform t(Point(j,i),std::get<1>(value),std::get<2>(value));
-						map.insert(std::make_pair(current(field).Projection(std::get<0>(value),move_trans),t));
-					}
-				//}
-			//}
+				}
+				if(field.ProjectionTest(std::get<0>(value),move_trans,Mask)){
+					added = true;
+				}
+				
+				if(added){
+					struct Transform t(Point(j,i),std::get<1>(value),std::get<2>(value));
+					map.insert(std::make_pair(current(field).Projection(std::get<0>(value),move_trans),t));
+				}
 			}
 		}
 	}
@@ -283,7 +279,7 @@ std::vector<Transform> Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::GetListLayPossible(co
 }
 
 MEMBER_TEMPLATE
-constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Transform(const struct Transform& trans){
+constexpr Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>& Matrix<MATRIX_WIDTH,MATRIX_HEIGHT>::Trans(const struct Transform& trans){
 	if(!trans.isEnable())return (*this);
 	if(trans.reverse)Reverse();
 	Rotate(trans.angle);

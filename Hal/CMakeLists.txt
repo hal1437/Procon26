@@ -9,6 +9,6 @@ add_library(hal ${HAL_SOURCES})
 target_include_directories(hal PUBLIC .)
 
 add_subdirectory(Heuristics)
-add_subdirectory(Solver)
 add_subdirectory(Perfect)
 add_subdirectory(NetWork)
+add_subdirectory(Solver)

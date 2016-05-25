@@ -21,17 +21,17 @@ set(LIBRARY_OUTPUT_PATH    ${CMAKE_BINARY_DIR}/lib CACHE PATH "Output directory 
 # サブディレクトリ追加
 add_subdirectory(Structure)
 add_subdirectory(Utility)
-add_subdirectory(Hal)
 add_subdirectory(Riya)
+add_subdirectory(Hal)
 
 # 実行ファイル作成
 add_executable(Solver Hal/main.cpp)
 target_link_libraries(Solver structure)
-target_link_libraries(Solver hal)
 target_link_libraries(Solver riya)
 target_link_libraries(Solver heuristic)
 target_link_libraries(Solver perfect)
 target_link_libraries(Solver solver)
+target_link_libraries(Solver hal)
 # target_link_libraries(Solver network)
 
 
