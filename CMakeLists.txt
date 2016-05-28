@@ -13,6 +13,9 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
   message(FATAL_ERROR "In-sourceビルドは許可されていません.")
 endif()
 
+# コンパイラ表示
+message(STATUS "Compiler: ${CMAKE_CXX_COMPILER}")
+
 # 出力先を設定
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin CACHE PATH "Output directory for executables")
 set(LIBRARY_OUTPUT_PATH    ${CMAKE_BINARY_DIR}/lib CACHE PATH "Output directory for libraries")
